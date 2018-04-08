@@ -1,0 +1,1 @@
+xst -intstyle ise -ifn "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/Top_level.xst" -ofn "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/Top_level.syr" 
