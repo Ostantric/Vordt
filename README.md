@@ -1,4 +1,4 @@
-# Vordt
+# Vordt - Outrider Robot
 Under development. 
 
 ### Branches
