@@ -5,14 +5,14 @@ Parameter TMPDIR set to xst/projnav.tmp
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Parameter xsthdpdir set to xst
 
 
 Total REAL time to Xst completion: 0.00 secs
-Total CPU time to Xst completion: 0.03 secs
+Total CPU time to Xst completion: 0.04 secs
  
 --> 
 Reading design: Top_level.prj
@@ -108,37 +108,37 @@ Slice Utilization Ratio Delta      : 5
 =========================================================================
 *                          HDL Parsing                                  *
 =========================================================================
-Parsing VHDL file "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Velocity_PID_Controller.vhd" into library work
+Parsing VHDL file "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Velocity_PID_Controller.vhd" into library work
 Parsing entity <Velocity_PID_Controller>.
-INFO:HDLCompiler:1676 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Velocity_PID_Controller.vhd" Line 43. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Velocity_PID_Controller.vhd" Line 43. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
 Parsing architecture <Behavioral> of entity <velocity_pid_controller>.
-Parsing VHDL file "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/UART_TX.vhd" into library work
+Parsing VHDL file "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/UART_TX.vhd" into library work
 Parsing entity <UART_TX>.
 Parsing architecture <RTL> of entity <uart_tx>.
-Parsing VHDL file "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Sabertooth_Packetized_Serial_Driver.vhd" into library work
+Parsing VHDL file "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Sabertooth_Packetized_Serial_Driver.vhd" into library work
 Parsing entity <Sabertooth_Packetized_Serial_Driver>.
 Parsing architecture <Behavioral> of entity <sabertooth_packetized_serial_driver>.
-Parsing VHDL file "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Slave_Module.vhd" into library work
+Parsing VHDL file "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/I2C_Slave_Module.vhd" into library work
 Parsing entity <I2C_Slave_Module>.
 Parsing architecture <Behavioral> of entity <i2c_slave_module>.
-Parsing VHDL file "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Module.vhd" into library work
+Parsing VHDL file "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/I2C_Module.vhd" into library work
 Parsing entity <I2C_Module>.
-INFO:HDLCompiler:1676 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Module.vhd" Line 37. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
+INFO:HDLCompiler:1676 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/I2C_Module.vhd" Line 37. declaration of a buffer port will make it difficult for you to validate this design by simulation. It is preferable to declare it as output
 Parsing architecture <logic> of entity <i2c_module>.
-WARNING:HDLCompiler:957 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Module.vhd" Line 73: Case choice must be a locally static expression
-WARNING:HDLCompiler:957 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Module.vhd" Line 76: Case choice must be a locally static expression
-WARNING:HDLCompiler:957 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Module.vhd" Line 79: Case choice must be a locally static expression
-Parsing VHDL file "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Handler.vhd" into library work
+WARNING:HDLCompiler:957 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/I2C_Module.vhd" Line 73: Case choice must be a locally static expression
+WARNING:HDLCompiler:957 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/I2C_Module.vhd" Line 76: Case choice must be a locally static expression
+WARNING:HDLCompiler:957 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/I2C_Module.vhd" Line 79: Case choice must be a locally static expression
+Parsing VHDL file "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/I2C_Handler.vhd" into library work
 Parsing entity <I2C_Handler>.
 Parsing architecture <Behavioral> of entity <i2c_handler>.
-Parsing VHDL file "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Decoder.vhd" into library work
+Parsing VHDL file "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Decoder.vhd" into library work
 Parsing entity <Decoder>.
 Parsing architecture <Mix> of entity <decoder>.
-Parsing VHDL file "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" into library work
+Parsing VHDL file "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" into library work
 Parsing entity <Top_level>.
 Parsing architecture <Structural> of entity <top_level>.
-WARNING:HDLCompiler:946 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" Line 150: Actual for formal port pid_velocity_input is neither a static name nor a globally static expression
-WARNING:HDLCompiler:946 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" Line 152: Actual for formal port storage_input is neither a static name nor a globally static expression
+WARNING:HDLCompiler:946 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 150: Actual for formal port pid_velocity_input is neither a static name nor a globally static expression
+WARNING:HDLCompiler:946 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 152: Actual for formal port storage_input is neither a static name nor a globally static expression
 
 =========================================================================
 *                            HDL Elaboration                            *
@@ -147,53 +147,53 @@ WARNING:HDLCompiler:946 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/s
 Elaborating entity <Top_level> (architecture <Structural>) from library <work>.
 
 Elaborating entity <Decoder> (architecture <Mix>) with generics from library <work>.
-WARNING:HDLCompiler:1127 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Decoder.vhd" Line 130: Assignment to speed_temp ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Decoder.vhd" Line 130: Assignment to speed_temp ignored, since the identifier is never used
 
 Elaborating entity <UART_TX> (architecture <RTL>) with generics from library <work>.
-INFO:HDLCompiler:679 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/UART_TX.vhd" Line 134. Case statement is complete. others clause is never selected
+INFO:HDLCompiler:679 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/UART_TX.vhd" Line 134. Case statement is complete. others clause is never selected
 
 Elaborating entity <Sabertooth_Packetized_Serial_Driver> (architecture <Behavioral>) from library <work>.
-INFO:HDLCompiler:679 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Sabertooth_Packetized_Serial_Driver.vhd" Line 116. Case statement is complete. others clause is never selected
+INFO:HDLCompiler:679 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Sabertooth_Packetized_Serial_Driver.vhd" Line 116. Case statement is complete. others clause is never selected
 
 Elaborating entity <I2C_Handler> (architecture <Behavioral>) from library <work>.
-INFO:HDLCompiler:679 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Handler.vhd" Line 110. Case statement is complete. others clause is never selected
-INFO:HDLCompiler:679 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Handler.vhd" Line 655. Case statement is complete. others clause is never selected
+INFO:HDLCompiler:679 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/I2C_Handler.vhd" Line 110. Case statement is complete. others clause is never selected
+INFO:HDLCompiler:679 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/I2C_Handler.vhd" Line 655. Case statement is complete. others clause is never selected
 
 Elaborating entity <I2C_Slave_Module> (architecture <Behavioral>) with generics from library <work>.
-WARNING:HDLCompiler:1127 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Slave_Module.vhd" Line 146: Assignment to get_memory_address ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/I2C_Slave_Module.vhd" Line 146: Assignment to get_memory_address ignored, since the identifier is never used
 
 Elaborating entity <I2C_Module> (architecture <logic>) with generics from library <work>.
 
 Elaborating entity <Velocity_PID_Controller> (architecture <Behavioral>) with generics from library <work>.
-WARNING:HDLCompiler:871 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Velocity_PID_Controller.vhd" Line 53: Using initial value 5 for kp since it is never assigned
-WARNING:HDLCompiler:871 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Velocity_PID_Controller.vhd" Line 54: Using initial value 6 for kd since it is never assigned
-WARNING:HDLCompiler:871 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Velocity_PID_Controller.vhd" Line 55: Using initial value 9 for ki since it is never assigned
-WARNING:HDLCompiler:1127 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Velocity_PID_Controller.vhd" Line 140: Assignment to setpoint_calc ignored, since the identifier is never used
-WARNING:HDLCompiler:1127 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" Line 282: Assignment to show_storage_input ignored, since the identifier is never used
-WARNING:HDLCompiler:634 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" Line 94: Net <I2C_Slave_Sending_Signal[7]> does not have a driver.
+WARNING:HDLCompiler:871 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Velocity_PID_Controller.vhd" Line 53: Using initial value 5 for kp since it is never assigned
+WARNING:HDLCompiler:871 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Velocity_PID_Controller.vhd" Line 54: Using initial value 6 for kd since it is never assigned
+WARNING:HDLCompiler:871 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Velocity_PID_Controller.vhd" Line 55: Using initial value 9 for ki since it is never assigned
+WARNING:HDLCompiler:1127 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Velocity_PID_Controller.vhd" Line 140: Assignment to setpoint_calc ignored, since the identifier is never used
+WARNING:HDLCompiler:1127 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 282: Assignment to show_storage_input ignored, since the identifier is never used
+WARNING:HDLCompiler:634 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 94: Net <I2C_Slave_Sending_Signal[7]> does not have a driver.
 
 =========================================================================
 *                           HDL Synthesis                               *
 =========================================================================
 
 Synthesizing Unit <Top_level>.
-    Related source file is "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd".
-INFO:Xst:3210 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" line 177: Output port <listen_address> of the instance <I2C_Slave_Module> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" line 177: Output port <talk_address> of the instance <I2C_Slave_Module> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" line 177: Output port <busy> of the instance <I2C_Slave_Module> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" line 177: Output port <send_done> of the instance <I2C_Slave_Module> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" line 177: Output port <save_done> of the instance <I2C_Slave_Module> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" line 177: Output port <listen_address_received> of the instance <I2C_Slave_Module> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" line 177: Output port <talk_address_received> of the instance <I2C_Slave_Module> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" line 195: Output port <data_rd> of the instance <I2C_Master_Module> is unconnected or connected to loadless signal.
-INFO:Xst:3210 - "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" line 195: Output port <ack_error> of the instance <I2C_Master_Module> is unconnected or connected to loadless signal.
+    Related source file is "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd".
+INFO:Xst:3210 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" line 177: Output port <listen_address> of the instance <I2C_Slave_Module> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" line 177: Output port <talk_address> of the instance <I2C_Slave_Module> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" line 177: Output port <busy> of the instance <I2C_Slave_Module> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" line 177: Output port <send_done> of the instance <I2C_Slave_Module> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" line 177: Output port <save_done> of the instance <I2C_Slave_Module> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" line 177: Output port <listen_address_received> of the instance <I2C_Slave_Module> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" line 177: Output port <talk_address_received> of the instance <I2C_Slave_Module> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" line 195: Output port <data_rd> of the instance <I2C_Master_Module> is unconnected or connected to loadless signal.
+INFO:Xst:3210 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" line 195: Output port <ack_error> of the instance <I2C_Master_Module> is unconnected or connected to loadless signal.
 WARNING:Xst:653 - Signal <I2C_Slave_Sending_Signal> is used but never assigned. This sourceless signal will be automatically connected to value GND.
     Summary:
 	no macro.
 Unit <Top_level> synthesized.
 
 Synthesizing Unit <Decoder>.
-    Related source file is "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Decoder.vhd".
+    Related source file is "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Decoder.vhd".
         ONE_TURN_TICK = 32767
 WARNING:Xst:2999 - Signal 'Array_Signal', unconnected in block 'Decoder', is tied to its initial value.
     Found 16x32-bit single-port Read Only RAM <Mram_Array_Signal> for signal <Array_Signal>.
@@ -236,7 +236,7 @@ WARNING:Xst:2999 - Signal 'Array_Signal', unconnected in block 'Decoder', is tie
 Unit <Decoder> synthesized.
 
 Synthesizing Unit <UART_TX>.
-    Related source file is "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/UART_TX.vhd".
+    Related source file is "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/UART_TX.vhd".
         g_CLKS_PER_BIT = 5209
     Found 1-bit register for signal <o_TX_Serial>.
     Found 1-bit register for signal <r_TX_Done>.
@@ -270,7 +270,7 @@ Synthesizing Unit <UART_TX>.
 Unit <UART_TX> synthesized.
 
 Synthesizing Unit <Sabertooth_Packetized_Serial_Driver>.
-    Related source file is "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Sabertooth_Packetized_Serial_Driver.vhd".
+    Related source file is "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Sabertooth_Packetized_Serial_Driver.vhd".
     Found 8-bit register for signal <Output_Command_signal>.
     Found 1-bit register for signal <dv_signal>.
     Found 3-bit register for signal <State_Machine>.
@@ -295,7 +295,7 @@ Synthesizing Unit <Sabertooth_Packetized_Serial_Driver>.
 Unit <Sabertooth_Packetized_Serial_Driver> synthesized.
 
 Synthesizing Unit <I2C_Handler>.
-    Related source file is "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Handler.vhd".
+    Related source file is "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/I2C_Handler.vhd".
 WARNING:Xst:647 - Input <turn_input<31:16>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
 WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found 5-bit register for signal <busy_count>.
@@ -334,7 +334,7 @@ WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and l
 Unit <I2C_Handler> synthesized.
 
 Synthesizing Unit <I2C_Slave_Module>.
-    Related source file is "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Slave_Module.vhd".
+    Related source file is "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/I2C_Slave_Module.vhd".
         slave_addr = "1000000"
 Always blocking tristate driving signal <scl> is removed.
     Found 4-bit register for signal <state_machine>.
@@ -394,7 +394,7 @@ INFO:Xst:1799 - State address_for_listen is never reached in FSM <state_machine>
 Unit <I2C_Slave_Module> synthesized.
 
 Synthesizing Unit <I2C_Module>.
-    Related source file is "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Module.vhd".
+    Related source file is "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/I2C_Module.vhd".
         input_clk = 50000000
         bus_clk = 400000
     Found 1-bit register for signal <sda_int>.
@@ -451,7 +451,7 @@ Synthesizing Unit <I2C_Module>.
 Unit <I2C_Module> synthesized.
 
 Synthesizing Unit <Velocity_PID_Controller>.
-    Related source file is "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Velocity_PID_Controller.vhd".
+    Related source file is "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Velocity_PID_Controller.vhd".
         Clock_ticks_per_sample = 5000000
 WARNING:Xst:647 - Input <Set_point<15:8>> is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
     Found 32-bit register for signal <output>.
@@ -1140,13 +1140,13 @@ Decoder/ck25MHz|    5.832|         |         |         |
 =========================================================================
 
 
-Total REAL time to Xst completion: 8.00 secs
-Total CPU time to Xst completion: 7.13 secs
+Total REAL time to Xst completion: 7.00 secs
+Total CPU time to Xst completion: 7.31 secs
  
 --> 
 
 
-Total memory usage is 402820 kilobytes
+Total memory usage is 402912 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :   77 (   0 filtered)

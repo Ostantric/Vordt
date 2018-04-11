@@ -1,2 +1,0 @@
-vhdl work "src/I2C_Slave_Module.vhd"
-vhdl work "Test_bench/I2C_Slave_TESTBENCH.vhd"

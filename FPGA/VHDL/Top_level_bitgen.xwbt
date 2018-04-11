@@ -1,8 +1,0 @@
-INTSTYLE=ise
-INFILE=/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/Top_level.ncd
-OUTFILE=/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/Top_level.bit
-FAMILY=Spartan6
-PART=xc6slx9-2tqg144
-WORKINGDIR=/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design
-LICENSE=WebPack
-USER_INFO=211148245_0_0_158
