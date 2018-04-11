@@ -2,17 +2,17 @@
 ## Debugging Module V1
 ### Summary
 
-	If you are able to simulate your hardware design, you are in the right path. If you can synthesize your RTL then you have reached a big milestone. However, this is just the beginning, real work starts once you burn your design into FPGA. 
+If you are able to simulate your hardware design, you are in the right path. If you can synthesize your RTL then you have reached a big milestone. However, this is just the beginning, real work starts once you burn your design into FPGA. 
 
 Everything works in theory, but you need to face the reality !
 
 Debugging phase starts and somehow you need to see the incoming/outgoing data from the chip. 
 
-	Easiest way to do this is 7-segment displays or onboard LEDs. These are one the fastest feedback you can get. Project already has these but what if you have need 1000 screens ? 
+Easiest way to do this is 7-segment displays or onboard LEDs. These are one the fastest feedback you can get. Project already has these but what if you have need 1000 screens ? 
 
 Next, you try serial protocols to communicate, but then you will need a computer screen to read it. You will need to carry the computer and it needs to be attached all the time. 
 
-	Another alternative is lcd screens and custom drivers. Average screen-module has 500 page datasheet. If you have time then go for it ! write spi/i2c/8bit-parallel (whatever!) driver.
+Another alternative is lcd screens and custom drivers. Average screen-module has 500 page datasheet. If you have time then go for it ! write spi/i2c/8bit-parallel (whatever!) driver.
 
 In this project, esp32 was used and it already talks to the FPGA. I decided to add a tablet and developed an app for 
 
