@@ -1,2 +1,2 @@
-# Vordt
-Under development. Check for prototype branch.
+# Android Java Branch
+Under development.

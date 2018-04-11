@@ -1,0 +1,272 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
+    tools:context="com.guild.vordt.Interface_Main">
+
+    <ProgressBar
+        android:id="@+id/Velocity_Bar_Negative"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="20dp"
+        android:max="500"
+        android:progress="0"
+        android:rotation="180"
+        android:theme="@style/Velocity_Bar_Backward"
+        app:layout_constraintEnd_toStartOf="@+id/Velocity_Bar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/Velocity_Bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="20dp"
+        android:max="500"
+        android:progress="0"
+        android:theme="@style/Velocity_Bar_Forward"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/Position_Bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="287dp"
+        android:layout_height="215dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="20dp"
+        android:indeterminate="false"
+        android:max="32768"
+        android:progressDrawable="@drawable/circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Turn_Count_Text"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="135dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:text="0"
+        android:textAlignment="textEnd"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/Position_Text" />
+
+    <EditText
+        android:id="@+id/editText3"
+        style="@android:style/Widget.DeviceDefault.SeekBar"
+        android:layout_width="180dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:text="Position"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Position_Bar" />
+
+
+    <EditText
+        android:id="@+id/editText5"
+        style="@android:style/Widget.DeviceDefault.SeekBar"
+        android:layout_width="180dp"
+        android:layout_height="71dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:text="Velocity"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toStartOf="@+id/Velocity_Text"
+        app:layout_constraintTop_toBottomOf="@+id/Velocity_Bar" />
+
+    <EditText
+        android:id="@+id/editText"
+        style="@android:style/Widget.DeviceDefault.SeekBar"
+        android:layout_width="180dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:text="Turn"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+    <EditText
+        android:id="@+id/editText2"
+        style="@android:style/Widget.DeviceDefault.SeekBar"
+        android:layout_width="191dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:text="Desired Turn"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editText6"
+        style="@android:style/Widget.DeviceDefault.SeekBar"
+        android:layout_width="191dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="85dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:text="Desired Velocity"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar4"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/editText4"
+        style="@android:style/Widget.DeviceDefault.SeekBar"
+        android:layout_width="191dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="16dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:text="Desired Position"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toTopOf="@+id/seekBar"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/Position_Text"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="135dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="numberSigned"
+        android:text="0"
+        android:textAlignment="textEnd"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="32sp"
+        app:layout_constraintStart_toEndOf="@+id/editText3"
+        app:layout_constraintTop_toBottomOf="@+id/Position_Bar" />
+
+    <EditText
+        android:id="@+id/Velocity_Text"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="100dp"
+        android:layout_height="74dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:text="0"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Velocity_Bar" />
+
+    <SeekBar
+        android:id="@+id/seekBar"
+        android:layout_width="486dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="104dp"
+        android:max="32768"
+        android:progress="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <SeekBar
+        android:id="@+id/seekBar3"
+        android:layout_width="486dp"
+        android:layout_height="15dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="160dp"
+        android:max="32768"
+        android:progress="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <SeekBar
+        android:id="@+id/seekBar4"
+        android:layout_width="311dp"
+        android:layout_height="15dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="50dp"
+        android:max="32768"
+        android:progress="0"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText5" />
+
+    <EditText
+        android:id="@+id/Voltage_Text"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="135dp"
+        android:layout_height="74dp"
+        android:layout_marginEnd="188dp"
+        android:layout_marginTop="92dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:text="0"
+        android:textAlignment="textEnd"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/seekBar4" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
+    tools:context="com.guild.vordt.MainActivity">
+
+
+    <TextView
+        android:id="@+id/PORT_TXT"
+        android:layout_width="102dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:text="PORT"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/IP_TXT" />
+
+    <TextView
+        android:id="@+id/IP_TXT"
+        android:layout_width="102dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="250dp"
+        android:text="IP"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="266dp"
+        android:layout_height="167dp"
+        android:layout_marginBottom="100dp"
+        android:layout_marginStart="250dp"
+        android:text="Start"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/IP_2"
+        android:layout_width="102dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="250dp"
+        android:text="168"
+        android:textAlignment="textEnd"
+        android:textSize="36sp"
+        android:maxLength="3"
+        app:layout_constraintStart_toEndOf="@+id/IP_1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/IP_3"
+        android:layout_width="102dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="250dp"
+        android:inputType="number"
+        android:text="1"
+        android:maxLength="3"
+        android:textAlignment="textEnd"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/IP_2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/IP_4"
+        android:layout_width="102dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="250dp"
+        android:inputType="number"
+        android:text="228"
+        android:maxLength="3"
+        android:textAlignment="textEnd"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/IP_3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/PORT"
+        android:layout_width="102dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="50dp"
+        android:inputType="number"
+        android:text="1500"
+        android:maxLength="5"
+        android:textAlignment="textEnd"
+        android:textSize="32sp"
+        app:layout_constraintStart_toEndOf="@+id/PORT_TXT"
+        app:layout_constraintTop_toBottomOf="@+id/IP_1" />
+
+    <EditText
+        android:id="@+id/IP_1"
+        android:layout_width="102dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="250dp"
+        android:inputType="number"
+        android:text="192"
+        android:maxLength="3"
+        android:textAlignment="textEnd"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/IP_TXT"
+        app:layout_constraintTop_toTopOf="parent" />
+
+</android.support.constraint.ConstraintLayout>
