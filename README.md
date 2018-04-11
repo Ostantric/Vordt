@@ -8,7 +8,7 @@ Everything works in theory, but you need to face the reality !
 
 Debugging phase starts and somehow you need to see the incoming/outgoing data from the chip. 
 
-Easiest way to do this is 7-segment displays or onboard LEDs. These are one the fastest feedback you can get. Project already has these but what if you have need 1000 screens ? 
+Easiest way to do this is 7-segment displays or onboard LEDs. These are one the fastest feedback you can get. Project already has these but what if you need 1000 screens ? 
 
 Next, you try serial protocols to communicate, but then you will need a computer screen to read it. You will need to carry the computer and it needs to be attached all the time. 
 
