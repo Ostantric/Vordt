@@ -1,1 +1,0 @@
-xst -intstyle ise -ifn "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/I2C_Slave_TESTBENCH.xst" -ofn "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/I2C_Slave_TESTBENCH.syr" 
