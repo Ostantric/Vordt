@@ -1,0 +1,2 @@
+vhdl work "src/Decoder.vhd"
+vhdl work "Test_bench/Decoder_Test_Bench.vhd"

@@ -1,0 +1,118 @@
+ISim log file
+Running: /home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/Decoder_Test_Bench_isim_beh.exe -intstyle ise -gui -tclbatch isim.cmd -wdb /home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/Decoder_Test_Bench_isim_beh.wdb 
+ISim P.20131013 (signature 0xfbc00daa)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+Time resolution is 1 ps
+# onerror resume
+# wave add /
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# run 100.00ms
+Stopped at time : 90908590 ns : File "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Decoder.vhd" Line 173
+ISim P.20131013 (signature 0xfbc00daa)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# run 100.00ms
+ISim P.20131013 (signature 0xfbc00daa)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# run 100.00ms
+at 8192040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 16384040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 24576040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 32768040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 40960040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 49152040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 57344040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 65536040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 73728040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 81920040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 90112040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 98304040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+ISim P.20131013 (signature 0xfbc00daa)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# run 100.00ms
+at 8192040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 16384040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 24576040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 32768040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 40960040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 49152040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 57344040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 65536040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+Stopped at time : 71199040 ns : File "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Decoder.vhd" Line 144
+ISim P.20131013 (signature 0xfbc00daa)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# run 100.00ms
+at 8192040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 16384040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 24576040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 32768040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 40960040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 49152040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 57344040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 65536040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 73728040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 81920040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 90112040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 98304040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+ISim P.20131013 (signature 0xfbc00daa)
+WARNING: A WEBPACK license was found.
+WARNING: Please use Xilinx License Configuration Manager to check out a full ISim license.
+WARNING: ISim will run in Lite mode. Please refer to the ISim documentation for more information on the differences between the Lite and the Full version.
+This is a Lite version of ISim.
+# run 1000 ns
+Simulator is doing circuit initialization process.
+Finished circuit initialization process.
+# run 100.00ms
+at 8192040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 16384040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 24576040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 32768040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 40960040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 49152040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 57344040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 65536040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 73728040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 81920040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 90112040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 98304040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+# run 100.00ms
+at 106496040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 114688040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 122880040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 131072040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 139264040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 147456040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 155648040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 163840040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 172032040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 180224040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 188416040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated
+at 196608040 ns(2), Instance /decoder_test_bench/uut/ : Warning: NUMERIC_STD.TO_SIGNED: vector truncated

@@ -1,0 +1,25 @@
+//! **************************************************************************
+// Written by: Map P.20131013 on Sun Apr 08 02:20:33 2018
+//! **************************************************************************
+
+SCHEMATIC START;
+COMP "CLK" LOCATE = SITE "P56" LEVEL 1;
+PIN CLK_pin<0> = BEL "CLK" PINNAME PAD;
+PIN "CLK_pin<0>" CLOCK_DEDICATED_ROUTE;
+COMP "reset" LOCATE = SITE "P40" LEVEL 1;
+PIN reset_pin<0> = BEL "reset" PINNAME PAD;
+PIN "reset_pin<0>" CLOCK_DEDICATED_ROUTE = FALSE;
+COMP "I2C_Slave_SDA" LOCATE = SITE "P57" LEVEL 1;
+COMP "I2C_Slave_SCL" LOCATE = SITE "P58" LEVEL 1;
+COMP "Serial_TX" LOCATE = SITE "P6" LEVEL 1;
+COMP "I2C_Master_SDA" LOCATE = SITE "P16" LEVEL 1;
+COMP "I2C_Master_SCL" LOCATE = SITE "P17" LEVEL 1;
+COMP "Encoder1_A" LOCATE = SITE "P2" LEVEL 1;
+PIN Encoder1_A_pin<0> = BEL "Encoder1_A" PINNAME PAD;
+PIN "Encoder1_A_pin<0>" CLOCK_DEDICATED_ROUTE = FALSE;
+COMP "Encoder1_B" LOCATE = SITE "P1" LEVEL 1;
+PIN Encoder1_B_pin<0> = BEL "Encoder1_B" PINNAME PAD;
+PIN "Encoder1_B_pin<0>" CLOCK_DEDICATED_ROUTE = FALSE;
+NET "CLK_BUFGP/IBUFG" PERIOD = 20 ns HIGH 50%;
+SCHEMATIC END;
+

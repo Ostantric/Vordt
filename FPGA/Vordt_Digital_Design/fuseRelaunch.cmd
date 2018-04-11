@@ -1,0 +1,1 @@
+-intstyle "ise" -incremental -lib "secureip" -o "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/Decoder_Test_Bench_isim_beh.exe" -prj "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/Decoder_Test_Bench_beh.prj" "work.Decoder_Test_Bench" 

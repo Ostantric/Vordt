@@ -1,0 +1,23 @@
+Running: /opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/fuse -relaunch -intstyle "ise" -incremental -lib "secureip" -o "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/Decoder_Test_Bench_isim_beh.exe" -prj "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/Decoder_Test_Bench_beh.prj" "work.Decoder_Test_Bench" 
+ISim P.20131013 (signature 0xfbc00daa)
+Number of CPUs detected in this system: 8
+Turning on mult-threading, number of parallel sub-compilation jobs: 16 
+Determining compilation order of HDL files
+Parsing VHDL file "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Decoder.vhd" into library work
+Parsing VHDL file "/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/Test_bench/Decoder_Test_Bench.vhd" into library work
+Starting static elaboration
+Completed static elaboration
+Fuse Memory Usage: 96776 KB
+Fuse CPU Usage: 930 ms
+Compiling package standard
+Compiling package std_logic_1164
+Compiling package numeric_std
+Compiling architecture mix of entity Decoder [\Decoder(32767)\]
+Compiling architecture behavior of entity decoder_test_bench
+Time Resolution for simulation is 1ps.
+Waiting for 1 sub-compilation(s) to finish...
+Compiled 6 VHDL Units
+Built simulation executable /home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/Decoder_Test_Bench_isim_beh.exe
+Fuse Memory Usage: 1192792 KB
+Fuse CPU Usage: 990 ms
+GCC CPU Usage: 70 ms

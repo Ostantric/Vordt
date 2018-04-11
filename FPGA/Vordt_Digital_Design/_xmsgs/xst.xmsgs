@@ -1,0 +1,306 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- IMPORTANT: This is an internal file that has been generated
+     by the Xilinx ISE software.  Any direct editing or
+     changes made to this file may result in unpredictable
+     behavior or data corruption.  It is strongly advised that
+     users do not edit the contents of this file. -->
+<messages>
+<msg type="warning" file="HDLCompiler" num="957" delta="old" >"/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Module.vhd" Line 73: Case choice must be a locally static expression
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="957" delta="old" >"/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Module.vhd" Line 76: Case choice must be a locally static expression
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="957" delta="old" >"/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Module.vhd" Line 79: Case choice must be a locally static expression
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="946" delta="old" >"/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" Line 150: Actual for formal port <arg fmt="%s" index="1">pid_velocity_input</arg> is neither a static name nor a globally static expression
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="946" delta="old" >"/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" Line 152: Actual for formal port <arg fmt="%s" index="1">storage_input</arg> is neither a static name nor a globally static expression
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Decoder.vhd" Line 130: Assignment to <arg fmt="%s" index="1">speed_temp</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/I2C_Slave_Module.vhd" Line 146: Assignment to <arg fmt="%s" index="1">get_memory_address</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="871" delta="old" >"/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Velocity_PID_Controller.vhd" Line 53: Using initial value <arg fmt="%s" index="1">5</arg> for <arg fmt="%s" index="2">kp</arg> since it is never assigned
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="871" delta="old" >"/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Velocity_PID_Controller.vhd" Line 54: Using initial value <arg fmt="%s" index="1">6</arg> for <arg fmt="%s" index="2">kd</arg> since it is never assigned
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="871" delta="old" >"/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Velocity_PID_Controller.vhd" Line 55: Using initial value <arg fmt="%s" index="1">9</arg> for <arg fmt="%s" index="2">ki</arg> since it is never assigned
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Velocity_PID_Controller.vhd" Line 140: Assignment to <arg fmt="%s" index="1">setpoint_calc</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" Line 282: Assignment to <arg fmt="%s" index="1">show_storage_input</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="634" delta="old" >"/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd" Line 94: Net &lt;<arg fmt="%s" index="1">I2C_Slave_Sending_Signal[7]</arg>&gt; does not have a driver.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">177</arg>: Output port &lt;<arg fmt="%s" index="3">listen_address</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">I2C_Slave_Module</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">177</arg>: Output port &lt;<arg fmt="%s" index="3">talk_address</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">I2C_Slave_Module</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">177</arg>: Output port &lt;<arg fmt="%s" index="3">busy</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">I2C_Slave_Module</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">177</arg>: Output port &lt;<arg fmt="%s" index="3">send_done</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">I2C_Slave_Module</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">177</arg>: Output port &lt;<arg fmt="%s" index="3">save_done</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">I2C_Slave_Module</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">177</arg>: Output port &lt;<arg fmt="%s" index="3">listen_address_received</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">I2C_Slave_Module</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">177</arg>: Output port &lt;<arg fmt="%s" index="3">talk_address_received</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">I2C_Slave_Module</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">195</arg>: Output port &lt;<arg fmt="%s" index="3">data_rd</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">I2C_Master_Module</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">195</arg>: Output port &lt;<arg fmt="%s" index="3">ack_error</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">I2C_Master_Module</arg>&gt; is unconnected or connected to loadless signal.
+</msg>
+
+<msg type="warning" file="Xst" num="653" delta="old" >Signal &lt;<arg fmt="%s" index="1">I2C_Slave_Sending_Signal</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">GND</arg>.
+</msg>
+
+<msg type="warning" file="Xst" num="2999" delta="old" >Signal &apos;<arg fmt="%s" index="1">Array_Signal</arg>&apos;, unconnected in block &apos;<arg fmt="%s" index="2">Decoder</arg>&apos;, is tied to its initial value.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">turn_input&lt;31:16&gt;</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">reset</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="info" file="Xst" num="1799" delta="old" >State <arg fmt="%s" index="1">address_for_talk</arg> is never reached in FSM &lt;<arg fmt="%s" index="2">state_machine</arg>&gt;.
+</msg>
+
+<msg type="info" file="Xst" num="1799" delta="old" >State <arg fmt="%s" index="1">address_for_listen</arg> is never reached in FSM &lt;<arg fmt="%s" index="2">state_machine</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="647" delta="old" >Input &lt;<arg fmt="%s" index="1">Set_point&lt;15:8&gt;</arg>&gt; is never used. This port will be preserved and left unconnected if it belongs to a top-level block or it belongs to a sub-block and the hierarchy of this sub-block is preserved.
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">error_15</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Velocity_PID</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">16 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;error_16&gt; &lt;error_17&gt; &lt;error_18&gt; &lt;error_19&gt; &lt;error_20&gt; &lt;error_21&gt; &lt;error_22&gt; &lt;error_23&gt; &lt;error_24&gt; &lt;error_25&gt; &lt;error_26&gt; &lt;error_27&gt; &lt;error_28&gt; &lt;error_29&gt; &lt;error_30&gt; &lt;error_31&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Error_past_15</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Velocity_PID</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">16 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Error_past_16&gt; &lt;Error_past_17&gt; &lt;Error_past_18&gt; &lt;Error_past_19&gt; &lt;Error_past_20&gt; &lt;Error_past_21&gt; &lt;Error_past_22&gt; &lt;Error_past_23&gt; &lt;Error_past_24&gt; &lt;Error_past_25&gt; &lt;Error_past_26&gt; &lt;Error_past_27&gt; &lt;Error_past_28&gt; &lt;Error_past_29&gt; &lt;Error_past_30&gt; &lt;Error_past_31&gt; </arg>
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">slave_address_3</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">I2C_Handler</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">addr_rw_0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">I2C_Master_Module</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">addr_rw_4</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">I2C_Master_Module</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">temp_tick2_16</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Decoder</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">temp_tick3_16</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Decoder</arg>&gt;.
+</msg>
+
+<msg type="info" file="Xst" num="3218" delta="old" >HDL ADVISOR - The RAM &lt;<arg fmt="%s" index="1">Mram_Array_Signal</arg>&gt; will be implemented on LUTs either because you have described an asynchronous read or because of currently unsupported block RAM features. If you have described an asynchronous read, making it synchronous would allow you to take advantage of available block RAM resources, for optimized device usage and improved timings. Please refer to your documentation for coding guidelines.
+</msg>
+
+<msg type="info" file="Xst" num="3231" delta="old" >The small RAM &lt;<arg fmt="%s" index="1">Mram_Convert_Digit</arg>&gt; will be implemented on LUTs in order to maximize performance and save block RAM resources. If you want to force its implementation on block, use option/constraint ram_style.
+</msg>
+
+<msg type="info" file="Xst" num="2385" delta="old" >HDL ADVISOR - You can improve the performance of the multiplier <arg fmt="%s" index="1">Mmult_n0102</arg> by adding <arg fmt="%d" index="2">3</arg> register level(s).
+</msg>
+
+<msg type="info" file="Xst" num="2385" delta="old" >HDL ADVISOR - You can improve the performance of the multiplier <arg fmt="%s" index="1">Mmult_n0104</arg> by adding <arg fmt="%d" index="2">3</arg> register level(s).
+</msg>
+
+<msg type="info" file="Xst" num="2385" delta="old" >HDL ADVISOR - You can improve the performance of the multiplier <arg fmt="%s" index="1">Mmult_n0100</arg> by adding <arg fmt="%d" index="2">3</arg> register level(s).
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">temp_tick2_16</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Decoder</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">temp_tick3_16</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Decoder</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">slave_address_3</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">I2C_Handler</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">error_15</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Velocity_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">16 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;error_16&gt; &lt;error_17&gt; &lt;error_18&gt; &lt;error_19&gt; &lt;error_20&gt; &lt;error_21&gt; &lt;error_22&gt; &lt;error_23&gt; &lt;error_24&gt; &lt;error_25&gt; &lt;error_26&gt; &lt;error_27&gt; &lt;error_28&gt; &lt;error_29&gt; &lt;error_30&gt; &lt;error_31&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Error_past_15</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Velocity_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">16 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Error_past_16&gt; &lt;Error_past_17&gt; &lt;Error_past_18&gt; &lt;Error_past_19&gt; &lt;Error_past_20&gt; &lt;Error_past_21&gt; &lt;Error_past_22&gt; &lt;Error_past_23&gt; &lt;Error_past_24&gt; &lt;Error_past_25&gt; &lt;Error_past_26&gt; &lt;Error_past_27&gt; &lt;Error_past_28&gt; &lt;Error_past_29&gt; &lt;Error_past_30&gt; &lt;Error_past_31&gt; </arg>
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">slave_address_4</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">1</arg> in block &lt;<arg fmt="%s" index="3">I2C_Handler</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">slave_address_5</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">1</arg> in block &lt;<arg fmt="%s" index="3">I2C_Handler</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">slave_address_6</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">1</arg> in block &lt;<arg fmt="%s" index="3">I2C_Handler</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">Mmult_n0104_35</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Velocity_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Mmult_n0104_3</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Velocity_PID_Controller</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Mmult_n0104_2</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Velocity_PID_Controller</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Mmult_n0104_1</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Velocity_PID_Controller</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Mmult_n0104_0</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Velocity_PID_Controller</arg>&gt;.
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Mmult_n0104_16</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Velocity_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">12 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Mmult_n0104_15&gt; &lt;Mmult_n0104_14&gt; &lt;Mmult_n0104_13&gt; &lt;Mmult_n0104_12&gt; &lt;Mmult_n0104_11&gt; &lt;Mmult_n0104_10&gt; &lt;Mmult_n0104_9&gt; &lt;Mmult_n0104_8&gt; &lt;Mmult_n0104_7&gt; &lt;Mmult_n0104_6&gt; &lt;Mmult_n0104_5&gt; &lt;Mmult_n0104_4&gt; </arg>
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/talk_address_done</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/listen_address_done</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/address_for_listening_7</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/address_for_listening_6</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/address_for_listening_5</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/address_for_listening_4</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/address_for_listening_3</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/address_for_listening_2</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/address_for_listening_1</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/address_for_listening_0</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/address_for_talking_7</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/address_for_talking_6</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/address_for_talking_5</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/address_for_talking_4</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/address_for_talking_3</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/address_for_talking_2</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/address_for_talking_1</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/address_for_talking_0</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/listen_done</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Slave_Module/talk_done</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/data_rd_7</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/data_rd_6</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/data_rd_5</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/data_rd_4</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/data_rd_3</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/data_rd_2</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/data_rd_1</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/data_rd_0</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/data_rx_7</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/data_rx_6</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/data_rx_5</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/data_rx_4</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/data_rx_3</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/data_rx_2</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/data_rx_1</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/data_rx_0</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">I2C_Master_Module/ack_error</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">I2C_Master_Module/addr_rw_7</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">1</arg> in block &lt;<arg fmt="%s" index="3">Top_level</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">I2C_Master_Module/addr_rw_6</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">1</arg> in block &lt;<arg fmt="%s" index="3">Top_level</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">I2C_Master_Module/addr_rw_5</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">1</arg> in block &lt;<arg fmt="%s" index="3">Top_level</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">I2C_Master_Module/addr_rw_4</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Top_level</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">I2C_Master_Module/addr_rw_0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Top_level</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1293" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">I2C_Handler/busy_count_4</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Top_level</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Velocity_PID/Mmult_n0100_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Top_level</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Velocity_PID/Mmult_n0100_1&gt; &lt;Velocity_PID/Mmult_n0100_2&gt; </arg>
+</msg>
+
+</messages>
+

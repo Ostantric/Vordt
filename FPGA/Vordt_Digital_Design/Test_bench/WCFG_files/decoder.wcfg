@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="/home/murat/Vordt/Control/FPGA/Vordt_Digital_Design/Decoder_Test_Bench_isim_beh.wdb" id="1" type="auto">
+         <top_modules>
+            <top_module name="decoder_test_bench" />
+            <top_module name="numeric_std" />
+            <top_module name="std_logic_1164" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <WVObjectSize size="16" />
+   <wvobject fp_name="/decoder_test_bench/clk" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">clk</obj_property>
+      <obj_property name="ObjectShortName">clk</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_test_bench/uut/ck25mhz" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">ck25mhz</obj_property>
+      <obj_property name="ObjectShortName">ck25mhz</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_test_bench/encoder1_a" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">encoder1_a</obj_property>
+      <obj_property name="ObjectShortName">encoder1_a</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_test_bench/encoder1_b" type="logic" db_ref_id="1">
+      <obj_property name="ElementShortName">encoder1_b</obj_property>
+      <obj_property name="ObjectShortName">encoder1_b</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_test_bench/position" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">position[15:0]</obj_property>
+      <obj_property name="ObjectShortName">position[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_test_bench/turn_count" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">turn_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">turn_count[31:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_test_bench/velocity" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">velocity[15:0]</obj_property>
+      <obj_property name="ObjectShortName">velocity[15:0]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_test_bench/clk_period" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">clk_period</obj_property>
+      <obj_property name="ObjectShortName">clk_period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_test_bench/encoder_period" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">encoder_period</obj_property>
+      <obj_property name="ObjectShortName">encoder_period</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_test_bench/uut/velocity_array_signal" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">velocity_array_signal[0:7]</obj_property>
+      <obj_property name="ObjectShortName">velocity_array_signal[0:7]</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_test_bench/uut/temp_tick2" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">temp_tick2</obj_property>
+      <obj_property name="ObjectShortName">temp_tick2</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_test_bench/uut/temp_tick" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">temp_tick</obj_property>
+      <obj_property name="ObjectShortName">temp_tick</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_test_bench/uut/tick" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">tick</obj_property>
+      <obj_property name="ObjectShortName">tick</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_test_bench/uut/overflow" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">overflow[1:0]</obj_property>
+      <obj_property name="ObjectShortName">overflow[1:0]</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_test_bench/uut/prescaler" type="array" db_ref_id="1">
+      <obj_property name="ElementShortName">prescaler[25:0]</obj_property>
+      <obj_property name="ObjectShortName">prescaler[25:0]</obj_property>
+      <obj_property name="Radix">HEXRADIX</obj_property>
+   </wvobject>
+   <wvobject fp_name="/decoder_test_bench/uut/temp_tick3" type="other" db_ref_id="1">
+      <obj_property name="ElementShortName">temp_tick3</obj_property>
+      <obj_property name="ObjectShortName">temp_tick3</obj_property>
+      <obj_property name="Radix">SIGNEDDECRADIX</obj_property>
+   </wvobject>
+</wave_config>

@@ -1,0 +1,8 @@
+Release 14.7 Drc P.20131013 (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+Sun Apr  8 02:20:48 2018
+
+drc -z Top_level.ncd Top_level.pcf
+
+DRC detected 0 errors and 0 warnings.

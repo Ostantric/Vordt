@@ -1,0 +1,8 @@
+vhdl work "src/Velocity_PID_Controller.vhd"
+vhdl work "src/UART_TX.vhd"
+vhdl work "src/Sabertooth_Packetized_Serial_Driver.vhd"
+vhdl work "src/I2C_Slave_Module.vhd"
+vhdl work "src/I2C_Module.vhd"
+vhdl work "src/I2C_Handler.vhd"
+vhdl work "src/Decoder.vhd"
+vhdl work "src/Top_level.vhd"
