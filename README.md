@@ -23,11 +23,14 @@ add diagram here.
 
 ### Layout
 
-add Main and Interface pages here.
+
 
 ### Screenshots
 
-add screen shots.
+Main Page
+<img src="Main_page.png">
+Interface Page
+<img src="Interface_page.png">
 
 ### Future
 
