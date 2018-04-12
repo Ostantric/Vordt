@@ -14,23 +14,20 @@ Then, you try serial protocols to communicate, but then you will need a computer
 
 Another alternative is lcd screens and custom drivers. Average screen-module has 500 page datasheet. If you have time, then go for it ! have fun writing spi/i2c/8bit-parallel (whatever!) driver and draw your data.
 
-In this project, esp32 was used and it already talks to the FPGA. I decided to add a tablet and then android app journey started ...
-
-
-### Architecture
-
-add diagram here.
-
-### Layout
-
+In this project, ESP32 is already talking to the FPGA. I decided to add a tablet to draw data and then android app journey started ...
 
 
 ### Screenshots
-
 Main Page
 <img src="Main_page.png">
 Interface Page
 <img src="Interface_page.png">
+
+### Flowchart
+MainActivity
+<img src="Main_Activity.jpeg">
+InterfaceActivity
+<img src="Interface_Activity.jpeg">
 
 ### Future
 
