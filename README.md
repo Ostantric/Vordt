@@ -8,6 +8,7 @@ Under development.
 3) ESP32 development
 4) ROS development
 5) React Native development
+6) Alexa Asistant development
 
 ### System Diagram
 
