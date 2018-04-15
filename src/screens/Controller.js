@@ -26,9 +26,11 @@ class Controller extends Component {
             message: '',
             dataTime: 0,
             position: 0,
+            positionToOrigin: 0,
             turn: 0,
-            position: 0,
+            turnToOrigin: 0,
             velocity: 0,
+            velocityToOrigin: 0,
             voltage: 'Waiting',
             windowWidth: Dimensions.get('window').width,
             socket: dgram.createSocket('udp4'),
@@ -42,7 +44,7 @@ class Controller extends Component {
         let port = randomPort();
         socket.bind(port);
         socket.once('listening', (err) => {
-            socket.setBroadcast(true);
+            socket.setBroadcast(true)
             socket.addMembership("192.168.1.100")
         });
         const data = toByteArray("1");
@@ -60,7 +62,7 @@ class Controller extends Component {
                     this.setState({ voltage: jsonData.Voltage, dataTime: Date.now()});
                 } else {
                     console.log(jsonData);
-                    this.setState({ position: jsonData.Position, turn: jsonData.Turn, velocity: jsonData.Velocity+500, dataTime: Date.now()});
+                    this.setState({ position: jsonData.Position, turn: jsonData.Turn, velocity: jsonData.Velocity, dataTime: Date.now()});
                 }  
             }
         });
@@ -68,28 +70,28 @@ class Controller extends Component {
             this.setState({ checkConnectionInverval: checkConnectionInverval })
             const distance  = Date.now() - this.state.dataTime; 
             console.log(distance);
-            if(distance > 5000 && this.state.dataTime!==0){
-                this.refs.toast.show('Connection Lost!');
-                this.setState({ dataTime: 0})
+            if(distance > 500){
+                this.sendData();
+                if(this.state.dataTime!==0){
+                    this.refs.toast.show('Connection Lost!');
+                    this.setState({ dataTime: 0})
+                }   
             } 
         },500);
         BackHandler.addEventListener('hardwareBackPress', () => {
             if(Platform.OS === 'android'){
                 clearInterval(this.state.checkConnectionInverval);
-                socket.close(() => {
-                    this.refs.toast.show('Disconnected!');
-                    setTimeout(this.props.navigation.goBack,500);
-                })
+                socket.close();
             }
         });  
     }
     sendData(){
         const { socket } = this.state;
-        const { positionToOrigin, turn, velocity } = this.state;
+        const { positionToOrigin, turnToOrigin, velocityToOrigin } = this.state;
         const jsonData = JSON.stringify({
             "Position": positionToOrigin,
-            "Turn": turn,
-            "Velocity": velocity
+            "Turn": turnToOrigin,
+            "Velocity": velocityToOrigin
         });
         const data = toByteArray(jsonData);
         socket.send(data, 0, data.length, parseInt(this.props.navigation.state.params.port), this.props.navigation.state.params.ip, (err) => {
@@ -123,29 +125,36 @@ class Controller extends Component {
             <View style={styles.container}>
                 <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center'}}>
                     <View style={{ height: 200, justifyContent: 'space-around', alignItems: 'center'}}>
-                        <Progress.Pie progress={this.state.position/36000} size={100} color="#ff9f1a"/>
+                        <Progress.Pie 
+                        progress={this.state.position>=0?this.state.position/32767:(32767+this.state.position)/32767} 
+                        size={100} color={this.state.position>=0? 'green': 'red'}
+                        />
                         <View style={{ flexDirection: 'row'}}>
-                            <Text style={{ color: '#fff' }}>Desired Position: </Text>
+                            <Text style={{ color: '#fff' }}> Position: </Text>
                             <Text style={{ color: '#ff9f1a' }}>{this.state.position}</Text>
                         </View>
                         <View style={{ flexDirection: 'row'}}>
-                            <Text style={{ color: '#fff' }}>Desired Turn: </Text>
+                            <Text style={{ color: '#fff' }}> Turn: </Text>
                             <Text style={{ color: '#ff9f1a' }}>{this.state.turn}</Text>
                         </View>
                     </View>
                     <View style={{ flexDirection: 'column', width: 300}}>
-                        <Text style={{ color: '#fff' }}>Desired Position</Text>
-                        <Slider onValueChange={(value)=>{
-                            this.setState({ positionToOrigin: (value*36000).toFixed()},()=>{
+                        <Text style={{ color: '#fff' }}>{'Desired Position: '+this.state.positionToOrigin}</Text>
+                        <Slider
+                        value={(this.state.positionToOrigin+32767)/65534} 
+                        onValueChange={(value)=>{
+                            this.setState({ positionToOrigin: (value*65534).toFixed()-32767},()=>{
                                 this.sendData();
                             })
                         }}
                         />
                     </View>
                     <View style={{ flexDirection: 'column', width: 300, height: 50}}>
-                        <Text style={{ color: '#fff' }}>Desired Turn</Text>
-                        <Slider onValueChange={(value)=>{
-                            this.setState({ turn: (value*500).toFixed()},()=>{
+                        <Text style={{ color: '#fff' }}>{'Desired Turn: '+this.state.turnToOrigin}</Text>
+                        <Slider
+                        value={(this.state.turnToOrigin+500)/1000}  
+                        onValueChange={(value)=>{
+                            this.setState({ turnToOrigin: (value*1000).toFixed()-500},()=>{
                                 this.sendData();
                             })
                         }}
@@ -153,15 +162,20 @@ class Controller extends Component {
                     </View>
                 </View>
                 <View style={{ flex: 2, justifyContent: 'center', alignItems: 'center'}}>
-                    <Progress.Bar progress={this.state.velocity/1000} width={300} height={20} color={this.state.velocity>=500?'green':'red'} style={{marginBottom: 20,}} />
+                    <View style={{ flexDirection: 'row' }}>
+                        <Progress.Bar progress={this.state.velocity<0?-(this.state.velocity)/500: 0} width={150} height={20} color="red" style={{marginBottom: 20, borderRadius: 0, borderWidth:0, transform: [{ rotate: '180deg'}]}} /> 
+                        <Progress.Bar progress={this.state.velocity>=0?(this.state.velocity)/500: 0} width={150} height={20} color="green" style={{marginBottom: 20, borderRadius: 0, borderWidth:0}} />
+                    </View>
                     <View style={{ flexDirection: 'column', width: 300, flexDirection:'row', justifyContent: 'center', marginBottom: 20}}>
                         <Text style={{ color: '#fff' }}>Velocity: </Text>
-                        <Text style={{ color: '#ff9f1a' }}>{this.state.velocity-500}</Text>
+                        <Text style={{ color: '#ff9f1a' }}>{this.state.velocity}</Text>
                     </View>
                     <View style={{ flexDirection: 'column', width: 300, marginBottom: 20}}>
-                        <Text style={{ color: '#fff' }}>Desired Velocity</Text>
-                        <Slider onValueChange={(value)=>{
-                            this.setState({ velocity: (value*1000).toFixed()},() => {
+                        <Text style={{ color: '#fff' }}>{'Desired Velocity: '+this.state.velocityToOrigin}</Text>
+                        <Slider
+                        value={(this.state.velocityToOrigin+500)/1000} 
+                        onValueChange={(value)=>{
+                            this.setState({ velocityToOrigin: (value*1000).toFixed()-500},() => {
                                 this.sendData();
                             })
                         }}

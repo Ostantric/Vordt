@@ -12,7 +12,8 @@ import {
   View,
   TextInput,
   TouchableOpacity,
-  Dimensions
+  Dimensions,
+  Keyboard,
 } from 'react-native';
 
 
@@ -24,7 +25,7 @@ class Home extends Component{
     this.state = {
       message: 'Bekliyor...',
       port: 50001,
-      ip: '192.168.1.101',
+      ip: '192.168.1.100',
     }
   }
   
@@ -51,6 +52,7 @@ class Home extends Component{
         <TouchableOpacity
         style={styles.startButton}
         onPress={()=>{
+            Keyboard.dismiss();
             this.props.navigation.navigate('Controller',{ ip: this.state.ip, port: this.state.port});
         }} 
         >

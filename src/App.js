@@ -1,7 +1,9 @@
 import React from 'react';
 import { StackNavigator } from 'react-navigation';
+import { StatusBar } from 'react-native';
 import Home from './screens/Home';
 import Controller from './screens/Controller';
+StatusBar.setHidden(true);
 
 const App = StackNavigator({
   Home: {
