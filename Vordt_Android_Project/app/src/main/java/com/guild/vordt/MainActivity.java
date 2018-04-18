@@ -9,11 +9,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 
-
-
-
 public class MainActivity extends AppCompatActivity {
-
 
     //public static final String Adress = "com.guild.vordt.Interface_Main";
     //public static final String Port = "com.guild.vordt.Interface_Main";

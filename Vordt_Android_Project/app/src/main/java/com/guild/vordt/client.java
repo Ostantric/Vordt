@@ -16,6 +16,9 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import eu.amirs.JSON;
 
 public class client extends Fragment {
@@ -31,12 +34,12 @@ public class client extends Fragment {
     private boolean show_disconnected,connection,isconnected,connection_old = false;
     private DatagramSocket ds = null;
     private DatagramPacket dp = null;
-
+    private DatagramPacket dp_send = null;
+    private boolean send_command_flag;
+    private String json_buffer;
 
     private int port_from_activity;
     private String ip_from_activity;
-
-
 
     /**
      * Callback interface through which the fragment will report the
@@ -47,9 +50,10 @@ public class client extends Fragment {
         //int onPreExecute_PORT();
         void onPreExecute();
 
-        void MovementUpdates(String Position, String Velocity, String Turn, int position, int velocity, int velocity_reversed );
+        void MovementUpdates(String Position, String Velocity, String Turn, int position, int position_reversed, int velocity, int velocity_reversed );
 
         void UtilityUpdates(String voltage);
+
 
         void onCancelled();
 
@@ -61,7 +65,6 @@ public class client extends Fragment {
 
         void onDisconnected();
     }
-
 
     @Override
     public void onAttach(Activity activity) {
@@ -102,8 +105,6 @@ public class client extends Fragment {
         //mTask.execute();
     }
 
-
-
     /*****************************/
     /***** TASK FRAGMENT API *****/
     /*****************************/
@@ -139,6 +140,47 @@ public class client extends Fragment {
         }
     }
 
+    public void send_flag(boolean flag) {
+        send_command_flag=flag;
+    }
+
+    public void send_command(String type, int value){
+
+        if (type.equals("velocity")) {
+            JSONObject json = new JSONObject();
+            try {
+                json.put("dvel",value);
+                json_buffer=json.toString();
+
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        else if (type.equals("position")){
+            JSONObject json = new JSONObject();
+            try {
+                json.put("dpos",value);
+                json_buffer=json.toString();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        else if (type.equals("turn"))
+        {
+            JSONObject json = new JSONObject();
+            try {
+                json.put("dturn",value);
+                json_buffer=json.toString();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        else{
+            json_buffer="";
+        }
+
+    }
+
     public void disconnect() {
         //mCallbacks.onDisconnected();
         }
@@ -160,13 +202,13 @@ public class client extends Fragment {
 
         private String dstAddress="192.168.1.228";
         private int dstPort;
+        private boolean send_command_flag_old=false;
+
 
         udp_task(String addr, int port_number) {
             this.dstAddress=addr;
             this.dstPort=port_number;
         }
-
-
 
         @Override
         protected void onPreExecute() {
@@ -206,14 +248,24 @@ public class client extends Fragment {
                 //stay in this loop until timeout or IO exception
                 while (run) {
                     try {
+                        InetAddress serverAddr = InetAddress.getByName(dstAddress);
                         Thread.sleep(5);
                         byte[] buffer = new byte[256];
                         dp = new DatagramPacket(buffer, buffer.length);
                         ds.receive(dp);
+
                         String udp_msg = new String(buffer, 0, dp.getLength());
                         publishProgress(udp_msg);
+                        Thread.sleep(5);
+                        if (send_command_flag) {
+                            if(!send_command_flag_old) {
+                                dp_send = new DatagramPacket(json_buffer.getBytes(), json_buffer.length(), serverAddr, dstPort);
+                                ds.send(dp_send);
+                            }
+                        }
                         connection = true;
                         isconnected = true;
+                        send_command_flag_old=send_command_flag;
                         if (DEBUG) Log.i(TAG, "publishProgress(" + udp_msg + "%)");
                     } catch (SocketTimeoutException e) {
                         //TODO: leaks here. Check logic states
@@ -290,8 +342,10 @@ public class client extends Fragment {
                 JSON json = new JSON(value[0]);
                 String type = json.key("Type").stringValue();
 
-                int check = 0;
+                int check2 = 0;
+                int check1 = 0;
                 int position_int = 0;
+                int position_int_reversed = 0;
                 int velocity_int = 0;
                 double voltage_double =0.0;
                 int velocity_int_reversed = 0;
@@ -311,34 +365,50 @@ public class client extends Fragment {
 
                     if (position != null) {
                         String fixed_text = position.replaceAll("[^0-9]-+", "");
-                        position_int = Integer.valueOf(fixed_text);
+                        check1 = Integer.valueOf(fixed_text);
+                        if (check1 > 0) {
+                            position_int = check1;
+                            position_int_reversed = 0;
+                            //velocity_bar.setProgress(check);
+                            //velocity_bar_reversed.setProgress(0);
+                        } else if (check1 == 0) {
+                            position_int = 0;
+                            position_int_reversed = 0;
+                            //velocity_bar.setProgress(0);
+                            //velocity_bar_reversed.setProgress(0);
+                        } else {
+                            position_int = 0;
+                            position_int_reversed = -check1;
+                            //velocity_bar.setProgress(0);
+                            //velocity_bar_reversed.setProgress(-check);
+                        }
                         //position_bar.setProgress(Integer.valueOf(fixed_text_1));
                     }
 
                     if (velocity != null) {
                         String fixed_text = velocity.replaceAll("[^0-9]-+", "");
-                        check = Integer.valueOf(fixed_text);
+                        check2 = Integer.valueOf(fixed_text);
 
-                        if (check > 0) {
-                            velocity_int = check;
+                        if (check2 > 0) {
+                            velocity_int = check2;
                             velocity_int_reversed = 0;
                             //velocity_bar.setProgress(check);
                             //velocity_bar_reversed.setProgress(0);
-                        } else if (check == 0) {
+                        } else if (check2 == 0) {
                             velocity_int = 0;
                             velocity_int_reversed = 0;
                             //velocity_bar.setProgress(0);
                             //velocity_bar_reversed.setProgress(0);
                         } else {
                             velocity_int = 0;
-                            velocity_int_reversed = -check;
+                            velocity_int_reversed = -check2;
                             //velocity_bar.setProgress(0);
                             //velocity_bar_reversed.setProgress(-check);
                         }
                     }
                     if(mRunning) {
                         if(velocity !=null & position != null & turn != null) {
-                            mCallbacks.MovementUpdates(position, velocity, turn, position_int, velocity_int, velocity_int_reversed);
+                            mCallbacks.MovementUpdates(position, velocity, turn, position_int, position_int_reversed, velocity_int, velocity_int_reversed);
                         }
                     }
                 }
@@ -352,7 +422,6 @@ public class client extends Fragment {
                     }
                 }
                 //TODO:fix the temporary leak protection
-
 
             }
 
@@ -408,7 +477,6 @@ public class client extends Fragment {
         if(!mRunning){
             start();
         }
-
 
         super.onStart();
 
