@@ -22,7 +22,6 @@ use IEEE.STD_LOGIC_1164.ALL;
 use ieee.std_logic_unsigned.all;
 use ieee.numeric_std.all;
 
-
 use work.all;
 -- Uncomment the following library declaration if using
 -- arithmetic functions with Signed or Unsigned values
@@ -40,7 +39,9 @@ PORT (
 		Encoder1_B : IN STD_LOGIC ;
 		reset : IN STD_LOGIC;
 		--adjust_speed : IN STD_LOGIC;
-		Serial_TX : out STD_LOGIC;
+		Sabertooth_Serial_TX : out STD_LOGIC;
+		MCU_Serial_TX : out STD_LOGIC;
+		MCU_Serial_RX : in STD_LOGIC;
 		--storage_out : out STD_LOGIC_VECTOR(7 DOWNTO 0);
 		--listen_Addres : out STD_LOGIC_VECTOR(7 DOWNTO 0);
 		I2C_Slave_SDA : INOUT STD_LOGIC;
@@ -51,14 +52,23 @@ PORT (
 end Top_level;
 
 architecture Structural of Top_level is
+
 --SIGNALS---------
 signal Position_Signal : STD_LOGIC_VECTOR(15 DOWNTO 0);
 signal Velocity_Signal : STD_LOGIC_VECTOR(15 DOWNTO 0);
 
-signal TX_Done_Signal : std_logic;
-signal TX_Byte_Signal : std_logic_vector(7 downto 0);
-signal TX_DV_Signal : std_logic;
-signal TX_ACTIVE_signal : std_logic;
+signal Sabertooth_TX_Done_Signal : std_logic;
+signal Sabertooth_TX_Byte_Signal : std_logic_vector(7 downto 0);
+signal Sabertooth_TX_DV_Signal : std_logic;
+signal Sabertooth_TX_ACTIVE_signal : std_logic;
+
+signal MCU_TX_Done_Signal : std_logic;
+signal MCU_TX_Byte_Signal : std_logic_vector(7 downto 0);
+signal MCU_TX_DV_Signal : std_logic;
+signal MCU_TX_ACTIVE_signal : std_logic;
+
+signal MCU_RX_DV_Signal : std_logic;
+signal MCU_RX_Byte_Signal : std_logic_vector(7 downto 0);
 
 signal Desired_Velocity_Signal : STD_LOGIC_VECTOR(15 DOWNTO 0) := (others => '1');
 signal Desired_Position_Signal : STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -80,9 +90,11 @@ signal Velocity_PID_OUTPUT_signal,Velocity_PID_Direction_signal : STD_LOGIC_VECT
 
 signal Max_Speed_For_Position_PID_signal : STD_LOGIC_VECTOR(15 DOWNTO 0);
 signal Position_PID_SETPOINT_signal : STD_LOGIC_VECTOR(15 DOWNTO 0);
+signal Test_position_PID_SETPOINT_Signal : STD_LOGIC_VECTOR(15 DOWNTO 0);
 signal Motor_Direction_Signal : STD_LOGIC_VECTOR(1 DOWNTO 0);
 signal Turn_Count_Signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
-signal Turn_Position_PID_SETPOINT_Signal : integer;
+signal Turn_Position_PID_SETPOINT_Signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
+signal Test_Turn_Position_PID_SETPOINT_Signal : STD_LOGIC_VECTOR(31 DOWNTO 0);
 signal Test_velocity_PID_SETPOINT_Signal :STD_LOGIC_VECTOR(15 DOWNTO 0);
 signal show_storage_input :STD_LOGIC_VECTOR(15 DOWNTO 0);
 
@@ -96,7 +108,6 @@ signal I2C_Slave_Saving_Signal :STD_LOGIC_VECTOR(7 DOWNTO 0);
 signal I2C_Slave_Listen_Adress_Signal : STD_LOGIC_VECTOR(7 DOWNTO 0);
 signal I2C_Slave_Talk_Adress_Signal : STD_LOGIC_VECTOR(7 DOWNTO 0);
 
-
 signal Storage_RW_Signal : STD_LOGIC;
 signal Storage_Enable_Signal : STD_LOGIC;
 signal Storage_Address_Signal : STD_LOGIC_VECTOR(7 DOWNTO 0);
@@ -107,6 +118,7 @@ signal Storage_Output_Signal : STD_LOGIC_VECTOR(7 DOWNTO 0);
 --PORT MAPS-------
 begin
 Decoder:entity work.Decoder
+
 port map (CLK=>CLK,
 			 Encoder1_A=>Encoder1_A,
 			 Encoder1_B=>Encoder1_B,
@@ -117,23 +129,44 @@ port map (CLK=>CLK,
 );
 
 
-
-UART_Transmitter:entity work.UART_TX
+MCU_UART_Transmitter:entity work.MCU_UART_TX
+--Baudrate is 2M
+--50M/2M = 25
+--CLKS_PER_BIT = 25
 port map (i_CLK=>CLK,
-		    i_TX_DV=>TX_DV_Signal,
-			 i_TX_Byte =>TX_Byte_Signal,
-			 o_TX_Serial =>Serial_TX,
-			 o_TX_Done =>TX_Done_Signal,
-			 o_TX_Active=>TX_ACTIVE_signal
+		    i_TX_DV=>MCU_TX_DV_Signal,
+			 i_TX_Byte =>MCU_TX_Byte_Signal,
+			 o_TX_Serial =>MCU_Serial_TX,
+			 o_TX_Done =>MCU_TX_Done_Signal,
+			 o_TX_Active=>MCU_TX_ACTIVE_signal
+);
+
+MCU_UART_Receiver:entity work.MCU_UART_RX
+port map (i_CLK=>CLK,
+			i_RX_Serial =>MCU_Serial_RX,
+			o_RX_DV => MCU_RX_DV_Signal,
+			o_RX_Byte => MCU_RX_Byte_Signal
+);
+
+Sabertooth_UART_Transmitter:entity work.Sabertooth_UART_TX 
+--Baudrate is 9600
+--50M/9600=5208.3333
+--CLKS_PER_BIT = 5209
+port map (i_CLK=>CLK,
+		    i_TX_DV=>Sabertooth_TX_DV_Signal,
+			 i_TX_Byte =>Sabertooth_TX_Byte_Signal,
+			 o_TX_Serial =>Sabertooth_Serial_TX,
+			 o_TX_Done =>Sabertooth_TX_Done_Signal,
+			 o_TX_Active=>Sabertooth_TX_ACTIVE_signal
 );
 
 Sabertooth_Driver:entity work.Sabertooth_Packetized_Serial_Driver
 port map (CLK=>CLK,
-		    TX_Done=>TX_Done_Signal,
-			 TX_ACTIVE =>TX_ACTIVE_signal,
-			 TX_DV =>TX_DV_Signal,
+		    TX_Done=>Sabertooth_TX_Done_Signal,
+			 TX_ACTIVE =>Sabertooth_TX_ACTIVE_signal,
+			 TX_DV =>Sabertooth_TX_DV_Signal,
 			 Input =>Sabertooth_INPUT,
-			 Output_Command=>Tx_Byte_Signal
+			 Output_Command=>Sabertooth_Tx_Byte_Signal
 );
 
 I2C_Handler:entity work.I2C_Handler
@@ -148,15 +181,16 @@ port map (CLK=>CLK,
 			 position_input=>Position_Signal,
 			 velocity_input=>Velocity_Signal,
 			 pid_velocity_input=>Velocity_PID_Direction_signal & Velocity_PID_OUTPUT_signal,
-			 pid_position_input=>test_Velocity_PID_SETPOINT_signal,
-			 storage_input=>x"00" & I2C_Slave_Saving_Signal,
-			 
+			 pid_position_input=>Velocity_PID_SETPOINT_signal,
+			 storage_input=>I2C_Slave_Saving_Signal & x"00",
 			 turn_input=>Turn_Count_Signal,
+			 
 			 busy=>I2C_Busy_Signal,
 			 slave_address=>I2C_Address_Signal,
 			 Data_for_write=>I2C_Data_Write_Signal,
 			 enable_I2C_Module=>I2C_Enable_Signal,
 			 read_write_signal=>I2C_RW_Signal
+			 
 			 --slave_module signals
 			 --slave_module_busy=>I2C_Slave_Busy_Signal,
 			 --listen_address_came=>I2C_Slave_Listen_Address_Done_Signal,
@@ -219,23 +253,25 @@ port map (CLK=>CLK,
 Velocity_PID:entity work.Velocity_PID_Controller
 port map (CLK=>CLK,
 			 reset_n=>reset,
-			 --Set_point=>Velocity_PID_SETPOINT_signal,
-			 Set_point=>Test_velocity_PID_SETPOINT_Signal,
+			 Set_point=>Velocity_PID_SETPOINT_signal,
+			-- Set_point=>Test_velocity_PID_SETPOINT_Signal,
 			 --Set_point=>x"00" & Storage_Input_Signal,
 			 Feedback=>Velocity_Signal,
 			 Output_Command=>Velocity_PID_OUTPUT_signal,
 			 Direction_Command=>Velocity_PID_Direction_signal
 );
 
---Position_PID:entity work.Position_PID_Controller
---port map (CLK=>CLK,
---			 Max_Speed=>Max_Speed_For_Position_PID_signal,
---			 Position_Set_point=>Position_PID_SETPOINT_signal,
---			 Turn_Set_point=>std_logic_vector(to_signed(Turn_Position_PID_SETPOINT_Signal,32)),
---			 Position_Feedback=>Position_Signal,
---			 Turn_Feedback=>Turn_Count_Signal,
---			 Output_Command=>Velocity_PID_SETPOINT_signal
---);
+Position_PID:entity work.Position_PID_Controller
+port map (CLK=>CLK,
+			 Max_Speed=>Max_Speed_For_Position_PID_signal,
+			 Position_Set_point=>Test_position_PID_SETPOINT_Signal,
+			 --Position_Set_point=>x"5000",
+			 --Turn_Set_point=>std_logic_vector(to_signed(Turn_Position_PID_SETPOINT_Signal,32)),
+			 Turn_Set_point=>Test_Turn_Position_PID_SETPOINT_Signal,
+			 Position_Feedback=>Position_Signal,
+			 Turn_Feedback=>Turn_Count_Signal,
+			 Output_Command=>Velocity_PID_SETPOINT_signal
+);
 
 
 
@@ -248,37 +284,27 @@ port map (CLK=>CLK,
 --			 
 --);
 
---Velocity_PID_Controller:entity work.Velocity_PID_Controller
---port map (CLK=>CLK,
---			 Feedback=>Velocity_Signal,
---			 Input =>Desired_Velocity_Signal,
---		    Output_Command=>Tx_Byte_Signal,
---			 TX_DV=>TX_DV_Signal,
---			 TX_Done=>TX_Done_Signal,
---			 TX_ACTIVE=>TX_ACTIVE_signal
---);
 
---Position_PID_Controller:entity work.Position_PID_Controller
---port map (CLK=>CLK,
---			 Feedback=>Position_Signal,
---			 Input =>Desired_Position_Signal,
---		    Output_Command=>TX_Byte_Signal,
---			 TX_Done=>TX_Done_Signal
---);
 --Velocity_PID_SETPOINT_signal<=x"0090" when adjust_speed = '1' else
 --										x"0000";
 										
 --Max_Speed_For_Position_PID_signal<=x"0025" when adjust_speed = '1' else
 --											  x"000A";
+
+Test_Turn_Position_PID_SETPOINT_Signal<=x"00000000";
+Max_Speed_For_Position_PID_signal<=x"0080";
+
 --Position_PID_SETPOINT_signal<=x"4000";
 --Turn_Position_PID_SETPOINT_Signal<=0;
-
 --Test_velocity_PID_SETPOINT_Signal<=x"00" & Storage_Input_Signal;
+
 Test_velocity_PID_SETPOINT_Signal<= x"00" & I2C_Slave_Saving_Signal;
+Test_position_PID_SETPOINT_Signal<= I2C_Slave_Saving_Signal & x"00";
 
 --Test_velocity_PID_SETPOINT_Signal<=x"FFD5" when adjust_speed = '1' else
 --											  x"0030";
 --Test_velocity_PID_SETPOINT_Signal<=x"0015";
+
 show_storage_input<=x"00" & Storage_Input_Signal;
 Sabertooth_INPUT(23 Downto 16)<=std_logic_vector(to_unsigned(128,8)); --address
 Sabertooth_INPUT(15 downto 8)<=Velocity_PID_Direction_signal;

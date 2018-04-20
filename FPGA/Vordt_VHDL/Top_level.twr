@@ -1,0 +1,631 @@
+--------------------------------------------------------------------------------
+Release 14.7 Trace  (lin64)
+Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
+
+/opt/Xilinx/14.7/ISE_DS/ISE/bin/lin64/unwrapped/trce -intstyle ise -v 3 -s 2 -n
+3 -fastpaths -xml Top_level.twx Top_level.ncd -o Top_level.twr Top_level.pcf
+
+Design file:              Top_level.ncd
+Physical constraint file: Top_level.pcf
+Device,package,speed:     xc6slx9,tqg144,C,-2 (PRODUCTION 1.23 2013-10-13)
+Report level:             verbose report
+
+Environment Variable      Effect 
+--------------------      ------ 
+NONE                      No environment variables were set
+--------------------------------------------------------------------------------
+
+INFO:Timing:3412 - To improve timing, see the Timing Closure User Guide (UG612).
+INFO:Timing:2752 - To get complete path coverage, use the unconstrained paths 
+   option. All paths that are not constrained will be reported in the 
+   unconstrained paths section(s) of the report.
+INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on 
+   a 50 Ohm transmission line loading model.  For the details of this model, 
+   and for more information on accounting for different loading conditions, 
+   please see the device datasheet.
+
+================================================================================
+Timing constraint: NET "CLK_BUFGP/IBUFG" PERIOD = 20 ns HIGH 50%;
+For more information, see Period Analysis in the Timing Closure User Guide (UG612).
+
+ 6562516 paths analyzed, 2919 endpoints analyzed, 0 failing endpoints
+ 0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
+ Minimum period is  14.810ns.
+--------------------------------------------------------------------------------
+
+Paths for end point Decoder/temp_tick2_8 (SLICE_X11Y53.A1), 133 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     2.595ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               Decoder/tick_0 (FF)
+  Destination:          Decoder/temp_tick2_8 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      7.367ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.003ns (0.683 - 0.686)
+  Source Clock:         CLK_BUFGP falling at 10.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: Decoder/tick_0 to Decoder/temp_tick2_8
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X13Y50.AQ      Tcko                  0.430   Decoder/tick<1>
+                                                       Decoder/tick_0
+    SLICE_X12Y50.A2      net (fanout=10)       0.758   Decoder/tick<0>
+    SLICE_X12Y50.COUT    Topcya                0.474   Decoder/Madd_n0338_Madd_cy<3>
+                                                       Decoder/Madd_n0338_Madd_lut<0>_INV_0
+                                                       Decoder/Madd_n0338_Madd_cy<3>
+    SLICE_X12Y51.CIN     net (fanout=1)        0.003   Decoder/Madd_n0338_Madd_cy<3>
+    SLICE_X12Y51.AMUX    Tcina                 0.220   Decoder/Madd_n0338_Madd_cy<7>
+                                                       Decoder/Madd_n0338_Madd_cy<7>
+    SLICE_X10Y52.A5      net (fanout=2)        0.707   Decoder/n0338<4>
+    SLICE_X10Y52.AMUX    Tilo                  0.298   Decoder/n0228<7>
+                                                       Decoder/Madd_n0228_Madd4
+    SLICE_X10Y52.BX      net (fanout=2)        1.595   Decoder/Madd_n0228_Madd4
+    SLICE_X10Y52.COUT    Tbxcy                 0.197   Decoder/n0228<7>
+                                                       Decoder/Madd_n0228_Madd_cy<0>_6
+    SLICE_X10Y53.CIN     net (fanout=1)        0.003   Decoder/Madd_n0228_Madd_cy<0>7
+    SLICE_X10Y53.AQ      Tito_logic            0.684   Decoder/n0228<11>
+                                                       Decoder/Madd_n0228_Madd_cy<0>_10
+                                                       Decoder/n0228<8>_rt
+    SLICE_X11Y53.A1      net (fanout=1)        1.625   Decoder/n0228<8>
+    SLICE_X11Y53.CLK     Tas                   0.373   Decoder/temp_tick2<11>
+                                                       Decoder/Mmux_tick[16]_BUS_0011_mux_69_OUT151
+                                                       Decoder/temp_tick2_8
+    -------------------------------------------------  ---------------------------
+    Total                                      7.367ns (2.676ns logic, 4.691ns route)
+                                                       (36.3% logic, 63.7% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     2.667ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               Decoder/tick_3 (FF)
+  Destination:          Decoder/temp_tick2_8 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      7.293ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.005ns (0.683 - 0.688)
+  Source Clock:         CLK_BUFGP falling at 10.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: Decoder/tick_3 to Decoder/temp_tick2_8
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X14Y48.CQ      Tcko                  0.476   Decoder/tick<3>
+                                                       Decoder/tick_3
+    SLICE_X12Y50.D4      net (fanout=10)       0.800   Decoder/tick<3>
+    SLICE_X12Y50.COUT    Topcyd                0.312   Decoder/Madd_n0338_Madd_cy<3>
+                                                       Decoder/tick<3>_rt
+                                                       Decoder/Madd_n0338_Madd_cy<3>
+    SLICE_X12Y51.CIN     net (fanout=1)        0.003   Decoder/Madd_n0338_Madd_cy<3>
+    SLICE_X12Y51.AMUX    Tcina                 0.220   Decoder/Madd_n0338_Madd_cy<7>
+                                                       Decoder/Madd_n0338_Madd_cy<7>
+    SLICE_X10Y52.A5      net (fanout=2)        0.707   Decoder/n0338<4>
+    SLICE_X10Y52.AMUX    Tilo                  0.298   Decoder/n0228<7>
+                                                       Decoder/Madd_n0228_Madd4
+    SLICE_X10Y52.BX      net (fanout=2)        1.595   Decoder/Madd_n0228_Madd4
+    SLICE_X10Y52.COUT    Tbxcy                 0.197   Decoder/n0228<7>
+                                                       Decoder/Madd_n0228_Madd_cy<0>_6
+    SLICE_X10Y53.CIN     net (fanout=1)        0.003   Decoder/Madd_n0228_Madd_cy<0>7
+    SLICE_X10Y53.AQ      Tito_logic            0.684   Decoder/n0228<11>
+                                                       Decoder/Madd_n0228_Madd_cy<0>_10
+                                                       Decoder/n0228<8>_rt
+    SLICE_X11Y53.A1      net (fanout=1)        1.625   Decoder/n0228<8>
+    SLICE_X11Y53.CLK     Tas                   0.373   Decoder/temp_tick2<11>
+                                                       Decoder/Mmux_tick[16]_BUS_0011_mux_69_OUT151
+                                                       Decoder/temp_tick2_8
+    -------------------------------------------------  ---------------------------
+    Total                                      7.293ns (2.560ns logic, 4.733ns route)
+                                                       (35.1% logic, 64.9% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     2.781ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               Decoder/tick_4 (FF)
+  Destination:          Decoder/temp_tick2_8 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      7.181ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.003ns (0.683 - 0.686)
+  Source Clock:         CLK_BUFGP falling at 10.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: Decoder/tick_4 to Decoder/temp_tick2_8
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X15Y50.AQ      Tcko                  0.430   Decoder/tick<5>
+                                                       Decoder/tick_4
+    SLICE_X12Y51.A3      net (fanout=10)       0.813   Decoder/tick<4>
+    SLICE_X12Y51.AMUX    Topaa                 0.456   Decoder/Madd_n0338_Madd_cy<7>
+                                                       Decoder/tick<4>_rt
+                                                       Decoder/Madd_n0338_Madd_cy<7>
+    SLICE_X10Y52.A5      net (fanout=2)        0.707   Decoder/n0338<4>
+    SLICE_X10Y52.AMUX    Tilo                  0.298   Decoder/n0228<7>
+                                                       Decoder/Madd_n0228_Madd4
+    SLICE_X10Y52.BX      net (fanout=2)        1.595   Decoder/Madd_n0228_Madd4
+    SLICE_X10Y52.COUT    Tbxcy                 0.197   Decoder/n0228<7>
+                                                       Decoder/Madd_n0228_Madd_cy<0>_6
+    SLICE_X10Y53.CIN     net (fanout=1)        0.003   Decoder/Madd_n0228_Madd_cy<0>7
+    SLICE_X10Y53.AQ      Tito_logic            0.684   Decoder/n0228<11>
+                                                       Decoder/Madd_n0228_Madd_cy<0>_10
+                                                       Decoder/n0228<8>_rt
+    SLICE_X11Y53.A1      net (fanout=1)        1.625   Decoder/n0228<8>
+    SLICE_X11Y53.CLK     Tas                   0.373   Decoder/temp_tick2<11>
+                                                       Decoder/Mmux_tick[16]_BUS_0011_mux_69_OUT151
+                                                       Decoder/temp_tick2_8
+    -------------------------------------------------  ---------------------------
+    Total                                      7.181ns (2.438ns logic, 4.743ns route)
+                                                       (34.0% logic, 66.0% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point Decoder/temp_tick2_10 (SLICE_X11Y53.C1), 196 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     2.660ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               Decoder/tick_0 (FF)
+  Destination:          Decoder/temp_tick2_10 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      7.302ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.003ns (0.683 - 0.686)
+  Source Clock:         CLK_BUFGP falling at 10.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: Decoder/tick_0 to Decoder/temp_tick2_10
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X13Y50.AQ      Tcko                  0.430   Decoder/tick<1>
+                                                       Decoder/tick_0
+    SLICE_X14Y49.A4      net (fanout=10)       0.722   Decoder/tick<0>
+    SLICE_X14Y49.AMUX    Topaa                 0.449   Decoder/Msub_n0342_Madd_cy<3>
+                                                       Decoder/tick<0>_rt
+                                                       Decoder/Msub_n0342_Madd_cy<3>
+    SLICE_X11Y51.A3      net (fanout=3)        1.129   Decoder/n0342<0>
+    SLICE_X11Y51.A       Tilo                  0.259   Decoder/start_tick_point<3>
+                                                       Decoder/Madd_n0231_Madd
+    SLICE_X12Y55.B3      net (fanout=2)        1.096   Decoder/Madd_n0231_Madd
+    SLICE_X12Y55.COUT    Topcyb                0.483   Decoder/n0231<3>
+                                                       Decoder/Madd_n0231_Madd_lut<0>1
+                                                       Decoder/Madd_n0231_Madd_cy<0>_2
+    SLICE_X12Y56.CIN     net (fanout=1)        0.082   Decoder/Madd_n0231_Madd_cy<0>3
+    SLICE_X12Y56.COUT    Tbyp                  0.093   Decoder/n0231<7>
+                                                       Decoder/Madd_n0231_Madd_cy<0>_6
+    SLICE_X12Y57.CIN     net (fanout=1)        0.003   Decoder/Madd_n0231_Madd_cy<0>7
+    SLICE_X12Y57.CQ      Tito_logic            0.757   Decoder/n0231<11>
+                                                       Decoder/Madd_n0231_Madd_cy<0>_10
+                                                       Decoder/n0231<10>_rt
+    SLICE_X11Y53.C1      net (fanout=1)        1.426   Decoder/n0231<10>
+    SLICE_X11Y53.CLK     Tas                   0.373   Decoder/temp_tick2<11>
+                                                       Decoder/Mmux_tick[16]_BUS_0011_mux_69_OUT21
+                                                       Decoder/temp_tick2_10
+    -------------------------------------------------  ---------------------------
+    Total                                      7.302ns (2.844ns logic, 4.458ns route)
+                                                       (38.9% logic, 61.1% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     2.895ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               Decoder/tick_0 (FF)
+  Destination:          Decoder/temp_tick2_10 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      7.067ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.003ns (0.683 - 0.686)
+  Source Clock:         CLK_BUFGP falling at 10.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: Decoder/tick_0 to Decoder/temp_tick2_10
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X13Y50.AQ      Tcko                  0.430   Decoder/tick<1>
+                                                       Decoder/tick_0
+    SLICE_X14Y49.A4      net (fanout=10)       0.722   Decoder/tick<0>
+    SLICE_X14Y49.AMUX    Topaa                 0.449   Decoder/Msub_n0342_Madd_cy<3>
+                                                       Decoder/tick<0>_rt
+                                                       Decoder/Msub_n0342_Madd_cy<3>
+    SLICE_X11Y51.A3      net (fanout=3)        1.129   Decoder/n0342<0>
+    SLICE_X11Y51.A       Tilo                  0.259   Decoder/start_tick_point<3>
+                                                       Decoder/Madd_n0231_Madd
+    SLICE_X12Y55.BX      net (fanout=2)        1.188   Decoder/Madd_n0231_Madd
+    SLICE_X12Y55.COUT    Tbxcy                 0.156   Decoder/n0231<3>
+                                                       Decoder/Madd_n0231_Madd_cy<0>_2
+    SLICE_X12Y56.CIN     net (fanout=1)        0.082   Decoder/Madd_n0231_Madd_cy<0>3
+    SLICE_X12Y56.COUT    Tbyp                  0.093   Decoder/n0231<7>
+                                                       Decoder/Madd_n0231_Madd_cy<0>_6
+    SLICE_X12Y57.CIN     net (fanout=1)        0.003   Decoder/Madd_n0231_Madd_cy<0>7
+    SLICE_X12Y57.CQ      Tito_logic            0.757   Decoder/n0231<11>
+                                                       Decoder/Madd_n0231_Madd_cy<0>_10
+                                                       Decoder/n0231<10>_rt
+    SLICE_X11Y53.C1      net (fanout=1)        1.426   Decoder/n0231<10>
+    SLICE_X11Y53.CLK     Tas                   0.373   Decoder/temp_tick2<11>
+                                                       Decoder/Mmux_tick[16]_BUS_0011_mux_69_OUT21
+                                                       Decoder/temp_tick2_10
+    -------------------------------------------------  ---------------------------
+    Total                                      7.067ns (2.517ns logic, 4.550ns route)
+                                                       (35.6% logic, 64.4% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     2.919ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               Decoder/tick_0 (FF)
+  Destination:          Decoder/temp_tick2_10 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      7.043ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.003ns (0.683 - 0.686)
+  Source Clock:         CLK_BUFGP falling at 10.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: Decoder/tick_0 to Decoder/temp_tick2_10
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X13Y50.AQ      Tcko                  0.430   Decoder/tick<1>
+                                                       Decoder/tick_0
+    SLICE_X14Y49.A4      net (fanout=10)       0.722   Decoder/tick<0>
+    SLICE_X14Y49.COUT    Topcya                0.472   Decoder/Msub_n0342_Madd_cy<3>
+                                                       Decoder/tick<0>_rt
+                                                       Decoder/Msub_n0342_Madd_cy<3>
+    SLICE_X14Y50.CIN     net (fanout=1)        0.003   Decoder/Msub_n0342_Madd_cy<3>
+    SLICE_X14Y50.CMUX    Tcinc                 0.289   Decoder/Msub_n0342_Madd_cy<7>
+                                                       Decoder/Msub_n0342_Madd_cy<7>
+    SLICE_X12Y56.C5      net (fanout=2)        0.963   Decoder/n0342<6>
+    SLICE_X12Y56.CMUX    Tilo                  0.326   Decoder/n0231<7>
+                                                       Decoder/Madd_n0231_Madd6
+    SLICE_X12Y56.DX      net (fanout=2)        1.170   Decoder/Madd_n0231_Madd6
+    SLICE_X12Y56.COUT    Tdxcy                 0.109   Decoder/n0231<7>
+                                                       Decoder/Madd_n0231_Madd_cy<0>_6
+    SLICE_X12Y57.CIN     net (fanout=1)        0.003   Decoder/Madd_n0231_Madd_cy<0>7
+    SLICE_X12Y57.CQ      Tito_logic            0.757   Decoder/n0231<11>
+                                                       Decoder/Madd_n0231_Madd_cy<0>_10
+                                                       Decoder/n0231<10>_rt
+    SLICE_X11Y53.C1      net (fanout=1)        1.426   Decoder/n0231<10>
+    SLICE_X11Y53.CLK     Tas                   0.373   Decoder/temp_tick2<11>
+                                                       Decoder/Mmux_tick[16]_BUS_0011_mux_69_OUT21
+                                                       Decoder/temp_tick2_10
+    -------------------------------------------------  ---------------------------
+    Total                                      7.043ns (2.756ns logic, 4.287ns route)
+                                                       (39.1% logic, 60.9% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point Decoder/temp_tick2_11 (SLICE_X11Y53.D3), 232 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     2.748ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               Decoder/tick_0 (FF)
+  Destination:          Decoder/temp_tick2_11 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      7.214ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.003ns (0.683 - 0.686)
+  Source Clock:         CLK_BUFGP falling at 10.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: Decoder/tick_0 to Decoder/temp_tick2_11
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X13Y50.AQ      Tcko                  0.430   Decoder/tick<1>
+                                                       Decoder/tick_0
+    SLICE_X14Y49.A4      net (fanout=10)       0.722   Decoder/tick<0>
+    SLICE_X14Y49.AMUX    Topaa                 0.449   Decoder/Msub_n0342_Madd_cy<3>
+                                                       Decoder/tick<0>_rt
+                                                       Decoder/Msub_n0342_Madd_cy<3>
+    SLICE_X11Y51.A3      net (fanout=3)        1.129   Decoder/n0342<0>
+    SLICE_X11Y51.A       Tilo                  0.259   Decoder/start_tick_point<3>
+                                                       Decoder/Madd_n0231_Madd
+    SLICE_X12Y55.B3      net (fanout=2)        1.096   Decoder/Madd_n0231_Madd
+    SLICE_X12Y55.COUT    Topcyb                0.483   Decoder/n0231<3>
+                                                       Decoder/Madd_n0231_Madd_lut<0>1
+                                                       Decoder/Madd_n0231_Madd_cy<0>_2
+    SLICE_X12Y56.CIN     net (fanout=1)        0.082   Decoder/Madd_n0231_Madd_cy<0>3
+    SLICE_X12Y56.COUT    Tbyp                  0.093   Decoder/n0231<7>
+                                                       Decoder/Madd_n0231_Madd_cy<0>_6
+    SLICE_X12Y57.CIN     net (fanout=1)        0.003   Decoder/Madd_n0231_Madd_cy<0>7
+    SLICE_X12Y57.DQ      Tito_logic            0.798   Decoder/n0231<11>
+                                                       Decoder/Madd_n0231_Madd_cy<0>_10
+                                                       Decoder/n0231<11>_rt
+    SLICE_X11Y53.D3      net (fanout=1)        1.297   Decoder/n0231<11>
+    SLICE_X11Y53.CLK     Tas                   0.373   Decoder/temp_tick2<11>
+                                                       Decoder/Mmux_tick[16]_BUS_0011_mux_69_OUT31
+                                                       Decoder/temp_tick2_11
+    -------------------------------------------------  ---------------------------
+    Total                                      7.214ns (2.885ns logic, 4.329ns route)
+                                                       (40.0% logic, 60.0% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     2.983ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               Decoder/tick_0 (FF)
+  Destination:          Decoder/temp_tick2_11 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      6.979ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.003ns (0.683 - 0.686)
+  Source Clock:         CLK_BUFGP falling at 10.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: Decoder/tick_0 to Decoder/temp_tick2_11
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X13Y50.AQ      Tcko                  0.430   Decoder/tick<1>
+                                                       Decoder/tick_0
+    SLICE_X14Y49.A4      net (fanout=10)       0.722   Decoder/tick<0>
+    SLICE_X14Y49.AMUX    Topaa                 0.449   Decoder/Msub_n0342_Madd_cy<3>
+                                                       Decoder/tick<0>_rt
+                                                       Decoder/Msub_n0342_Madd_cy<3>
+    SLICE_X11Y51.A3      net (fanout=3)        1.129   Decoder/n0342<0>
+    SLICE_X11Y51.A       Tilo                  0.259   Decoder/start_tick_point<3>
+                                                       Decoder/Madd_n0231_Madd
+    SLICE_X12Y55.BX      net (fanout=2)        1.188   Decoder/Madd_n0231_Madd
+    SLICE_X12Y55.COUT    Tbxcy                 0.156   Decoder/n0231<3>
+                                                       Decoder/Madd_n0231_Madd_cy<0>_2
+    SLICE_X12Y56.CIN     net (fanout=1)        0.082   Decoder/Madd_n0231_Madd_cy<0>3
+    SLICE_X12Y56.COUT    Tbyp                  0.093   Decoder/n0231<7>
+                                                       Decoder/Madd_n0231_Madd_cy<0>_6
+    SLICE_X12Y57.CIN     net (fanout=1)        0.003   Decoder/Madd_n0231_Madd_cy<0>7
+    SLICE_X12Y57.DQ      Tito_logic            0.798   Decoder/n0231<11>
+                                                       Decoder/Madd_n0231_Madd_cy<0>_10
+                                                       Decoder/n0231<11>_rt
+    SLICE_X11Y53.D3      net (fanout=1)        1.297   Decoder/n0231<11>
+    SLICE_X11Y53.CLK     Tas                   0.373   Decoder/temp_tick2<11>
+                                                       Decoder/Mmux_tick[16]_BUS_0011_mux_69_OUT31
+                                                       Decoder/temp_tick2_11
+    -------------------------------------------------  ---------------------------
+    Total                                      6.979ns (2.558ns logic, 4.421ns route)
+                                                       (36.7% logic, 63.3% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     3.007ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               Decoder/tick_0 (FF)
+  Destination:          Decoder/temp_tick2_11 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      6.955ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.003ns (0.683 - 0.686)
+  Source Clock:         CLK_BUFGP falling at 10.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: Decoder/tick_0 to Decoder/temp_tick2_11
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X13Y50.AQ      Tcko                  0.430   Decoder/tick<1>
+                                                       Decoder/tick_0
+    SLICE_X14Y49.A4      net (fanout=10)       0.722   Decoder/tick<0>
+    SLICE_X14Y49.COUT    Topcya                0.472   Decoder/Msub_n0342_Madd_cy<3>
+                                                       Decoder/tick<0>_rt
+                                                       Decoder/Msub_n0342_Madd_cy<3>
+    SLICE_X14Y50.CIN     net (fanout=1)        0.003   Decoder/Msub_n0342_Madd_cy<3>
+    SLICE_X14Y50.CMUX    Tcinc                 0.289   Decoder/Msub_n0342_Madd_cy<7>
+                                                       Decoder/Msub_n0342_Madd_cy<7>
+    SLICE_X12Y56.C5      net (fanout=2)        0.963   Decoder/n0342<6>
+    SLICE_X12Y56.CMUX    Tilo                  0.326   Decoder/n0231<7>
+                                                       Decoder/Madd_n0231_Madd6
+    SLICE_X12Y56.DX      net (fanout=2)        1.170   Decoder/Madd_n0231_Madd6
+    SLICE_X12Y56.COUT    Tdxcy                 0.109   Decoder/n0231<7>
+                                                       Decoder/Madd_n0231_Madd_cy<0>_6
+    SLICE_X12Y57.CIN     net (fanout=1)        0.003   Decoder/Madd_n0231_Madd_cy<0>7
+    SLICE_X12Y57.DQ      Tito_logic            0.798   Decoder/n0231<11>
+                                                       Decoder/Madd_n0231_Madd_cy<0>_10
+                                                       Decoder/n0231<11>_rt
+    SLICE_X11Y53.D3      net (fanout=1)        1.297   Decoder/n0231<11>
+    SLICE_X11Y53.CLK     Tas                   0.373   Decoder/temp_tick2<11>
+                                                       Decoder/Mmux_tick[16]_BUS_0011_mux_69_OUT31
+                                                       Decoder/temp_tick2_11
+    -------------------------------------------------  ---------------------------
+    Total                                      6.955ns (2.797ns logic, 4.158ns route)
+                                                       (40.2% logic, 59.8% route)
+
+--------------------------------------------------------------------------------
+
+Hold Paths: NET "CLK_BUFGP/IBUFG" PERIOD = 20 ns HIGH 50%;
+--------------------------------------------------------------------------------
+
+Paths for end point I2C_Slave_Module/slave_address_buffer_4 (SLICE_X22Y13.A6), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.415ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               I2C_Slave_Module/slave_address_buffer_4 (FF)
+  Destination:          I2C_Slave_Module/slave_address_buffer_4 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.415ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         CLK_BUFGP rising at 20.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path at Fast Process Corner: I2C_Slave_Module/slave_address_buffer_4 to I2C_Slave_Module/slave_address_buffer_4
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X22Y13.AQ      Tcko                  0.200   I2C_Slave_Module/slave_address_buffer<6>
+                                                       I2C_Slave_Module/slave_address_buffer_4
+    SLICE_X22Y13.A6      net (fanout=2)        0.025   I2C_Slave_Module/slave_address_buffer<4>
+    SLICE_X22Y13.CLK     Tah         (-Th)    -0.190   I2C_Slave_Module/slave_address_buffer<6>
+                                                       I2C_Slave_Module/Mmux_state_machine[3]_GND_21_o_mux_103_OUT5
+                                                       I2C_Slave_Module/slave_address_buffer_4
+    -------------------------------------------------  ---------------------------
+    Total                                      0.415ns (0.390ns logic, 0.025ns route)
+                                                       (94.0% logic, 6.0% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point I2C_Master_Module/state_FSM_FFd1 (SLICE_X2Y40.A6), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.421ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               I2C_Master_Module/state_FSM_FFd1 (FF)
+  Destination:          I2C_Master_Module/state_FSM_FFd1 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.421ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         CLK_BUFGP rising at 20.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path at Fast Process Corner: I2C_Master_Module/state_FSM_FFd1 to I2C_Master_Module/state_FSM_FFd1
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X2Y40.AQ       Tcko                  0.200   I2C_Master_Module/state_FSM_FFd2
+                                                       I2C_Master_Module/state_FSM_FFd1
+    SLICE_X2Y40.A6       net (fanout=9)        0.031   I2C_Master_Module/state_FSM_FFd1
+    SLICE_X2Y40.CLK      Tah         (-Th)    -0.190   I2C_Master_Module/state_FSM_FFd2
+                                                       I2C_Master_Module/state_FSM_FFd1-In1
+                                                       I2C_Master_Module/state_FSM_FFd1
+    -------------------------------------------------  ---------------------------
+    Total                                      0.421ns (0.390ns logic, 0.031ns route)
+                                                       (92.6% logic, 7.4% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point Sabertooth_Driver/State_Machine_FSM_FFd3 (SLICE_X1Y30.B5), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.437ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               Sabertooth_Driver/State_Machine_FSM_FFd2 (FF)
+  Destination:          Sabertooth_Driver/State_Machine_FSM_FFd3 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.437ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         CLK_BUFGP rising at 20.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path at Fast Process Corner: Sabertooth_Driver/State_Machine_FSM_FFd2 to Sabertooth_Driver/State_Machine_FSM_FFd3
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X1Y30.BQ       Tcko                  0.198   Sabertooth_Driver/State_Machine_FSM_FFd2
+                                                       Sabertooth_Driver/State_Machine_FSM_FFd2
+    SLICE_X1Y30.B5       net (fanout=10)       0.084   Sabertooth_Driver/State_Machine_FSM_FFd2
+    SLICE_X1Y30.CLK      Tah         (-Th)    -0.155   Sabertooth_Driver/State_Machine_FSM_FFd2
+                                                       Sabertooth_Driver/State_Machine_FSM_FFd3-In1
+                                                       Sabertooth_Driver/State_Machine_FSM_FFd3
+    -------------------------------------------------  ---------------------------
+    Total                                      0.437ns (0.353ns logic, 0.084ns route)
+                                                       (80.8% logic, 19.2% route)
+
+--------------------------------------------------------------------------------
+
+Component Switching Limit Checks: NET "CLK_BUFGP/IBUFG" PERIOD = 20 ns HIGH 50%;
+--------------------------------------------------------------------------------
+Slack: 17.041ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 2.959ns (337.952MHz) (Tdspper_PREG)
+  Physical resource: Position_PID/Mmult_n01731/CLK
+  Logical resource: Position_PID/Mmult_n01731/CLK
+  Location pin: DSP48_X0Y5.CLK
+  Clock network: CLK_BUFGP
+--------------------------------------------------------------------------------
+Slack: 17.041ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 2.959ns (337.952MHz) (Tdspper_PREG)
+  Physical resource: Velocity_PID/Mmult_n01701/CLK
+  Logical resource: Velocity_PID/Mmult_n01701/CLK
+  Location pin: DSP48_X0Y1.CLK
+  Clock network: CLK_BUFGP
+--------------------------------------------------------------------------------
+Slack: 17.334ns (period - min period limit)
+  Period: 20.000ns
+  Min period limit: 2.666ns (375.094MHz) (Tbcper_I)
+  Physical resource: CLK_BUFGP/BUFG/I0
+  Logical resource: CLK_BUFGP/BUFG/I0
+  Location pin: BUFGMUX_X2Y11.I0
+  Clock network: CLK_BUFGP/IBUFG
+--------------------------------------------------------------------------------
+
+
+All constraints were met.
+
+
+Data Sheet report:
+-----------------
+All values displayed in nanoseconds (ns)
+
+Clock to Setup on destination clock CLK
+---------------+---------+---------+---------+---------+
+               | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
+Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
+---------------+---------+---------+---------+---------+
+CLK            |   12.289|    7.405|    4.546|    6.785|
+---------------+---------+---------+---------+---------+
+
+
+Timing summary:
+---------------
+
+Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
+
+Constraints cover 6562516 paths, 0 nets, and 6439 connections
+
+Design statistics:
+   Minimum period:  14.810ns{1}   (Maximum frequency:  67.522MHz)
+
+
+------------------------------------Footnotes-----------------------------------
+1)  The minimum period statistic assumes all single cycle delays.
+
+Analysis completed Fri Apr 20 16:40:22 2018 
+--------------------------------------------------------------------------------
+
+Trace Settings:
+-------------------------
+Trace Settings 
+
+Peak Memory Usage: 416 MB
+
+
+

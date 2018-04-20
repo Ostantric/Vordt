@@ -18,27 +18,32 @@
 -- Additional Comments: 
 --
 ----------------------------------------------------------------------------------
+-- This file contains the UART Transmitter.  This transmitter is able
+-- to transmit 8 bits of serial data, one start bit, one stop bit,
+-- and no parity bit.  When transmit is complete o_TX_Done will be
+-- driven high for one clock cycle.
+
 library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
---baudrate is 9600
-entity UART_TX is
-  generic (
-    g_CLKS_PER_BIT : integer := 5209     -- 50M/9600 = 5208.333333333
-    );
+--baudrate is 2M
+entity MCU_UART_TX is
+   generic (
+     g_CLKS_PER_BIT : integer := 25     -- 50M/25 = 25
+     );
   port (
-    i_Clk       : in  std_logic;
-    i_TX_DV     : in  std_logic;
-    i_TX_Byte   : in  std_logic_vector(7 downto 0);
-    o_TX_Active : out std_logic;
-    o_TX_Serial : out std_logic;
-    o_TX_Done   : out std_logic
+    i_Clk          : in  std_logic;
+    i_TX_DV        : in  std_logic;
+    i_TX_Byte      : in  std_logic_vector(7 downto 0);
+    o_TX_Active    : out std_logic;
+    o_TX_Serial    : out std_logic;
+    o_TX_Done      : out std_logic
     );
-end UART_TX;
+end MCU_UART_TX;
  
  
-architecture RTL of UART_TX is
+architecture RTL of MCU_UART_TX is
  
   type t_SM_Main is (s_Idle, s_TX_Start_Bit, s_TX_Data_Bits,
                      s_TX_Stop_Bit, s_Cleanup);

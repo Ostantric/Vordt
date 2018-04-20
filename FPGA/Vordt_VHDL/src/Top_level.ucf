@@ -48,7 +48,9 @@ NET "Encoder1_B" CLOCK_DEDICATED_ROUTE = FALSE;
 #NET "avr_rx_busy" LOC = P39 | IOSTANDARD = LVTTL;
 
 # Serial for Sabertooth Motor Driver
-NET "Serial_TX" LOC = "P6";
+NET "Sabertooth_Serial_TX" LOC = "P6";
+NET "MCU_Serial_TX" LOC = "P100";
+NET "MCU_Serial_RX" LOC = "P101";
 NET "I2C_Master_SDA" LOC = "P16";
 NET "I2C_Master_SCL" LOC = "P17";
 NET "I2C_Slave_SDA" LOC = "P57";

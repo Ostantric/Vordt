@@ -35,7 +35,7 @@ use ieee.numeric_std.all;
 
 entity Decoder is
 GENERIC(
-    ONE_TURN_TICK : INTEGER := 32767); 
+    ONE_TURN_TICK_COUNT : INTEGER := 32767); 
 PORT (
 		CLK : IN STD_LOGIC;
 		Encoder1_A : IN STD_LOGIC;
@@ -74,13 +74,17 @@ signal temp_tick: integer range -32768 to 32768 := 0;
 signal temp_tick2: integer range -32768 to 32768 := 0;
 signal temp_tick3: integer range -32768 to 32768 := 0;
 signal tick: integer range -32768 to 32768 := 0;
+signal tick_past: integer range -32768 to 32768 :=0;
+signal start_tick_point : integer range -32768 to 32768 :=0;
 signal ck25MHz: std_logic :='0';		-- ck 25MHz
 signal clk_2Hz_i : std_logic :='0';
-signal Turn : integer := 0;
+signal Turn : integer := 1;
+signal start_turn_point : integer := 0;
 signal speed : signed(15 downto 0):=(others => '0');
 signal answer,answer_fixed : signed(15 downto 0):=(others => '0');
 signal speed_temp,sum_of_8: signed(15 downto 0):=(others => '0');
-signal reset, block_turn: std_logic :='1';
+signal reset: std_logic :='1';
+signal block_turn: std_logic := '0';
 signal average_count,average_count_old : integer range 0 to 8 := 0;
 --attribute KEEP : string; 
 --attribute KEEP of sum_of_8: signal is "TRUE";
@@ -118,6 +122,9 @@ store_10_velocity: process (ck25MHz) --update velocity every one second.
 			if prescaler = X"30D40" then     
 				--speed<=speed_temp;
 				average_count<=average_count+1;
+				
+				temp_tick3<=temp_tick2;
+
 				Velocity_Array_Signal(average_count_old)<=to_signed(temp_tick2,16);
 		end if;
 			if average_count > 7 then
@@ -170,6 +177,7 @@ show_every_one_second: process (clk) --update velocity every one second.
 		if rising_edge(clk) then
 			if prescaler2 = X"2FAF080" then     -- 50M ticks = one second (2FAF080 in hex)
 				--speed<=speed_temp;
+
 				prescaler2   <= (others => '0');
 			else
 				prescaler2 <= prescaler2 + "1";
@@ -188,23 +196,28 @@ speed_calculate : process (CLK)
 	if rising_edge(CLK) then   -- two rising edges until prescaler gets a new value.
       if prescaler = X"30D40" then -- 1/125 seconds in 25mhz.
 			--reset<='0';
+			speed<=to_signed(temp_tick3,16);
 			average_count_old<=average_count;
-			temp_tick<=tick; --store tick
+			--temp_tick<=tick; --store tick
 			if overflow = "10" then
-				temp_tick2<=(tick+1)+(ONE_TURN_TICK-temp_tick); --store tick-tick_old
+				--temp_tick2<=(tick+1)+(ONE_TURN_TICK_COUNT-temp_tick); --store tick-tick_old
+				temp_tick2<=(tick+1)+(ONE_TURN_TICK_COUNT-start_tick_point); --store tick-tick_start_point
 				fix <= '1';
 			elsif overflow = "01" then
-				temp_tick2<=(tick-1)+(-ONE_TURN_TICK-temp_tick); --store tick-tick_old
+				temp_tick2<=(tick-1)+(-ONE_TURN_TICK_COUNT-start_tick_point); --store tick-tick_start_point
 				fix <= '1';
 			else
-				temp_tick2<=tick-temp_tick; --store tick-tick_old
+				--temp_tick2<=tick-temp_tick; --store tick-tick_old
+				temp_tick2<=tick-start_tick_point; --store tick-tick_start_point
 				fix <= '0';
 			end if;
+		elsif prescaler = X"0000" then
+			start_tick_point<=tick;
+			start_turn_point<=turn;
 		 end if;
 	end if;
 		if falling_edge(CLK) then   -- two rising edges until prescaler gets a new value.
 		      if prescaler = X"30D40" then -- 1/125 seconds in 25mhz.
-				temp_tick3<=temp_tick2;
 				end if;
 		end if;
 
@@ -221,58 +234,92 @@ process(CLK,tick,turn) -- store state and calculate index_output from array
 --			end case;
 		temp_array_output<=array_output;
 		index_output<=Array_Signal(to_integer(index));
-
+		tick_past<=tick;
 		end if;
+		
 		if FALLING_EDGE(CLK) THEN
-		--FIX HERE;
-		if tick > ONE_TURN_TICK then
-			tick <= 0 ;
-			if turn = 0 then
-				turn <= turn +1;
-				block_turn <= '1';
-			end if;
-			overflow <= "10";
-		elsif tick = 0 then
-			tick<=tick+temp_array_output;
-			if turn /= 0 then
-				if block_turn = '0' then
+			if turn > 0 then
+				if tick > ONE_TURN_TICK_COUNT then
+					tick<=0;
+					turn<=turn + 1;
+					overflow <= "10";
+				elsif tick = 0 then
 					if temp_array_output = 1 then
-						turn <= turn +1;
-					elsif temp_array_output = -1 then
-						turn <= turn -1;
-					else
+						tick <= tick + 1;
 						turn <= turn;
+					elsif temp_array_output = -1 then
+					   tick <= ONE_TURN_TICK_COUNT;
+						turn <= turn - 1;
+						overflow <= "10";
+					else
+						tick <= tick;
+						turn <= turn;
+						if fix = '1' then
+							overflow <= "00";
+						end if;
+					end if;
+				else
+					tick<=tick+temp_array_output;
+					if fix = '1' then
+						overflow <= "00";
 					end if;
 				end if;
+			elsif turn <0 then
+					if tick < -ONE_TURN_TICK_COUNT then
+						tick<=0;
+						turn<=turn - 1;
+						overflow <= "01";
+					elsif tick = 0 then
+						if temp_array_output = 1 then
+							tick <= -ONE_TURN_TICK_COUNT;
+							turn <= turn + 1;
+							overflow <= "01";
+						elsif temp_array_output = -1 then
+							tick <= tick -1;
+							turn <= turn;
+						else
+							tick <= tick;
+							turn <= turn;
+							if fix = '1' then
+								overflow <= "00";
+							end if;
+						end if;		
+					else
+						tick<=tick+temp_array_output;
+						if fix = '1' then
+							overflow <= "00";
+						end if;
+					end if;
+			else --equals to 0
+				if tick > ONE_TURN_TICK_COUNT then
+					tick<=0;
+					turn<=turn + 1;
+					overflow <= "10";
+				elsif tick < -ONE_TURN_TICK_COUNT then
+					tick<=0;
+					turn<=turn -1;
+					overflow <= "01";
+				else
+					tick<=tick+temp_array_output;
+					if fix = '1' then
+						overflow <= "00";
+					end if;
+				end if;			
 			end if;
-		elsif tick < -ONE_TURN_TICK then
-			tick <= 0 ;
-			if turn = 0 then
-				turn <= turn -1;
-				block_turn <= '1';
-			end if;
-			overflow <= "01";
-		else
-			block_turn <='0';
-			tick<=tick+temp_array_output;
-			if fix = '1' then
-				overflow <= "00";
-			end if;
-		end if;
-
 		end if;
 			
 end process;
 
-
-position<=std_logic_vector(to_signed(tick,16));
+position<= x"0000" when tick = 32768 else
+			  x"0000" when tick = -32768 else
+			  std_logic_vector(to_signed(tick,16)); 
 --absolute_position<= 
 
 velocity<=std_logic_vector(speed); -- update velocity
 Turn_Count<=std_logic_vector(to_signed(Turn,32));
+				
 
 --speed<=speed_temp;
-speed<=to_signed(temp_tick3,16);
 --speed <= speed_temp when speed_temp(15)='0' else
 --			NOT(speed_temp - x"0001") when speed_temp(15)='1' else
 --			x"0000";

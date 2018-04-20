@@ -41,3 +41,8 @@ FPGA/Vordt_VHDL/impact_impact.xwbt
 
 FPGA/Vordt_VHDL/Thumbs.db
 FPGA/Vordt_VHDL/.DS_Store
+
+#vs.code
+
+FPGA/Vordt_VHDL/src/.vscode
+FPGA/Vordt_VHDL/Test_bench/.vscode
