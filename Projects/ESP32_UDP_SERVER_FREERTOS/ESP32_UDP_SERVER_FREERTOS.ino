@@ -126,6 +126,7 @@ void setup() {
 }
 
 void loop() {
+  //idle
 }
 
 void FPGA_Listen( void * parameter )
