@@ -22,13 +22,15 @@
    Some AI into PID references;
   [Reference 1](http://ieeexplore.ieee.org/document/6186962/), [Reference 2](https://www.sciencedirect.com/science/article/pii/S2405896316304116), [Reference 3](https://www.researchgate.net/profile/Mohamed_Moustafa_Hassan/publication/296077413_Tuning_PID_Controllers_Using_Artificial_Intelligence_Techniques_Applied_to_DC-Motor_and_AVR_System/links/5721b53808ae82260fab48bf/Tuning-PID-Controllers-Using-Artificial-Intelligence-Techniques-Applied-to-DC-Motor-and-AVR-System.pdf)
 
-* Implement Position_PID module
+* ~~Implement Position_PID module~~
 
-* Adjust PID gains for position accuracy
+* ~~Adjust PID gains for position accuracy~~
 
-* Move from debugging one packet to multiple incoming I2C packets.
+* ~~Move from debugging one packet to multiple incoming I2C packets.~~
 
-* Test maximum I2C speed ESP32 can handle. If not enough switch it to SPI ?
+* ~~Test maximum I2C speed ESP32 can handle. If not enough switch it to SPI ? ~~ (decided to go with UART)
+
+* Test UART Serial handle
  
 
 ### RTL
