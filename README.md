@@ -28,7 +28,7 @@
 
 * ~~Move from debugging one packet to multiple incoming I2C packets.~~
 
-* ~~Test maximum I2C speed ESP32 can handle. If not enough switch it to SPI ? ~~ (decided to go with UART)
+* ~~Test maximum I2C speed ESP32 can handle. If not enough switch it to SPI ?~~ (decided to go with UART)
 
 * Test UART Serial handle
  
