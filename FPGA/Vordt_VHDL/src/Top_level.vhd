@@ -42,6 +42,7 @@ PORT (
 		Sabertooth_Serial_TX : out STD_LOGIC;
 		MCU_Serial_TX : out STD_LOGIC;
 		MCU_Serial_RX : in STD_LOGIC;
+		MCU_Ready_For_UART_TX : in STD_LOGIC;
 		--storage_out : out STD_LOGIC_VECTOR(7 DOWNTO 0);
 		--listen_Addres : out STD_LOGIC_VECTOR(7 DOWNTO 0);
 		I2C_Slave_SDA : INOUT STD_LOGIC;
@@ -142,12 +143,34 @@ port map (i_CLK=>CLK,
 );
 
 MCU_UART_Receiver:entity work.MCU_UART_RX
+--Baudrate is 2M
+--50M/2M = 25
+--CLKS_PER_BIT = 25
 port map (i_CLK=>CLK,
 			i_RX_Serial =>MCU_Serial_RX,
 			o_RX_DV => MCU_RX_DV_Signal,
 			o_RX_Byte => MCU_RX_Byte_Signal
 );
 
+MCU_Serial_Handle:entity work.MCU_Serial_Handle
+port map (CLK=>CLK,
+			TX_Done =>MCU_TX_Done_Signal,
+            TX_ACTIVE => MCU_TX_ACTIVE_signal,
+            RX_Done => MCU_RX_DV_Signal,
+            Velocity_Input =>Velocity_Signal,
+            Position_Input =>position_signal,
+            Turn_Input =>Turn_Count_Signal,
+            Incoming_Packet =>MCU_RX_Byte_Signal,
+            MCU_Ready =>MCU_Ready_For_UART_TX,
+            --out
+            TX_DV =>MCU_TX_DV_Signal,
+            --FPGA_UART_RX_Ready : OUT STD_LOGIC;
+            Desired_Turn =>Turn_Position_PID_SETPOINT_Signal,
+            Desired_Position =>position_PID_SETPOINT_Signal,
+            Desired_Max_Vel =>Max_Speed_For_Position_PID_signal,
+            Output_For_UART_TX =>MCU_TX_Byte_Signal
+			
+);
 Sabertooth_UART_Transmitter:entity work.Sabertooth_UART_TX 
 --Baudrate is 9600
 --50M/9600=5208.3333
@@ -264,10 +287,12 @@ port map (CLK=>CLK,
 Position_PID:entity work.Position_PID_Controller
 port map (CLK=>CLK,
 			 Max_Speed=>Max_Speed_For_Position_PID_signal,
-			 Position_Set_point=>Test_position_PID_SETPOINT_Signal,
+			 --Position_Set_point=>Test_position_PID_SETPOINT_Signal,
+			 Position_Set_Point=>position_PID_SETPOINT_Signal,
 			 --Position_Set_point=>x"5000",
 			 --Turn_Set_point=>std_logic_vector(to_signed(Turn_Position_PID_SETPOINT_Signal,32)),
-			 Turn_Set_point=>Test_Turn_Position_PID_SETPOINT_Signal,
+			 --Turn_Set_point=>Test_Turn_Position_PID_SETPOINT_Signal,
+			 Turn_Set_Point=>Turn_Position_PID_SETPOINT_Signal,
 			 Position_Feedback=>Position_Signal,
 			 Turn_Feedback=>Turn_Count_Signal,
 			 Output_Command=>Velocity_PID_SETPOINT_signal
@@ -292,7 +317,7 @@ port map (CLK=>CLK,
 --											  x"000A";
 
 Test_Turn_Position_PID_SETPOINT_Signal<=x"00000000";
-Max_Speed_For_Position_PID_signal<=x"0080";
+--Max_Speed_For_Position_PID_signal<=x"0080";
 
 --Position_PID_SETPOINT_signal<=x"4000";
 --Turn_Position_PID_SETPOINT_Signal<=0;
