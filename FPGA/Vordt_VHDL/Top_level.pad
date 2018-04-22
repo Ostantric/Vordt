@@ -1,7 +1,7 @@
 Release 14.7 - par P.20131013 (lin64)
 Copyright (c) 1995-2013 Xilinx, Inc.  All rights reserved.
 
-Fri Apr 20 16:40:17 2018
+Sun Apr 22 02:36:25 2018
 
 
 # NOTE: This file is designed to be imported into a spreadsheet program
@@ -120,7 +120,7 @@ P98||IOBM|IO_L34P_1|UNUSED||1|||||||||
 P99||IOBS|IO_L33N_1|UNUSED||1|||||||||
 P100|MCU_Serial_TX|IOB|IO_L33P_1|OUTPUT|LVCMOS25*|1|12|SLOW||||LOCATED|NO|NONE|
 P101|MCU_Serial_RX|IOB|IO_L32N_1|INPUT|LVCMOS25*|1||||NONE||LOCATED|NO|NONE|
-P102||IOBM|IO_L32P_1|UNUSED||1|||||||||
+P102|MCU_Ready_For_UART_TX|IOB|IO_L32P_1|INPUT|LVCMOS25*|1||||NONE||LOCATED|NO|NONE|
 P103|||VCCO_1|||1|||||2.50||||
 P104||IOBS|IO_L1N_VREF_1|UNUSED||1|||||||||
 P105||IOBM|IO_L1P_1|UNUSED||1|||||||||

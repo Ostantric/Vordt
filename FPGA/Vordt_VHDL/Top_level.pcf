@@ -1,8 +1,9 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Fri Apr 20 16:40:07 2018
+// Written by: Map P.20131013 on Sun Apr 22 02:36:14 2018
 //! **************************************************************************
 
 SCHEMATIC START;
+COMP "MCU_Ready_For_UART_TX" LOCATE = SITE "P102" LEVEL 1;
 COMP "CLK" LOCATE = SITE "P56" LEVEL 1;
 PIN CLK_pin<0> = BEL "CLK" PINNAME PAD;
 PIN "CLK_pin<0>" CLOCK_DEDICATED_ROUTE;

@@ -154,7 +154,7 @@ port map (i_CLK=>CLK,
 
 MCU_Serial_Handle:entity work.MCU_Serial_Handle
 port map (CLK=>CLK,
-			TX_Done =>MCU_TX_Done_Signal,
+				TX_Done =>MCU_TX_Done_Signal,
             TX_ACTIVE => MCU_TX_ACTIVE_signal,
             RX_Done => MCU_RX_DV_Signal,
             Velocity_Input =>Velocity_Signal,

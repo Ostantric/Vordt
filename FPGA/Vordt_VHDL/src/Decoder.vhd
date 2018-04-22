@@ -78,7 +78,7 @@ signal tick_past: integer range -32768 to 32768 :=0;
 signal start_tick_point : integer range -32768 to 32768 :=0;
 signal ck25MHz: std_logic :='0';		-- ck 25MHz
 signal clk_2Hz_i : std_logic :='0';
-signal Turn : integer := 1;
+signal Turn : integer := 0;
 signal start_turn_point : integer := 0;
 signal speed : signed(15 downto 0):=(others => '0');
 signal answer,answer_fixed : signed(15 downto 0):=(others => '0');

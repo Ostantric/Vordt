@@ -171,9 +171,9 @@ INFO:HDLCompiler:679 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL
 Elaborating entity <MCU_UART_RX> (architecture <rtl>) with generics from library <work>.
 INFO:HDLCompiler:679 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/MCU_UART_RX.vhd" Line 145. Case statement is complete. others clause is never selected
 
-Elaborating entity <MCU_Serial_Handle> (architecture <Behavioral>) from library <work>.
-INFO:HDLCompiler:679 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/MCU_Serial_Handle.vhd" Line 246. Case statement is complete. others clause is never selected
-INFO:HDLCompiler:679 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/MCU_Serial_Handle.vhd" Line 356. Case statement is complete. others clause is never selected
+Elaborating entity <MCU_Serial_Handle> (architecture <Behavioral>) with generics from library <work>.
+INFO:HDLCompiler:679 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/MCU_Serial_Handle.vhd" Line 277. Case statement is complete. others clause is never selected
+INFO:HDLCompiler:679 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/MCU_Serial_Handle.vhd" Line 387. Case statement is complete. others clause is never selected
 
 Elaborating entity <Sabertooth_UART_TX> (architecture <RTL>) with generics from library <work>.
 INFO:HDLCompiler:679 - "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Sabertooth_UART_TX .vhd" Line 139. Case statement is complete. others clause is never selected
@@ -344,10 +344,11 @@ Unit <MCU_UART_RX> synthesized.
 
 Synthesizing Unit <MCU_Serial_Handle>.
     Related source file is "/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/MCU_Serial_Handle.vhd".
-    Found 8-bit register for signal <Output_For_UART_TX>.
-    Found 1-bit register for signal <dv_signal>.
+        MCU_Wait_Time = 10000
     Found 4-bit register for signal <Tx_Byte_Count>.
+    Found 8-bit register for signal <Output_For_UART_TX>.
     Found 32-bit register for signal <counter>.
+    Found 1-bit register for signal <dv_signal>.
     Found 32-bit register for signal <Transmit_32bit_Register>.
     Found 8-bit register for signal <Type_register>.
     Found 3-bit register for signal <RX_State_Machine>.
@@ -358,7 +359,7 @@ Synthesizing Unit <MCU_Serial_Handle>.
     Found 32-bit register for signal <Desired_Turn>.
     Found 3-bit register for signal <TX_State_Machine>.
 INFO:Xst:1799 - State wait_one is never reached in FSM <RX_State_Machine>.
-    Found finite state machine <FSM_2> for signal <RX_State_Machine>.
+    Found finite state machine <FSM_3> for signal <RX_State_Machine>.
     -----------------------------------------------------------------------
     | States             | 6                                              |
     | Transitions        | 13                                             |
@@ -369,44 +370,45 @@ INFO:Xst:1799 - State wait_one is never reached in FSM <RX_State_Machine>.
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found finite state machine <FSM_3> for signal <TX_State_Machine>.
+    Found finite state machine <FSM_5> for signal <TX_State_Machine>.
     -----------------------------------------------------------------------
     | States             | 5                                              |
-    | Transitions        | 17                                             |
-    | Inputs             | 12                                             |
+    | Transitions        | 12                                             |
+    | Inputs             | 4                                              |
     | Outputs            | 3                                              |
     | Clock              | CLK (rising_edge)                              |
     | Power Up State     | idle                                           |
     | Encoding           | auto                                           |
     | Implementation     | LUT                                            |
     -----------------------------------------------------------------------
-    Found 4-bit adder for signal <Tx_Byte_Count[3]_GND_10_o_add_67_OUT> created at line 181.
-    Found 32-bit adder for signal <counter[31]_GND_10_o_add_69_OUT> created at line 190.
-    Found 4-bit adder for signal <Rx_Byte_Count[3]_GND_10_o_add_162_OUT> created at line 327.
-    Found 4-bit comparator greater for signal <GND_10_o_Tx_Byte_Count[3]_LessThan_98_o> created at line 175
-    Found 4-bit comparator greater for signal <Tx_Byte_Count[3]_GND_10_o_LessThan_99_o> created at line 197
-    Found 4-bit comparator greater for signal <GND_10_o_Tx_Byte_Count[3]_LessThan_100_o> created at line 197
-    Found 4-bit comparator greater for signal <Tx_Byte_Count[3]_GND_10_o_LessThan_101_o> created at line 207
-    Found 4-bit comparator greater for signal <GND_10_o_Tx_Byte_Count[3]_LessThan_102_o> created at line 207
-    Found 4-bit comparator greater for signal <Tx_Byte_Count[3]_GND_10_o_LessThan_103_o> created at line 217
-    Found 4-bit comparator greater for signal <GND_10_o_Tx_Byte_Count[3]_LessThan_104_o> created at line 217
-    Found 4-bit comparator greater for signal <Tx_Byte_Count[3]_PWR_13_o_LessThan_105_o> created at line 227
-    Found 4-bit comparator greater for signal <PWR_13_o_Tx_Byte_Count[3]_LessThan_106_o> created at line 227
-    Found 4-bit comparator lessequal for signal <GND_10_o_Rx_Byte_Count[3]_LessThan_172_o> created at line 324
-    Found 4-bit comparator greater for signal <Rx_Byte_Count[3]_GND_10_o_LessThan_173_o> created at line 329
-    Found 4-bit comparator greater for signal <GND_10_o_Rx_Byte_Count[3]_LessThan_174_o> created at line 329
-    Found 4-bit comparator greater for signal <Rx_Byte_Count[3]_GND_10_o_LessThan_175_o> created at line 334
-    Found 4-bit comparator greater for signal <GND_10_o_Rx_Byte_Count[3]_LessThan_176_o> created at line 334
-    Found 4-bit comparator greater for signal <Rx_Byte_Count[3]_GND_10_o_LessThan_177_o> created at line 339
-    Found 4-bit comparator greater for signal <GND_10_o_Rx_Byte_Count[3]_LessThan_178_o> created at line 339
-    Found 4-bit comparator greater for signal <Rx_Byte_Count[3]_PWR_13_o_LessThan_179_o> created at line 344
-    Found 4-bit comparator greater for signal <PWR_13_o_Rx_Byte_Count[3]_LessThan_180_o> created at line 344
+    Found finite state machine <FSM_2> for signal <Tx_Byte_Count>.
+    -----------------------------------------------------------------------
+    | States             | 7                                              |
+    | Transitions        | 39                                             |
+    | Inputs             | 7                                              |
+    | Outputs            | 3                                              |
+    | Clock              | CLK (rising_edge)                              |
+    | Power Up State     | 0000                                           |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found finite state machine <FSM_4> for signal <Rx_Byte_Count>.
+    -----------------------------------------------------------------------
+    | States             | 6                                              |
+    | Transitions        | 39                                             |
+    | Inputs             | 5                                              |
+    | Outputs            | 3                                              |
+    | Clock              | CLK (falling_edge)                             |
+    | Power Up State     | 0000                                           |
+    | Encoding           | auto                                           |
+    | Implementation     | LUT                                            |
+    -----------------------------------------------------------------------
+    Found 32-bit adder for signal <counter[31]_GND_10_o_add_63_OUT> created at line 270.
     Summary:
-	inferred   3 Adder/Subtractor(s).
-	inferred 185 D-type flip-flop(s).
-	inferred  18 Comparator(s).
-	inferred 168 Multiplexer(s).
-	inferred   2 Finite State Machine(s).
+	inferred   1 Adder/Subtractor(s).
+	inferred 177 D-type flip-flop(s).
+	inferred 154 Multiplexer(s).
+	inferred   4 Finite State Machine(s).
 Unit <MCU_Serial_Handle> synthesized.
 
 Synthesizing Unit <Sabertooth_UART_TX>.
@@ -419,7 +421,7 @@ Synthesizing Unit <Sabertooth_UART_TX>.
     Found 8-bit register for signal <r_TX_Data>.
     Found 3-bit register for signal <r_SM_Main>.
     Found 1-bit register for signal <o_TX_Active>.
-    Found finite state machine <FSM_4> for signal <r_SM_Main>.
+    Found finite state machine <FSM_6> for signal <r_SM_Main>.
     -----------------------------------------------------------------------
     | States             | 5                                              |
     | Transitions        | 10                                             |
@@ -448,7 +450,7 @@ Synthesizing Unit <Sabertooth_Packetized_Serial_Driver>.
     Found 8-bit register for signal <Output_Command_signal>.
     Found 1-bit register for signal <dv_signal>.
     Found 3-bit register for signal <State_Machine>.
-    Found finite state machine <FSM_5> for signal <State_Machine>.
+    Found finite state machine <FSM_7> for signal <State_Machine>.
     -----------------------------------------------------------------------
     | States             | 6                                              |
     | Transitions        | 15                                             |
@@ -479,7 +481,7 @@ WARNING:Xst:647 - Input <reset> is never used. This port will be preserved and l
     Found 8-bit register for signal <Data_for_write>.
     Found 4-bit register for signal <divide_4bits>.
     Found 1-bit register for signal <busy_old>.
-    Found finite state machine <FSM_6> for signal <State_Machine>.
+    Found finite state machine <FSM_8> for signal <State_Machine>.
     -----------------------------------------------------------------------
     | States             | 13                                             |
     | Transitions        | 74                                             |
@@ -538,7 +540,7 @@ Always blocking tristate driving signal <scl> is removed.
     Found 1-bit register for signal <sda_past>.
 INFO:Xst:1799 - State address_for_talk is never reached in FSM <state_machine>.
 INFO:Xst:1799 - State address_for_listen is never reached in FSM <state_machine>.
-    Found finite state machine <FSM_7> for signal <state_machine>.
+    Found finite state machine <FSM_9> for signal <state_machine>.
     -----------------------------------------------------------------------
     | States             | 10                                             |
     | Transitions        | 38                                             |
@@ -586,7 +588,7 @@ Synthesizing Unit <I2C_Module>.
     Found 8-bit register for signal <addr_rw>.
     Found 8-bit register for signal <data_tx>.
     Found 8-bit register for signal <data_rx>.
-    Found finite state machine <FSM_8> for signal <state>.
+    Found finite state machine <FSM_10> for signal <state>.
     -----------------------------------------------------------------------
     | States             | 9                                              |
     | Transitions        | 36                                             |
@@ -636,7 +638,7 @@ Synthesizing Unit <Velocity_PID_Controller>.
     Found 32-bit register for signal <p>.
     Found 32-bit register for signal <d>.
     Found 32-bit register for signal <i>.
-    Found finite state machine <FSM_9> for signal <State_Machine>.
+    Found finite state machine <FSM_11> for signal <State_Machine>.
     -----------------------------------------------------------------------
     | States             | 5                                              |
     | Transitions        | 6                                              |
@@ -717,7 +719,7 @@ WARNING:Xst:647 - Input <Turn_Feedback> is never used. This port will be preserv
     Found 32-bit register for signal <output_checked>.
     Found 32-bit register for signal <sample_rate>.
     Found 32-bit register for signal <Position_Error_past>.
-    Found finite state machine <FSM_10> for signal <State_Machine>.
+    Found finite state machine <FSM_12> for signal <State_Machine>.
     -----------------------------------------------------------------------
     | States             | 6                                              |
     | Transitions        | 7                                              |
@@ -780,7 +782,7 @@ Macro Statistics
  32x4-bit multiplier                                   : 3
  32x5-bit multiplier                                   : 1
  32x6-bit multiplier                                   : 1
-# Adders/Subtractors                                   : 59
+# Adders/Subtractors                                   : 57
  13-bit adder                                          : 1
  16-bit subtractor                                     : 1
  17-bit adder                                          : 1
@@ -800,12 +802,12 @@ Macro Statistics
  3-bit subtractor                                      : 3
  32-bit adder                                          : 16
  32-bit subtractor                                     : 5
- 4-bit adder                                           : 4
+ 4-bit adder                                           : 2
  5-bit adder                                           : 3
  7-bit adder                                           : 1
  8-bit adder                                           : 2
  8-bit subtractor                                      : 1
-# Registers                                            : 105
+# Registers                                            : 103
  1-bit register                                        : 41
  13-bit register                                       : 1
  16-bit register                                       : 3
@@ -815,26 +817,25 @@ Macro Statistics
  26-bit register                                       : 2
  3-bit register                                        : 4
  32-bit register                                       : 21
- 4-bit register                                        : 4
+ 4-bit register                                        : 2
  5-bit register                                        : 3
  7-bit register                                        : 3
  8-bit register                                        : 14
-# Comparators                                          : 82
+# Comparators                                          : 64
  13-bit comparator greater                             : 1
  15-bit comparator greater                             : 4
  17-bit comparator greater                             : 2
  3-bit comparator greater                              : 3
  32-bit comparator greater                             : 36
  32-bit comparator lessequal                           : 2
- 4-bit comparator greater                              : 19
- 4-bit comparator lessequal                            : 1
+ 4-bit comparator greater                              : 2
  5-bit comparator greater                              : 7
  5-bit comparator lessequal                            : 1
  7-bit comparator greater                              : 4
  7-bit comparator lessequal                            : 1
  8-bit comparator equal                                : 1
-# Multiplexers                                         : 408
- 1-bit 2-to-1 multiplexer                              : 219
+# Multiplexers                                         : 394
+ 1-bit 2-to-1 multiplexer                              : 171
  1-bit 8-to-1 multiplexer                              : 7
  13-bit 2-to-1 multiplexer                             : 3
  16-bit 2-to-1 multiplexer                             : 2
@@ -846,14 +847,14 @@ Macro Statistics
  22-bit 2-to-1 multiplexer                             : 6
  23-bit 2-to-1 multiplexer                             : 1
  3-bit 2-to-1 multiplexer                              : 7
- 32-bit 2-to-1 multiplexer                             : 39
- 4-bit 2-to-1 multiplexer                              : 48
+ 32-bit 2-to-1 multiplexer                             : 68
+ 4-bit 2-to-1 multiplexer                              : 36
  5-bit 2-to-1 multiplexer                              : 20
  7-bit 2-to-1 multiplexer                              : 4
- 8-bit 2-to-1 multiplexer                              : 34
+ 8-bit 2-to-1 multiplexer                              : 51
 # Tristates                                            : 3
  1-bit tristate buffer                                 : 3
-# FSMs                                                 : 11
+# FSMs                                                 : 13
 # Xors                                                 : 94
  1-bit xor2                                            : 94
 
@@ -975,7 +976,7 @@ Macro Statistics
  32x4-bit registered multiplier                        : 3
  32x5-bit registered multiplier                        : 1
  32x6-bit registered multiplier                        : 1
-# Adders/Subtractors                                   : 55
+# Adders/Subtractors                                   : 53
  13-bit adder                                          : 1
  16-bit subtractor                                     : 1
  17-bit adder                                          : 4
@@ -992,7 +993,7 @@ Macro Statistics
  3-bit subtractor                                      : 3
  32-bit adder                                          : 15
  32-bit subtractor                                     : 5
- 4-bit adder                                           : 4
+ 4-bit adder                                           : 2
  5-bit adder                                           : 3
  7-bit adder                                           : 3
  8-bit subtractor                                      : 1
@@ -1000,24 +1001,23 @@ Macro Statistics
  23-bit up counter                                     : 1
  26-bit up counter                                     : 2
  32-bit up counter                                     : 1
-# Registers                                            : 816
- Flip-Flops                                            : 816
-# Comparators                                          : 82
+# Registers                                            : 808
+ Flip-Flops                                            : 808
+# Comparators                                          : 64
  13-bit comparator greater                             : 1
  15-bit comparator greater                             : 4
  17-bit comparator greater                             : 2
  3-bit comparator greater                              : 3
  32-bit comparator greater                             : 36
  32-bit comparator lessequal                           : 2
- 4-bit comparator greater                              : 19
- 4-bit comparator lessequal                            : 1
+ 4-bit comparator greater                              : 2
  5-bit comparator greater                              : 7
  5-bit comparator lessequal                            : 1
  7-bit comparator greater                              : 4
  7-bit comparator lessequal                            : 1
  8-bit comparator equal                                : 1
-# Multiplexers                                         : 407
- 1-bit 2-to-1 multiplexer                              : 219
+# Multiplexers                                         : 393
+ 1-bit 2-to-1 multiplexer                              : 171
  1-bit 8-to-1 multiplexer                              : 7
  13-bit 2-to-1 multiplexer                             : 3
  16-bit 2-to-1 multiplexer                             : 2
@@ -1028,12 +1028,12 @@ Macro Statistics
  21-bit 2-to-1 multiplexer                             : 1
  22-bit 2-to-1 multiplexer                             : 6
  3-bit 2-to-1 multiplexer                              : 7
- 32-bit 2-to-1 multiplexer                             : 39
- 4-bit 2-to-1 multiplexer                              : 48
+ 32-bit 2-to-1 multiplexer                             : 68
+ 4-bit 2-to-1 multiplexer                              : 36
  5-bit 2-to-1 multiplexer                              : 20
  7-bit 2-to-1 multiplexer                              : 4
- 8-bit 2-to-1 multiplexer                              : 34
-# FSMs                                                 : 11
+ 8-bit 2-to-1 multiplexer                              : 51
+# FSMs                                                 : 13
 # Xors                                                 : 93
  1-bit xor2                                            : 93
 
@@ -1069,7 +1069,18 @@ Optimizing FSM <MCU_UART_Receiver/FSM_1> on signal <r_SM_Main[1:3]> with user en
  s_cleanup      | 100
 ----------------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <MCU_Serial_Handle/FSM_2> on signal <RX_State_Machine[1:3]> with user encoding.
+Optimizing FSM <MCU_Serial_Handle/FSM_5> on signal <TX_State_Machine[1:3]> with user encoding.
+---------------------------
+ State         | Encoding
+---------------------------
+ idle          | 000
+ send_position | 001
+ send_velocity | 010
+ send_turn     | 011
+ wait_one      | 100
+---------------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <MCU_Serial_Handle/FSM_3> on signal <RX_State_Machine[1:3]> with user encoding.
 -------------------------------------
  State                   | Encoding
 -------------------------------------
@@ -1081,18 +1092,32 @@ Optimizing FSM <MCU_Serial_Handle/FSM_2> on signal <RX_State_Machine[1:3]> with 
  wait_one                | unreached
 -------------------------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <MCU_Serial_Handle/FSM_3> on signal <TX_State_Machine[1:3]> with user encoding.
----------------------------
- State         | Encoding
----------------------------
- idle          | 000
- send_position | 001
- send_velocity | 010
- send_turn     | 011
- wait_one      | 100
----------------------------
+Optimizing FSM <MCU_Serial_Handle/FSM_2> on signal <Tx_Byte_Count[1:3]> with sequential encoding.
+-------------------
+ State | Encoding
+-------------------
+ 0000  | 000
+ 0001  | 001
+ 0010  | 010
+ 0011  | 011
+ 0100  | 100
+ 0101  | 101
+ 0110  | 110
+-------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <Sabertooth_UART_Transmitter/FSM_4> on signal <r_SM_Main[1:3]> with user encoding.
+Optimizing FSM <MCU_Serial_Handle/FSM_4> on signal <Rx_Byte_Count[1:3]> with sequential encoding.
+-------------------
+ State | Encoding
+-------------------
+ 0000  | 000
+ 0001  | 001
+ 0010  | 010
+ 0011  | 011
+ 0100  | 100
+ 0101  | 101
+-------------------
+Analyzing FSM <MFsm> for best encoding.
+Optimizing FSM <Sabertooth_UART_Transmitter/FSM_6> on signal <r_SM_Main[1:3]> with user encoding.
 ----------------------------
  State          | Encoding
 ----------------------------
@@ -1103,7 +1128,7 @@ Optimizing FSM <Sabertooth_UART_Transmitter/FSM_4> on signal <r_SM_Main[1:3]> wi
  s_cleanup      | 100
 ----------------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <Sabertooth_Driver/FSM_5> on signal <State_Machine[1:3]> with user encoding.
+Optimizing FSM <Sabertooth_Driver/FSM_7> on signal <State_Machine[1:3]> with user encoding.
 ----------------------
  State    | Encoding
 ----------------------
@@ -1115,7 +1140,7 @@ Optimizing FSM <Sabertooth_Driver/FSM_5> on signal <State_Machine[1:3]> with use
  wait_one | 101
 ----------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <I2C_Handler/FSM_6> on signal <State_Machine[1:4]> with user encoding.
+Optimizing FSM <I2C_Handler/FSM_8> on signal <State_Machine[1:4]> with user encoding.
 ---------------------------------
  State               | Encoding
 ---------------------------------
@@ -1134,7 +1159,7 @@ Optimizing FSM <I2C_Handler/FSM_6> on signal <State_Machine[1:4]> with user enco
  storage             | 1100
 ---------------------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <I2C_Slave_Module/FSM_7> on signal <state_machine[1:3]> with gray encoding.
+Optimizing FSM <I2C_Slave_Module/FSM_9> on signal <state_machine[1:3]> with gray encoding.
 --------------------------------
  State              | Encoding
 --------------------------------
@@ -1150,7 +1175,7 @@ Optimizing FSM <I2C_Slave_Module/FSM_7> on signal <state_machine[1:3]> with gray
  stop               | 100
 --------------------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <I2C_Master_Module/FSM_8> on signal <state[1:4]> with user encoding.
+Optimizing FSM <I2C_Master_Module/FSM_10> on signal <state[1:4]> with user encoding.
 ----------------------
  State    | Encoding
 ----------------------
@@ -1165,7 +1190,7 @@ Optimizing FSM <I2C_Master_Module/FSM_8> on signal <state[1:4]> with user encodi
  stop     | 1000
 ----------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <Velocity_PID/FSM_9> on signal <State_Machine[1:3]> with user encoding.
+Optimizing FSM <Velocity_PID/FSM_11> on signal <State_Machine[1:3]> with user encoding.
 ------------------------------
  State            | Encoding
 ------------------------------
@@ -1176,7 +1201,7 @@ Optimizing FSM <Velocity_PID/FSM_9> on signal <State_Machine[1:3]> with user enc
  last_process     | 100
 ------------------------------
 Analyzing FSM <MFsm> for best encoding.
-Optimizing FSM <Position_PID/FSM_10> on signal <State_Machine[1:3]> with user encoding.
+Optimizing FSM <Position_PID/FSM_12> on signal <State_Machine[1:3]> with user encoding.
 -------------------------------
  State             | Encoding
 -------------------------------
@@ -1320,7 +1345,7 @@ INFO:Xst:2261 - The FF/Latch <Velocity_PID/Mmult_n0166_0> in Unit <Top_level> is
 
 Mapping all equations...
 Building and optimizing final netlist ...
-Found area constraint ratio of 100 (+ 5) on block Top_level, actual ratio is 47.
+Found area constraint ratio of 100 (+ 5) on block Top_level, actual ratio is 46.
 FlipFlop Position_PID/Position_Error_1 has been replicated 1 time(s)
 FlipFlop Position_PID/Position_Error_10 has been replicated 1 time(s)
 FlipFlop Position_PID/Position_Error_11 has been replicated 1 time(s)
@@ -1350,8 +1375,8 @@ Unit <Top_level> processed.
 Final Register Report
 
 Macro Statistics
-# Registers                                            : 866
- Flip-Flops                                            : 866
+# Registers                                            : 864
+ Flip-Flops                                            : 864
 # Shift Registers                                      : 2
  2-bit shift register                                  : 2
 
@@ -1376,26 +1401,26 @@ Top Level Output File Name         : Top_level.ngc
 
 Primitive and Black Box Usage:
 ------------------------------
-# BELS                             : 4343
+# BELS                             : 4325
 #      GND                         : 1
 #      INV                         : 139
 #      LUT1                        : 404
-#      LUT2                        : 513
-#      LUT3                        : 284
-#      LUT4                        : 221
+#      LUT2                        : 511
+#      LUT3                        : 248
+#      LUT4                        : 191
 #      LUT5                        : 290
-#      LUT6                        : 407
+#      LUT6                        : 454
 #      MUXCY                       : 1111
-#      MUXF7                       : 8
+#      MUXF7                       : 11
 #      VCC                         : 1
 #      XORCY                       : 964
-# FlipFlops/Latches                : 868
-#      FD                          : 40
-#      FD_1                        : 4
+# FlipFlops/Latches                : 866
+#      FD                          : 43
+#      FD_1                        : 7
 #      FDC                         : 45
 #      FDCE                        : 71
-#      FDE                         : 497
-#      FDE_1                       : 108
+#      FDE                         : 493
+#      FDE_1                       : 104
 #      FDPE                        : 5
 #      FDR                         : 80
 #      FDRE_1                      : 18
@@ -1419,18 +1444,18 @@ Selected Device : 6slx9tqg144-2
 
 
 Slice Logic Utilization: 
- Number of Slice Registers:             868  out of  11440     7%  
- Number of Slice LUTs:                 2260  out of   5720    39%  
-    Number used as Logic:              2258  out of   5720    39%  
+ Number of Slice Registers:             866  out of  11440     7%  
+ Number of Slice LUTs:                 2239  out of   5720    39%  
+    Number used as Logic:              2237  out of   5720    39%  
     Number used as Memory:                2  out of   1440     0%  
        Number used as SRL:                2
 
 Slice Logic Distribution: 
- Number of LUT Flip Flop pairs used:   2554
-   Number with an unused Flip Flop:    1686  out of   2554    66%  
-   Number with an unused LUT:           294  out of   2554    11%  
-   Number of fully used LUT-FF pairs:   574  out of   2554    22%  
-   Number of unique control sets:        62
+ Number of LUT Flip Flop pairs used:   2533
+   Number with an unused Flip Flop:    1667  out of   2533    65%  
+   Number with an unused LUT:           294  out of   2533    11%  
+   Number of fully used LUT-FF pairs:   572  out of   2533    22%  
+   Number of unique control sets:        60
 
 IO Utilization: 
  Number of IOs:                          12
@@ -1461,7 +1486,7 @@ Clock Information:
 -----------------------------------+------------------------+-------+
 Clock Signal                       | Clock buffer(FF name)  | Load  |
 -----------------------------------+------------------------+-------+
-CLK                                | BUFGP                  | 830   |
+CLK                                | BUFGP                  | 828   |
 Decoder/ck25MHz                    | BUFG                   | 42    |
 -----------------------------------+------------------------+-------+
 
@@ -1474,7 +1499,7 @@ Timing Summary:
 Speed Grade: -2
 
    Minimum period: 12.617ns (Maximum Frequency: 79.261MHz)
-   Minimum input arrival time before clock: 6.964ns
+   Minimum input arrival time before clock: 5.441ns
    Maximum output required time after clock: 5.929ns
    Maximum combinational path delay: No path found
 
@@ -1485,7 +1510,7 @@ All values displayed in nanoseconds (ns)
 =========================================================================
 Timing constraint: Default period analysis for Clock 'CLK'
   Clock period: 12.617ns (frequency: 79.261MHz)
-  Total number of paths / destination ports: 6593921 / 1636
+  Total number of paths / destination ports: 6593247 / 1626
 -------------------------------------------------------------------------
 Delay:               12.617ns (Levels of Logic = 18)
   Source:            Velocity_PID/error_1 (FF)
@@ -1546,26 +1571,23 @@ Delay:               4.659ns (Levels of Logic = 2)
 
 =========================================================================
 Timing constraint: Default OFFSET IN BEFORE for Clock 'CLK'
-  Total number of paths / destination ports: 372 / 320
+  Total number of paths / destination ports: 300 / 295
 -------------------------------------------------------------------------
-Offset:              6.964ns (Levels of Logic = 5)
-  Source:            MCU_Ready_For_UART_TX (PAD)
-  Destination:       MCU_Serial_Handle/Transmit_32bit_Register_14 (FF)
+Offset:              5.441ns (Levels of Logic = 2)
+  Source:            reset (PAD)
+  Destination:       I2C_Slave_Module/state_machine_FSM_FFd1 (FF)
   Destination Clock: CLK rising
 
-  Data Path: MCU_Ready_For_UART_TX to MCU_Serial_Handle/Transmit_32bit_Register_14
+  Data Path: reset to I2C_Slave_Module/state_machine_FSM_FFd1
                                 Gate     Net
     Cell:in->out      fanout   Delay   Delay  Logical Name (Net Name)
     ----------------------------------------  ------------
-     IBUF:I->O            54   1.328   1.852  MCU_Ready_For_UART_TX_IBUF (MCU_Ready_For_UART_TX_IBUF)
-     LUT3:I2->O            2   0.254   0.726  MCU_Serial_Handle/GND_10_o_Transmit_32bit_Register[31]_select_111_OUT<0>11 (MCU_Serial_Handle/GND_10_o_Transmit_32bit_Register[31]_select_111_OUT<0>1)
-     LUT6:I5->O            1   0.254   0.682  MCU_Serial_Handle/Mmux__n04731101 (MCU_Serial_Handle/Mmux__n04731101)
-     LUT6:I5->O           16   0.254   1.290  MCU_Serial_Handle/Mmux__n04731102 (MCU_Serial_Handle/Mmux__n0473110)
-     LUT3:I1->O            1   0.250   0.000  MCU_Serial_Handle/Mmux__n047363 (MCU_Serial_Handle/_n0473<14>)
-     FDE:D                     0.074          MCU_Serial_Handle/Transmit_32bit_Register_14
+     IBUF:I->O            14   1.328   1.126  reset_IBUF (reset_IBUF)
+     INV:I->O            121   0.255   2.273  I2C_Master_Module/reset_n_inv1_INV_0 (I2C_Master_Module/reset_n_inv)
+     FDCE:CLR                  0.459          I2C_Master_Module/stretch
     ----------------------------------------
-    Total                      6.964ns (2.414ns logic, 4.550ns route)
-                                       (34.7% logic, 65.3% route)
+    Total                      5.441ns (2.042ns logic, 3.399ns route)
+                                       (37.5% logic, 62.5% route)
 
 =========================================================================
 Timing constraint: Default OFFSET OUT AFTER for Clock 'CLK'
@@ -1614,12 +1636,12 @@ Decoder/ck25MHz|    7.416|         |    4.659|         |
 
 
 Total REAL time to Xst completion: 10.00 secs
-Total CPU time to Xst completion: 10.03 secs
+Total CPU time to Xst completion: 10.12 secs
  
 --> 
 
 
-Total memory usage is 422772 kilobytes
+Total memory usage is 422680 kilobytes
 
 Number of errors   :    0 (   0 filtered)
 Number of warnings :  174 (   0 filtered)
