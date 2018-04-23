@@ -37,6 +37,13 @@ public class client extends Fragment {
     private DatagramPacket dp_send = null;
     private boolean send_command_flag;
     private String json_buffer;
+    private String turn ,position,velocity;
+    private int check2 = 0;
+    private int check1 = 0;
+    private int position_int = 0;
+    private int position_int_reversed = 0;
+    private int velocity_int = 0;
+    private int velocity_int_reversed = 0;
 
     private int port_from_activity;
     private String ip_from_activity;
@@ -149,7 +156,8 @@ public class client extends Fragment {
         if (type.equals("velocity")) {
             JSONObject json = new JSONObject();
             try {
-                json.put("dvel",value);
+                json.put("type", "dvel");
+                json.put("value",value);
                 json_buffer=json.toString();
 
             } catch (JSONException e) {
@@ -159,7 +167,8 @@ public class client extends Fragment {
         else if (type.equals("position")){
             JSONObject json = new JSONObject();
             try {
-                json.put("dpos",value);
+                json.put("type", "dpos");
+                json.put("value",value);
                 json_buffer=json.toString();
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -169,7 +178,8 @@ public class client extends Fragment {
         {
             JSONObject json = new JSONObject();
             try {
-                json.put("dturn",value);
+                json.put("type", "dturn");
+                json.put("value",value);
                 json_buffer=json.toString();
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -231,7 +241,7 @@ public class client extends Fragment {
                         ds.send(dp);
                         run = true;
                         restart = false;
-                        Thread.sleep(50);
+                        Thread.sleep(5);
                     } catch (IOException e) {
                         //run = false;
                         //big_run = false;
@@ -249,17 +259,19 @@ public class client extends Fragment {
                 while (run) {
                     try {
                         InetAddress serverAddr = InetAddress.getByName(dstAddress);
-                        Thread.sleep(5);
+                        Thread.sleep(1);
                         byte[] buffer = new byte[256];
                         dp = new DatagramPacket(buffer, buffer.length);
                         ds.receive(dp);
 
                         String udp_msg = new String(buffer, 0, dp.getLength());
                         publishProgress(udp_msg);
-                        Thread.sleep(5);
+
                         if (send_command_flag) {
                             if(!send_command_flag_old) {
+                                Thread.sleep(1);
                                 dp_send = new DatagramPacket(json_buffer.getBytes(), json_buffer.length(), serverAddr, dstPort);
+                                Log.e("udp", "data sent"+json_buffer);
                                 ds.send(dp_send);
                             }
                         }
@@ -284,8 +296,9 @@ public class client extends Fragment {
                         publishProgress("lost");
                         Log.e("io error", "inner io error");
                         ds.close();
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
+                    }
+                    catch (InterruptedException e) {
+                       e.printStackTrace();
                     }
 
                 }
@@ -342,13 +355,10 @@ public class client extends Fragment {
                 JSON json = new JSON(value[0]);
                 String type = json.key("Type").stringValue();
 
-                int check2 = 0;
-                int check1 = 0;
-                int position_int = 0;
-                int position_int_reversed = 0;
-                int velocity_int = 0;
+
                 double voltage_double =0.0;
-                int velocity_int_reversed = 0;
+
+
                 //position_txt.setText(position);
                 //velocity_txt.setText(velocity);
                 //turn_txt.setText(turn);
@@ -358,7 +368,7 @@ public class client extends Fragment {
 //                    String fixed_text = position.replaceAll("[^0-9]-+", "");
 //                    voltage_double = Double.valueOf(fixed_text);
 //                }
-                if (type.equals("Movement")) {
+                /*if (type.equals("Movement")) {
                     String position = json.key("Position").stringValue();
                     String velocity = json.key("Velocity").stringValue();
                     String turn = json.key("Turn").stringValue();
@@ -411,6 +421,58 @@ public class client extends Fragment {
                             mCallbacks.MovementUpdates(position, velocity, turn, position_int, position_int_reversed, velocity_int, velocity_int_reversed);
                         }
                     }
+                }*/
+                if(type.equals("Position")){
+                    position = json.key("Value").stringValue();
+
+                    if (position != null) {
+                        String fixed_text = position.replaceAll("[^0-9]-+", "");
+                        check1 = Integer.valueOf(fixed_text);
+                        if (check1 > 0) {
+                            position_int = check1;
+                            position_int_reversed = 0;
+                            //velocity_bar.setProgress(check);
+                            //velocity_bar_reversed.setProgress(0);
+                        } else if (check1 == 0) {
+                            position_int = 0;
+                            position_int_reversed = 0;
+                            //velocity_bar.setProgress(0);
+                            //velocity_bar_reversed.setProgress(0);
+                        } else {
+                            position_int = 0;
+                            position_int_reversed = -check1;
+                            //velocity_bar.setProgress(0);
+                            //velocity_bar_reversed.setProgress(-check);
+                        }
+                    }
+                }
+                else if (type.equals("Velocity")){
+                    velocity = json.key("Value").stringValue();
+                    if (velocity != null) {
+                        String fixed_text = velocity.replaceAll("[^0-9]-+", "");
+                        check2 = Integer.valueOf(fixed_text);
+
+                        if (check2 > 0) {
+                            velocity_int = check2;
+                            velocity_int_reversed = 0;
+                            //velocity_bar.setProgress(check);
+                            //velocity_bar_reversed.setProgress(0);
+                        } else if (check2 == 0) {
+                            velocity_int = 0;
+                            velocity_int_reversed = 0;
+                            //velocity_bar.setProgress(0);
+                            //velocity_bar_reversed.setProgress(0);
+                        } else {
+                            velocity_int = 0;
+                            velocity_int_reversed = -check2;
+                            //velocity_bar.setProgress(0);
+                            //velocity_bar_reversed.setProgress(-check);
+                        }
+                    }
+
+                }
+                else if (type.equals("Turn")){
+                     turn = json.key("Value").stringValue();
                 }
                 else if(type.equals("Utility"))
                 {
@@ -419,6 +481,11 @@ public class client extends Fragment {
                         if(voltage != null) {
                             mCallbacks.UtilityUpdates(voltage);
                         }
+                    }
+                }
+                if(mRunning) {
+                    if(velocity !=null & position != null & turn != null) {
+                        mCallbacks.MovementUpdates(position, velocity, turn, position_int, position_int_reversed, velocity_int, velocity_int_reversed);
                     }
                 }
                 //TODO:fix the temporary leak protection

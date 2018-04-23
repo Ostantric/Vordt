@@ -53,8 +53,10 @@ public class Interface_Main extends FragmentActivity implements client.TaskCallb
     private int velocity_status = 0;
     private int position_status = 0;
     private int Port;
+    private int current_turn,position_total,position_max,position_min;
+    private String current_position;
     private String IP;
-    private boolean run_flag;
+    private boolean run_flag,fill_once,fill_once_old;
     private client mClient;
     Bundle bundle = new Bundle();
     FragmentManager frgmn = getFragmentManager();
@@ -68,7 +70,6 @@ public class Interface_Main extends FragmentActivity implements client.TaskCallb
         requestWindowFeature(Window.FEATURE_NO_TITLE);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.interface_main);
-
         velocity_status=0;
         velocity_bar_reversed = findViewById(R.id.Velocity_Bar_Negative);
         velocity_bar = findViewById(R.id.Velocity_Bar);
@@ -97,7 +98,6 @@ public class Interface_Main extends FragmentActivity implements client.TaskCallb
         position_txt.setEnabled(false);
         turn_count_txt.setEnabled(false);
         voltage_txt.setEnabled(false);
-
       //  desired_position_txt.setEnabled(false);
       //  desired_turn_txt.setEnabled(false);
       //  desired_velocity_txt.setEnabled(false);
@@ -157,11 +157,9 @@ public class Interface_Main extends FragmentActivity implements client.TaskCallb
 
         /** Desired Position Seek Bar **/
         final float start_position = 0.5f;
-        final int position_max = 32767;
-        final int position_min = -32767;
-        final int position_total = position_max - position_min;
-        final String position_start_value = String.valueOf(((int)(start_position * position_total)-32767));
 
+        final String position_start_value = String.valueOf(((int)(start_position * position_total)));
+        //final String position_start_value = String.valueOf(current_position);
         position_slider.setPosition(start_position);
         position_slider.setBubbleText(position_start_value);
         position_slider.setTextSize(33f);
@@ -180,10 +178,30 @@ public class Interface_Main extends FragmentActivity implements client.TaskCallb
                 /** ARGB
                  ** Aplha-Red-Green-Blue **
                  **/
+                int prog=0;
+
+                if (current_turn>0){
+                    position_max=32767;
+                    position_min=0;
+                    position_total= position_max - position_min;
+                    prog= (int) (aFloat*position_total);
+
+                }
+                else if (current_turn <0) {
+                    position_max=0;
+                    position_min=-32767;
+                    position_total= position_max - position_min;
+                    prog= (int) (aFloat*position_total)-32767;
+                }
+                else {
+                    position_max= 32767;
+                    position_min=-32767;
+                    position_total= position_max - position_min;
+                    prog= (int) (aFloat*position_total)-32767;
+                }
                 int negative_bar_color = 0xffB71C1C;
                 int positive_bar_color = 0xff558B2F;
 
-                int prog = (int) (aFloat*position_total)-32767;
                 final String value = String.valueOf(prog);
                 if(prog <0) {
                     position_slider.setColorBubble(negative_bar_color);
@@ -212,7 +230,17 @@ public class Interface_Main extends FragmentActivity implements client.TaskCallb
             public Unit invoke() {
                 Log.e("E", "setEndTrackingListener");
                 mClient.send_flag(true);
-                mClient.send_command("position", (int)(position_slider.getPosition()*position_total)-32767);
+                if (current_turn>0) {
+                    mClient.send_command("position", (int) (position_slider.getPosition() * position_total));
+                }
+                else if (current_turn<0){
+                    mClient.send_command("position", (int) (position_slider.getPosition() * position_total)-32767);
+
+                }
+                else{
+                    mClient.send_command("position", (int) (position_slider.getPosition() * position_total) - 32767);
+                }
+
                 return Unit.INSTANCE;
             }
         });
@@ -222,7 +250,7 @@ public class Interface_Main extends FragmentActivity implements client.TaskCallb
         final int turn_max = 50;
         final int turn_min = -50;
         final int turn_total = turn_max - turn_min;
-        final String turn_start_value = String.valueOf(((int)(start_position * turn_total)-50));
+        final String turn_start_value = String.valueOf(((int)(start_turn * turn_total)-50));
 
         turn_slider.setPosition(start_turn);
         turn_slider.setBubbleText(turn_start_value);
@@ -245,6 +273,7 @@ public class Interface_Main extends FragmentActivity implements client.TaskCallb
                 int positive_bar_color = 0xff558B2F;
 
                 int prog = (int) (aFloat*turn_total)-50;
+                current_turn = prog;
                 final String value = String.valueOf(prog);
                 if(prog <0) {
                     turn_slider.setColorBubble(negative_bar_color);
@@ -421,6 +450,8 @@ public class Interface_Main extends FragmentActivity implements client.TaskCallb
         velocity_txt.setText(Velocity);
         turn_count_txt.setText(Turn);
 
+        current_position=Position;
+
         position_bar.setProgress(position);
         position_bar_reversed.setProgress(position_reversed);
         velocity_bar.setProgress(velocity);
@@ -446,6 +477,7 @@ public class Interface_Main extends FragmentActivity implements client.TaskCallb
     public void onConnected() {
         if (DEBUG) Log.i(TAG, "onConnected()");
         Toast.makeText(this, "Connected to VORDT", Toast.LENGTH_SHORT).show();
+        //position_slider.setBubbleText(current_position);
     }
 
     @Override
@@ -462,6 +494,7 @@ public class Interface_Main extends FragmentActivity implements client.TaskCallb
 
     @Override
     protected void onStart() {
+
         if (DEBUG) Log.i(TAG, "onStart()");
 
         super.onStart();
@@ -474,6 +507,7 @@ public class Interface_Main extends FragmentActivity implements client.TaskCallb
             frgmn.beginTransaction().add(mClient, TAG_CLIENT_FRAGMENT).commit();
             //frgmn.beginTransaction().add(mClient,TAG_CLIENT_FRAGMENT, arg).commit();
         }
+
         //mClient.start();
         //mClient.setArguments(bundle);
         //mClient.start();
