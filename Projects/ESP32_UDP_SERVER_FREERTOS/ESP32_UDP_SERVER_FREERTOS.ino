@@ -9,8 +9,8 @@
 
 #define MCU_Ready 12
 #define DEBUG_SETUP
-//define DEBUG_FPGA_Listen_Task
-//#define DEBUG_UDP_Listen_Task
+//#define DEBUG_FPGA_Listen_Task
+#define DEBUG_UDP_Listen_Task
 //#define DEBUG_Movement_UDP_Send_Task
 //#define DEBUG_Utility_UDP_Send_Task
 #define DEBUG_Send_MaxVel_Task
@@ -29,8 +29,8 @@ IPAddress subnet(255, 255, 255, 0);
 volatile short speed = 0;
 volatile short position = 0;
 volatile int turn = 0;
-
 volatile double voltage = 25.4;
+
 unsigned int Port = 1500;
 
 SemaphoreHandle_t UDP_Semaphore;
@@ -55,6 +55,9 @@ TaskHandle_t SendTurnTask_Handle;;
 /*Wifi-Tablet Related Task Handle*/
 TaskHandle_t FPGAListenTask_Handle;
 TaskHandle_t UDPListenTask_Handle;
+TaskHandle_t Position_UDP_Send_Handle;
+TaskHandle_t Turn_UDP_Send_Handle;
+TaskHandle_t Velocity_UDP_Send_Handle;
 TaskHandle_t MovementUDPSendTask_Handle;
 TaskHandle_t UtilityUDPSendTask_Handle;
 TaskHandle_t IncomingJsonParser_Handle;
@@ -126,7 +129,7 @@ void setup() {
   xTaskCreate(
     UDP_Listen,          /* Task function. */
     "UDP_Listen",        /* String with name of task. */
-    20000,            /* Stack size in words. */
+    10000,            /* Stack size in words. */
     NULL,             /* Parameter passed as input of the task */
     4,                /* Priority of the task. */
     &UDPListenTask_Handle);            /* Task handle. */
@@ -136,24 +139,18 @@ void setup() {
     "FPGA_Serial_Listen",        /* String with name of task. */
     20000,            /* Stack size in words. */
     NULL,             /* Parameter passed as input of the task */
-    3,                /* Priority of the task. */
+    2,                /* Priority of the task. */
     &FPGAListenTask_Handle);            /* Task handle. */
   //Send utility info to tablet
   xTaskCreate(
     Utility_UDP_Send,          /* Task function. */
     "Utility_UDP_Send",        /* String with name of task. */
-    10000,            /* Stack size in words. */
-    NULL,             /* Parameter passed as input of the task */
-    2,                /* Priority of the task. */
-    &UtilityUDPSendTask_Handle);            /* Task handle. */
-  //Send movement info to tablet
-  xTaskCreate(
-    Movement_UDP_Send,          /* Task function. */
-    "Movement_UDP_Send",        /* String with name of task. */
-    30000,            /* Stack size in words. */
+    2000,            /* Stack size in words. */
     NULL,             /* Parameter passed as input of the task */
     1,                /* Priority of the task. */
-    &MovementUDPSendTask_Handle);            /* Task handle. */
+    &UtilityUDPSendTask_Handle);            /* Task handle. */
+  //Send movement info to tablet
+  
 }
 
 void loop() {
@@ -174,24 +171,19 @@ void FPGA_Listen( void * parameter )
   
   for ( ;;) {
     delay(2);
-    digitalWrite(MCU_Ready,HIGH);
+    if(xSemaphoreTake(FPGA_Serial_Semaphore, (TickType_t) 5) == pdTRUE){
+    digitalWrite(MCU_Ready,HIGH); //ugly, fix this using port register
     delay(0.01);
-    digitalWrite(MCU_Ready,LOW);
+    digitalWrite(MCU_Ready,LOW); //ugly, fix this using port register
 
     if (FPGA_Serial.available()>0){
       delay(1);
-      if(xSemaphoreTake(FPGA_Serial_Semaphore, (TickType_t) 15) == pdTRUE){
         incomingbyte1 = FPGA_Serial.read();
-        xSemaphoreGive(FPGA_Serial_Semaphore);
       }
-      delay(0.1);
       switch(incomingbyte1){
         case 1:
-          delay(0.1);
           incomingbyte2 = FPGA_Serial.read();
-          delay(0.1);
           incomingbyte3 = FPGA_Serial.read();
-          delay(1);
           position= ((byte)incomingbyte3 << 8) | ((byte)incomingbyte2);
           #ifdef DEBUG_FPGA_Listen_Task
           Serial.print("Position:");
@@ -199,16 +191,13 @@ void FPGA_Listen( void * parameter )
           Serial.print(incomingbyte3,HEX);
           Serial.print(incomingbyte2,HEX);
           Serial.print(" ");
-          Serial.println(position);
+          Serial.print(position);
           #endif
-          delay(0.1);
+          xTaskCreate(Position_UDP_Send,"Position_UDP_Send",2000,NULL,3,&Position_UDP_Send_Handle);
           break;
         case 2:
-          delay(0.1);
           incomingbyte2 = FPGA_Serial.read();
-          delay(0.1);
           incomingbyte3 = FPGA_Serial.read();
-          delay(1);
           speed=((byte)incomingbyte3 << 8) | ((byte)incomingbyte2);
           #ifdef DEBUG_FPGA_Listen_Task
           Serial.print(" Velocity:");
@@ -218,18 +207,14 @@ void FPGA_Listen( void * parameter )
           Serial.print(" ");
           Serial.print(speed);
           #endif
-          delay(0.1);
+          xTaskCreate(Velocity_UDP_Send,"Velocity_UDP_Send",2000,NULL,3,&Velocity_UDP_Send_Handle);
           break;
         case 3:
-          delay(0.1);
           incomingbyte2 = FPGA_Serial.read();
-          delay(0.1);
           incomingbyte3 = FPGA_Serial.read();
-          delay(0.1);
           incomingbyte4 = FPGA_Serial.read();
-          delay(0.1);
           incomingbyte5 = FPGA_Serial.read();
-          delay(1);
+          //delay(1);
           turn = ((byte)incomingbyte5 << 24) | ((byte)incomingbyte4 << 16) | ((byte)incomingbyte3 << 8) | ((byte)incomingbyte2);
           #ifdef DEBUG_FPGA_Listen_Task
           Serial.print(" Turn:");
@@ -240,44 +225,17 @@ void FPGA_Listen( void * parameter )
           Serial.print(incomingbyte2,HEX);
           Serial.print(" ");
           Serial.println(turn);
-         
           #endif
-          //Serial.println(turn);
-          delay(0.1);
+          xTaskCreate(Turn_UDP_Send,"Turn_UDP_Send",2000,NULL,3,&Turn_UDP_Send_Handle);
           break;
           default:
           
           break;
         
       }     
-    
+        xSemaphoreGive(FPGA_Serial_Semaphore);
     }
-    delay(10);
-
-//    position=position+5;
-//    
-//    if (position > 32767){
-//      position = 0;
-//    }
-//    if(position>32765){
-//      turn++;
-//    }
-//  
-//    if (speed == 500){
-//     forward = false; 
-//    }
-//    else if(speed == -500){
-//      forward = true;
-//    }
-//
-//    if (forward){
-//      speed=speed+1;
-//    }
-//    else{
-//      speed=speed-1;
-//    }
-    //int n_bytes = .available();
-    //delay(5);
+    delay(12);
   }
 }
 
@@ -285,7 +243,12 @@ void UDP_Listen( void * parameter)
 {
   for (;;)
   {
-    int noBytes = Udp.parsePacket();
+    int noBytes;
+    if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 10) == pdTRUE){
+      noBytes= Udp.parsePacket();
+      xSemaphoreGive( UDP_Semaphore);
+    }
+  
   if ( noBytes ) {
       #ifdef DEBUG_UDP_Listen_Task
       Serial.print(millis() / 1000);
@@ -296,7 +259,9 @@ void UDP_Listen( void * parameter)
       Serial.print(":");
       Serial.println(Udp.remotePort());
       #endif
+      if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 10) == pdTRUE){
       Udp.read(packetBuffer, noBytes); // read the packet into the buffer
+      xSemaphoreGive( UDP_Semaphore);
       // display the packet contents
       for (int i = 1; i <= noBytes; i++) {
         #ifdef DEBUG_UDP_Listen_Task
@@ -311,30 +276,33 @@ void UDP_Listen( void * parameter)
       #ifdef DEBUG_UDP_Listen_Task
       Serial.println();
       #endif
+      delay(2);
       /*Start Json Packet Parser Task*/
-      xTaskCreate(IncomingJsonParser,"Incoming_Packet_Json_Parser",15000,(void *) packetBuffer,5,&IncomingJsonParser_Handle);
-      delay(5);
+      xTaskCreate(IncomingJsonParser,"Incoming_Packet_Json_Parser",5000,(void *) packetBuffer,5,&IncomingJsonParser_Handle);
+      
+      delay(2);
     } // end if
+  }
     //Serial.println("udp_listen");
     
-    delay(10);
+    delay(15);
   }
 }
 
 void Movement_UDP_Send( void * parameter)
 {
   for (;;) {
-    StaticJsonBuffer<100> JSONbuffer;
+    StaticJsonBuffer<200> JSONbuffer;
     JsonObject& JSONencoder = JSONbuffer.createObject();
     JSONencoder["Type"] = "Movement";
     JSONencoder["Position"] = position;
     JSONencoder["Velocity"] = speed;
     JSONencoder["Turn"]= turn;
     //JSONencoder["Voltage"] = voltage;
-    char JSONmessageBuffer[128];
+    char JSONmessageBuffer[256];
     JSONencoder.printTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
     delay(5);
-    if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 2) == pdTRUE)
+    if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 10) == pdTRUE)
     {
     Udp.beginPacket();
     Udp.println(JSONmessageBuffer);
@@ -344,12 +312,72 @@ void Movement_UDP_Send( void * parameter)
     #endif
     xSemaphoreGive( UDP_Semaphore);
     }
-    //Serial.println(position);
-
-    delay(5);
-    
   }
 }
+
+void Position_UDP_Send( void * parameter)
+{
+  StaticJsonBuffer<40> JSONbuffer;
+  JsonObject& JSONencoder = JSONbuffer.createObject();
+  JSONencoder["Type"] = "Position";
+  JSONencoder["Value"] = position;
+  char JSONmessageBuffer[40];
+  JSONencoder.printTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
+  delay(5);
+  if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 10) == pdTRUE){
+    Udp.beginPacket();
+    Udp.println(JSONmessageBuffer);
+    Udp.endPacket();
+    #ifdef DEBUG_Movement_UDP_Send_Task
+      Serial.println("M_Send");
+    #endif
+    xSemaphoreGive(UDP_Semaphore);
+  }
+  vTaskDelete(Position_UDP_Send_Handle);
+}
+
+void Turn_UDP_Send(void * parameter)
+{
+  StaticJsonBuffer<64> JSONbuffer;
+  JsonObject& JSONencoder = JSONbuffer.createObject();
+  JSONencoder["Type"] = "Turn";
+  JSONencoder["Value"]= turn;
+  char JSONmessageBuffer[64];
+  JSONencoder.printTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
+  delay(5);
+  if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 10) == pdTRUE){
+    Udp.beginPacket();
+    Udp.println(JSONmessageBuffer);
+    Udp.endPacket();
+    #ifdef DEBUG_Movement_UDP_Send_Task
+      Serial.println("M_Send");
+    #endif
+    xSemaphoreGive(UDP_Semaphore);
+  }
+  vTaskDelete(Turn_UDP_Send_Handle);
+}
+
+void Velocity_UDP_Send( void * parameter)
+{
+  StaticJsonBuffer<40> JSONbuffer;
+  JsonObject& JSONencoder = JSONbuffer.createObject();
+  JSONencoder["Type"] = "Velocity";
+  JSONencoder["Value"] = speed;
+  char JSONmessageBuffer[40];
+  JSONencoder.printTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
+  delay(5);
+  if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 10) == pdTRUE){
+    Udp.beginPacket();
+    Udp.println(JSONmessageBuffer);
+    Udp.endPacket();
+    #ifdef DEBUG_Movement_UDP_Send_Task
+      Serial.println("M_Send");
+    #endif
+    xSemaphoreGive(UDP_Semaphore);
+  }
+  vTaskDelete(Velocity_UDP_Send_Handle);
+}
+
 void Utility_UDP_Send( void * parameter)
 {
 for (;;) {
@@ -359,7 +387,7 @@ for (;;) {
     JSONencoder["Voltage"] = voltage;
     char JSONmessageBuffer[256];
     JSONencoder.printTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
-    if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 15) == pdTRUE)
+    if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 10) == pdTRUE)
     {
     Udp.beginPacket();
     Udp.println(JSONmessageBuffer);
@@ -406,11 +434,11 @@ void IncomingJsonParser( void * parameter)
 {
   char *packet;
   packet = ( char * ) parameter;   
-  StaticJsonBuffer<200> packet_JSON;
+  StaticJsonBuffer<300> packet_JSON;
   JsonObject& root = packet_JSON.parseObject(packet);
   const char* types = root["type"];
   long value = root["value"];
-  char sendtotask[12];
+  char sendtotask[15];
   
   itoa(value, sendtotask,10);
   #ifdef DEBUG_IncomingJsonParser_Task 
@@ -419,24 +447,24 @@ void IncomingJsonParser( void * parameter)
   Serial.println(packet);
   Serial.println(value);
   #endif
-  delay(5);
+  delay(1);
   if (types != '\0') //check if its empty
   {
    if (strcmp(types,"dpos") == 0 ){
-        xTaskCreate(Send_Position,"Send_Position_Task",10000,(void *) sendtotask,6,&SendPositionTask_Handle);
-        delay(5);
+        xTaskCreate(Send_Position,"Send_Position_Task",5000,(void *) sendtotask,6,&SendPositionTask_Handle);
+        delay(1);
       }
    if (strcmp(types,"dturn") == 0 ){
-        xTaskCreate(Send_Turn,"Send_Turn_Task",10000,(void *) sendtotask,6,&SendTurnTask_Handle);
-        delay(5);
+        xTaskCreate(Send_Turn,"Send_Turn_Task",5000,(void *) sendtotask,6,&SendTurnTask_Handle);
+        delay(1);
       }
    if (strcmp(types,"dvel") == 0 ){
-        xTaskCreate(Send_MaxVel,"Send_MaxVel_Task",10000,(void *) sendtotask,6,&SendMaxVelocityTask_Handle);
-        delay(5);
+        xTaskCreate(Send_MaxVel,"Send_MaxVel_Task",5000,(void *) sendtotask,6,&SendMaxVelocityTask_Handle);
+        delay(1);
       }
  
   }
-  delay(10); 
+  delay(1); 
   vTaskDelete(IncomingJsonParser_Handle);
   
 }
