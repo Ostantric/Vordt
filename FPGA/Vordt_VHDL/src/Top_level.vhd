@@ -131,9 +131,9 @@ port map (CLK=>CLK,
 
 
 MCU_UART_Transmitter:entity work.MCU_UART_TX
---Baudrate is 2M
---50M/2M = 25
---CLKS_PER_BIT = 25
+--Baudrate is 4M
+--50M/4M = 12.5
+--CLKS_PER_BIT = 12
 port map (i_CLK=>CLK,
 		    i_TX_DV=>MCU_TX_DV_Signal,
 			 i_TX_Byte =>MCU_TX_Byte_Signal,
@@ -143,9 +143,9 @@ port map (i_CLK=>CLK,
 );
 
 MCU_UART_Receiver:entity work.MCU_UART_RX
---Baudrate is 2M
---50M/2M = 25
---CLKS_PER_BIT = 25
+--Baudrate is 4M
+--50M/4M = 12.5
+--CLKS_PER_BIT = 12
 port map (i_CLK=>CLK,
 			i_RX_Serial =>MCU_Serial_RX,
 			o_RX_DV => MCU_RX_DV_Signal,

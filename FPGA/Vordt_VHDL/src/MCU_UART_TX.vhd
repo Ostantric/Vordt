@@ -27,10 +27,10 @@ library ieee;
 use ieee.std_logic_1164.all;
 use ieee.numeric_std.all;
 
---baudrate is 2M
+--baudrate is 4M
 entity MCU_UART_TX is
    generic (
-     g_CLKS_PER_BIT : integer := 25     -- 50M/2M = 25
+     g_CLKS_PER_BIT : integer := 12     -- 50M/4M = 12.5
      );
   port (
     i_Clk          : in  std_logic;

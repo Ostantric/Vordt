@@ -26,7 +26,8 @@ use ieee.numeric_std.all;
 
 entity MCU_Serial_Handle is
 	generic (
-     MCU_Wait_Time : integer := 10000
+     MCU_Wait_Time : integer := 10;
+     WaitIn : integer := 1000 --give 10us to MCU 
    );
     PORT (
             --in
@@ -81,7 +82,7 @@ architecture Behavioral of MCU_Serial_Handle is
                 when Send_Position=>--Send Current Position-State    
                     case Tx_Byte_Count is
                         when 0=>--Check if MCU Ready
-						    if MCU_Ready = '1' then                            
+                            if MCU_Ready = '1' then                            
                                 Tx_Byte_Count<=1;
                                 Output_For_UART_TX<= x"01"; 
                                 counter<=0;
@@ -92,41 +93,50 @@ architecture Behavioral of MCU_Serial_Handle is
 							-- 		Tx_State_Machine<=Send_Position; --Send the notice again  
 							-- 	else
 							-- 		counter<=counter+1;
-							-- 	end if;
+                            -- 	end if;
+                            else
+                                Tx_Byte_Count<=0;
                             end if;
-                        when 1 => --Sending Position_Incoming Notice
+                        when 1 =>
+                            if counter = WaitIn then
+                                counter <= 0;
+                                Tx_Byte_Count<=2;
+                            else
+                                counter<=counter+1;
+                            end if; 
+                        when 2 => --Sending Position_Incoming Notice
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
-                                    Tx_Byte_Count<=2;
+                                    Tx_Byte_Count<=3;
                                     Transmit_32bit_Register(15 Downto 0)<=Position_Input;
 									counter<=0;
                                 end if;
                             else
                                 dv_signal<='1';
                             end if;
-                        when 2=> --7 to 0
+                        when 3=> --7 to 0
                             Output_For_UART_TX<=Transmit_32bit_Register(7 Downto 0);
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
-                                    Tx_Byte_Count<=Tx_Byte_Count+1;
+                                    Tx_Byte_Count<=4;
                                 end if;
                             else
                                 dv_signal<='1';
                             end if;
-                        when 3=> -- 15 to 8
+                        when 4=> -- 15 to 8
                             Output_For_UART_TX<=Transmit_32bit_Register(15 Downto 8);
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
-                                    Tx_Byte_Count<=Tx_Byte_Count+1;
+                                    Tx_Byte_Count<=5;
                                 end if;
                             else
                                 dv_signal<='1';
                             end if;
                         when others =>
-                            Transmit_32bit_Register<=x"00000000";
+                            --Transmit_32bit_Register<=x"00000000";
                             if counter = MCU_Wait_Time then
                                 counter <= 0;
                                 Tx_Byte_Count<=0;
@@ -150,12 +160,21 @@ architecture Behavioral of MCU_Serial_Handle is
                             --     else
 							-- 		counter<=counter+1;
                             --     end if;
+                            else
+                                Tx_Byte_Count<=0;
                             end if;
-                        when 1=> --Sending Velocity_Incoming Notice
+                        when 1 =>
+                            if counter = WaitIn then
+                                counter <= 0;
+                                Tx_Byte_Count<=2;
+                            else
+                                counter<=counter+1;
+                            end if; 
+                        when 2=> --Sending Velocity_Incoming Notice
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
-                                    Tx_Byte_Count<=2;
+                                    Tx_Byte_Count<=3;
                                     Transmit_32bit_Register(15 Downto 0)<=Velocity_Input;
 									counter<=0;
                                 end if;
@@ -163,22 +182,22 @@ architecture Behavioral of MCU_Serial_Handle is
                                 dv_signal<='1';
                             end if;
 								
-                        when 2=> --7 to 0
+                        when 3=> --7 to 0
                             Output_For_UART_TX<=Transmit_32bit_Register(7 Downto 0);
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
-                                    Tx_Byte_Count<=Tx_Byte_Count+1;
+                                    Tx_Byte_Count<=4;
                                 end if;
                             else
                                 dv_signal<='1';
                             end if;
-                        when 3=> -- 15 to 8
+                        when 4=> -- 15 to 8
                             Output_For_UART_TX<=Transmit_32bit_Register(15 Downto 8);
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
-                                    Tx_Byte_Count<=Tx_Byte_Count+1;
+                                    Tx_Byte_Count<=5;
                                 end if;
                             else
                                 dv_signal<='1';
@@ -208,54 +227,63 @@ architecture Behavioral of MCU_Serial_Handle is
                             --     else
 							-- 		counter<=counter+1;
                             --     end if;
-                            end if;		
-                        when 1=> --Check if MCU Ready
+                            else
+                                Tx_Byte_Count<=0;
+                            end if;
+                        when 1 =>
+                            if counter = WaitIn then
+                                counter <= 0;
+                                Tx_Byte_Count<=2;
+                            else
+                                counter<=counter+1;
+                            end if; 
+                        when 2=> --Check if MCU Ready
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
-                                    Tx_Byte_Count<=2;
+                                    Tx_Byte_Count<=3;
                                     Transmit_32bit_Register<=Turn_Input;
 								    counter<=0;
                                 end if;
                             else
                                 dv_signal<='1';
                             end if;
-                        when 2 =>--0 to 7
+                        when 3 =>--0 to 7
                             Output_For_UART_TX<=Transmit_32bit_Register(7 Downto 0);
                             if tx_done = '1' then
                                   dv_signal<='0';
                                     if dv_signal='0' then
-                                        Tx_Byte_Count<=Tx_Byte_Count+1;
+                                        Tx_Byte_Count<=4;
                                     end if;
                                 else
                                     dv_signal<='1';
                                 end if;
-                        when 3=> --15 to 8
+                        when 4=> --15 to 8
                                 Output_For_UART_TX<=Transmit_32bit_Register(15 Downto 8);
                                 if tx_done = '1' then
                                     dv_signal<='0';
                                     if dv_signal='0' then
-                                        Tx_Byte_Count<=Tx_Byte_Count+1;
+                                        Tx_Byte_Count<=5;
                                     end if;
                                 else
                                     dv_signal<='1';
                                 end if;
-                        when 4=> --23 to 16
+                        when 5=> --23 to 16
                                 Output_For_UART_TX<=Transmit_32bit_Register(23 Downto 16);
                                 if tx_done = '1' then
                                     dv_signal<='0';
                                     if dv_signal='0' then
-                                        Tx_Byte_Count<=Tx_Byte_Count+1;
+                                        Tx_Byte_Count<=6;
                                     end if;
                                 else
                                     dv_signal<='1';
                                 end if;
-                        when 5=> --31 to 24
+                        when 6=> --31 to 24
                                 Output_For_UART_TX<=Transmit_32bit_Register(31 Downto 24);
                                 if tx_done = '1' then
                                     dv_signal<='0';
                                     if dv_signal='0' then
-                                        Tx_Byte_Count<=Tx_Byte_Count+1;
+                                        Tx_Byte_Count<=7;
                                     end if;
                                 else
                                     dv_signal<='1';
