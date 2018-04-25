@@ -17,10 +17,17 @@
 * Move to ESP-IDF
 
 ### RTOS Tasks Architecture
+Higher number, higher priority.
 
-* Utility_UDP_send - Priority = 1
+* Send_Position_To_FPGA - Priority = 6
 
-* FPGA_Listen - Priority = 2
+* Send_Turn_To_FPGA - Priority = 6
+
+* Send_MaxVel_To_FPGA - Priority = 6
+
+* IncomingJsonParser - Priority = 5
+
+* UDP_Listen - Priority = 4
 
 * Position_UDP_Send - Priority = 3
 
@@ -28,13 +35,10 @@
 
 * Turn_UDP_Send - Priority = 3
 
-* UDP_Listen - Priority = 4
+* FPGA_Listen - Priority = 2
 
-* IncomingJsonParser - Priority = 5
+* Utility_UDP_send - Priority = 1
 
-* Send_Position_To_FPGA - Priority = 6
 
-* Send_Turn_To_FPGA - Priority = 6
 
-* Send_MaxVel_To_FPGA - Priority = 6
 
