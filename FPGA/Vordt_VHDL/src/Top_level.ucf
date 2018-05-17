@@ -32,6 +32,10 @@ NET "Encoder1_A" LOC = "P2"  ; # Bank = 1, Signal name = CA
 NET "Encoder1_A" CLOCK_DEDICATED_ROUTE = FALSE;
 NET "Encoder1_B" LOC = "P1"  ; # Bank = 1, Signal name = CANET "Encoder1_A" CLOCK_DEDICATED_ROUTE = FALSE;
 NET "Encoder1_B" CLOCK_DEDICATED_ROUTE = FALSE;
+NET "Encoder2_A" LOC = "P7"  ; # Bank = 1, Signal name = CA
+NET "Encoder2_A" CLOCK_DEDICATED_ROUTE = FALSE;
+NET "Encoder2_B" LOC = "P8"  ; # Bank = 1, Signal name = CANET "Encoder1_A" CLOCK_DEDICATED_ROUTE = FALSE;
+NET "Encoder2_B" CLOCK_DEDICATED_ROUTE = FALSE;
 
 # AVR COM
 #NET "spi_mosi" LOC = P44 | IOSTANDARD = LVTTL;
@@ -52,10 +56,12 @@ NET "Sabertooth_Serial_TX" LOC = "P6";
 NET "MCU_Serial_TX" LOC = "P100";
 NET "MCU_Serial_RX" LOC = "P101";
 NET "MCU_Ready_For_UART_TX" LOC = "P102";
-NET "I2C_Master_SDA" LOC = "P16";
-NET "I2C_Master_SCL" LOC = "P17";
-NET "I2C_Slave_SDA" LOC = "P57";
-NET "I2C_Slave_SCL" LOC = "P58";
+NET "M1D_I2C_Master_SDA" LOC = "P16";
+NET "M1D_I2C_Master_SCL" LOC = "P17";
+NET "M2D_I2C_Master_SDA" LOC = "P14";
+NET "M2D_I2C_Master_SCL" LOC = "P15";
+#NET "I2C_Slave_SDA" LOC = "P57";
+#NET "I2C_Slave_SCL" LOC = "P58";
 NET "RESET" LOC = "P40";
 NET "RESET" CLOCK_DEDICATED_ROUTE = FALSE;
 #NET "adjust_speed" LOC = "P41";

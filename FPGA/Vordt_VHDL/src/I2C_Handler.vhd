@@ -36,17 +36,31 @@ entity I2C_Handler is
     clk       : IN STD_LOGIC;                    --system clock
 	 reset 	  : IN STD_LOGIC;
 	 --FOR BOTH MODULES
-	 velocity_input  : IN STD_LOGIC_VECTOR(15 DOWNTO 0);		
-	 position_input : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
-	 turn_input : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
-	 PID_Velocity_Input : STD_LOGIC_VECTOR(15 DOWNTO 0);
-	 PID_Position_Input  : STD_LOGIC_VECTOR(15 DOWNTO 0);
-	 storage_input : STD_LOGIC_VECTOR(15 DOWNTO 0);
+	 Motor1_Displays_velocity_input  : IN STD_LOGIC_VECTOR(15 DOWNTO 0);		
+	 Motor1_Displays_position_input : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+	 Motor1_Displays_turn_input : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+	 Motor1_Displays_PID_Velocity_input : STD_LOGIC_VECTOR(15 DOWNTO 0);
+	 Motor1_Displays_PID_Position_Input  : STD_LOGIC_VECTOR(15 DOWNTO 0);
+	 Motor1_Displays_storage_input : STD_LOGIC_VECTOR(15 DOWNTO 0);
+
+	 Motor2_Displays_velocity_input  : IN STD_LOGIC_VECTOR(15 DOWNTO 0);		
+	 Motor2_Displays_position_input : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
+	 Motor2_Displays_turn_input : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+	 Motor2_Displays_PID_Velocity_input : STD_LOGIC_VECTOR(15 DOWNTO 0);
+	 Motor2_Displays_PID_Position_Input  : STD_LOGIC_VECTOR(15 DOWNTO 0);
+	 Motor2_Displays_storage_input : STD_LOGIC_VECTOR(15 DOWNTO 0);
 	 ----MASTER Module
-	 busy : IN STD_LOGIC;
-	 slave_address : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
-	 Data_for_write : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
-	 enable_I2C_Module : OUT STD_LOGIC :='0';
+	 --Motor1
+	 Motor1_Displays_busy: IN STD_LOGIC;
+	 Motor1_Displays_slave_address : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+	 Motor1_Displays_Data_for_write : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+	 Motor1_Displays_enable_I2C_Module : OUT STD_LOGIC :='0';
+     --Motor2
+	 Motor2_Displays_busy: IN STD_LOGIC;
+	 Motor2_Displays_slave_address : OUT STD_LOGIC_VECTOR(6 DOWNTO 0);
+	 Motor2_Displays_Data_for_write : OUT STD_LOGIC_VECTOR(7 DOWNTO 0);
+	 Motor2_Displays_enable_I2C_Module : OUT STD_LOGIC :='0';
+
 	 read_write_signal : OUT STD_LOGIC
 	 ----SLAVE Module
 		--DATA_STORAGE stuff
@@ -56,7 +70,7 @@ entity I2C_Handler is
 	 --enable_storage : OUT STD_LOGIC;
 	 --RW_storage : OUT STD_LOGIC; 
 		--I2C stuff
-	 --slave_module_busy : IN STD_LOGIC;
+	 --slave_module_Motor1_Displays_busy: IN STD_LOGIC;
 	 --send_done : IN STD_LOGIC;
 	 --save_done : IN STD_LOGIC;
 	 --listen_address_came : IN STD_LOGIC;
@@ -73,12 +87,22 @@ architecture Behavioral of I2C_Handler is
 	type States is (Idle, Start_7Display1, Start_7Display2, Start_7Display3, 
 	Start_7Display4, Start_7Display5, Start_7Display6, Velocity, Position, Turn, 
 	PID_Velocity_OUTPUT, PID_Position_OUTPUT, Storage );
-	signal State_Machine : States := Idle;
+	signal Motor1_Displays_State_Machine : States:=idle;
+	signal Motor2_Displays_State_Machine : States:=idle;
 	signal Command_count : integer range 0 to 4 := 0;
-	signal busy_count : integer range 0 to 21 := 0 ;
-	signal busy_old : std_logic;
-	signal Convert_Digit : STD_LOGIC_VECTOR(7 Downto 0);
-	signal divide_4bits : STD_LOGIC_Vector(3 downto 0);
+
+	signal Motor1_Displays_busy_count : integer range 0 to 21 := 0 ;
+	signal Motor1_Displays_busy_old : std_logic;
+
+	signal Motor2_Displays_busy_count : integer range 0 to 21 := 0 ;
+	signal Motor2_Displays_busy_old : std_logic;
+	
+	signal Motor1_Displays_Convert_Digit : STD_LOGIC_VECTOR(7 Downto 0);
+	signal Motor1_Displays_divide_4bits : STD_LOGIC_Vector(3 downto 0);
+
+	signal Motor2_Displays_Convert_Digit : STD_LOGIC_VECTOR(7 Downto 0);
+	signal Motor2_Displays_divide_4bits : STD_LOGIC_Vector(3 downto 0);
+
 	signal count : integer range 0 to 1000000 :=0;
 	signal listen_address_signal :STD_LOGIC_VECTOR(7 DOWNTO 0);
 	signal data_for_saving_signal :STD_LOGIC_VECTOR(7 DOWNTO 0);
@@ -88,50 +112,73 @@ architecture Behavioral of I2C_Handler is
 	
 begin
 
-process(divide_4bits)
+process(Motor1_Displays_divide_4bits)
 begin
-    case divide_4bits is
-    when "0000" => Convert_Digit <= x"3F"; -- "0"     
-    when "0001" => Convert_Digit <= x"06"; -- "1" 
-    when "0010" => Convert_Digit <= x"5B"; -- "2" 
-    when "0011" => Convert_Digit <= x"4F"; -- "3" 
-    when "0100" => Convert_Digit <= x"66"; -- "4" 
-    when "0101" => Convert_Digit <= x"6D"; -- "5" 
-    when "0110" => Convert_Digit <= x"7D"; -- "6" 
-    when "0111" => Convert_Digit <= x"07"; -- "7" 
-    when "1000" => Convert_Digit <= x"7F"; -- "8"     
-    when "1001" => Convert_Digit <= x"6F"; -- "9" 
-    when "1010" => Convert_Digit <= x"77"; -- a
-    when "1011" => Convert_Digit <= x"7C"; -- b
-    when "1100" => Convert_Digit <= x"39"; -- C
-    when "1101" => Convert_Digit <= x"5E"; -- d
-    when "1110" => Convert_Digit <= x"79"; -- E
-    when "1111" => Convert_Digit <= x"71"; -- F
-	 when others => Convert_Digit <= x"3F";
-    end case;
+	case Motor1_Displays_divide_4bits is
+		 when "0000" => Motor1_Displays_Convert_Digit <= x"3F"; -- "0"     
+		 when "0001" => Motor1_Displays_Convert_Digit <= x"06"; -- "1" 
+		 when "0010" => Motor1_Displays_Convert_Digit <= x"5B"; -- "2" 
+		 when "0011" => Motor1_Displays_Convert_Digit <= x"4F"; -- "3" 
+		 when "0100" => Motor1_Displays_Convert_Digit <= x"66"; -- "4" 
+		 when "0101" => Motor1_Displays_Convert_Digit <= x"6D"; -- "5" 
+		 when "0110" => Motor1_Displays_Convert_Digit <= x"7D"; -- "6" 
+		 when "0111" => Motor1_Displays_Convert_Digit <= x"07"; -- "7" 
+		 when "1000" => Motor1_Displays_Convert_Digit <= x"7F"; -- "8"     
+		 when "1001" => Motor1_Displays_Convert_Digit <= x"6F"; -- "9" 
+		 when "1010" => Motor1_Displays_Convert_Digit <= x"77"; -- a
+		 when "1011" => Motor1_Displays_Convert_Digit <= x"7C"; -- b
+		 when "1100" => Motor1_Displays_Convert_Digit <= x"39"; -- C
+		 when "1101" => Motor1_Displays_Convert_Digit <= x"5E"; -- d
+		 when "1110" => Motor1_Displays_Convert_Digit <= x"79"; -- E
+		 when "1111" => Motor1_Displays_Convert_Digit <= x"71"; -- F
+		 when others => Motor1_Displays_Convert_Digit <= x"3F";
+		 end case;
+end process;
+
+process(Motor2_Displays_divide_4bits)
+begin
+	case Motor2_Displays_divide_4bits is
+		 when "0000" => Motor2_Displays_Convert_Digit <= x"3F"; -- "0"     
+		 when "0001" => Motor2_Displays_Convert_Digit <= x"06"; -- "1" 
+		 when "0010" => Motor2_Displays_Convert_Digit <= x"5B"; -- "2" 
+		 when "0011" => Motor2_Displays_Convert_Digit <= x"4F"; -- "3" 
+		 when "0100" => Motor2_Displays_Convert_Digit <= x"66"; -- "4" 
+		 when "0101" => Motor2_Displays_Convert_Digit <= x"6D"; -- "5" 
+		 when "0110" => Motor2_Displays_Convert_Digit <= x"7D"; -- "6" 
+		 when "0111" => Motor2_Displays_Convert_Digit <= x"07"; -- "7" 
+		 when "1000" => Motor2_Displays_Convert_Digit <= x"7F"; -- "8"     
+		 when "1001" => Motor2_Displays_Convert_Digit <= x"6F"; -- "9" 
+		 when "1010" => Motor2_Displays_Convert_Digit <= x"77"; -- a
+		 when "1011" => Motor2_Displays_Convert_Digit <= x"7C"; -- b
+		 when "1100" => Motor2_Displays_Convert_Digit <= x"39"; -- C
+		 when "1101" => Motor2_Displays_Convert_Digit <= x"5E"; -- d
+		 when "1110" => Motor2_Displays_Convert_Digit <= x"79"; -- E
+		 when "1111" => Motor2_Displays_Convert_Digit <= x"71"; -- F
+		 when others => Motor2_Displays_Convert_Digit <= x"3F";
+		 end case;
 end process;
 
 --process(clk)
 --begin
 --	if rising_edge(clk) then
---    case divide_4bits is
---    when "0000" => Convert_Digit <= x"3F"; -- "0"     
---    when "0001" => Convert_Digit <= x"06"; -- "1" 
---    when "0010" => Convert_Digit <= x"5B"; -- "2" 
---    when "0011" => Convert_Digit <= x"4F"; -- "3" 
---    when "0100" => Convert_Digit <= x"66"; -- "4" 
---    when "0101" => Convert_Digit <= x"6D"; -- "5" 
---    when "0110" => Convert_Digit <= x"7D"; -- "6" 
---    when "0111" => Convert_Digit <= x"07"; -- "7" 
---    when "1000" => Convert_Digit <= x"7F"; -- "8"     
---    when "1001" => Convert_Digit <= x"6F"; -- "9" 
---    when "1010" => Convert_Digit <= x"77"; -- a
---    when "1011" => Convert_Digit <= x"7C"; -- b
---    when "1100" => Convert_Digit <= x"39"; -- C
---    when "1101" => Convert_Digit <= x"5E"; -- d
---    when "1110" => Convert_Digit <= x"79"; -- E
---    when "1111" => Convert_Digit <= x"71"; -- F
---	 when others => Convert_Digit <= x"3F";
+--    case Motor1_Displays_divide_4bits is
+--    when "0000" => Motor1_Displays_Convert_Digit <= x"3F"; -- "0"     
+--    when "0001" => Motor1_Displays_Convert_Digit <= x"06"; -- "1" 
+--    when "0010" => Motor1_Displays_Convert_Digit <= x"5B"; -- "2" 
+--    when "0011" => Motor1_Displays_Convert_Digit <= x"4F"; -- "3" 
+--    when "0100" => Motor1_Displays_Convert_Digit <= x"66"; -- "4" 
+--    when "0101" => Motor1_Displays_Convert_Digit <= x"6D"; -- "5" 
+--    when "0110" => Motor1_Displays_Convert_Digit <= x"7D"; -- "6" 
+--    when "0111" => Motor1_Displays_Convert_Digit <= x"07"; -- "7" 
+--    when "1000" => Motor1_Displays_Convert_Digit <= x"7F"; -- "8"     
+--    when "1001" => Motor1_Displays_Convert_Digit <= x"6F"; -- "9" 
+--    when "1010" => Motor1_Displays_Convert_Digit <= x"77"; -- a
+--    when "1011" => Motor1_Displays_Convert_Digit <= x"7C"; -- b
+--    when "1100" => Motor1_Displays_Convert_Digit <= x"39"; -- C
+--    when "1101" => Motor1_Displays_Convert_Digit <= x"5E"; -- d
+--    when "1110" => Motor1_Displays_Convert_Digit <= x"79"; -- E
+--    when "1111" => Motor1_Displays_Convert_Digit <= x"71"; -- F
+--	 when others => Motor1_Displays_Convert_Digit <= x"3F";
 --    end case;
 --	end if;
 --end process;
@@ -139,506 +186,513 @@ end process;
 
 read_write_signal<='0';
 --PROCESS FOR MASTER MODULE
-process (CLK)
+Motor1_Displays : process (CLK,reset)
 begin
-	if rising_edge(CLK) then
-		busy_old<=busy;
+	if reset='0' then
+		Motor1_Displays_State_Machine<=idle;
+		count<=0;
+		Motor1_Displays_busy_count<=0;
+		Motor1_Displays_enable_I2C_Module<='0';
+		Motor1_Displays_slave_address<="0000000";
+		Motor1_Displays_Data_for_write<=x"00";
+	elsif rising_edge(CLK) then
+		Motor1_Displays_busy_old<=Motor1_Displays_busy;
 		count<=count+1;
-			if (busy_old = '1' AND busy = '0') THEN  --i2c busy just went high
-				busy_count<=busy_count+1;
+			if (Motor1_Displays_busy_old = '1' AND Motor1_Displays_busy= '0') THEN  --i2c Motor1_Displays_busy just went high
+				Motor1_Displays_busy_count<=Motor1_Displays_busy_count+1;
 			end if;
 			
-		case State_Machine is
+		case Motor1_Displays_State_Machine is
 			when idle =>
-					State_Machine<=Start_7Display1;
+					Motor1_Displays_State_Machine<=Start_7Display1;
 			when Start_7Display1 =>
-					slave_address<= "1110000"; --70
-					case busy_count is
+					Motor1_Displays_slave_address<= "1110000"; --70
+					case Motor1_Displays_busy_count is
 						when 0 TO 1=> -- turn on osscilator
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"21";
+							Motor1_Displays_Data_for_write<= x"21";
 						when 2 TO 3=> -- display on and blinkrate
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"81"; -- display on with no blink
+							Motor1_Displays_Data_for_write<= x"81"; -- display on with no blink
 						when 4 TO 5 => -- brightness level
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"E1"; --Brightness level = 1
-							if (busy_old = '1' AND busy = '0') then
-								if(busy_count>4) then
-								busy_count<=0;
-								State_Machine<=Start_7Display2;
+							Motor1_Displays_Data_for_write<= x"E1"; --Brightness level = 1
+							if (Motor1_Displays_busy_old = '1' AND Motor1_Displays_busy= '0') then
+								if(Motor1_Displays_busy_count>4) then
+								Motor1_Displays_busy_count<=0;
+								Motor1_Displays_State_Machine<=Start_7Display2;
 								end if;
 							end if;
 						when others => NULL;
 					end case;
 					
 			when Start_7Display2 =>
-					slave_address<= "1110001"; --71	
-					case busy_count is
+					Motor1_Displays_slave_address<= "1110001"; --71	
+					case Motor1_Displays_busy_count is
 						when 0 To 1=> -- turn on osscilator
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"21";
+							Motor1_Displays_Data_for_write<= x"21";
 						when 2 TO 3 => -- display on and blinkrate
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"81"; -- display on with no blink
+							Motor1_Displays_Data_for_write<= x"81"; -- display on with no blink
 						when 4 TO 5 => -- brightness level
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"E1"; --Brightness level = 1
-							if (busy_old = '1' AND busy = '0') then
-								busy_count<=0;
-								State_Machine<=Start_7Display3;
+							Motor1_Displays_Data_for_write<= x"E1"; --Brightness level = 1
+							if (Motor1_Displays_busy_old = '1' AND Motor1_Displays_busy= '0') then
+								Motor1_Displays_busy_count<=0;
+								Motor1_Displays_State_Machine<=Start_7Display3;
 							end if;
 						when others => NULL;
 					end case;
 					
 			when Start_7Display3 =>
-					slave_address<= "1110010"; --72	
-					case busy_count is
+					Motor1_Displays_slave_address<= "1110010"; --72	
+					case Motor1_Displays_busy_count is
 						when 0 To 1=> -- turn on osscilator
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"21";
+							Motor1_Displays_Data_for_write<= x"21";
 						when 2 TO 3 => -- display on and blinkrate
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"81"; -- display on with no blink
+							Motor1_Displays_Data_for_write<= x"81"; -- display on with no blink
 						when 4 TO 5 => -- brightness level
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"E1"; --Brightness level = 1
-							if (busy_old = '1' AND busy = '0') then
-								busy_count<=0;
-								State_Machine<=Start_7Display4;
+							Motor1_Displays_Data_for_write<= x"E1"; --Brightness level = 1
+							if (Motor1_Displays_busy_old = '1' AND Motor1_Displays_busy= '0') then
+								Motor1_Displays_busy_count<=0;
+								Motor1_Displays_State_Machine<=Start_7Display4;
 							end if;
 						when others => NULL;
 					end case;
 					
 				when Start_7Display4 =>
-					slave_address<= "1110011"; --73	
-					case busy_count is
+					Motor1_Displays_slave_address<= "1110011"; --73	
+					case Motor1_Displays_busy_count is
 						when 0 To 1=> -- turn on osscilator
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"21";
+							Motor1_Displays_Data_for_write<= x"21";
 						when 2 TO 3 => -- display on and blinkrate
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"81"; -- display on with no blink
+							Motor1_Displays_Data_for_write<= x"81"; -- display on with no blink
 						when 4 TO 5 => -- brightness level
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"E1"; --Brightness level = 1
-							if (busy_old = '1' AND busy = '0') then
-								busy_count<=0;
-								State_Machine<=Start_7Display5;
+							Motor1_Displays_Data_for_write<= x"E1"; --Brightness level = 1
+							if (Motor1_Displays_busy_old = '1' AND Motor1_Displays_busy= '0') then
+								Motor1_Displays_busy_count<=0;
+								Motor1_Displays_State_Machine<=Start_7Display5;
 							end if;
 						when others => NULL;
 					end case;
 					
 				when Start_7Display5 =>
-					slave_address<= "1110100"; --74	
-					case busy_count is
+					Motor1_Displays_slave_address<= "1110100"; --74	
+					case Motor1_Displays_busy_count is
 						when 0 To 1=> -- turn on osscilator
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"21";
+							Motor1_Displays_Data_for_write<= x"21";
 						when 2 TO 3 => -- display on and blinkrate
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"81"; -- display on with no blink
+							Motor1_Displays_Data_for_write<= x"81"; -- display on with no blink
 						when 4 TO 5 => -- brightness level
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"E1"; --Brightness level = 1
-							if (busy_old = '1' AND busy = '0') then
-								busy_count<=0;
-								State_Machine<=Start_7Display6;
+							Motor1_Displays_Data_for_write<= x"E1"; --Brightness level = 1
+							if (Motor1_Displays_busy_old = '1' AND Motor1_Displays_busy= '0') then
+								Motor1_Displays_busy_count<=0;
+								Motor1_Displays_State_Machine<=Start_7Display6;
 							end if;
 						when others => NULL;
 					end case;
 					
 				when Start_7Display6 =>
-					slave_address<= "1110101"; --75	
-					case busy_count is
+					Motor1_Displays_slave_address<= "1110101"; --75	
+					case Motor1_Displays_busy_count is
 						when 0 To 1=> -- turn on osscilator
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"21";
+							Motor1_Displays_Data_for_write<= x"21";
 						when 2 TO 3 => -- display on and blinkrate
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"81"; -- display on with no blink
+							Motor1_Displays_Data_for_write<= x"81"; -- display on with no blink
 						when 4 TO 5 => -- brightness level
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"E1"; --Brightness level = 1
-							if (busy_old = '1' AND busy = '0') then
-								busy_count<=0;
-								State_Machine<=Velocity;
+							Motor1_Displays_Data_for_write<= x"E1"; --Brightness level = 1
+							if (Motor1_Displays_busy_old = '1' AND Motor1_Displays_busy= '0') then
+								Motor1_Displays_busy_count<=0;
+								Motor1_Displays_State_Machine<=Velocity;
 							end if;
 						when others => NULL;
 					end case;
 					
 					
 			when Velocity =>
-				  slave_address<= "1110000"; --70
-				  case busy_count is
+				  Motor1_Displays_slave_address<= "1110000"; --70
+				  case Motor1_Displays_busy_count is
 						when 0 =>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 1=>
-							divide_4bits<=velocity_input(15 Downto 12);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_velocity_input(15 Downto 12);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 													
 						when 2 =>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 3=>
-							divide_4bits<=velocity_input(11 Downto 8);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_velocity_input(11 Downto 8);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 4 =>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 5=>
-						   Data_for_write<= x"00";
+						   Motor1_Displays_Data_for_write<= x"00";
 						when 6=>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 7=>
-							divide_4bits<=velocity_input(7 Downto 4);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_velocity_input(7 Downto 4);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 8=>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 9=>
-							divide_4bits<=velocity_input(3 Downto 0);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_velocity_input(3 Downto 0);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 10=>
 							
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 11=>
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"00";
-							if (busy_old = '1' AND busy = '0') then
+							Motor1_Displays_Data_for_write<= x"00";
+							if (Motor1_Displays_busy_old = '1' AND Motor1_Displays_busy= '0') then
 								
-								busy_count<=0;
-								State_Machine<=position;
+								Motor1_Displays_busy_count<=0;
+								Motor1_Displays_State_Machine<=position;
 								
 							end if;
 						when others => NULL;
 					end case;
 						
 			when Position => 
-				  slave_address<= "1110100"; --74
-				  case busy_count is
+				  Motor1_Displays_slave_address<= "1110100"; --74
+				  case Motor1_Displays_busy_count is
 						when 0 =>
 							
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 1=>
-							divide_4bits<=position_input(15 Downto 12);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_position_input(15 Downto 12);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 													
 						when 2 =>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 3=>
-							divide_4bits<=position_input(11 Downto 8);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_position_input(11 Downto 8);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 4 =>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 5=>
-						   Data_for_write<= x"00";
+						   Motor1_Displays_Data_for_write<= x"00";
 						when 6=>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 7=>
-							divide_4bits<=position_input(7 Downto 4);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_position_input(7 Downto 4);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 8=>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 9=>
-							divide_4bits<=position_input(3 Downto 0);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_position_input(3 Downto 0);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 10=>
 							
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 11=>
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"00";
-							if (busy_old = '1' AND busy = '0') then
+							Motor1_Displays_Data_for_write<= x"00";
+							if (Motor1_Displays_busy_old = '1' AND Motor1_Displays_busy= '0') then
 								
-								busy_count<=0;
-								State_Machine<=Turn;
+								Motor1_Displays_busy_count<=0;
+								Motor1_Displays_State_Machine<=Turn;
 								
 							end if;
 						when others => NULL;
 					end case;
 
 			when Turn => 
-				  slave_address<= "1110011"; --73
-				  case busy_count is
+				  Motor1_Displays_slave_address<= "1110011"; --73
+				  case Motor1_Displays_busy_count is
 						when 0 =>
 							
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 1=>
-							divide_4bits<=turn_input(15 Downto 12);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_turn_input(15 Downto 12);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 													
 						when 2 =>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 3=>
-							divide_4bits<=turn_input(11 Downto 8);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_turn_input(11 Downto 8);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 4 =>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 5=>
-						   Data_for_write<= x"00";
+						   Motor1_Displays_Data_for_write<= x"00";
 						when 6=>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 7=>
-							divide_4bits<=turn_input(7 Downto 4);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_turn_input(7 Downto 4);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 8=>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 9=>
-							divide_4bits<=turn_input(3 Downto 0);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_turn_input(3 Downto 0);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 10=>
 							
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 11=>
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"00";
-							if (busy_old = '1' AND busy = '0') then
+							Motor1_Displays_Data_for_write<= x"00";
+							if (Motor1_Displays_busy_old = '1' AND Motor1_Displays_busy= '0') then
 								
-								busy_count<=0;
-								State_Machine<=PID_Velocity_Output;
+								Motor1_Displays_busy_count<=0;
+								Motor1_Displays_State_Machine<=PID_Velocity_Output;
 							end if;
 						when others => NULL;
 					end case;
 
 			when PID_Velocity_Output => 
-				  slave_address<= "1110010"; --72
-				  case busy_count is
+				  Motor1_Displays_slave_address<= "1110010"; --72
+				  case Motor1_Displays_busy_count is
 						when 0 =>
 							
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 1=>
-							divide_4bits<=pid_velocity_input(15 Downto 12);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_PID_Velocity_input(15 Downto 12);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 													
 						when 2 =>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 3=>
-							divide_4bits<=pid_velocity_input(11 Downto 8);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_PID_Velocity_input(11 Downto 8);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 4 =>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 5=>
-						   Data_for_write<= x"00";
+						   Motor1_Displays_Data_for_write<= x"00";
 						when 6=>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 7=>
-							divide_4bits<=pid_velocity_input(7 Downto 4);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_PID_Velocity_input(7 Downto 4);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 8=>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 9=>
-							divide_4bits<=pid_velocity_input(3 Downto 0);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_PID_Velocity_input(3 Downto 0);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 10=>
 							
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 11=>
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"00";
-							if (busy_old = '1' AND busy = '0') then
+							Motor1_Displays_Data_for_write<= x"00";
+							if (Motor1_Displays_busy_old = '1' AND Motor1_Displays_busy= '0') then
 								
-								busy_count<=0;
-								State_Machine<=PID_Position_Output;
+								Motor1_Displays_busy_count<=0;
+								Motor1_Displays_State_Machine<=PID_Position_Output;
 								
 							end if;
 						when others => NULL;
 					end case;
 
 			when PID_Position_Output => 
-				  slave_address<= "1110001"; --71
-				  case busy_count is
+				  Motor1_Displays_slave_address<= "1110001"; --71
+				  case Motor1_Displays_busy_count is
 						when 0 =>
 							
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 1=>
-							divide_4bits<=pid_position_input(15 Downto 12);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_PID_Position_Input(15 Downto 12);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 													
 						when 2 =>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 3=>
-							divide_4bits<=pid_position_input(11 Downto 8);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_PID_Position_Input(11 Downto 8);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 4 =>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 5=>
-						   Data_for_write<= x"00";
+						   Motor1_Displays_Data_for_write<= x"00";
 						when 6=>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 7=>
-							divide_4bits<=pid_position_input(7 Downto 4);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_PID_Position_Input(7 Downto 4);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 8=>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 9=>
-							divide_4bits<=pid_position_input(3 Downto 0);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_PID_Position_Input(3 Downto 0);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 10=>
 							
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 11=>
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"00";
-							if (busy_old = '1' AND busy = '0') then
+							Motor1_Displays_Data_for_write<= x"00";
+							if (Motor1_Displays_busy_old = '1' AND Motor1_Displays_busy= '0') then
 								
-								busy_count<=0;
-								State_Machine<=Storage;
+								Motor1_Displays_busy_count<=0;
+								Motor1_Displays_State_Machine<=Storage;
 								
 							end if;
 						when others => NULL;
 					end case;
 							
 				when Storage => 
-				  slave_address<= "1110101"; --75
-				  case busy_count is
+				  Motor1_Displays_slave_address<= "1110101"; --75
+				  case Motor1_Displays_busy_count is
 						when 0 =>
 							
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 1=>
-							divide_4bits<=storage_input(15 Downto 12);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_storage_input(15 Downto 12);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 													
 						when 2 =>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 3=>
-							divide_4bits<=storage_input(11 Downto 8);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_storage_input(11 Downto 8);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 4 =>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 5=>
-						   Data_for_write<= x"00";
+						   Motor1_Displays_Data_for_write<= x"00";
 						when 6=>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 7=>
-							divide_4bits<=storage_input(7 Downto 4);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_storage_input(7 Downto 4);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 8=>
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 9=>
-							divide_4bits<=storage_input(3 Downto 0);
-							Data_for_write<= Convert_Digit;
+							Motor1_Displays_divide_4bits<=Motor1_Displays_storage_input(3 Downto 0);
+							Motor1_Displays_Data_for_write<= Motor1_Displays_Convert_Digit;
 							
 						when 10=>
 							
-							Data_for_write<= x"00";
+							Motor1_Displays_Data_for_write<= x"00";
 						when 11=>
-							if busy='0' then
-								enable_I2C_Module <= '1';
+							if Motor1_Displays_busy='0' then
+								Motor1_Displays_enable_I2C_Module <= '1';
 							else
-								enable_I2C_Module <= '0';
+								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Data_for_write<= x"00";
-							if (busy_old = '1' AND busy = '0') then
+							Motor1_Displays_Data_for_write<= x"00";
+							if (Motor1_Displays_busy_old = '1' AND Motor1_Displays_busy= '0') then
 								
-								busy_count<=0;
-								State_Machine<=Velocity;
+								Motor1_Displays_busy_count<=0;
+								Motor1_Displays_State_Machine<=Velocity;
 								
 							end if;
 						when others => NULL;
@@ -647,18 +701,544 @@ begin
 						
 				  
 --			when Extra_process =>
-				  --slave_address<= "1110010"; --72
+				  --Motor1_Displays_slave_address<= "1110010"; --72
 				 
 --				  if count > 500000 then
---				  State_Machine<=Start_7Display1;
+--				  Motor1_Displays_State_Machine<=Start_7Display1;
 --				  end if;
-			when others =>
-				  State_Machine<=Idle;
+				when others =>
+				  Motor1_Displays_State_Machine<=Idle;
 		end case;
 	end if;
 
-end process;
+end process Motor1_Displays;
 
+Motor2_Displays : process (CLK,reset)
+begin
+	if reset='0' then
+		Motor2_Displays_State_Machine<=idle;
+		count<=0;
+		Motor2_Displays_busy_count<=0;
+		Motor2_Displays_enable_I2C_Module<='0';
+		Motor2_Displays_slave_address<="0000000";
+		Motor2_Displays_Data_for_write<=x"00";
+	elsif rising_edge(CLK) then
+		Motor2_Displays_busy_old<=Motor2_Displays_busy;
+		count<=count+1;
+			if (Motor2_Displays_busy_old = '1' AND Motor2_Displays_busy= '0') THEN  --i2c Motor2_Displays_busy just went high
+				Motor2_Displays_busy_count<=Motor2_Displays_busy_count+1;
+			end if;
+			
+		case Motor2_Displays_State_Machine is
+			when idle =>
+					Motor2_Displays_State_Machine<=Start_7Display1;
+			when Start_7Display1 =>
+					Motor2_Displays_slave_address<= "1110000"; --70
+					case Motor2_Displays_busy_count is
+						when 0 TO 1=> -- turn on osscilator
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"21";
+						when 2 TO 3=> -- display on and blinkrate
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"81"; -- display on with no blink
+						when 4 TO 5 => -- brightness level
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"E1"; --Brightness level = 1
+							if (Motor2_Displays_busy_old = '1' AND Motor2_Displays_busy= '0') then
+								if(Motor2_Displays_busy_count>4) then
+								Motor2_Displays_busy_count<=0;
+								Motor2_Displays_State_Machine<=Start_7Display2;
+								end if;
+							end if;
+						when others => NULL;
+					end case;
+					
+			when Start_7Display2 =>
+					Motor2_Displays_slave_address<= "1110001"; --71	
+					case Motor2_Displays_busy_count is
+						when 0 To 1=> -- turn on osscilator
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"21";
+						when 2 TO 3 => -- display on and blinkrate
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"81"; -- display on with no blink
+						when 4 TO 5 => -- brightness level
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"E1"; --Brightness level = 1
+							if (Motor2_Displays_busy_old = '1' AND Motor2_Displays_busy= '0') then
+								Motor2_Displays_busy_count<=0;
+								Motor2_Displays_State_Machine<=Start_7Display3;
+							end if;
+						when others => NULL;
+					end case;
+					
+			when Start_7Display3 =>
+					Motor2_Displays_slave_address<= "1110010"; --72	
+					case Motor2_Displays_busy_count is
+						when 0 To 1=> -- turn on osscilator
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"21";
+						when 2 TO 3 => -- display on and blinkrate
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"81"; -- display on with no blink
+						when 4 TO 5 => -- brightness level
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"E1"; --Brightness level = 1
+							if (Motor2_Displays_busy_old = '1' AND Motor2_Displays_busy= '0') then
+								Motor2_Displays_busy_count<=0;
+								Motor2_Displays_State_Machine<=Start_7Display4;
+							end if;
+						when others => NULL;
+					end case;
+					
+				when Start_7Display4 =>
+					Motor2_Displays_slave_address<= "1110011"; --73	
+					case Motor2_Displays_busy_count is
+						when 0 To 1=> -- turn on osscilator
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"21";
+						when 2 TO 3 => -- display on and blinkrate
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"81"; -- display on with no blink
+						when 4 TO 5 => -- brightness level
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"E1"; --Brightness level = 1
+							if (Motor2_Displays_busy_old = '1' AND Motor2_Displays_busy= '0') then
+								Motor2_Displays_busy_count<=0;
+								Motor2_Displays_State_Machine<=Start_7Display5;
+							end if;
+						when others => NULL;
+					end case;
+					
+				when Start_7Display5 =>
+					Motor2_Displays_slave_address<= "1110100"; --74	
+					case Motor2_Displays_busy_count is
+						when 0 To 1=> -- turn on osscilator
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"21";
+						when 2 TO 3 => -- display on and blinkrate
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"81"; -- display on with no blink
+						when 4 TO 5 => -- brightness level
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"E1"; --Brightness level = 1
+							if (Motor2_Displays_busy_old = '1' AND Motor2_Displays_busy= '0') then
+								Motor2_Displays_busy_count<=0;
+								Motor2_Displays_State_Machine<=Start_7Display6;
+							end if;
+						when others => NULL;
+					end case;
+					
+				when Start_7Display6 =>
+					Motor2_Displays_slave_address<= "1110101"; --75	
+					case Motor2_Displays_busy_count is
+						when 0 To 1=> -- turn on osscilator
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"21";
+						when 2 TO 3 => -- display on and blinkrate
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"81"; -- display on with no blink
+						when 4 TO 5 => -- brightness level
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"E1"; --Brightness level = 1
+							if (Motor2_Displays_busy_old = '1' AND Motor2_Displays_busy= '0') then
+								Motor2_Displays_busy_count<=0;
+								Motor2_Displays_State_Machine<=Velocity;
+							end if;
+						when others => NULL;
+					end case;
+					
+					
+			when Velocity =>
+				  Motor2_Displays_slave_address<= "1110000"; --70
+				  case Motor2_Displays_busy_count is
+						when 0 =>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 1=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_velocity_input(15 Downto 12);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+													
+						when 2 =>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 3=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_velocity_input(11 Downto 8);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 4 =>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 5=>
+						   Motor2_Displays_Data_for_write<= x"00";
+						when 6=>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 7=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_velocity_input(7 Downto 4);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 8=>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 9=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_velocity_input(3 Downto 0);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 10=>
+							
+							Motor2_Displays_Data_for_write<= x"00";
+						when 11=>
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"00";
+							if (Motor2_Displays_busy_old = '1' AND Motor2_Displays_busy= '0') then
+								
+								Motor2_Displays_busy_count<=0;
+								Motor2_Displays_State_Machine<=position;
+								
+							end if;
+						when others => NULL;
+					end case;
+						
+			when Position => 
+				  Motor2_Displays_slave_address<= "1110100"; --74
+				  case Motor2_Displays_busy_count is
+						when 0 =>
+							
+							Motor2_Displays_Data_for_write<= x"00";
+						when 1=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_position_input(15 Downto 12);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+													
+						when 2 =>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 3=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_position_input(11 Downto 8);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 4 =>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 5=>
+						   Motor2_Displays_Data_for_write<= x"00";
+						when 6=>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 7=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_position_input(7 Downto 4);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 8=>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 9=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_position_input(3 Downto 0);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 10=>
+							
+							Motor2_Displays_Data_for_write<= x"00";
+						when 11=>
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"00";
+							if (Motor2_Displays_busy_old = '1' AND Motor2_Displays_busy= '0') then
+								
+								Motor2_Displays_busy_count<=0;
+								Motor2_Displays_State_Machine<=Turn;
+								
+							end if;
+						when others => NULL;
+					end case;
+
+			when Turn => 
+				  Motor2_Displays_slave_address<= "1110011"; --73
+				  case Motor2_Displays_busy_count is
+						when 0 =>
+							
+							Motor2_Displays_Data_for_write<= x"00";
+						when 1=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_turn_input(15 Downto 12);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+													
+						when 2 =>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 3=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_turn_input(11 Downto 8);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 4 =>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 5=>
+						   Motor2_Displays_Data_for_write<= x"00";
+						when 6=>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 7=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_turn_input(7 Downto 4);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 8=>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 9=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_turn_input(3 Downto 0);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 10=>
+							
+							Motor2_Displays_Data_for_write<= x"00";
+						when 11=>
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"00";
+							if (Motor2_Displays_busy_old = '1' AND Motor2_Displays_busy= '0') then
+								
+								Motor2_Displays_busy_count<=0;
+								Motor2_Displays_State_Machine<=PID_Velocity_Output;
+							end if;
+						when others => NULL;
+					end case;
+
+			when PID_Velocity_Output => 
+				  Motor2_Displays_slave_address<= "1110010"; --72
+				  case Motor2_Displays_busy_count is
+						when 0 =>
+							
+							Motor2_Displays_Data_for_write<= x"00";
+						when 1=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_PID_Velocity_input(15 Downto 12);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+													
+						when 2 =>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 3=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_PID_Velocity_input(11 Downto 8);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 4 =>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 5=>
+						   Motor2_Displays_Data_for_write<= x"00";
+						when 6=>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 7=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_PID_Velocity_input(7 Downto 4);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 8=>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 9=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_PID_Velocity_input(3 Downto 0);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 10=>
+							
+							Motor2_Displays_Data_for_write<= x"00";
+						when 11=>
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"00";
+							if (Motor2_Displays_busy_old = '1' AND Motor2_Displays_busy= '0') then
+								
+								Motor2_Displays_busy_count<=0;
+								Motor2_Displays_State_Machine<=PID_Position_Output;
+								
+							end if;
+						when others => NULL;
+					end case;
+
+			when PID_Position_Output => 
+				  Motor2_Displays_slave_address<= "1110001"; --71
+				  case Motor2_Displays_busy_count is
+						when 0 =>
+							
+							Motor2_Displays_Data_for_write<= x"00";
+						when 1=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_PID_Position_Input(15 Downto 12);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+													
+						when 2 =>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 3=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_PID_Position_Input(11 Downto 8);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 4 =>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 5=>
+						   Motor2_Displays_Data_for_write<= x"00";
+						when 6=>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 7=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_PID_Position_Input(7 Downto 4);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 8=>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 9=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_PID_Position_Input(3 Downto 0);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 10=>
+							
+							Motor2_Displays_Data_for_write<= x"00";
+						when 11=>
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"00";
+							if (Motor2_Displays_busy_old = '1' AND Motor2_Displays_busy= '0') then
+								
+								Motor2_Displays_busy_count<=0;
+								Motor2_Displays_State_Machine<=Storage;
+								
+							end if;
+						when others => NULL;
+					end case;
+							
+				when Storage => 
+				  Motor2_Displays_slave_address<= "1110101"; --75
+				  case Motor2_Displays_busy_count is
+						when 0 =>
+							
+							Motor2_Displays_Data_for_write<= x"00";
+						when 1=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_storage_input(15 Downto 12);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+													
+						when 2 =>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 3=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_storage_input(11 Downto 8);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 4 =>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 5=>
+						   Motor2_Displays_Data_for_write<= x"00";
+						when 6=>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 7=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_storage_input(7 Downto 4);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 8=>
+							Motor2_Displays_Data_for_write<= x"00";
+						when 9=>
+							Motor2_Displays_divide_4bits<=Motor2_Displays_storage_input(3 Downto 0);
+							Motor2_Displays_Data_for_write<= Motor2_Displays_Convert_Digit;
+							
+						when 10=>
+							
+							Motor2_Displays_Data_for_write<= x"00";
+						when 11=>
+							if Motor2_Displays_busy='0' then
+								Motor2_Displays_enable_I2C_Module <= '1';
+							else
+								Motor2_Displays_enable_I2C_Module <= '0';
+							end if;
+							Motor2_Displays_Data_for_write<= x"00";
+							if (Motor2_Displays_busy_old = '1' AND Motor2_Displays_busy= '0') then
+								
+								Motor2_Displays_busy_count<=0;
+								Motor2_Displays_State_Machine<=Velocity;
+								
+							end if;
+						when others => NULL;
+					end case;
+							
+						
+				  
+--			when Extra_process =>
+				  --Motor2_Displays_slave_address<= "1110010"; --72
+				 
+--				  if count > 500000 then
+--				  Motor2_Displays_State_Machine<=Start_7Display1;
+--				  end if;
+				when others =>
+				  Motor2_Displays_State_Machine<=Idle;
+		end case;
+	end if;
+
+end process Motor2_Displays;
 ----PROCESS FOR SLAVE_MODULE and STORAGE_MODULE
 --process (CLK,talk_address_came)
 --begin
@@ -669,13 +1249,13 @@ end process;
 --					when x"02" =>
 --						data_for_sending<=position_input(15 DOWNTO 8);
 --					when x"03" =>
---						data_for_sending<=turn_input(7 DOWNTO 0);
+--						data_for_sending<=Motor1_Displays_turn_input(7 DOWNTO 0);
 --					when x"04" =>
---						data_for_sending<=turn_input(15 DOWNTO 8);
+--						data_for_sending<=Motor1_Displays_turn_input(15 DOWNTO 8);
 --					when x"05" =>
---						data_for_sending<=turn_input(23 DOWNTO 16);
+--						data_for_sending<=Motor1_Displays_turn_input(23 DOWNTO 16);
 --					when x"06" =>
---						data_for_sending<=turn_input(31 DOWNTO 24);
+--						data_for_sending<=Motor1_Displays_turn_input(31 DOWNTO 24);
 --					when x"07" =>
 --						data_for_sending<=velocity_input(7 DOWNTO 0);
 --					when x"08" =>

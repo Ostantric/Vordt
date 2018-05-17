@@ -47,33 +47,57 @@ PORT (
 end Velocity_PID_Controller;
 
 architecture Behavioral of Velocity_PID_Controller is
-	type States is (Idle, calculate_error, calculate_PID, Calculate_output,Last_process);
+	type States is (Idle, calculate_error,PID_Gain_Adjust, calculate_PID, Calculate_output,Last_process);
 	signal State_Machine : States;
-	signal convert_setpoint,PID_input_convert : STD_LOGIC_VECTOR (15 Downto 0);
-	signal sample_rate : integer range 0 to 5000001  := 0; --x"7A120" --1/100 seconds or 10 milliseconds
-	signal Kp : integer := 5;		--proportional constant
-   signal Kd : integer := 6;		--Derivative constant, hard to tweak this!
-   signal Ki : integer := 9;		--integral constant
-	signal error : integer:=0;
-	signal PID_input,input_calc : INTEGER RANGE -10000 TO 10000;
-	signal p,i,d : integer:=0;
-	signal setpoint,setpoint_calc :  INTEGER RANGE -10000 TO 10000;
-	signal output : integer :=0;
-	signal Error_past : integer :=0;
-	signal Output_past : integer :=0;
-	signal i_condition1,i_condition2 : integer :=0;
-	signal direction: std_logic_Vector (7 Downto 0);
+	--signal convert_setpoint,PID_input_convert : STD_LOGIC_VECTOR (15 Downto 0);
+	signal sample_rate : integer range 0 to 5000001; --x"7A120" --1/100 seconds or 10 milliseconds
+	signal Kp : integer range 0 to 64 :=0;		--proportional constant
+    signal Kd : integer range 0 to 64 :=0;		--Derivative constant, hard to tweak this!
+    signal Ki : integer range 0 to 64 :=0;		--integral constant
+	signal error : integer range -1000 to 1000 :=0;
+	signal PID_input : INTEGER RANGE -32768 TO 32767 :=0;
+	signal p,i,d : integer range -10000 to 10000 :=0;
+	signal setpoint :  INTEGER RANGE -32768 TO 32767 :=0;
+	signal output,output_checked : integer range -2000 to 2000:=0;
+	signal Error_past : integer range -10000 to 10000 :=0;
+	signal Output_past : integer range -10000 to 10000 :=0;
+	--signal direction: std_logic_Vector (7 Downto 0);
 begin
 
-process (CLK,reset_n,sample_rate)
+process (CLK,reset_n)
 begin
 	if reset_n = '0' then
 		sample_rate <= 0;
 		error<=0;
 		output<=0;
+		output_checked<=0;
+		Error_past<=0;
+		Output_past<=0;
 		State_Machine<=idle;
-	else		
-		if rising_edge(CLK) then
+		setpoint<=0;
+		PID_input<=0;
+		p<=0;
+		i<=0;
+		d<=0;
+		direction_command<=x"00";
+		output_command<=x"00";
+	elsif rising_edge(CLK) then
+			if output > 0 then
+				direction_command<=x"00";
+			else
+				direction_command<=x"01";
+			end if;
+
+			if output_checked >126 then
+				output_command <= x"7E";
+			elsif output_checked < -126 then
+				output_command <= x"7E";
+			elsif  output_checked <0 AND output_checked>-127 then
+				output_command<=std_logic_vector(to_signed(-output_checked,8));
+			else
+				output_command<=std_logic_vector(to_signed(output_checked,8));
+			end if;
+
 			if sample_rate = Clock_ticks_per_sample + 1 then
 				sample_rate <= 0;
 			else
@@ -83,20 +107,32 @@ begin
 			when idle =>
 					if sample_rate = Clock_ticks_per_sample then
 						Error_past <= Error;
-						i_condition1 <= Error-Error_past;
-						i_condition2 <= Error_past-Error;
+						--i_condition1 <= Error-Error_past;
+						--i_condition2 <= Error_past-Error;
 						output<=to_integer(unsigned(Output_Command));
 						Output_past <=output;
-						--setpoint<= to_integer(signed(Set_point));
+						setpoint<=to_integer(signed(Set_point));
+						PID_input<=to_integer(signed(Feedback));
 						State_Machine <=calculate_error;
 					end if;
 			when calculate_Error =>
 				Error<= Setpoint-PID_input;
+				State_Machine <=PID_Gain_Adjust;
+			when PID_Gain_Adjust=>
+--				if Error<4 and Error>-4 then
+--					Kp<=2;
+--					Ki<=2;
+--					Kd<=2;
+--				else
+					Kp<=5;
+					Ki<=10;
+					Kd<=6;
+--				end if;
 				State_Machine <=calculate_PID;
 			when calculate_PID =>
-				p <= Kp*(Error);
-				d <= Kd * (Error-Error_past);
-				i <= Ki * (Error+Error_past);
+				p <= Kp*(Error);--Proportional
+				d <= Kd * (Error-Error_past);--Derivative
+				i <= Ki * (Error+Error_past);--Integral
 
 				--i_condition1<=i_condition1/2;
 				--i_condition2<=i_condition2/2;
@@ -191,21 +227,21 @@ begin
 							else
 								output<= Output_past + ((p+i+d)/256);
 							end if;
-							
-							if abs(output)<=5 then
-								output<=0;
-							end if;
-						
 					end if;
 				State_Machine<=Last_process;
 			when Last_process =>
+				if abs(output)<=5 then
+					output_checked<=0;
+				else
+					output_checked<=output;
+				end if;
 				State_Machine <=idle;
 	--			if Error = 0 then
 	--				output<=0;
 	--			end if;
 				--Output_Command<=std_logic_vector(to_unsigned(output,8));
 		end case;
-					end if;
+					
 		end if;
 end process;
 
@@ -214,33 +250,28 @@ end process;
 --				 16 when Error < 14 and Error > -15 else
 --				 64 when Error < -14 and Error > -300 else
 --				 128;
-
 --convert_setpoint<=Set_point when setpoint_calc >0 else
 --						 NOT(Set_point) + x"0001" when setpoint_calc < 0 else
 --						x"0000";
-
 --PID_input_convert<=NOT(Feedback - x"0001") when input_calc <0 else
 --						 feedback;
-
 --setpoint<= to_integer(unsigned(convert_setpoint));
 --setpoint_calc<= to_integer(signed(Set_point(7 Downto 0)));
-
 --setpoint<= to_integer(signed(Set_point(7 Downto 0))); --this is for testing. 8 bit only because of I2C handle wasn't ready
 
-setpoint<= to_integer(signed(Set_point(15 Downto 0)));
-PID_input<=to_integer(signed(Feedback));
-
+--setpoint<= to_integer(signed(Set_point(15 Downto 0)));
+--PID_input<=to_integer(signed(Feedback));
 
 --PID_input<=to_integer(signed(PID_input_convert));
 --input_calc<=to_integer(signed(Feedback));
 
-output_command <= x"7E" when output > 126 else
-						x"7E" when output < -126 else
-						std_logic_vector(to_signed(-output,8)) when output < 0 else
-						std_logic_vector(to_signed(output,8));
+--output_command <= x"7E" when output_checked > 126 else
+--						x"7E" when output_checked < -126 else
+--						std_logic_vector(to_signed(-output_checked,8)) when output_checked < 0 else
+--						std_logic_vector(to_signed(output_checked,8));
 						
-direction_command <= x"00" when output > 0 else
-							x"01";
+--direction_command <= x"00" when output > 0 else
+--							x"01";
 
 end Behavioral;
 

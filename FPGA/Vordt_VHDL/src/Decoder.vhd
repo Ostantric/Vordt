@@ -38,8 +38,8 @@ GENERIC(
     ONE_TURN_TICK_COUNT : INTEGER := 32767); 
 PORT (
 		CLK : IN STD_LOGIC;
-		Encoder1_A : IN STD_LOGIC;
-		Encoder1_B : IN STD_LOGIC;
+		Encoder_A : IN STD_LOGIC;
+		Encoder_B : IN STD_LOGIC;
 		Position : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 		--Absolute_Position : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
 		Turn_Count : OUT STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -328,10 +328,10 @@ Turn_Count<=std_logic_vector(to_signed(Turn,32));
 --				 "01" when speed_temp(15)='1' else --counterclockwise
 --				 "11" when speed_temp=x"0000";
 
-state_present<= "00" when Encoder1_A= '1' AND Encoder1_B = '1' else 
-			"01" when Encoder1_A= '1' AND Encoder1_B = '0' else
-			"10" when Encoder1_A= '0' AND Encoder1_B = '0' else
-			"11" when Encoder1_A= '0' AND Encoder1_B = '1' else
+state_present<= "00" when Encoder_A= '1' AND Encoder_B = '1' else 
+			"01" when Encoder_A= '1' AND Encoder_B = '0' else
+			"10" when Encoder_A= '0' AND Encoder_B = '0' else
+			"11" when Encoder_A= '0' AND Encoder_B = '1' else
 			"XX";
 index<=("00" & state_present)+("00" & state_present)+("00" & state_present)+("00" & state_present)+("00" & state_past);
 
@@ -346,4 +346,3 @@ array_output_first<=index_output;
 
 
 end Mix;
-
