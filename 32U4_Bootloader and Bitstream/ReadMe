@@ -1,0 +1,18 @@
+-----using Arduino UNO as ISP-------
+
+- Burn Bootloader
+  1) sudo avrdude -avrdude.conf -v -patmega32u4 -cstk500v1 -P/dev/ttyACM0 -b19200 -e -Ulock:w:0x3F:m -Uefuse:w:0xce:m -Uhfuse:w:0xd8:m -Ulfuse:w:0xff:m 
+  2) sudo avrdude -avrdude.conf -v -patmega32u4 -cstk500v1 -P/dev/ttyACM0 -b19200 -Uflash:w:mojo-v3-init.hex:i -Ulock:w:0x2F:m 
+
+  OR YOU CAN JUST USE THE "BURN BOOTLOADER" OPTION IN ARDUINO IDE
+
+- Upload custom Bitstream loader (version:1.2.6)
+
+  1) sudo avrdude -avrdude.conf -v -patmega32u4 -cstk500v1 -P/dev/ttyACM0 -b19200 -Uflash:w:Mojo-v3-Loader-1.2.6.hex
+
+- Good to go! Now you can upload Bin or Bitstream files to the Flash or to the RAM.
+
+
+
+
+

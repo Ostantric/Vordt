@@ -1,9 +1,9 @@
 <?xml version='1.0' encoding='UTF-8'?>
 <report-views version="2.0" >
  <header>
-  <DateModified>2018-04-30T01:15:36</DateModified>
+  <DateModified>2018-05-22T14:05:17</DateModified>
   <ModuleName>Top_level</ModuleName>
-  <SummaryTimeStamp>2018-04-30T00:59:05</SummaryTimeStamp>
+  <SummaryTimeStamp>2018-05-17T16:09:47</SummaryTimeStamp>
   <SavedFilePath>/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/iseconfig/Top_level.xreport</SavedFilePath>
   <ImplementationReportsDirectory>/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/</ImplementationReportsDirectory>
   <DateInitialized>2018-04-20T16:19:36</DateInitialized>

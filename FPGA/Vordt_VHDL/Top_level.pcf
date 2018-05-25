@@ -1,9 +1,12 @@
 //! **************************************************************************
-// Written by: Map P.20131013 on Tue May 15 23:03:30 2018
+// Written by: Map P.20131013 on Wed May 23 23:26:52 2018
 //! **************************************************************************
 
 SCHEMATIC START;
 COMP "MCU_Ready_For_UART_TX" LOCATE = SITE "P102" LEVEL 1;
+COMP "Motor1_Decoder_Reset" LOCATE = SITE "P11" LEVEL 1;
+PIN Motor1_Decoder_Reset_pin<0> = BEL "Motor1_Decoder_Reset" PINNAME PAD;
+PIN "Motor1_Decoder_Reset_pin<0>" CLOCK_DEDICATED_ROUTE;
 COMP "CLK" LOCATE = SITE "P56" LEVEL 1;
 PIN CLK_pin<0> = BEL "CLK" PINNAME PAD;
 PIN "CLK_pin<0>" CLOCK_DEDICATED_ROUTE;
@@ -13,10 +16,16 @@ COMP "Sabertooth_Serial_TX" LOCATE = SITE "P6" LEVEL 1;
 COMP "reset" LOCATE = SITE "P40" LEVEL 1;
 PIN reset_pin<0> = BEL "reset" PINNAME PAD;
 PIN "reset_pin<0>" CLOCK_DEDICATED_ROUTE = FALSE;
+COMP "UART_RX_Reset" LOCATE = SITE "P34" LEVEL 1;
+PIN UART_RX_Reset_pin<0> = BEL "UART_RX_Reset" PINNAME PAD;
+PIN "UART_RX_Reset_pin<0>" CLOCK_DEDICATED_ROUTE = FALSE;
 COMP "MCU_Serial_RX" LOCATE = SITE "P101" LEVEL 1;
 COMP "MCU_Serial_TX" LOCATE = SITE "P100" LEVEL 1;
 COMP "M1D_I2C_Master_SDA" LOCATE = SITE "P16" LEVEL 1;
 COMP "M1D_I2C_Master_SCL" LOCATE = SITE "P17" LEVEL 1;
+COMP "Motor2_Decoder_Reset" LOCATE = SITE "P12" LEVEL 1;
+PIN Motor2_Decoder_Reset_pin<0> = BEL "Motor2_Decoder_Reset" PINNAME PAD;
+PIN "Motor2_Decoder_Reset_pin<0>" CLOCK_DEDICATED_ROUTE;
 COMP "Encoder1_A" LOCATE = SITE "P2" LEVEL 1;
 PIN Encoder1_A_pin<0> = BEL "Encoder1_A" PINNAME PAD;
 PIN "Encoder1_A_pin<0>" CLOCK_DEDICATED_ROUTE = FALSE;

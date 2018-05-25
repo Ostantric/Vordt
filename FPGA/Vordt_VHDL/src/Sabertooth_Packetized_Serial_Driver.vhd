@@ -97,13 +97,13 @@ begin
 							if TX_ACTIVE = '0' then
 								State_Machine<=Motor1_First;
 								Motor1_Address_Command<=x"80";
-		Motor1_Motor_Command<=Motor1_Direction;
-		Motor1_Power_Command<=Motor1_Power;
-		Motor1_CheckSum_Command<=((Motor1_Address_Command + Motor1_Motor_Command + Motor1_Power_Command) AND "01111111");
-		Motor2_Address_Command<=x"80";
-		Motor2_Motor_Command<=Motor2_Direction;
-		Motor2_Power_Command<=Motor2_Power;
-		Motor2_CheckSum_Command<=((Motor2_Address_Command + Motor2_Motor_Command + Motor2_Power_Command) AND "01111111");	
+								Motor1_Motor_Command<=Motor1_Direction;
+								Motor1_Power_Command<=Motor1_Power;
+								Motor1_CheckSum_Command<=((Motor1_Address_Command + Motor1_Motor_Command + Motor1_Power_Command) AND "01111111");
+								Motor2_Address_Command<=x"80";
+								Motor2_Motor_Command<=Motor2_Direction;
+								Motor2_Power_Command<=Motor2_Power;
+								Motor2_CheckSum_Command<=((Motor2_Address_Command + Motor2_Motor_Command + Motor2_Power_Command) AND "01111111");	
 								--Motor1_Address_Command<=Motor1_Input(23 Downto 16);
 							else
 								State_Machine<=Wait_One;
@@ -186,7 +186,8 @@ begin
 						end if;
 				when Motor2_Second=>
 						--Output_Command_signal<=Motor2_Motor_Command;
-						Output_Command_signal<=x"05";
+						--Output_Command_signal<=x"05";
+						Output_Command_signal<=Motor2_Motor_Command;
 						if tx_done = '1' then
 							dv_signal<='0';
 							if dv_signal='0' then

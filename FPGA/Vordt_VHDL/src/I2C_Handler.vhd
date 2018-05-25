@@ -228,7 +228,7 @@ begin
 							else
 								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Motor1_Displays_Data_for_write<= x"E1"; --Brightness level = 1
+							Motor1_Displays_Data_for_write<= x"EA"; --Brightness level = 10
 							if (Motor1_Displays_busy_old = '1' AND Motor1_Displays_busy= '0') then
 								if(Motor1_Displays_busy_count>4) then
 								Motor1_Displays_busy_count<=0;
@@ -292,7 +292,7 @@ begin
 							else
 								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Motor1_Displays_Data_for_write<= x"E1"; --Brightness level = 1
+							Motor1_Displays_Data_for_write<= x"EA"; --Brightness level = 10
 							if (Motor1_Displays_busy_old = '1' AND Motor1_Displays_busy= '0') then
 								Motor1_Displays_busy_count<=0;
 								Motor1_Displays_State_Machine<=Start_7Display4;
@@ -354,7 +354,7 @@ begin
 							else
 								Motor1_Displays_enable_I2C_Module <= '0';
 							end if;
-							Motor1_Displays_Data_for_write<= x"E1"; --Brightness level = 1
+							Motor1_Displays_Data_for_write<= x"EA"; --Brightness level = 10
 							if (Motor1_Displays_busy_old = '1' AND Motor1_Displays_busy= '0') then
 								Motor1_Displays_busy_count<=0;
 								Motor1_Displays_State_Machine<=Start_7Display6;

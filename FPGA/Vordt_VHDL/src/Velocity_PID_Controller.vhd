@@ -42,12 +42,13 @@ PORT (
 		Set_point : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
 		Feedback : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
 		Output_Command : Buffer STD_LOGIC_VECTOR(7 DOWNTO 0); --sabertooth motor power value
+		Motor_Number : IN STD_LOGIC;
 		Direction_Command : OUT STD_LOGIC_VECTOR(7 DOWNTO 0)
 		);
 end Velocity_PID_Controller;
 
 architecture Behavioral of Velocity_PID_Controller is
-	type States is (Idle, calculate_error,PID_Gain_Adjust, calculate_PID, Calculate_output,Last_process);
+	type States is (Idle, calculate_error,PID_Gain_Adjust, calculate_PID,Calculate_output, adjust_output,Last_process);
 	signal State_Machine : States;
 	--signal convert_setpoint,PID_input_convert : STD_LOGIC_VECTOR (15 Downto 0);
 	signal sample_rate : integer range 0 to 5000001; --x"7A120" --1/100 seconds or 10 milliseconds
@@ -58,9 +59,9 @@ architecture Behavioral of Velocity_PID_Controller is
 	signal PID_input : INTEGER RANGE -32768 TO 32767 :=0;
 	signal p,i,d : integer range -10000 to 10000 :=0;
 	signal setpoint :  INTEGER RANGE -32768 TO 32767 :=0;
-	signal output,output_checked : integer range -2000 to 2000:=0;
-	signal Error_past : integer range -10000 to 10000 :=0;
-	signal Output_past : integer range -10000 to 10000 :=0;
+	signal output,output_checked : integer range -200 to 200:=0;
+	signal Error_past : integer range -300 to 300 :=0;
+	signal Output_past : integer range -200 to 200 :=0;
 	--signal direction: std_logic_Vector (7 Downto 0);
 begin
 
@@ -82,21 +83,7 @@ begin
 		direction_command<=x"00";
 		output_command<=x"00";
 	elsif rising_edge(CLK) then
-			if output > 0 then
-				direction_command<=x"00";
-			else
-				direction_command<=x"01";
-			end if;
-
-			if output_checked >126 then
-				output_command <= x"7E";
-			elsif output_checked < -126 then
-				output_command <= x"7E";
-			elsif  output_checked <0 AND output_checked>-127 then
-				output_command<=std_logic_vector(to_signed(-output_checked,8));
-			else
-				output_command<=std_logic_vector(to_signed(output_checked,8));
-			end if;
+			
 
 			if sample_rate = Clock_ticks_per_sample + 1 then
 				sample_rate <= 0;
@@ -109,7 +96,7 @@ begin
 						Error_past <= Error;
 						--i_condition1 <= Error-Error_past;
 						--i_condition2 <= Error_past-Error;
-						output<=to_integer(unsigned(Output_Command));
+						output<=to_integer(signed(Output_Command));
 						Output_past <=output;
 						setpoint<=to_integer(signed(Set_point));
 						PID_input<=to_integer(signed(Feedback));
@@ -127,10 +114,11 @@ begin
 					Kp<=5;
 					Ki<=10;
 					Kd<=6;
+					--kd<=0;
 --				end if;
 				State_Machine <=calculate_PID;
 			when calculate_PID =>
-				p <= Kp*(Error);--Proportional
+				p <= Kp * (Error);--Proportional
 				d <= Kd * (Error-Error_past);--Derivative
 				i <= Ki * (Error+Error_past);--Integral
 
@@ -228,12 +216,46 @@ begin
 								output<= Output_past + ((p+i+d)/256);
 							end if;
 					end if;
-				State_Machine<=Last_process;
-			when Last_process =>
-				if abs(output)<=5 then
-					output_checked<=0;
+				State_Machine<=adjust_output;
+			when adjust_output =>
+				 if abs(output)<=6 then
+				 	output_checked<=0;
 				else
 					output_checked<=output;
+				end if;
+				
+
+				State_Machine<=Last_process;
+			when Last_process =>
+				if output_checked > 0 then
+					if Motor_Number = '0' then --Motor1
+						direction_command<=x"00";
+					else -- Motor2
+						direction_command<=x"04";
+					end if;
+				else
+					if Motor_Number = '0' then
+						direction_command<=x"01";
+					else
+						direction_command<=x"05";
+					end if;
+				end if;
+
+				if output_checked >126 then
+					output_command <= x"7E";
+				elsif output_checked < -126 then
+					output_command <= x"7E";
+				elsif  output_checked <0 AND output_checked>-127 then
+					output_command<=std_logic_vector(to_signed(-output_checked,8));
+				else
+					output_command<=std_logic_vector(to_signed(output_checked,8));
+				end if;
+				if output > 127 then
+					output<=127;
+				elsif output < -127 then
+					output<=-127;
+				else
+					output<=output;
 				end if;
 				State_Machine <=idle;
 	--			if Error = 0 then

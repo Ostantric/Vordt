@@ -64,4 +64,14 @@ NET "M2D_I2C_Master_SCL" LOC = "P15";
 #NET "I2C_Slave_SCL" LOC = "P58";
 NET "RESET" LOC = "P40";
 NET "RESET" CLOCK_DEDICATED_ROUTE = FALSE;
+
+NET "UART_RX_Reset" LOC = "P34";
+NET "UART_RX_Reset" CLOCK_DEDICATED_ROUTE = FALSE;
+
+
+NET "Motor1_Decoder_Reset" LOC = "P11";
+NET "Motor1_Decoder_Reset" CLOCK_DEDICATED_ROUTE = true;
+NET "Motor2_Decoder_Reset" LOC = "P12";
+NET "Motor2_Decoder_Reset" CLOCK_DEDICATED_ROUTE = true;
+
 #NET "adjust_speed" LOC = "P41";

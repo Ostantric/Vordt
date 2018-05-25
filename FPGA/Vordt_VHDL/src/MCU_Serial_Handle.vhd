@@ -33,6 +33,7 @@ entity MCU_Serial_Handle is
             --in
             CLK : IN STD_LOGIC;
             Reset : IN STD_LOGIC;
+            RX_Reset: IN STD_LOGIC;
             TX_Done : IN STD_LOGIC;
             TX_ACTIVE : IN STD_LOGIC;
             RX_Done : IN STD_LOGIC;
@@ -609,9 +610,9 @@ architecture Behavioral of MCU_Serial_Handle is
 
     --Receiver State Machine
     --Little-Endian
-    RX_Machine : process (CLK,reset)
+    RX_Machine : process (CLK,RX_Reset)
     begin
-        if reset = '0' then
+        if RX_Reset = '0' then
             RX_State_Machine<=idle;
             Rx_Byte_Count<=0;
             Type_register<=x"00";

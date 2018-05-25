@@ -2,7 +2,7 @@
 ### TODO
 * ~~I2C_Slave module can't read 8th bit. Fix timing and listen_buffer.(this bug actually fixed by changing the edge detection in listen_state, under state machine)~~
 
-* **Sometimes I2C line goes limbo. Take a look at the TI's debugging manual. I assume problem is something to do with capacitance because resistors values and voltage across I2C slaves seem good.
+* ~~**Sometimes I2C line goes limbo. Take a look at the TI's debugging manual. I assume problem is something to do with capacitance because resistors values and voltage across I2C slaves seem good.~~
 
 * ~~Decoder outputs huge random when you reach 0 as velocity setpoint. its because two's comp and average translation error. Fix the average_velocity block in decoder.vhd.~~
 

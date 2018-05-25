@@ -38,6 +38,7 @@ GENERIC(
     ONE_TURN_TICK_COUNT : INTEGER := 32767); 
 PORT (
 		CLK : IN STD_LOGIC;
+		Reset_D: IN STD_LOGIC;
 		Encoder_A : IN STD_LOGIC;
 		Encoder_B : IN STD_LOGIC;
 		Position : OUT STD_LOGIC_VECTOR(15 DOWNTO 0);
@@ -92,14 +93,16 @@ signal average_count,average_count_old : integer range 0 to 8 := 0;
 --attribute KEEP of speed_temp: signal is "TRUE";
 begin
 --for better understanding checkout the testbench, then every process will make sense.
-div2: process(clk) -- create 25MHZ clock
+div2: process(clk,Reset_D) -- create 25MHZ clock
   begin
-    if clk'event and clk = '1' then
+	if Reset_D = '0' then
+		ck25MHz<='0';
+    elsif clk'event and clk = '1' then
 	   ck25MHz <= not ck25MHz; 
    end if;
  end process div2;	
 
-prescaler_process : process (ck25MHz) -- create prescaler for 1/50 seconds using 25mhz clock.
+prescaler_process : process (ck25MHz,Reset_D) -- create prescaler for 1/50 seconds using 25mhz clock.
 	--clock is 25MHZ.
 	--Prescaler is used to count.
 	--30D40, 1/125 seconds =>8 milliseconds
@@ -108,7 +111,9 @@ prescaler_process : process (ck25MHz) -- create prescaler for 1/50 seconds using
    --4C4B40, 1/5 seconds =>200 milliseconds
    --17D7840, 1 seconds
   begin
-    if rising_edge(ck25MHz) then   
+	if Reset_D = '0' then
+		prescaler   <= (others => '0');
+    elsif rising_edge(ck25MHz) then   
       if prescaler = X"30D40" then   --1/125 seconds
         prescaler   <= (others => '0');
       else
@@ -116,9 +121,12 @@ prescaler_process : process (ck25MHz) -- create prescaler for 1/50 seconds using
       end if;
 	end if;
   end process prescaler_process;
+
 store_10_velocity: process (ck25MHz) --update velocity every one second.
 	begin
-		if falling_edge(ck25MHz) then
+		if Reset_D = '0' then
+			temp_tick3   <= 0;
+		elsif falling_edge(ck25MHz) then
 			if prescaler = X"30D40" then     
 				--speed<=speed_temp;
 				average_count<=average_count+1;
@@ -127,57 +135,62 @@ store_10_velocity: process (ck25MHz) --update velocity every one second.
 
 				Velocity_Array_Signal(average_count_old)<=to_signed(temp_tick2,16);
 		end if;
-			if average_count > 7 then
-				average_count<= 0;
-			end if;
+			-- if average_count > 7 then
+			-- 	average_count<= 0;
+			-- end if;
 		end if;
 end process store_10_velocity;
 
 
-average_velocity: process (clk) --update velocity every one second.
+-- average_velocity: process (clk) --update velocity every one second.
+-- 	--clock is 50MHZ.
+-- 	--Prescaler2 is used to count. 
+-- 	--7A120 1/100 seconds => 10 milliseconds
+-- 	--17D7840, 1/2 seconds
+-- 	--2FAF080, 1 seconds 
+-- 	begin
+-- 		if Reset_D = '0' then
+-- 			prescaler2<= (others => '0');
+-- 			Reset<='1';
+-- 		elsif falling_edge(clk) then
+-- 			if average_count_old = 8 then
+-- 				sum_of_8<=Velocity_Array_Signal(0)+Velocity_Array_Signal(1)+Velocity_Array_Signal(2)
+-- 							  +Velocity_Array_Signal(3)+Velocity_Array_Signal(4)+Velocity_Array_Signal(5)
+-- 							  +Velocity_Array_Signal(6)+Velocity_Array_Signal(7);
+-- 			else
+-- 				sum_of_8<= x"0000";
+-- 			end if;
+
+-- 		elsif rising_edge(clk) then
+-- 			if average_count_old = 8 and average_count = 0 then --divide by 8.
+-- 				--need to calculate in 2k(binary) because thug life(otherwise propagation delay is huge)
+-- 				if temp_tick <0 then  --negative number
+-- 				--translate to positive number first
+-- 				answer_fixed<=(NOT(sum_of_8-x"0001")) srl 3; --calculate 1/8.(bitwise shift right)
+-- 				--go back to negative number
+-- 				answer<=NOT(answer_fixed)+x"0001"; --(2's comp!)
+-- 				else -- positive number
+-- 				answer<=sum_of_8 srl 3;
+-- 				end if;
+-- 				--or using std_integer we can divide by 2^k.
+-- 				--answer<=sum_of_8/8;
+-- 				speed_temp<=answer;
+-- 			end if;
+-- 		end if;
+-- end process average_velocity;
+show_every_one_second: process (clk,Reset_D) --update velocity every one second.
 	--clock is 50MHZ.
 	--Prescaler2 is used to count. 
 	--7A120 1/100 seconds => 10 milliseconds
 	--17D7840, 1/2 seconds
 	--2FAF080, 1 seconds 
 	begin
-		if falling_edge(clk) then
-			if average_count_old = 8 then
-				sum_of_8<=Velocity_Array_Signal(0)+Velocity_Array_Signal(1)+Velocity_Array_Signal(2)
-							  +Velocity_Array_Signal(3)+Velocity_Array_Signal(4)+Velocity_Array_Signal(5)
-							  +Velocity_Array_Signal(6)+Velocity_Array_Signal(7);
-			else
-				sum_of_8<= x"0000";
-			end if;
-		end if;
-		if rising_edge(clk) then
-			if average_count_old = 8 and average_count = 0 then --divide by 8.
-				--need to calculate in 2k(binary) because thug life(otherwise propagation delay is huge)
-				if temp_tick <0 then  --negative number
-				--translate to positive number first
-				answer_fixed<=(NOT(sum_of_8-x"0001")) srl 3; --calculate 1/8.(bitwise shift right)
-				--go back to negative number
-				answer<=NOT(answer_fixed)+x"0001"; --(2's comp!)
-				else -- positive number
-				answer<=sum_of_8 srl 3;
-				end if;
-				--or using std_integer we can divide by 2^k.
-				--answer<=sum_of_8/8;
-				speed_temp<=answer;
-			end if;
-		end if;
-end process average_velocity;
-show_every_one_second: process (clk) --update velocity every one second.
-	--clock is 50MHZ.
-	--Prescaler2 is used to count. 
-	--7A120 1/100 seconds => 10 milliseconds
-	--17D7840, 1/2 seconds
-	--2FAF080, 1 seconds 
-	begin
-		if rising_edge(clk) then
+		if Reset_D = '0' then
+			prescaler2<= (others => '0');
+			Reset<='1';
+		elsif rising_edge(clk) then
 			if prescaler2 = X"2FAF080" then     -- 50M ticks = one second (2FAF080 in hex)
 				--speed<=speed_temp;
-
 				prescaler2   <= (others => '0');
 			else
 				prescaler2 <= prescaler2 + "1";
@@ -189,11 +202,18 @@ show_every_one_second: process (clk) --update velocity every one second.
 		end if;
 end process show_every_one_second;
 
-speed_calculate : process (CLK)
+speed_calculate : process (CLK,Reset_D)
   --Clock = 50MHZ which is doubled the presecaler's clock
   --so we have 2 ticks to calculate which is well enough.
   begin 
-	if rising_edge(CLK) then   -- two rising edges until prescaler gets a new value.
+  	if Reset_D = '0' then
+		speed<=x"0000";
+		average_count_old<=0;
+		fix<='0';
+		temp_tick2<=0;
+		start_tick_point<=0;
+		start_turn_point<=0;		
+	elsif rising_edge(CLK) then   -- two rising edges until prescaler gets a new value.
       if prescaler = X"30D40" then -- 1/125 seconds in 25mhz.
 			--reset<='0';
 			speed<=to_signed(temp_tick3,16);
@@ -223,9 +243,13 @@ speed_calculate : process (CLK)
 
   end process speed_calculate;
   
-process(CLK,tick,turn) -- store state and calculate index_output from array
+process(CLK,tick,turn,Reset_D) -- store state and calculate index_output from array
 	begin
-		if RISING_EDGE(CLK) THEN
+		if Reset_D = '0' then
+			temp_array_output<=0;
+			index_output<=0;
+			tick_past<=0;
+		elsif RISING_EDGE(CLK) THEN
 		state_past<=state_present;
 		--state_past<=state_past_delay_1;
 --		case Encoder1_A is
@@ -237,7 +261,11 @@ process(CLK,tick,turn) -- store state and calculate index_output from array
 		tick_past<=tick;
 		end if;
 		
-		if FALLING_EDGE(CLK) THEN
+		if Reset_D = '0' then
+			tick<=0;
+			turn<=0;
+			overflow<="00";
+		elsif FALLING_EDGE(CLK) THEN
 			if turn > 0 then
 				if tick > ONE_TURN_TICK_COUNT then
 					tick<=0;

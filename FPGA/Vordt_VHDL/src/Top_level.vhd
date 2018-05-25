@@ -35,11 +35,15 @@ use work.all;
 entity Top_level is
 PORT ( 
 		CLK : IN STD_LOGIC;
+		reset : IN STD_LOGIC;
+		UART_RX_Reset : IN STD_LOGIC;
+		Motor1_Decoder_Reset : IN STD_LOGIC;
+		Motor2_Decoder_Reset : IN STD_LOGIC;
 		Encoder1_A : IN STD_LOGIC ;
 		Encoder1_B : IN STD_LOGIC ;
 		Encoder2_A : IN STD_LOGIC ;
 		Encoder2_B : IN STD_LOGIC ;
-		reset : IN STD_LOGIC;
+		
 		--adjust_speed : IN STD_LOGIC;
 		Sabertooth_Serial_TX : out STD_LOGIC;
 		MCU_Serial_TX : out STD_LOGIC;
@@ -145,6 +149,7 @@ begin
 -----Motor1 Entities-----
 Motor1_Decoder:entity work.Decoder
 port map (CLK=>CLK,
+			 Reset_D=>Motor1_Decoder_Reset,
 			 --Reset=>reset,
 			 Encoder_A=>Encoder1_A,
 			 Encoder_B=>Encoder1_B,
@@ -161,6 +166,7 @@ port map (CLK=>CLK,
 			 --Set_point=>x"00" & Storage_Input_Signal,
 			 Feedback=>Motor1_Velocity_Signal,
 			 Output_Command=>Motor1_Velocity_PID_OUTPUT_signal,
+			 Motor_Number=> '0', --Motor Number 1
 			 Direction_Command=>Motor1_Velocity_PID_Direction_signal
 );
 
@@ -181,6 +187,7 @@ port map (CLK=>CLK,
 -----Motor2 Entities-----
 Motor2_Decoder:entity work.Decoder
 port map (CLK=>CLK,
+			 Reset_D=>Motor2_Decoder_Reset,
 			 --Reset=>reset,
 			 Encoder_A=>Encoder2_A,
 			 Encoder_B=>Encoder2_B,
@@ -195,6 +202,7 @@ port map (CLK=>CLK,
 			 Set_point=>Motor2_Velocity_PID_SETPOINT_signal,
 			 Feedback=>Motor2_Velocity_Signal,
 			 Output_Command=>Motor2_Velocity_PID_OUTPUT_signal,
+			 Motor_Number=> '1', -- Motor Number 2
 			 Direction_Command=>Motor2_Velocity_PID_Direction_signal
 );
 
@@ -234,6 +242,7 @@ port map (i_CLK=>CLK,
 MCU_Serial_Handle:entity work.MCU_Serial_Handle
 port map (CLK=>CLK,
 			reset=>reset,
+			RX_Reset=>UART_RX_Reset,
 			TX_Done =>MCU_TX_Done_Signal,
             TX_ACTIVE => MCU_TX_ACTIVE_signal,
             RX_Done => MCU_RX_DV_Signal,

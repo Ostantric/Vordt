@@ -28,192 +28,19 @@ INFO:Timing:3339 - The clock-to-out numbers in this timing report are based on
 Timing constraint: NET "CLK_BUFGP/IBUFG" PERIOD = 20 ns HIGH 50%;
 For more information, see Period Analysis in the Timing Closure User Guide (UG612).
 
- 3830292 paths analyzed, 6965 endpoints analyzed, 0 failing endpoints
+ 2707520 paths analyzed, 7132 endpoints analyzed, 0 failing endpoints
  0 timing errors detected. (0 setup errors, 0 hold errors, 0 component switching limit errors)
- Minimum period is  15.244ns.
+ Minimum period is  14.458ns.
 --------------------------------------------------------------------------------
 
-Paths for end point I2C_Handler/Motor1_Displays_divide_4bits_3 (SLICE_X8Y28.C4), 28 paths
+Paths for end point Motor2_Decoder/temp_tick2_9 (SLICE_X23Y53.A1), 163 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     2.378ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               Motor1_Decoder/tick_2 (FF)
-  Destination:          I2C_Handler/Motor1_Displays_divide_4bits_3 (FF)
-  Requirement:          10.000ns
-  Data Path Delay:      7.591ns (Levels of Logic = 4)
-  Clock Path Skew:      0.004ns (0.715 - 0.711)
-  Source Clock:         CLK_BUFGP falling at 10.000ns
-  Destination Clock:    CLK_BUFGP rising at 20.000ns
-  Clock Uncertainty:    0.035ns
-
-  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter (TSJ):  0.070ns
-    Total Input Jitter (TIJ):   0.000ns
-    Discrete Jitter (DJ):       0.000ns
-    Phase Error (PE):           0.000ns
-
-  Maximum Data Path at Slow Process Corner: Motor1_Decoder/tick_2 to I2C_Handler/Motor1_Displays_divide_4bits_3
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X17Y42.AQ      Tcko                  0.430   Motor1_Decoder/tick<3>
-                                                       Motor1_Decoder/tick_2
-    SLICE_X13Y46.D6      net (fanout=11)       1.740   Motor1_Decoder/tick<2>
-    SLICE_X13Y46.D       Tilo                  0.259   Motor1_Decoder/start_tick_point<11>
-                                                       Motor1_Decoder/PWR_7_o_tick[16]_LessThan_137_o2112
-    SLICE_X17Y47.A2      net (fanout=2)        0.988   Motor1_Decoder/PWR_7_o_tick[16]_LessThan_137_o2111
-    SLICE_X17Y47.A       Tilo                  0.259   Motor1_Position_PID_Controller/Position_Feedback_Signal<15>
-                                                       Motor1_Decoder/Mmux_Position71
-    SLICE_X6Y33.D4       net (fanout=2)        1.952   Motor1_position_signal<15>
-    SLICE_X6Y33.CMUX     Topdc                 0.402   I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT248
-                                                       I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT249_F
-                                                       I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT249
-    SLICE_X8Y28.C4       net (fanout=1)        1.138   I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT248
-    SLICE_X8Y28.CLK      Tas                   0.423   I2C_Handler/Motor1_Displays_divide_4bits<3>
-                                                       I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT2410_G
-                                                       I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT2410
-                                                       I2C_Handler/Motor1_Displays_divide_4bits_3
-    -------------------------------------------------  ---------------------------
-    Total                                      7.591ns (1.773ns logic, 5.818ns route)
-                                                       (23.4% logic, 76.6% route)
-
---------------------------------------------------------------------------------
-Slack (setup path):     2.885ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               Motor1_Decoder/tick_5 (FF)
-  Destination:          I2C_Handler/Motor1_Displays_divide_4bits_3 (FF)
-  Requirement:          10.000ns
-  Data Path Delay:      7.082ns (Levels of Logic = 4)
-  Clock Path Skew:      0.002ns (0.715 - 0.713)
-  Source Clock:         CLK_BUFGP falling at 10.000ns
-  Destination Clock:    CLK_BUFGP rising at 20.000ns
-  Clock Uncertainty:    0.035ns
-
-  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter (TSJ):  0.070ns
-    Total Input Jitter (TIJ):   0.000ns
-    Discrete Jitter (DJ):       0.000ns
-    Phase Error (PE):           0.000ns
-
-  Maximum Data Path at Slow Process Corner: Motor1_Decoder/tick_5 to I2C_Handler/Motor1_Displays_divide_4bits_3
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X15Y43.CQ      Tcko                  0.430   Motor1_Decoder/tick<5>
-                                                       Motor1_Decoder/tick_5
-    SLICE_X13Y46.D2      net (fanout=11)       1.231   Motor1_Decoder/tick<5>
-    SLICE_X13Y46.D       Tilo                  0.259   Motor1_Decoder/start_tick_point<11>
-                                                       Motor1_Decoder/PWR_7_o_tick[16]_LessThan_137_o2112
-    SLICE_X17Y47.A2      net (fanout=2)        0.988   Motor1_Decoder/PWR_7_o_tick[16]_LessThan_137_o2111
-    SLICE_X17Y47.A       Tilo                  0.259   Motor1_Position_PID_Controller/Position_Feedback_Signal<15>
-                                                       Motor1_Decoder/Mmux_Position71
-    SLICE_X6Y33.D4       net (fanout=2)        1.952   Motor1_position_signal<15>
-    SLICE_X6Y33.CMUX     Topdc                 0.402   I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT248
-                                                       I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT249_F
-                                                       I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT249
-    SLICE_X8Y28.C4       net (fanout=1)        1.138   I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT248
-    SLICE_X8Y28.CLK      Tas                   0.423   I2C_Handler/Motor1_Displays_divide_4bits<3>
-                                                       I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT2410_G
-                                                       I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT2410
-                                                       I2C_Handler/Motor1_Displays_divide_4bits_3
-    -------------------------------------------------  ---------------------------
-    Total                                      7.082ns (1.773ns logic, 5.309ns route)
-                                                       (25.0% logic, 75.0% route)
-
---------------------------------------------------------------------------------
-Slack (setup path):     2.923ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               Motor1_Decoder/tick_4 (FF)
-  Destination:          I2C_Handler/Motor1_Displays_divide_4bits_3 (FF)
-  Requirement:          10.000ns
-  Data Path Delay:      7.044ns (Levels of Logic = 4)
-  Clock Path Skew:      0.002ns (0.715 - 0.713)
-  Source Clock:         CLK_BUFGP falling at 10.000ns
-  Destination Clock:    CLK_BUFGP rising at 20.000ns
-  Clock Uncertainty:    0.035ns
-
-  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter (TSJ):  0.070ns
-    Total Input Jitter (TIJ):   0.000ns
-    Discrete Jitter (DJ):       0.000ns
-    Phase Error (PE):           0.000ns
-
-  Maximum Data Path at Slow Process Corner: Motor1_Decoder/tick_4 to I2C_Handler/Motor1_Displays_divide_4bits_3
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X15Y43.AQ      Tcko                  0.430   Motor1_Decoder/tick<5>
-                                                       Motor1_Decoder/tick_4
-    SLICE_X13Y46.D4      net (fanout=11)       1.193   Motor1_Decoder/tick<4>
-    SLICE_X13Y46.D       Tilo                  0.259   Motor1_Decoder/start_tick_point<11>
-                                                       Motor1_Decoder/PWR_7_o_tick[16]_LessThan_137_o2112
-    SLICE_X17Y47.A2      net (fanout=2)        0.988   Motor1_Decoder/PWR_7_o_tick[16]_LessThan_137_o2111
-    SLICE_X17Y47.A       Tilo                  0.259   Motor1_Position_PID_Controller/Position_Feedback_Signal<15>
-                                                       Motor1_Decoder/Mmux_Position71
-    SLICE_X6Y33.D4       net (fanout=2)        1.952   Motor1_position_signal<15>
-    SLICE_X6Y33.CMUX     Topdc                 0.402   I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT248
-                                                       I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT249_F
-                                                       I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT249
-    SLICE_X8Y28.C4       net (fanout=1)        1.138   I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT248
-    SLICE_X8Y28.CLK      Tas                   0.423   I2C_Handler/Motor1_Displays_divide_4bits<3>
-                                                       I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT2410_G
-                                                       I2C_Handler/Mmux_Motor1_Displays_State_Machine[3]_X_15_o_wide_mux_127_OUT2410
-                                                       I2C_Handler/Motor1_Displays_divide_4bits_3
-    -------------------------------------------------  ---------------------------
-    Total                                      7.044ns (1.773ns logic, 5.271ns route)
-                                                       (25.2% logic, 74.8% route)
-
---------------------------------------------------------------------------------
-
-Paths for end point Motor2_Decoder/temp_tick2_14 (SLICE_X10Y33.C3), 358 paths
---------------------------------------------------------------------------------
-Slack (setup path):     2.818ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               Motor2_Decoder/tick_9 (FF)
-  Destination:          Motor2_Decoder/temp_tick2_14 (FF)
-  Requirement:          10.000ns
-  Data Path Delay:      7.147ns (Levels of Logic = 5)
-  Clock Path Skew:      0.000ns
-  Source Clock:         CLK_BUFGP falling at 10.000ns
-  Destination Clock:    CLK_BUFGP rising at 20.000ns
-  Clock Uncertainty:    0.035ns
-
-  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
-    Total System Jitter (TSJ):  0.070ns
-    Total Input Jitter (TIJ):   0.000ns
-    Discrete Jitter (DJ):       0.000ns
-    Phase Error (PE):           0.000ns
-
-  Maximum Data Path at Slow Process Corner: Motor2_Decoder/tick_9 to Motor2_Decoder/temp_tick2_14
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X13Y29.CQ      Tcko                  0.430   Motor2_Decoder/tick<9>
-                                                       Motor2_Decoder/tick_9
-    SLICE_X16Y28.B3      net (fanout=11)       0.921   Motor2_Decoder/tick<9>
-    SLICE_X16Y28.COUT    Topcyb                0.483   Motor2_Decoder/Msub_n0342_Madd_cy<11>
-                                                       Motor2_Decoder/Msub_n0342_Madd_lut<9>_INV_0
-                                                       Motor2_Decoder/Msub_n0342_Madd_cy<11>
-    SLICE_X16Y29.CIN     net (fanout=1)        0.003   Motor2_Decoder/Msub_n0342_Madd_cy<11>
-    SLICE_X16Y29.AMUX    Tcina                 0.220   Motor2_Decoder/Msub_n0342_Madd_cy<15>
-                                                       Motor2_Decoder/Msub_n0342_Madd_cy<15>
-    SLICE_X12Y35.A1      net (fanout=2)        1.340   Motor2_Decoder/n0342<12>
-    SLICE_X12Y35.AMUX    Tilo                  0.326   Motor2_Decoder/n0231<13>
-                                                       Motor2_Decoder/Madd_n0231_Madd12
-    SLICE_X12Y35.BX      net (fanout=2)        1.624   Motor2_Decoder/Madd_n0231_Madd12
-    SLICE_X12Y35.CMUX    Taxc                  0.376   Motor2_Decoder/n0231<13>
-                                                       Motor2_Decoder/Madd_n0231_Madd_xor<0>_14
-    SLICE_X10Y33.C3      net (fanout=1)        1.075   Motor2_Decoder/n0231<14>
-    SLICE_X10Y33.CLK     Tas                   0.349   Motor2_Decoder/temp_tick2<15>
-                                                       Motor2_Decoder/Mmux_tick[16]_BUS_0011_mux_69_OUT61
-                                                       Motor2_Decoder/temp_tick2_14
-    -------------------------------------------------  ---------------------------
-    Total                                      7.147ns (2.184ns logic, 4.963ns route)
-                                                       (30.6% logic, 69.4% route)
-
---------------------------------------------------------------------------------
-Slack (setup path):     2.826ns (requirement - (data path - clock path skew + uncertainty))
+Slack (setup path):     2.927ns (requirement - (data path - clock path skew + uncertainty))
   Source:               Motor2_Decoder/tick_0 (FF)
-  Destination:          Motor2_Decoder/temp_tick2_14 (FF)
+  Destination:          Motor2_Decoder/temp_tick2_9 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      7.143ns (Levels of Logic = 7)
-  Clock Path Skew:      0.004ns (0.717 - 0.713)
+  Data Path Delay:      7.021ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.017ns (0.188 - 0.205)
   Source Clock:         CLK_BUFGP falling at 10.000ns
   Destination Clock:    CLK_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -224,46 +51,44 @@ Slack (setup path):     2.826ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: Motor2_Decoder/tick_0 to Motor2_Decoder/temp_tick2_14
+  Maximum Data Path at Slow Process Corner: Motor2_Decoder/tick_0 to Motor2_Decoder/temp_tick2_9
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X15Y27.AQ      Tcko                  0.430   Motor2_Decoder/tick<1>
+    SLICE_X22Y50.CQ      Tcko                  0.476   Motor2_Decoder/tick<0>
                                                        Motor2_Decoder/tick_0
-    SLICE_X16Y26.A4      net (fanout=11)       0.734   Motor2_Decoder/tick<0>
-    SLICE_X16Y26.COUT    Topcya                0.474   Motor2_Decoder/Msub_n0342_Madd_cy<3>
-                                                       Motor2_Decoder/tick<0>_rt
-                                                       Motor2_Decoder/Msub_n0342_Madd_cy<3>
-    SLICE_X16Y27.CIN     net (fanout=1)        0.003   Motor2_Decoder/Msub_n0342_Madd_cy<3>
-    SLICE_X16Y27.COUT    Tbyp                  0.093   Motor2_Decoder/Msub_n0342_Madd_cy<7>
-                                                       Motor2_Decoder/Msub_n0342_Madd_cy<7>
-    SLICE_X16Y28.CIN     net (fanout=1)        0.003   Motor2_Decoder/Msub_n0342_Madd_cy<7>
-    SLICE_X16Y28.COUT    Tbyp                  0.093   Motor2_Decoder/Msub_n0342_Madd_cy<11>
-                                                       Motor2_Decoder/Msub_n0342_Madd_cy<11>
-    SLICE_X16Y29.CIN     net (fanout=1)        0.003   Motor2_Decoder/Msub_n0342_Madd_cy<11>
-    SLICE_X16Y29.AMUX    Tcina                 0.220   Motor2_Decoder/Msub_n0342_Madd_cy<15>
-                                                       Motor2_Decoder/Msub_n0342_Madd_cy<15>
-    SLICE_X12Y35.A1      net (fanout=2)        1.340   Motor2_Decoder/n0342<12>
-    SLICE_X12Y35.AMUX    Tilo                  0.326   Motor2_Decoder/n0231<13>
-                                                       Motor2_Decoder/Madd_n0231_Madd12
-    SLICE_X12Y35.BX      net (fanout=2)        1.624   Motor2_Decoder/Madd_n0231_Madd12
-    SLICE_X12Y35.CMUX    Taxc                  0.376   Motor2_Decoder/n0231<13>
-                                                       Motor2_Decoder/Madd_n0231_Madd_xor<0>_14
-    SLICE_X10Y33.C3      net (fanout=1)        1.075   Motor2_Decoder/n0231<14>
-    SLICE_X10Y33.CLK     Tas                   0.349   Motor2_Decoder/temp_tick2<15>
-                                                       Motor2_Decoder/Mmux_tick[16]_BUS_0011_mux_69_OUT61
-                                                       Motor2_Decoder/temp_tick2_14
+    SLICE_X18Y51.A4      net (fanout=11)       0.988   Motor2_Decoder/tick<0>
+    SLICE_X18Y51.CMUX    Topac                 0.636   Motor2_Decoder/Madd_n0257_Madd_cy<3>
+                                                       Motor2_Decoder/Madd_n0257_Madd_lut<0>_INV_0
+                                                       Motor2_Decoder/Madd_n0257_Madd_cy<3>
+    SLICE_X20Y54.C3      net (fanout=2)        0.958   Motor2_Decoder/n0257<2>
+    SLICE_X20Y54.CMUX    Tilo                  0.326   Motor2_Decoder/n0156<3>
+                                                       Motor2_Decoder/Madd_n0156_Madd2
+    SLICE_X20Y54.DX      net (fanout=2)        1.171   Motor2_Decoder/Madd_n0156_Madd2
+    SLICE_X20Y54.COUT    Tdxcy                 0.109   Motor2_Decoder/n0156<3>
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_2
+    SLICE_X20Y55.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0156_Madd_cy<0>3
+    SLICE_X20Y55.COUT    Tbyp                  0.093   Motor2_Decoder/n0156<7>
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_6
+    SLICE_X20Y56.CIN     net (fanout=1)        0.082   Motor2_Decoder/Madd_n0156_Madd_cy<0>7
+    SLICE_X20Y56.BQ      Tito_logic            0.788   Motor2_Decoder/n0156<11>
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_10
+                                                       Motor2_Decoder/n0156<9>_rt
+    SLICE_X23Y53.A1      net (fanout=1)        1.018   Motor2_Decoder/n0156<9>
+    SLICE_X23Y53.CLK     Tas                   0.373   Motor2_Decoder/temp_tick2<12>
+                                                       Motor2_Decoder/Mmux_tick[16]_BUS_0021_mux_28_OUT161
+                                                       Motor2_Decoder/temp_tick2_9
     -------------------------------------------------  ---------------------------
-    Total                                      7.143ns (2.361ns logic, 4.782ns route)
-                                                       (33.1% logic, 66.9% route)
+    Total                                      7.021ns (2.801ns logic, 4.220ns route)
+                                                       (39.9% logic, 60.1% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     2.924ns (requirement - (data path - clock path skew + uncertainty))
-  Source:               Motor2_Decoder/tick_4 (FF)
-  Destination:          Motor2_Decoder/temp_tick2_14 (FF)
+Slack (setup path):     2.973ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               Motor2_Decoder/tick_0 (FF)
+  Destination:          Motor2_Decoder/temp_tick2_9 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      7.043ns (Levels of Logic = 6)
-  Clock Path Skew:      0.002ns (0.717 - 0.715)
+  Data Path Delay:      6.975ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.017ns (0.188 - 0.205)
   Source Clock:         CLK_BUFGP falling at 10.000ns
   Destination Clock:    CLK_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -274,46 +99,237 @@ Slack (setup path):     2.924ns (requirement - (data path - clock path skew + un
     Discrete Jitter (DJ):       0.000ns
     Phase Error (PE):           0.000ns
 
-  Maximum Data Path at Slow Process Corner: Motor2_Decoder/tick_4 to Motor2_Decoder/temp_tick2_14
+  Maximum Data Path at Slow Process Corner: Motor2_Decoder/tick_0 to Motor2_Decoder/temp_tick2_9
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X15Y28.AQ      Tcko                  0.430   Motor2_Decoder/tick<5>
-                                                       Motor2_Decoder/tick_4
-    SLICE_X16Y27.A4      net (fanout=10)       0.730   Motor2_Decoder/tick<4>
-    SLICE_X16Y27.COUT    Topcya                0.474   Motor2_Decoder/Msub_n0342_Madd_cy<7>
-                                                       Motor2_Decoder/Msub_n0342_Madd_lut<4>_INV_0
-                                                       Motor2_Decoder/Msub_n0342_Madd_cy<7>
-    SLICE_X16Y28.CIN     net (fanout=1)        0.003   Motor2_Decoder/Msub_n0342_Madd_cy<7>
-    SLICE_X16Y28.COUT    Tbyp                  0.093   Motor2_Decoder/Msub_n0342_Madd_cy<11>
-                                                       Motor2_Decoder/Msub_n0342_Madd_cy<11>
-    SLICE_X16Y29.CIN     net (fanout=1)        0.003   Motor2_Decoder/Msub_n0342_Madd_cy<11>
-    SLICE_X16Y29.AMUX    Tcina                 0.220   Motor2_Decoder/Msub_n0342_Madd_cy<15>
-                                                       Motor2_Decoder/Msub_n0342_Madd_cy<15>
-    SLICE_X12Y35.A1      net (fanout=2)        1.340   Motor2_Decoder/n0342<12>
-    SLICE_X12Y35.AMUX    Tilo                  0.326   Motor2_Decoder/n0231<13>
-                                                       Motor2_Decoder/Madd_n0231_Madd12
-    SLICE_X12Y35.BX      net (fanout=2)        1.624   Motor2_Decoder/Madd_n0231_Madd12
-    SLICE_X12Y35.CMUX    Taxc                  0.376   Motor2_Decoder/n0231<13>
-                                                       Motor2_Decoder/Madd_n0231_Madd_xor<0>_14
-    SLICE_X10Y33.C3      net (fanout=1)        1.075   Motor2_Decoder/n0231<14>
-    SLICE_X10Y33.CLK     Tas                   0.349   Motor2_Decoder/temp_tick2<15>
-                                                       Motor2_Decoder/Mmux_tick[16]_BUS_0011_mux_69_OUT61
-                                                       Motor2_Decoder/temp_tick2_14
+    SLICE_X22Y50.CQ      Tcko                  0.476   Motor2_Decoder/tick<0>
+                                                       Motor2_Decoder/tick_0
+    SLICE_X18Y51.A4      net (fanout=11)       0.988   Motor2_Decoder/tick<0>
+    SLICE_X18Y51.COUT    Topcya                0.472   Motor2_Decoder/Madd_n0257_Madd_cy<3>
+                                                       Motor2_Decoder/Madd_n0257_Madd_lut<0>_INV_0
+                                                       Motor2_Decoder/Madd_n0257_Madd_cy<3>
+    SLICE_X18Y52.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0257_Madd_cy<3>
+    SLICE_X18Y52.AMUX    Tcina                 0.210   Motor2_Decoder/temp_tick3<15>
+                                                       Motor2_Decoder/Madd_n0257_Madd_cy<7>
+    SLICE_X20Y55.A4      net (fanout=2)        0.886   Motor2_Decoder/n0257<4>
+    SLICE_X20Y55.AMUX    Tilo                  0.326   Motor2_Decoder/n0156<7>
+                                                       Motor2_Decoder/Madd_n0156_Madd4
+    SLICE_X20Y55.BX      net (fanout=2)        1.197   Motor2_Decoder/Madd_n0156_Madd4
+    SLICE_X20Y55.COUT    Tbxcy                 0.156   Motor2_Decoder/n0156<7>
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_6
+    SLICE_X20Y56.CIN     net (fanout=1)        0.082   Motor2_Decoder/Madd_n0156_Madd_cy<0>7
+    SLICE_X20Y56.BQ      Tito_logic            0.788   Motor2_Decoder/n0156<11>
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_10
+                                                       Motor2_Decoder/n0156<9>_rt
+    SLICE_X23Y53.A1      net (fanout=1)        1.018   Motor2_Decoder/n0156<9>
+    SLICE_X23Y53.CLK     Tas                   0.373   Motor2_Decoder/temp_tick2<12>
+                                                       Motor2_Decoder/Mmux_tick[16]_BUS_0021_mux_28_OUT161
+                                                       Motor2_Decoder/temp_tick2_9
     -------------------------------------------------  ---------------------------
-    Total                                      7.043ns (2.268ns logic, 4.775ns route)
-                                                       (32.2% logic, 67.8% route)
+    Total                                      6.975ns (2.801ns logic, 4.174ns route)
+                                                       (40.2% logic, 59.8% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     3.005ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               Motor2_Decoder/tick_2 (FF)
+  Destination:          Motor2_Decoder/temp_tick2_9 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      6.943ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.017ns (0.188 - 0.205)
+  Source Clock:         CLK_BUFGP falling at 10.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: Motor2_Decoder/tick_2 to Motor2_Decoder/temp_tick2_9
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X22Y50.BQ      Tcko                  0.476   Motor2_Decoder/tick<0>
+                                                       Motor2_Decoder/tick_2
+    SLICE_X18Y51.C4      net (fanout=11)       1.077   Motor2_Decoder/tick<2>
+    SLICE_X18Y51.CMUX    Topcc                 0.469   Motor2_Decoder/Madd_n0257_Madd_cy<3>
+                                                       Motor2_Decoder/tick<2>_rt
+                                                       Motor2_Decoder/Madd_n0257_Madd_cy<3>
+    SLICE_X20Y54.C3      net (fanout=2)        0.958   Motor2_Decoder/n0257<2>
+    SLICE_X20Y54.CMUX    Tilo                  0.326   Motor2_Decoder/n0156<3>
+                                                       Motor2_Decoder/Madd_n0156_Madd2
+    SLICE_X20Y54.DX      net (fanout=2)        1.171   Motor2_Decoder/Madd_n0156_Madd2
+    SLICE_X20Y54.COUT    Tdxcy                 0.109   Motor2_Decoder/n0156<3>
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_2
+    SLICE_X20Y55.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0156_Madd_cy<0>3
+    SLICE_X20Y55.COUT    Tbyp                  0.093   Motor2_Decoder/n0156<7>
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_6
+    SLICE_X20Y56.CIN     net (fanout=1)        0.082   Motor2_Decoder/Madd_n0156_Madd_cy<0>7
+    SLICE_X20Y56.BQ      Tito_logic            0.788   Motor2_Decoder/n0156<11>
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_10
+                                                       Motor2_Decoder/n0156<9>_rt
+    SLICE_X23Y53.A1      net (fanout=1)        1.018   Motor2_Decoder/n0156<9>
+    SLICE_X23Y53.CLK     Tas                   0.373   Motor2_Decoder/temp_tick2<12>
+                                                       Motor2_Decoder/Mmux_tick[16]_BUS_0021_mux_28_OUT161
+                                                       Motor2_Decoder/temp_tick2_9
+    -------------------------------------------------  ---------------------------
+    Total                                      6.943ns (2.634ns logic, 4.309ns route)
+                                                       (37.9% logic, 62.1% route)
 
 --------------------------------------------------------------------------------
 
-Paths for end point Motor2_Decoder/temp_tick2_13 (SLICE_X10Y33.B3), 313 paths
+Paths for end point Motor2_Decoder/temp_tick2_10 (SLICE_X23Y53.B1), 196 paths
 --------------------------------------------------------------------------------
-Slack (setup path):     3.031ns (requirement - (data path - clock path skew + uncertainty))
+Slack (setup path):     2.996ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               Motor2_Decoder/tick_0 (FF)
+  Destination:          Motor2_Decoder/temp_tick2_10 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      6.952ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.017ns (0.188 - 0.205)
+  Source Clock:         CLK_BUFGP falling at 10.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: Motor2_Decoder/tick_0 to Motor2_Decoder/temp_tick2_10
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X22Y50.CQ      Tcko                  0.476   Motor2_Decoder/tick<0>
+                                                       Motor2_Decoder/tick_0
+    SLICE_X18Y51.A4      net (fanout=11)       0.988   Motor2_Decoder/tick<0>
+    SLICE_X18Y51.CMUX    Topac                 0.636   Motor2_Decoder/Madd_n0257_Madd_cy<3>
+                                                       Motor2_Decoder/Madd_n0257_Madd_lut<0>_INV_0
+                                                       Motor2_Decoder/Madd_n0257_Madd_cy<3>
+    SLICE_X20Y54.C3      net (fanout=2)        0.958   Motor2_Decoder/n0257<2>
+    SLICE_X20Y54.CMUX    Tilo                  0.326   Motor2_Decoder/n0156<3>
+                                                       Motor2_Decoder/Madd_n0156_Madd2
+    SLICE_X20Y54.DX      net (fanout=2)        1.171   Motor2_Decoder/Madd_n0156_Madd2
+    SLICE_X20Y54.COUT    Tdxcy                 0.109   Motor2_Decoder/n0156<3>
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_2
+    SLICE_X20Y55.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0156_Madd_cy<0>3
+    SLICE_X20Y55.COUT    Tbyp                  0.093   Motor2_Decoder/n0156<7>
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_6
+    SLICE_X20Y56.CIN     net (fanout=1)        0.082   Motor2_Decoder/Madd_n0156_Madd_cy<0>7
+    SLICE_X20Y56.CQ      Tito_logic            0.757   Motor2_Decoder/n0156<11>
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_10
+                                                       Motor2_Decoder/n0156<10>_rt
+    SLICE_X23Y53.B1      net (fanout=1)        0.980   Motor2_Decoder/n0156<10>
+    SLICE_X23Y53.CLK     Tas                   0.373   Motor2_Decoder/temp_tick2<12>
+                                                       Motor2_Decoder/Mmux_tick[16]_BUS_0021_mux_28_OUT21
+                                                       Motor2_Decoder/temp_tick2_10
+    -------------------------------------------------  ---------------------------
+    Total                                      6.952ns (2.770ns logic, 4.182ns route)
+                                                       (39.8% logic, 60.2% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     3.020ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               Motor2_Decoder/tick_0 (FF)
+  Destination:          Motor2_Decoder/temp_tick2_10 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      6.928ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.017ns (0.188 - 0.205)
+  Source Clock:         CLK_BUFGP falling at 10.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: Motor2_Decoder/tick_0 to Motor2_Decoder/temp_tick2_10
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X22Y50.CQ      Tcko                  0.476   Motor2_Decoder/tick<0>
+                                                       Motor2_Decoder/tick_0
+    SLICE_X18Y51.A4      net (fanout=11)       0.988   Motor2_Decoder/tick<0>
+    SLICE_X18Y51.COUT    Topcya                0.472   Motor2_Decoder/Madd_n0257_Madd_cy<3>
+                                                       Motor2_Decoder/Madd_n0257_Madd_lut<0>_INV_0
+                                                       Motor2_Decoder/Madd_n0257_Madd_cy<3>
+    SLICE_X18Y52.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0257_Madd_cy<3>
+    SLICE_X18Y52.DMUX    Tcind                 0.289   Motor2_Decoder/temp_tick3<15>
+                                                       Motor2_Decoder/Madd_n0257_Madd_cy<7>
+    SLICE_X20Y55.D1      net (fanout=2)        1.411   Motor2_Decoder/n0257<7>
+    SLICE_X20Y55.DMUX    Tilo                  0.326   Motor2_Decoder/n0156<7>
+                                                       Motor2_Decoder/Madd_n0156_Madd7
+    SLICE_X20Y56.A5      net (fanout=2)        0.499   Motor2_Decoder/Madd_n0156_Madd7
+    SLICE_X20Y56.CQ      Tad_logic             1.111   Motor2_Decoder/n0156<11>
+                                                       Motor2_Decoder/Madd_n0156_Madd_lut<0>8
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_10
+                                                       Motor2_Decoder/n0156<10>_rt
+    SLICE_X23Y53.B1      net (fanout=1)        0.980   Motor2_Decoder/n0156<10>
+    SLICE_X23Y53.CLK     Tas                   0.373   Motor2_Decoder/temp_tick2<12>
+                                                       Motor2_Decoder/Mmux_tick[16]_BUS_0021_mux_28_OUT21
+                                                       Motor2_Decoder/temp_tick2_10
+    -------------------------------------------------  ---------------------------
+    Total                                      6.928ns (3.047ns logic, 3.881ns route)
+                                                       (44.0% logic, 56.0% route)
+
+--------------------------------------------------------------------------------
+Slack (setup path):     3.024ns (requirement - (data path - clock path skew + uncertainty))
+  Source:               Motor2_Decoder/tick_0 (FF)
+  Destination:          Motor2_Decoder/temp_tick2_10 (FF)
+  Requirement:          10.000ns
+  Data Path Delay:      6.924ns (Levels of Logic = 5)
+  Clock Path Skew:      -0.017ns (0.188 - 0.205)
+  Source Clock:         CLK_BUFGP falling at 10.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.035ns
+
+  Clock Uncertainty:          0.035ns  ((TSJ^2 + TIJ^2)^1/2 + DJ) / 2 + PE
+    Total System Jitter (TSJ):  0.070ns
+    Total Input Jitter (TIJ):   0.000ns
+    Discrete Jitter (DJ):       0.000ns
+    Phase Error (PE):           0.000ns
+
+  Maximum Data Path at Slow Process Corner: Motor2_Decoder/tick_0 to Motor2_Decoder/temp_tick2_10
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X22Y50.CQ      Tcko                  0.476   Motor2_Decoder/tick<0>
+                                                       Motor2_Decoder/tick_0
+    SLICE_X18Y51.A4      net (fanout=11)       0.988   Motor2_Decoder/tick<0>
+    SLICE_X18Y51.COUT    Topcya                0.472   Motor2_Decoder/Madd_n0257_Madd_cy<3>
+                                                       Motor2_Decoder/Madd_n0257_Madd_lut<0>_INV_0
+                                                       Motor2_Decoder/Madd_n0257_Madd_cy<3>
+    SLICE_X18Y52.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0257_Madd_cy<3>
+    SLICE_X18Y52.DMUX    Tcind                 0.289   Motor2_Decoder/temp_tick3<15>
+                                                       Motor2_Decoder/Madd_n0257_Madd_cy<7>
+    SLICE_X20Y55.D1      net (fanout=2)        1.411   Motor2_Decoder/n0257<7>
+    SLICE_X20Y55.DMUX    Tilo                  0.326   Motor2_Decoder/n0156<7>
+                                                       Motor2_Decoder/Madd_n0156_Madd7
+    SLICE_X20Y56.AX      net (fanout=2)        0.737   Motor2_Decoder/Madd_n0156_Madd7
+    SLICE_X20Y56.CQ      Tito_logic            0.869   Motor2_Decoder/n0156<11>
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_10
+                                                       Motor2_Decoder/n0156<10>_rt
+    SLICE_X23Y53.B1      net (fanout=1)        0.980   Motor2_Decoder/n0156<10>
+    SLICE_X23Y53.CLK     Tas                   0.373   Motor2_Decoder/temp_tick2<12>
+                                                       Motor2_Decoder/Mmux_tick[16]_BUS_0021_mux_28_OUT21
+                                                       Motor2_Decoder/temp_tick2_10
+    -------------------------------------------------  ---------------------------
+    Total                                      6.924ns (2.805ns logic, 4.119ns route)
+                                                       (40.5% logic, 59.5% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point Motor2_Decoder/temp_tick2_13 (SLICE_X23Y54.A5), 313 paths
+--------------------------------------------------------------------------------
+Slack (setup path):     3.123ns (requirement - (data path - clock path skew + uncertainty))
   Source:               Motor2_Decoder/tick_0 (FF)
   Destination:          Motor2_Decoder/temp_tick2_13 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      6.938ns (Levels of Logic = 7)
-  Clock Path Skew:      0.004ns (0.717 - 0.713)
+  Data Path Delay:      6.823ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.019ns (0.186 - 0.205)
   Source Clock:         CLK_BUFGP falling at 10.000ns
   Destination Clock:    CLK_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -328,43 +344,40 @@ Slack (setup path):     3.031ns (requirement - (data path - clock path skew + un
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X15Y27.AQ      Tcko                  0.430   Motor2_Decoder/tick<1>
+    SLICE_X22Y50.CQ      Tcko                  0.476   Motor2_Decoder/tick<0>
                                                        Motor2_Decoder/tick_0
-    SLICE_X16Y26.A4      net (fanout=11)       0.734   Motor2_Decoder/tick<0>
-    SLICE_X16Y26.COUT    Topcya                0.474   Motor2_Decoder/Msub_n0342_Madd_cy<3>
-                                                       Motor2_Decoder/tick<0>_rt
-                                                       Motor2_Decoder/Msub_n0342_Madd_cy<3>
-    SLICE_X16Y27.CIN     net (fanout=1)        0.003   Motor2_Decoder/Msub_n0342_Madd_cy<3>
-    SLICE_X16Y27.COUT    Tbyp                  0.093   Motor2_Decoder/Msub_n0342_Madd_cy<7>
-                                                       Motor2_Decoder/Msub_n0342_Madd_cy<7>
-    SLICE_X16Y28.CIN     net (fanout=1)        0.003   Motor2_Decoder/Msub_n0342_Madd_cy<7>
-    SLICE_X16Y28.AMUX    Tcina                 0.220   Motor2_Decoder/Msub_n0342_Madd_cy<11>
-                                                       Motor2_Decoder/Msub_n0342_Madd_cy<11>
-    SLICE_X12Y34.A4      net (fanout=2)        1.094   Motor2_Decoder/n0342<8>
-    SLICE_X12Y34.AMUX    Tilo                  0.326   Motor2_Decoder/n0231<11>
-                                                       Motor2_Decoder/Madd_n0231_Madd8
-    SLICE_X12Y34.BX      net (fanout=2)        1.197   Motor2_Decoder/Madd_n0231_Madd8
-    SLICE_X12Y34.COUT    Tbxcy                 0.156   Motor2_Decoder/n0231<11>
-                                                       Motor2_Decoder/Madd_n0231_Madd_cy<0>_10
-    SLICE_X12Y35.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0231_Madd_cy<0>11
-    SLICE_X12Y35.BQ      Tito_logic            0.788   Motor2_Decoder/n0231<13>
-                                                       Motor2_Decoder/Madd_n0231_Madd_xor<0>_14
-                                                       Motor2_Decoder/n0231<13>_rt
-    SLICE_X10Y33.B3      net (fanout=1)        1.068   Motor2_Decoder/n0231<13>
-    SLICE_X10Y33.CLK     Tas                   0.349   Motor2_Decoder/temp_tick2<15>
-                                                       Motor2_Decoder/Mmux_tick[16]_BUS_0011_mux_69_OUT51
+    SLICE_X18Y51.A4      net (fanout=11)       0.988   Motor2_Decoder/tick<0>
+    SLICE_X18Y51.COUT    Topcya                0.472   Motor2_Decoder/Madd_n0257_Madd_cy<3>
+                                                       Motor2_Decoder/Madd_n0257_Madd_lut<0>_INV_0
+                                                       Motor2_Decoder/Madd_n0257_Madd_cy<3>
+    SLICE_X18Y52.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0257_Madd_cy<3>
+    SLICE_X18Y52.DMUX    Tcind                 0.289   Motor2_Decoder/temp_tick3<15>
+                                                       Motor2_Decoder/Madd_n0257_Madd_cy<7>
+    SLICE_X20Y55.D1      net (fanout=2)        1.411   Motor2_Decoder/n0257<7>
+    SLICE_X20Y55.DMUX    Tilo                  0.326   Motor2_Decoder/n0156<7>
+                                                       Motor2_Decoder/Madd_n0156_Madd7
+    SLICE_X20Y56.AX      net (fanout=2)        0.737   Motor2_Decoder/Madd_n0156_Madd7
+    SLICE_X20Y56.COUT    Taxcy                 0.248   Motor2_Decoder/n0156<11>
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_10
+    SLICE_X20Y57.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0156_Madd_cy<0>11
+    SLICE_X20Y57.BQ      Tito_logic            0.788   Motor2_Decoder/n0156<13>
+                                                       Motor2_Decoder/Madd_n0156_Madd_xor<0>_14
+                                                       Motor2_Decoder/n0156<13>_rt
+    SLICE_X23Y54.A5      net (fanout=1)        0.709   Motor2_Decoder/n0156<13>
+    SLICE_X23Y54.CLK     Tas                   0.373   Motor2_Decoder/temp_tick2<15>
+                                                       Motor2_Decoder/Mmux_tick[16]_BUS_0021_mux_28_OUT51
                                                        Motor2_Decoder/temp_tick2_13
     -------------------------------------------------  ---------------------------
-    Total                                      6.938ns (2.836ns logic, 4.102ns route)
-                                                       (40.9% logic, 59.1% route)
+    Total                                      6.823ns (2.972ns logic, 3.851ns route)
+                                                       (43.6% logic, 56.4% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     3.038ns (requirement - (data path - clock path skew + uncertainty))
+Slack (setup path):     3.135ns (requirement - (data path - clock path skew + uncertainty))
   Source:               Motor2_Decoder/tick_0 (FF)
   Destination:          Motor2_Decoder/temp_tick2_13 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      6.931ns (Levels of Logic = 7)
-  Clock Path Skew:      0.004ns (0.717 - 0.713)
+  Data Path Delay:      6.811ns (Levels of Logic = 6)
+  Clock Path Skew:      -0.019ns (0.186 - 0.205)
   Source Clock:         CLK_BUFGP falling at 10.000ns
   Destination Clock:    CLK_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -379,43 +392,41 @@ Slack (setup path):     3.038ns (requirement - (data path - clock path skew + un
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X15Y27.AQ      Tcko                  0.430   Motor2_Decoder/tick<1>
+    SLICE_X22Y50.CQ      Tcko                  0.476   Motor2_Decoder/tick<0>
                                                        Motor2_Decoder/tick_0
-    SLICE_X16Y26.A4      net (fanout=11)       0.734   Motor2_Decoder/tick<0>
-    SLICE_X16Y26.COUT    Topcya                0.474   Motor2_Decoder/Msub_n0342_Madd_cy<3>
-                                                       Motor2_Decoder/tick<0>_rt
-                                                       Motor2_Decoder/Msub_n0342_Madd_cy<3>
-    SLICE_X16Y27.CIN     net (fanout=1)        0.003   Motor2_Decoder/Msub_n0342_Madd_cy<3>
-    SLICE_X16Y27.CMUX    Tcinc                 0.279   Motor2_Decoder/Msub_n0342_Madd_cy<7>
-                                                       Motor2_Decoder/Msub_n0342_Madd_cy<7>
-    SLICE_X12Y33.C4      net (fanout=2)        1.101   Motor2_Decoder/n0342<6>
-    SLICE_X12Y33.CMUX    Tilo                  0.326   Motor2_Decoder/n0231<7>
-                                                       Motor2_Decoder/Madd_n0231_Madd6
-    SLICE_X12Y33.DX      net (fanout=2)        1.171   Motor2_Decoder/Madd_n0231_Madd6
-    SLICE_X12Y33.COUT    Tdxcy                 0.109   Motor2_Decoder/n0231<7>
-                                                       Motor2_Decoder/Madd_n0231_Madd_cy<0>_6
-    SLICE_X12Y34.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0231_Madd_cy<0>7
-    SLICE_X12Y34.COUT    Tbyp                  0.093   Motor2_Decoder/n0231<11>
-                                                       Motor2_Decoder/Madd_n0231_Madd_cy<0>_10
-    SLICE_X12Y35.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0231_Madd_cy<0>11
-    SLICE_X12Y35.BQ      Tito_logic            0.788   Motor2_Decoder/n0231<13>
-                                                       Motor2_Decoder/Madd_n0231_Madd_xor<0>_14
-                                                       Motor2_Decoder/n0231<13>_rt
-    SLICE_X10Y33.B3      net (fanout=1)        1.068   Motor2_Decoder/n0231<13>
-    SLICE_X10Y33.CLK     Tas                   0.349   Motor2_Decoder/temp_tick2<15>
-                                                       Motor2_Decoder/Mmux_tick[16]_BUS_0011_mux_69_OUT51
+    SLICE_X18Y51.A4      net (fanout=11)       0.988   Motor2_Decoder/tick<0>
+    SLICE_X18Y51.COUT    Topcya                0.472   Motor2_Decoder/Madd_n0257_Madd_cy<3>
+                                                       Motor2_Decoder/Madd_n0257_Madd_lut<0>_INV_0
+                                                       Motor2_Decoder/Madd_n0257_Madd_cy<3>
+    SLICE_X18Y52.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0257_Madd_cy<3>
+    SLICE_X18Y52.DMUX    Tcind                 0.289   Motor2_Decoder/temp_tick3<15>
+                                                       Motor2_Decoder/Madd_n0257_Madd_cy<7>
+    SLICE_X20Y55.D1      net (fanout=2)        1.411   Motor2_Decoder/n0257<7>
+    SLICE_X20Y55.DMUX    Tilo                  0.326   Motor2_Decoder/n0156<7>
+                                                       Motor2_Decoder/Madd_n0156_Madd7
+    SLICE_X20Y56.A5      net (fanout=2)        0.499   Motor2_Decoder/Madd_n0156_Madd7
+    SLICE_X20Y56.COUT    Topcya                0.474   Motor2_Decoder/n0156<11>
+                                                       Motor2_Decoder/Madd_n0156_Madd_lut<0>8
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_10
+    SLICE_X20Y57.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0156_Madd_cy<0>11
+    SLICE_X20Y57.BQ      Tito_logic            0.788   Motor2_Decoder/n0156<13>
+                                                       Motor2_Decoder/Madd_n0156_Madd_xor<0>_14
+                                                       Motor2_Decoder/n0156<13>_rt
+    SLICE_X23Y54.A5      net (fanout=1)        0.709   Motor2_Decoder/n0156<13>
+    SLICE_X23Y54.CLK     Tas                   0.373   Motor2_Decoder/temp_tick2<15>
+                                                       Motor2_Decoder/Mmux_tick[16]_BUS_0021_mux_28_OUT51
                                                        Motor2_Decoder/temp_tick2_13
     -------------------------------------------------  ---------------------------
-    Total                                      6.931ns (2.848ns logic, 4.083ns route)
-                                                       (41.1% logic, 58.9% route)
+    Total                                      6.811ns (3.198ns logic, 3.613ns route)
+                                                       (47.0% logic, 53.0% route)
 
 --------------------------------------------------------------------------------
-Slack (setup path):     3.104ns (requirement - (data path - clock path skew + uncertainty))
+Slack (setup path):     3.138ns (requirement - (data path - clock path skew + uncertainty))
   Source:               Motor2_Decoder/tick_0 (FF)
   Destination:          Motor2_Decoder/temp_tick2_13 (FF)
   Requirement:          10.000ns
-  Data Path Delay:      6.865ns (Levels of Logic = 7)
-  Clock Path Skew:      0.004ns (0.717 - 0.713)
+  Data Path Delay:      6.808ns (Levels of Logic = 7)
+  Clock Path Skew:      -0.019ns (0.186 - 0.205)
   Source Clock:         CLK_BUFGP falling at 10.000ns
   Destination Clock:    CLK_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.035ns
@@ -430,121 +441,122 @@ Slack (setup path):     3.104ns (requirement - (data path - clock path skew + un
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X15Y27.AQ      Tcko                  0.430   Motor2_Decoder/tick<1>
+    SLICE_X22Y50.CQ      Tcko                  0.476   Motor2_Decoder/tick<0>
                                                        Motor2_Decoder/tick_0
-    SLICE_X16Y26.A4      net (fanout=11)       0.734   Motor2_Decoder/tick<0>
-    SLICE_X16Y26.COUT    Topcya                0.474   Motor2_Decoder/Msub_n0342_Madd_cy<3>
-                                                       Motor2_Decoder/tick<0>_rt
-                                                       Motor2_Decoder/Msub_n0342_Madd_cy<3>
-    SLICE_X16Y27.CIN     net (fanout=1)        0.003   Motor2_Decoder/Msub_n0342_Madd_cy<3>
-    SLICE_X16Y27.AMUX    Tcina                 0.220   Motor2_Decoder/Msub_n0342_Madd_cy<7>
-                                                       Motor2_Decoder/Msub_n0342_Madd_cy<7>
-    SLICE_X12Y33.A5      net (fanout=2)        1.021   Motor2_Decoder/n0342<4>
-    SLICE_X12Y33.AMUX    Tilo                  0.326   Motor2_Decoder/n0231<7>
-                                                       Motor2_Decoder/Madd_n0231_Madd4
-    SLICE_X12Y33.BX      net (fanout=2)        1.197   Motor2_Decoder/Madd_n0231_Madd4
-    SLICE_X12Y33.COUT    Tbxcy                 0.156   Motor2_Decoder/n0231<7>
-                                                       Motor2_Decoder/Madd_n0231_Madd_cy<0>_6
-    SLICE_X12Y34.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0231_Madd_cy<0>7
-    SLICE_X12Y34.COUT    Tbyp                  0.093   Motor2_Decoder/n0231<11>
-                                                       Motor2_Decoder/Madd_n0231_Madd_cy<0>_10
-    SLICE_X12Y35.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0231_Madd_cy<0>11
-    SLICE_X12Y35.BQ      Tito_logic            0.788   Motor2_Decoder/n0231<13>
-                                                       Motor2_Decoder/Madd_n0231_Madd_xor<0>_14
-                                                       Motor2_Decoder/n0231<13>_rt
-    SLICE_X10Y33.B3      net (fanout=1)        1.068   Motor2_Decoder/n0231<13>
-    SLICE_X10Y33.CLK     Tas                   0.349   Motor2_Decoder/temp_tick2<15>
-                                                       Motor2_Decoder/Mmux_tick[16]_BUS_0011_mux_69_OUT51
+    SLICE_X18Y51.A4      net (fanout=11)       0.988   Motor2_Decoder/tick<0>
+    SLICE_X18Y51.CMUX    Topac                 0.636   Motor2_Decoder/Madd_n0257_Madd_cy<3>
+                                                       Motor2_Decoder/Madd_n0257_Madd_lut<0>_INV_0
+                                                       Motor2_Decoder/Madd_n0257_Madd_cy<3>
+    SLICE_X20Y54.C3      net (fanout=2)        0.958   Motor2_Decoder/n0257<2>
+    SLICE_X20Y54.CMUX    Tilo                  0.326   Motor2_Decoder/n0156<3>
+                                                       Motor2_Decoder/Madd_n0156_Madd2
+    SLICE_X20Y54.DX      net (fanout=2)        1.171   Motor2_Decoder/Madd_n0156_Madd2
+    SLICE_X20Y54.COUT    Tdxcy                 0.109   Motor2_Decoder/n0156<3>
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_2
+    SLICE_X20Y55.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0156_Madd_cy<0>3
+    SLICE_X20Y55.COUT    Tbyp                  0.093   Motor2_Decoder/n0156<7>
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_6
+    SLICE_X20Y56.CIN     net (fanout=1)        0.082   Motor2_Decoder/Madd_n0156_Madd_cy<0>7
+    SLICE_X20Y56.COUT    Tbyp                  0.093   Motor2_Decoder/n0156<11>
+                                                       Motor2_Decoder/Madd_n0156_Madd_cy<0>_10
+    SLICE_X20Y57.CIN     net (fanout=1)        0.003   Motor2_Decoder/Madd_n0156_Madd_cy<0>11
+    SLICE_X20Y57.BQ      Tito_logic            0.788   Motor2_Decoder/n0156<13>
+                                                       Motor2_Decoder/Madd_n0156_Madd_xor<0>_14
+                                                       Motor2_Decoder/n0156<13>_rt
+    SLICE_X23Y54.A5      net (fanout=1)        0.709   Motor2_Decoder/n0156<13>
+    SLICE_X23Y54.CLK     Tas                   0.373   Motor2_Decoder/temp_tick2<15>
+                                                       Motor2_Decoder/Mmux_tick[16]_BUS_0021_mux_28_OUT51
                                                        Motor2_Decoder/temp_tick2_13
     -------------------------------------------------  ---------------------------
-    Total                                      6.865ns (2.836ns logic, 4.029ns route)
-                                                       (41.3% logic, 58.7% route)
+    Total                                      6.808ns (2.894ns logic, 3.914ns route)
+                                                       (42.5% logic, 57.5% route)
 
 --------------------------------------------------------------------------------
 
 Hold Paths: NET "CLK_BUFGP/IBUFG" PERIOD = 20 ns HIGH 50%;
 --------------------------------------------------------------------------------
 
-Paths for end point Sabertooth_UART_Transmitter/r_Bit_Index_2 (SLICE_X2Y39.B5), 1 path
+Paths for end point Sabertooth_Driver/Motor2_CheckSum_Command_4 (SLICE_X2Y34.B6), 1 path
 --------------------------------------------------------------------------------
-Slack (hold path):      0.405ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               Sabertooth_UART_Transmitter/r_Bit_Index_1 (FF)
-  Destination:          Sabertooth_UART_Transmitter/r_Bit_Index_2 (FF)
-  Requirement:          0.000ns
-  Data Path Delay:      0.405ns (Levels of Logic = 1)
-  Clock Path Skew:      0.000ns
-  Source Clock:         CLK_BUFGP rising at 20.000ns
-  Destination Clock:    CLK_BUFGP rising at 20.000ns
-  Clock Uncertainty:    0.000ns
-
-  Minimum Data Path at Fast Process Corner: Sabertooth_UART_Transmitter/r_Bit_Index_1 to Sabertooth_UART_Transmitter/r_Bit_Index_2
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X2Y39.BQ       Tcko                  0.200   Sabertooth_UART_Transmitter/r_Bit_Index<1>
-                                                       Sabertooth_UART_Transmitter/r_Bit_Index_1
-    SLICE_X2Y39.B5       net (fanout=4)        0.084   Sabertooth_UART_Transmitter/r_Bit_Index<1>
-    SLICE_X2Y39.CLK      Tah         (-Th)    -0.121   Sabertooth_UART_Transmitter/r_Bit_Index<1>
-                                                       Sabertooth_UART_Transmitter/Mmux__n008511
-                                                       Sabertooth_UART_Transmitter/r_Bit_Index_2
-    -------------------------------------------------  ---------------------------
-    Total                                      0.405ns (0.321ns logic, 0.084ns route)
-                                                       (79.3% logic, 20.7% route)
-
---------------------------------------------------------------------------------
-
-Paths for end point Motor1_Velocity_PID_Controller/Output_past_0 (SLICE_X3Y6.AX), 1 path
---------------------------------------------------------------------------------
-Slack (hold path):      0.405ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               Motor1_Velocity_PID_Controller/output_0 (FF)
-  Destination:          Motor1_Velocity_PID_Controller/Output_past_0 (FF)
-  Requirement:          0.000ns
-  Data Path Delay:      0.407ns (Levels of Logic = 0)
-  Clock Path Skew:      0.002ns (0.033 - 0.031)
-  Source Clock:         CLK_BUFGP rising at 20.000ns
-  Destination Clock:    CLK_BUFGP rising at 20.000ns
-  Clock Uncertainty:    0.000ns
-
-  Minimum Data Path at Fast Process Corner: Motor1_Velocity_PID_Controller/output_0 to Motor1_Velocity_PID_Controller/Output_past_0
-    Location             Delay type         Delay(ns)  Physical Resource
-                                                       Logical Resource(s)
-    -------------------------------------------------  -------------------
-    SLICE_X2Y6.AQ        Tcko                  0.200   Motor1_Velocity_PID_Controller/output<1>
-                                                       Motor1_Velocity_PID_Controller/output_0
-    SLICE_X3Y6.AX        net (fanout=4)        0.148   Motor1_Velocity_PID_Controller/output<0>
-    SLICE_X3Y6.CLK       Tckdi       (-Th)    -0.059   Motor1_Velocity_PID_Controller/Output_past<3>
-                                                       Motor1_Velocity_PID_Controller/Output_past_0
-    -------------------------------------------------  ---------------------------
-    Total                                      0.407ns (0.259ns logic, 0.148ns route)
-                                                       (63.6% logic, 36.4% route)
-
---------------------------------------------------------------------------------
-
-Paths for end point MCU_Serial_Handle/Transmit_32bit_Register_20 (SLICE_X22Y41.A6), 1 path
---------------------------------------------------------------------------------
-Slack (hold path):      0.414ns (requirement - (clock path skew + uncertainty - data path))
-  Source:               MCU_Serial_Handle/Transmit_32bit_Register_20 (FF)
-  Destination:          MCU_Serial_Handle/Transmit_32bit_Register_20 (FF)
+Slack (hold path):      0.412ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               Sabertooth_Driver/Motor2_Power_Command_4 (FF)
+  Destination:          Sabertooth_Driver/Motor2_CheckSum_Command_4 (FF)
   Requirement:          0.000ns
   Data Path Delay:      0.414ns (Levels of Logic = 1)
+  Clock Path Skew:      0.002ns (0.044 - 0.042)
+  Source Clock:         CLK_BUFGP rising at 20.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path at Fast Process Corner: Sabertooth_Driver/Motor2_Power_Command_4 to Sabertooth_Driver/Motor2_CheckSum_Command_4
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X3Y34.AQ       Tcko                  0.198   Sabertooth_Driver/Motor2_Power_Command<6>
+                                                       Sabertooth_Driver/Motor2_Power_Command_4
+    SLICE_X2Y34.B6       net (fanout=3)        0.026   Sabertooth_Driver/Motor2_Power_Command<4>
+    SLICE_X2Y34.CLK      Tah         (-Th)    -0.190   Sabertooth_Driver/Motor2_CheckSum_Command<6>
+                                                       Sabertooth_Driver/Madd_Motor2_Address_Command[7]_Motor2_Power_Command[7]_add_4_OUT_Madd_xor<0>51
+                                                       Sabertooth_Driver/Motor2_CheckSum_Command_4
+    -------------------------------------------------  ---------------------------
+    Total                                      0.414ns (0.388ns logic, 0.026ns route)
+                                                       (93.7% logic, 6.3% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point I2C_Handler/Motor2_Displays_Data_for_write_0 (SLICE_X2Y40.A6), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.416ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               I2C_Handler/Motor2_Displays_Data_for_write_0 (FF)
+  Destination:          I2C_Handler/Motor2_Displays_Data_for_write_0 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.416ns (Levels of Logic = 1)
   Clock Path Skew:      0.000ns
   Source Clock:         CLK_BUFGP rising at 20.000ns
   Destination Clock:    CLK_BUFGP rising at 20.000ns
   Clock Uncertainty:    0.000ns
 
-  Minimum Data Path at Fast Process Corner: MCU_Serial_Handle/Transmit_32bit_Register_20 to MCU_Serial_Handle/Transmit_32bit_Register_20
+  Minimum Data Path at Fast Process Corner: I2C_Handler/Motor2_Displays_Data_for_write_0 to I2C_Handler/Motor2_Displays_Data_for_write_0
     Location             Delay type         Delay(ns)  Physical Resource
                                                        Logical Resource(s)
     -------------------------------------------------  -------------------
-    SLICE_X22Y41.AQ      Tcko                  0.200   MCU_Serial_Handle/Transmit_32bit_Register<23>
-                                                       MCU_Serial_Handle/Transmit_32bit_Register_20
-    SLICE_X22Y41.A6      net (fanout=2)        0.024   MCU_Serial_Handle/Transmit_32bit_Register<20>
-    SLICE_X22Y41.CLK     Tah         (-Th)    -0.190   MCU_Serial_Handle/Transmit_32bit_Register<23>
-                                                       MCU_Serial_Handle/Mmux_TX_State_Machine[2]_Transmit_32bit_Register[31]_wide_mux_264_OUT371
-                                                       MCU_Serial_Handle/Transmit_32bit_Register_20
+    SLICE_X2Y40.AQ       Tcko                  0.200   I2C_Handler/Motor2_Displays_Data_for_write<2>
+                                                       I2C_Handler/Motor2_Displays_Data_for_write_0
+    SLICE_X2Y40.A6       net (fanout=3)        0.026   I2C_Handler/Motor2_Displays_Data_for_write<0>
+    SLICE_X2Y40.CLK      Tah         (-Th)    -0.190   I2C_Handler/Motor2_Displays_Data_for_write<2>
+                                                       I2C_Handler/Mmux_Motor2_Displays_State_Machine[3]_X_15_o_wide_mux_258_OUT1
+                                                       I2C_Handler/Motor2_Displays_Data_for_write_0
     -------------------------------------------------  ---------------------------
-    Total                                      0.414ns (0.390ns logic, 0.024ns route)
-                                                       (94.2% logic, 5.8% route)
+    Total                                      0.416ns (0.390ns logic, 0.026ns route)
+                                                       (93.8% logic, 6.2% route)
+
+--------------------------------------------------------------------------------
+
+Paths for end point Sabertooth_UART_Transmitter/r_SM_Main_FSM_FFd1 (SLICE_X2Y36.B5), 1 path
+--------------------------------------------------------------------------------
+Slack (hold path):      0.421ns (requirement - (clock path skew + uncertainty - data path))
+  Source:               Sabertooth_UART_Transmitter/r_SM_Main_FSM_FFd2 (FF)
+  Destination:          Sabertooth_UART_Transmitter/r_SM_Main_FSM_FFd1 (FF)
+  Requirement:          0.000ns
+  Data Path Delay:      0.421ns (Levels of Logic = 1)
+  Clock Path Skew:      0.000ns
+  Source Clock:         CLK_BUFGP rising at 20.000ns
+  Destination Clock:    CLK_BUFGP rising at 20.000ns
+  Clock Uncertainty:    0.000ns
+
+  Minimum Data Path at Fast Process Corner: Sabertooth_UART_Transmitter/r_SM_Main_FSM_FFd2 to Sabertooth_UART_Transmitter/r_SM_Main_FSM_FFd1
+    Location             Delay type         Delay(ns)  Physical Resource
+                                                       Logical Resource(s)
+    -------------------------------------------------  -------------------
+    SLICE_X2Y36.BQ       Tcko                  0.200   Sabertooth_UART_Transmitter/r_SM_Main_FSM_FFd3
+                                                       Sabertooth_UART_Transmitter/r_SM_Main_FSM_FFd2
+    SLICE_X2Y36.B5       net (fanout=14)       0.100   Sabertooth_UART_Transmitter/r_SM_Main_FSM_FFd2
+    SLICE_X2Y36.CLK      Tah         (-Th)    -0.121   Sabertooth_UART_Transmitter/r_SM_Main_FSM_FFd3
+                                                       Sabertooth_UART_Transmitter/_n0076_inv11
+                                                       Sabertooth_UART_Transmitter/r_SM_Main_FSM_FFd1
+    -------------------------------------------------  ---------------------------
+    Total                                      0.421ns (0.321ns logic, 0.100ns route)
+                                                       (76.2% logic, 23.8% route)
 
 --------------------------------------------------------------------------------
 
@@ -563,15 +575,15 @@ Slack: 18.601ns (period - min period limit)
   Min period limit: 1.399ns (714.796MHz) (Tcp)
   Physical resource: MCU_UART_Receiver/r_RX_Data/CLK
   Logical resource: MCU_UART_Receiver/Mshreg_r_RX_Data/CLK
-  Location pin: SLICE_X16Y40.CLK
+  Location pin: SLICE_X16Y41.CLK
   Clock network: CLK_BUFGP
 --------------------------------------------------------------------------------
 Slack: 19.520ns (period - min period limit)
   Period: 20.000ns
   Min period limit: 0.480ns (2083.333MHz) (Tcp)
-  Physical resource: Motor1_Position_PID_Controller/Turn_Error<3>/CLK
-  Logical resource: Motor1_Position_PID_Controller/Turn_Error_0/CK
-  Location pin: SLICE_X20Y34.CLK
+  Physical resource: Motor1_Velocity_PID_Controller/p<3>/CLK
+  Logical resource: Motor1_Velocity_PID_Controller/p_0/CK
+  Location pin: SLICE_X12Y4.CLK
   Clock network: CLK_BUFGP
 --------------------------------------------------------------------------------
 
@@ -588,7 +600,7 @@ Clock to Setup on destination clock CLK
                | Src:Rise| Src:Fall| Src:Rise| Src:Fall|
 Source Clock   |Dest:Rise|Dest:Rise|Dest:Fall|Dest:Fall|
 ---------------+---------+---------+---------+---------+
-CLK            |   14.574|    7.622|    6.133|    7.354|
+CLK            |   14.458|    7.073|    6.421|    7.834|
 ---------------+---------+---------+---------+---------+
 
 
@@ -597,16 +609,16 @@ Timing summary:
 
 Timing errors: 0  Score: 0  (Setup/Max: 0, Hold: 0)
 
-Constraints cover 3830292 paths, 0 nets, and 15176 connections
+Constraints cover 2707520 paths, 0 nets, and 15335 connections
 
 Design statistics:
-   Minimum period:  15.244ns{1}   (Maximum frequency:  65.600MHz)
+   Minimum period:  14.458ns{1}   (Maximum frequency:  69.166MHz)
 
 
 ------------------------------------Footnotes-----------------------------------
 1)  The minimum period statistic assumes all single cycle delays.
 
-Analysis completed Tue May 15 23:03:57 2018 
+Analysis completed Wed May 23 23:27:18 2018 
 --------------------------------------------------------------------------------
 
 Trace Settings:
