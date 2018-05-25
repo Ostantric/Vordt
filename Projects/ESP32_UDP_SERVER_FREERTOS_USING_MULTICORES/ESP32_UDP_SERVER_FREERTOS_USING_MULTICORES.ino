@@ -15,8 +15,14 @@
 #define DEBUG_SETUP
 //#define DEBUG_FPGA_Listen_Task
 //#define DEBUG_UDP_Listen_Task
+#define DEBUG_IncomingJsonParser_Task
 //#define DEBUG_Movement_UDP_Send_Task //pos,vel,turn
 //#define DEBUG_Utility_UDP_Send_Task
+//#define Position_UDP_Send_Task
+//#define Velocity_UDP_Send_Task
+//#define Turn_UDP_Send_Task
+//#define Motor_Voltage_UDP_Send_Task
+
 #define DEBUG_Send_MaxVel_Task
 #define DEBUG_Send_Turn_Task
 #define DEBUG_Send_Position_Task
@@ -35,15 +41,16 @@ volatile short speed = 0;
 volatile short position = 0;
 volatile int turn = 0;
 volatile double voltage = 25.4;
+volatile byte Motor_voltage = 0;
 
 unsigned int Port = 1500;
 
 SemaphoreHandle_t UDP_Semaphore = NULL;
-SemaphoreHandle_t FPGA_Serial_Semaphore = NULL;
+SemaphoreHandle_t FPGA_Serial_Write_Semaphore = NULL;
 SemaphoreHandle_t PacketBuffer_Semaphore = NULL;
+SemaphoreHandle_t FPGA_Serial_Read_Semaphore = NULL;
 
 WiFiUDP Udp;
-
 
 byte packetBuffer[256]; //buffer to hold incoming and outgoing packets
 
@@ -68,6 +75,7 @@ TaskHandle_t MovementUDPSendTask_Handle;
 TaskHandle_t UtilityUDPSendTask_Handle;
 TaskHandle_t IncomingJsonParser_Handle;
 TaskHandle_t Reset_Motor_Task_Handle;
+TaskHandle_t Motor_Voltage_UDP_Send_Handle;
 
 struct Motor_data{
       char Motor_Number[20] = "1";
@@ -76,7 +84,7 @@ struct Motor_data{
 
 
 void setup() {
-  Serial.begin(115200);
+  //Serial.begin(115200);
   pinMode(MCU_Ready,OUTPUT);
   pinMode(FPGA_Reset,OUTPUT);
   pinMode(UART_Ack,OUTPUT);
@@ -142,11 +150,17 @@ void setup() {
       xSemaphoreGive( ( UDP_Semaphore ) );  // Make the UDP Port available for use, by "Giving" the Semaphore.
   }
   //Create Semaphore for FPGA_Serial port
-  if ( FPGA_Serial_Semaphore == NULL )  // Check to confirm that the FPGA_Serial Semaphore has not already been created.
+  if ( FPGA_Serial_Write_Semaphore == NULL )  // Check to confirm that the FPGA_Serial Semaphore has not already been created.
   {
-    FPGA_Serial_Semaphore = xSemaphoreCreateMutex();  // Create a mutex semaphore we will use to manage the FPGA_Serial Port
-    if ( ( FPGA_Serial_Semaphore ) != NULL )
-      xSemaphoreGive( ( FPGA_Serial_Semaphore ) );  // Make the FPGA_Serial Port available for use, by "Giving" the Semaphore.
+    FPGA_Serial_Write_Semaphore = xSemaphoreCreateMutex();  // Create a mutex semaphore we will use to manage the FPGA_Serial Port
+    if ( ( FPGA_Serial_Write_Semaphore ) != NULL )
+      xSemaphoreGive( ( FPGA_Serial_Write_Semaphore ) );  // Make the FPGA_Serial Port available for use, by "Giving" the Semaphore.
+  }
+  if ( FPGA_Serial_Read_Semaphore == NULL )  // Check to confirm that the FPGA_Serial Semaphore has not already been created.
+  {
+    FPGA_Serial_Read_Semaphore = xSemaphoreCreateMutex();  // Create a mutex semaphore we will use to manage the FPGA_Serial Port
+    if ( ( FPGA_Serial_Read_Semaphore ) != NULL )
+      xSemaphoreGive( ( FPGA_Serial_Read_Semaphore ) );  // Make the FPGA_Serial Port available for use, by "Giving" the Semaphore.
   }
   if ( PacketBuffer_Semaphore == NULL )  // Check to confirm that the PacketBuffer Semaphore has not already been created.
   {
@@ -168,11 +182,11 @@ void setup() {
   xTaskCreatePinnedToCore(
     FPGA_Listen,          /* Task function. */
     "FPGA_Serial_Listen",        /* String with name of task. */
-    30000,            /* Stack size in words. */
+    35000,            /* Stack size in words. */
     NULL,             /* Parameter passed as input of the task */
     2,                /* Priority of the task. */
     &FPGAListenTask_Handle,/* Task handle. */
-    0);            /* CPU ID */
+    1);            /* CPU ID */
   //Send utility info to tablet
   xTaskCreatePinnedToCore(
     Utility_UDP_Send,          /* Task function. */
@@ -194,7 +208,7 @@ void loop() {
 
 void FPGA_Listen( void * parameter )
 {
-  byte ibyte[10];
+  byte ibyte[15];
   byte b;
   byte c;
   int l;
@@ -205,18 +219,18 @@ void FPGA_Listen( void * parameter )
   byte incomingbyte3=0;
   byte incomingbyte4=0;
   byte incomingbyte5=0;
-  
+  char sendtotask[5];
   String readString;
   for ( ;;) {
     //delay(2);
 
-    if(xSemaphoreTake(FPGA_Serial_Semaphore, (TickType_t) 5) == pdTRUE){
+    if(xSemaphoreTake(FPGA_Serial_Write_Semaphore, (TickType_t) 5) == pdTRUE){
     //Serial.println("passed");
     digitalWrite(MCU_Ready,HIGH); //ugly, fix this using port register
     delay(0.01);
     digitalWrite(MCU_Ready,LOW); //ugly, fix this using port register
     
-    delay(1);//This is critical
+    delay(2);//This is critical
     #ifdef DEBUG_FPGA_Listen_Task
       Serial.println("start");
       l = FPGA_Serial.available();
@@ -242,15 +256,16 @@ void FPGA_Listen( void * parameter )
       incomingbyte4 = ibyte[4];
       incomingbyte5 = ibyte[5];
       i=0;
-      
-        //xSemaphoreGive(FPGA_Serial_Semaphore);
+      //xSemaphoreGive(FPGA_Serial_Write_Semaphore);
       switch (incomingbyte0) {
         case 1 :
-          if (incomingbyte1 == 1) {
+          itoa(1, sendtotask,10);//motor1
+          if (incomingbyte1 == 1) { //Position Notation
               position= (incomingbyte3 << 8) | (incomingbyte2);
-              delay(2);
+              //delay(1);
               #ifdef DEBUG_FPGA_Listen_Task
               Serial.println();
+              Serial.print("Motor 1 ");
               Serial.print("Position:");
               Serial.print(incomingbyte1);
               Serial.print(" "); 
@@ -258,14 +273,15 @@ void FPGA_Listen( void * parameter )
               Serial.print(incomingbyte3,HEX);
               Serial.print(incomingbyte2,HEX);
               Serial.print(" ");
-              Serial.print(position);
+              Serial.println(position);
               #endif
-              xTaskCreatePinnedToCore(Position_UDP_Send,"Position_UDP_Send",10000,NULL,3,&Position_UDP_Send_Handle,0);
+              xTaskCreatePinnedToCore(Position_UDP_Send,"Position_UDP_Send",5000,sendtotask,3,&Position_UDP_Send_Handle,0);
           }
-          else if (incomingbyte1 == 2){
+          else if (incomingbyte1 == 2){//Velocity Notation
               speed=(incomingbyte3 << 8) | (incomingbyte2);
-              delay(2);
+              //delay(1);
               #ifdef DEBUG_FPGA_Listen_Task
+              Serial.print("Motor 1 ");
               Serial.print(" Velocity: ");
               Serial.print(incomingbyte1);
               Serial.print(" "); 
@@ -273,15 +289,16 @@ void FPGA_Listen( void * parameter )
               Serial.print(incomingbyte3,HEX);
               Serial.print(incomingbyte2,HEX);
               Serial.print(" ");
-              Serial.print(speed);
+              Serial.println(speed);
               #endif
-              xTaskCreatePinnedToCore(Velocity_UDP_Send,"Velocity_UDP_Send",10000,NULL,3,&Velocity_UDP_Send_Handle,0);
+              xTaskCreatePinnedToCore(Velocity_UDP_Send,"Velocity_UDP_Send",5000,sendtotask,3,&Velocity_UDP_Send_Handle,0);
           }
-          else if (incomingbyte1 == 3){
+          else if (incomingbyte1 == 3){//Turn Notation
               //delay(1);
               turn = (incomingbyte5 << 24) | (incomingbyte4 << 16) | (incomingbyte3 << 8) | (incomingbyte2);
-              delay(2);
+              //delay(1);
               #ifdef DEBUG_FPGA_Listen_Task
+              Serial.print("Motor 1 ");
               Serial.print(" Turn: ");
               Serial.print(incomingbyte1);
               Serial.print(" "); 
@@ -293,24 +310,114 @@ void FPGA_Listen( void * parameter )
               Serial.print(" ");
               Serial.println(turn);
               #endif
-              xTaskCreatePinnedToCore(Turn_UDP_Send,"Turn_UDP_Send",10000,NULL,3,&Turn_UDP_Send_Handle,0);
+              xTaskCreatePinnedToCore(Turn_UDP_Send,"Turn_UDP_Send",5000,sendtotask,3,&Turn_UDP_Send_Handle,0);
+          }
+          else if (incomingbyte1 == 4){//Motor Voltage Notation
+              Motor_voltage=incomingbyte2;
+              //delay(1);
+              #ifdef DEBUG_FPGA_Listen_Task
+              Serial.print("Motor 1 ");
+              Serial.print(" Motor Voltage: ");
+              Serial.print(incomingbyte1);
+              Serial.print(" "); 
+              //Serial.println(incomingbyte1,HEX);
+              Serial.print(incomingbyte2,HEX);
+              Serial.print(" ");
+              Serial.println(speed);
+              #endif
+              xTaskCreatePinnedToCore(Motor_Voltage_UDP_Send,"Motor_Voltage_UDP_Send",5000,sendtotask,3,&Motor_Voltage_UDP_Send_Handle,0);
           }
           else{
-              xSemaphoreGive(FPGA_Serial_Semaphore);
+              xSemaphoreGive(FPGA_Serial_Write_Semaphore);
           }
           break;
        case 2 :
-          xSemaphoreGive(FPGA_Serial_Semaphore);
+          itoa(2, sendtotask,10);//motor2
+          if (incomingbyte1 == 1) {//Position Notation
+              position= (incomingbyte3 << 8) | (incomingbyte2);
+              //delay(1);
+              #ifdef DEBUG_FPGA_Listen_Task
+              Serial.println();
+              Serial.print("Motor 2 ");
+              Serial.print("Position:");
+              Serial.print(incomingbyte1);
+              Serial.print(" "); 
+              //Serial.println(incomingbyte1,HEX);
+              Serial.print(incomingbyte3,HEX);
+              Serial.print(incomingbyte2,HEX);
+              Serial.print(" ");
+              Serial.println(position);
+              #endif
+              xTaskCreatePinnedToCore(Position_UDP_Send,"Position_UDP_Send",5000,sendtotask,3,&Position_UDP_Send_Handle,0);
+          }
+          else if (incomingbyte1 == 2){//Velocity Notation
+              speed=(incomingbyte3 << 8) | (incomingbyte2);
+              //delay(1);
+              #ifdef DEBUG_FPGA_Listen_Task
+              Serial.print("Motor 2 ");
+              Serial.print(" Velocity: ");
+              Serial.print(incomingbyte1);
+              Serial.print(" "); 
+              //Serial.println(incomingbyte1,HEX);
+              Serial.print(incomingbyte3,HEX);
+              Serial.print(incomingbyte2,HEX);
+              Serial.print(" ");
+              Serial.println(speed);
+              #endif
+              xTaskCreatePinnedToCore(Velocity_UDP_Send,"Velocity_UDP_Send",5000,sendtotask,3,&Velocity_UDP_Send_Handle,0);
+          }
+          else if (incomingbyte1 == 3){//Turn Notation
+              //delay(1);
+              turn = (incomingbyte5 << 24) | (incomingbyte4 << 16) | (incomingbyte3 << 8) | (incomingbyte2);
+              //delay(1);
+              #ifdef DEBUG_FPGA_Listen_Task
+              Serial.print("Motor 2 ");
+              Serial.print(" Turn: ");
+              Serial.print(incomingbyte1);
+              Serial.print(" "); 
+              //Serial.println(incomingbyte1,HEX);
+              Serial.print(incomingbyte5,HEX);
+              Serial.print(incomingbyte4,HEX);
+              Serial.print(incomingbyte3,HEX);
+              Serial.print(incomingbyte2,HEX);
+              Serial.print(" ");
+              Serial.println(turn);
+              #endif
+              xTaskCreatePinnedToCore(Turn_UDP_Send,"Turn_UDP_Send",5000,sendtotask,3,&Turn_UDP_Send_Handle,0);
+          }
+          else if (incomingbyte1 == 4){//Motor Voltage Notation
+              Motor_voltage=incomingbyte2;
+              //delay(1);
+              #ifdef DEBUG_FPGA_Listen_Task
+              Serial.print("Motor 2 ");
+              Serial.print(" Motor Voltage: ");
+              Serial.print(incomingbyte1);
+              Serial.print(" "); 
+              //Serial.println(incomingbyte1,HEX);
+              Serial.print(incomingbyte2,HEX);
+              Serial.print(" ");
+              Serial.println(speed);
+              #endif
+              xTaskCreatePinnedToCore(Motor_Voltage_UDP_Send,"Motor_Voltage_UDP_Send",5000,sendtotask,3,&Motor_Voltage_UDP_Send_Handle,0);
+          }
+          else{
+              xSemaphoreGive(FPGA_Serial_Write_Semaphore);
+          }
+          
           break;
        default :
-          xSemaphoreGive(FPGA_Serial_Semaphore);
+          xSemaphoreGive(FPGA_Serial_Write_Semaphore);
           break;
       }
       
     }
     memset(ibyte,0,sizeof(ibyte));
     //b='\0';
-    readString=""; 
+    readString="";
+    #ifdef DEBUG_FPGA_Listen_Task
+    Serial.print("FPGA_LISTEN:Free Heap Size: ");
+    Serial.println(xPortGetFreeHeapSize());
+    #endif
     delay(7);
     
   }
@@ -321,9 +428,10 @@ void UDP_Listen( void * parameter)
   int noBytes;
   for (;;)
   {
-            //Serial.println(xPortGetCoreID());
-
-  if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 1000) == pdTRUE){
+     #ifdef DEBUG_UDP_Listen_Task
+      Serial.println("UDP_LISTEN TASK STARTS");
+      #endif
+  if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 5) == pdTRUE){
       noBytes= Udp.parsePacket();
       
   if ( noBytes ) {
@@ -358,27 +466,33 @@ void UDP_Listen( void * parameter)
       /*Start Json Packet Parser Task*/
       //It is important that serial semaphore is given.(Commands from fpga is set and in order, if MCU loses track, we will have problem)
       //It is also imporatnt that incoming user commands need to be handled, so it is okay to wait for long time. 
-      if(xSemaphoreTake(FPGA_Serial_Semaphore, (TickType_t) 1500) == pdTRUE){
+      if(xSemaphoreTake(FPGA_Serial_Write_Semaphore, (TickType_t) 1500) == pdTRUE){
         if(xSemaphoreTake(PacketBuffer_Semaphore, (TickType_t) 1500) == pdTRUE){
-        xTaskCreatePinnedToCore(IncomingJsonParser,"Incoming_Packet_Json_Parser",15000,(void *) packetBuffer,5,&IncomingJsonParser_Handle,1);
+        xTaskCreatePinnedToCore(IncomingJsonParser,"Incoming_Packet_Json_Parser",20000,(void *) packetBuffer,5,&IncomingJsonParser_Handle,0);
         }
       }
-      delay(1);
-    } // end if
-  }
-    //Serial.println("udp_listen");
-    if(xSemaphoreTake(PacketBuffer_Semaphore, (TickType_t) 1500) == pdTRUE){
+      delay(2);
+      if(xSemaphoreTake(PacketBuffer_Semaphore, (TickType_t) 1500) == pdTRUE){
       memset(packetBuffer, 0, sizeof(packetBuffer));
       xSemaphoreGive(PacketBuffer_Semaphore);
     }
+    } // end if
+    else{
+      xSemaphoreGive(UDP_Semaphore);
+    }
+  }
+    //Serial.println("udp_listen");
+    
 
     //Udp.flush();
-    xSemaphoreGive(UDP_Semaphore);
     delay(15);
+    #ifdef DEBUG_UDP_Listen_Task
+      Serial.println("UDP_LISTEN TASK ENDS");
+    #endif
   }
 }
 
-void Movement_UDP_Send( void * parameter)
+/*void Movement_UDP_Send( void * parameter)
 {
   for (;;) {
     StaticJsonBuffer<200> JSONbuffer;
@@ -402,18 +516,25 @@ void Movement_UDP_Send( void * parameter)
     xSemaphoreGive(UDP_Semaphore);
     }
   }
-}
+}*/
 
 void Position_UDP_Send( void * parameter)
 {
-  StaticJsonBuffer<40> JSONbuffer;
+  #ifdef Position_UDP_Send_Task
+  Serial.print("Position_UDP_Send:Free Heap Size: ");
+  Serial.println(xPortGetFreeHeapSize());
+  #endif
+  char *motor_number;
+  motor_number = ( char * ) parameter;
+  StaticJsonBuffer<128> JSONbuffer;
   JsonObject& JSONencoder = JSONbuffer.createObject();
+  JSONencoder["Motor"] = motor_number;
   JSONencoder["Type"] = "Position";
   JSONencoder["Value"] = position;
-  char JSONmessageBuffer[40];
+  char JSONmessageBuffer[128];
   JSONencoder.printTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
   //delay(1);
-  if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 200) == pdTRUE){
+  if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 15) == pdTRUE){
     Udp.beginPacket();
     Udp.println(JSONmessageBuffer);
     Udp.endPacket();
@@ -423,20 +544,27 @@ void Position_UDP_Send( void * parameter)
     #endif
     xSemaphoreGive(UDP_Semaphore);
   }
-  xSemaphoreGive(FPGA_Serial_Semaphore);
+  xSemaphoreGive(FPGA_Serial_Write_Semaphore);
   vTaskDelete(Position_UDP_Send_Handle);
 }
 
 void Turn_UDP_Send(void * parameter)
 {
-  StaticJsonBuffer<64> JSONbuffer;
+  #ifdef Turn_UDP_Send_Task
+  Serial.print("Turn_UDP_Send:Free Heap Size: ");
+  Serial.println(xPortGetFreeHeapSize());
+  #endif
+  char *motor_number;
+  motor_number = ( char * ) parameter;
+  StaticJsonBuffer<128> JSONbuffer;
   JsonObject& JSONencoder = JSONbuffer.createObject();
+  JSONencoder["Motor"] = motor_number;
   JSONencoder["Type"] = "Turn";
   JSONencoder["Value"]= turn;
-  char JSONmessageBuffer[64];
+  char JSONmessageBuffer[128];
   JSONencoder.printTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
   //delay(1);
-  if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 200) == pdTRUE){
+  if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 15) == pdTRUE){
     Udp.beginPacket();
     Udp.println(JSONmessageBuffer);
     Udp.endPacket();
@@ -446,20 +574,27 @@ void Turn_UDP_Send(void * parameter)
     #endif
     xSemaphoreGive(UDP_Semaphore);
   }
-  xSemaphoreGive(FPGA_Serial_Semaphore);
+  xSemaphoreGive(FPGA_Serial_Write_Semaphore);
   vTaskDelete(Turn_UDP_Send_Handle);
 }
 
 void Velocity_UDP_Send( void * parameter)
 {
-  StaticJsonBuffer<40> JSONbuffer;
+  #ifdef Velocity_UDP_Send_Task
+  Serial.print("Velocity_UDP_Send:Free Heap Size: ");
+  Serial.println(xPortGetFreeHeapSize());
+  #endif
+  char *motor_number;
+  motor_number = ( char * ) parameter;
+  StaticJsonBuffer<128> JSONbuffer;
   JsonObject& JSONencoder = JSONbuffer.createObject();
+  JSONencoder["Motor"] = motor_number;
   JSONencoder["Type"] = "Velocity";
   JSONencoder["Value"] = speed;
-  char JSONmessageBuffer[40];
+  char JSONmessageBuffer[128];
   JSONencoder.printTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
   //delay(1);
-  if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 200) == pdTRUE){
+  if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 15) == pdTRUE){
     Udp.beginPacket();
     Udp.println(JSONmessageBuffer);
     Udp.endPacket();
@@ -469,20 +604,49 @@ void Velocity_UDP_Send( void * parameter)
     #endif
     xSemaphoreGive(UDP_Semaphore);
   }
-  xSemaphoreGive(FPGA_Serial_Semaphore);
+  xSemaphoreGive(FPGA_Serial_Write_Semaphore);
   vTaskDelete(Velocity_UDP_Send_Handle);
 }
 
+void Motor_Voltage_UDP_Send( void * parameter)
+{
+  Serial.print("Motor_Voltage_UDP_Send:Free Heap Size: ");
+  Serial.println(xPortGetFreeHeapSize());
+  char *motor_number;
+  motor_number = ( char * ) parameter;
+  StaticJsonBuffer<128> JSONbuffer;
+  JsonObject& JSONencoder = JSONbuffer.createObject();
+  JSONencoder["Motor"] = motor_number;
+  JSONencoder["Type"] = "MotorV";
+  JSONencoder["Value"] = Motor_voltage;
+  char JSONmessageBuffer[128];
+  JSONencoder.printTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
+  //delay(1);
+  if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 15) == pdTRUE){
+    Udp.beginPacket();
+    Udp.println(JSONmessageBuffer);
+    Udp.endPacket();
+    Udp.flush();
+    #ifdef DEBUG_Movement_UDP_Send_Task
+      Serial.println("Current_Velocity_Sent");
+    #endif
+    xSemaphoreGive(UDP_Semaphore);
+  }
+  xSemaphoreGive(FPGA_Serial_Write_Semaphore);
+  vTaskDelete(Motor_Voltage_UDP_Send_Handle);
+}
+
+
 void Utility_UDP_Send( void * parameter)
 {
-  StaticJsonBuffer<40> JSONbuffer;
+  StaticJsonBuffer<128> JSONbuffer;
   JsonObject& JSONencoder = JSONbuffer.createObject();
-  char JSONmessageBuffer[40];
+  char JSONmessageBuffer[128];
 for (;;) {
     JSONencoder["Type"] = "Utility";
     JSONencoder["Voltage"] = voltage;
     JSONencoder.printTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
-    if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 200) == pdTRUE)
+    if(xSemaphoreTake(UDP_Semaphore, (TickType_t) 15) == pdTRUE)
     {
     Udp.beginPacket();
     Udp.println(JSONmessageBuffer);
@@ -499,7 +663,7 @@ for (;;) {
     delay(15000);
   }
 }
-
+/*
 void TaskFour ( void * parameter)
 {
   String readString;
@@ -524,19 +688,22 @@ void TaskFour ( void * parameter)
     //Serial.println("task4 task4 task4 task4");
     readString="";
   }
-}
+}*/
 
 void IncomingJsonParser( void * parameter)
 {
   char *packet;
   packet = ( char * ) parameter;
   xSemaphoreGive(PacketBuffer_Semaphore);
-  
+  #ifdef DEBUG_IncomingJsonParser_Task 
+    Serial.println("IncomingJsonParser Task Starts");
+    #endif
   if (packet != '\0')
   {   
-    StaticJsonBuffer<40> packet_JSON;
+    StaticJsonBuffer<128> packet_JSON;
     JsonObject& root = packet_JSON.parseObject(packet);
     const char* types = root["type"];
+    int mno = root["mno"];
     long value = root["value"];
     //char sendtotask[20];
     char c_value[20];
@@ -556,9 +723,11 @@ void IncomingJsonParser( void * parameter)
     {
     itoa(value, c_value,10);//Insert Value
     strcpy(data.Value,c_value);
-    itoa(1, c_motor,10);//Insert Motor Number
+    itoa(mno, c_motor,10);//Insert Motor Number
     strcpy(data.Motor_Number,c_motor);
     sendtotask=&data;//Pass it to pointer
+    Serial.print("Free Heap Size: ");
+    Serial.println(xPortGetFreeHeapSize());
      if (strcmp(types,"dpos") == 0 ){
           xTaskCreatePinnedToCore(Send_Position_To_FPGA,"Send_Position_To_FPGA_Task",5000,(void *) sendtotask,6,&SendPositionToFPGA_Task_Handle,1);
           //delay(1);
@@ -583,26 +752,35 @@ void IncomingJsonParser( void * parameter)
         itoa(1, c_motor,10);//Insert Motor Number
         strcpy(data.Motor_Number,c_motor);
         sendtotask=&data;//Pass it to pointer
-        xTaskCreatePinnedToCore(Send_MaxVel_To_FPGA,"Send_MaxVel_To_FPGA_Task",5000,(void *) sendtotask,6,&SendMaxVelocityToFPGA_Task_Handle,1);
-        itoa(1, c_motor,10);//Insert Motor Number
+        xTaskCreatePinnedToCore(Send_MaxVel_To_FPGA,"Send_MaxVel_To_FPGA_Task",5000,(void *) sendtotask,6,&SendMaxVelocityToFPGA_Task_Handle,0);
+        itoa(2, c_motor,10);//Insert Motor Number
         strcpy(data.Motor_Number,c_motor);
         sendtotask=&data;//Pass it to pointer
-        if(xSemaphoreTake(FPGA_Serial_Semaphore, (TickType_t) 150) == pdTRUE){
+        #ifdef DEBUG_IncomingJsonParser_Task 
+        Serial.println("Update second");
+        #endif
+        delay(10);
+        if(xSemaphoreTake(FPGA_Serial_Write_Semaphore, (TickType_t) 1500) == pdTRUE){
           xTaskCreatePinnedToCore(Send_MaxVel_To_FPGA,"Send_MaxVel_To_FPGA_Task",5000,(void *) sendtotask,6,&SendMaxVelocityToFPGA_Task_Handle,1);
         }
 //        itoa(0, c_value,10);////Reset position and turn
 //        strcpy(data.Value,c_value);
 //        sendtotask=&data;
-//        if(xSemaphoreTake(FPGA_Serial_Semaphore, (TickType_t) 150) == pdTRUE){
+//        if(xSemaphoreTake(FPGA_Serial_Write_Semaphore, (TickType_t) 150) == pdTRUE){
 //           xTaskCreatePinnedToCore(Reset_Motor,"Reset_Motor",5000,(void *) sendtotask,6,&Reset_Motor_Task_Handle,1);
 //        }
       }
       else{
-        xSemaphoreGive(FPGA_Serial_Semaphore);
+        xSemaphoreGive(FPGA_Serial_Write_Semaphore);
       }
     }
   }
-  xSemaphoreGive(FPGA_Serial_Semaphore);
+  else{
+  xSemaphoreGive(FPGA_Serial_Write_Semaphore);
+  }
+  #ifdef DEBUG_IncomingJsonParser_Task 
+    Serial.println("IncomingJsonParser Task Ends");
+    #endif
   vTaskDelete(IncomingJsonParser_Handle);
 }
 
@@ -615,7 +793,7 @@ void Send_Position_To_FPGA ( void * parameter) //16 bits
   byte readytosend[2] = { highByte(desired_position),lowByte(desired_position)};
   //delay(0.01);
   digitalWrite(UART_Ack,HIGH); //ugly, fix this using port register
-  delay(0.1);
+  delay(1);
   if (M_Number == 1){
     FPGA_Serial.write(0x01);
   }
@@ -629,13 +807,19 @@ void Send_Position_To_FPGA ( void * parameter) //16 bits
   //delay(0.1);
   FPGA_Serial.write(readytosend[1]);
   //delay(0.1);
-  delay(1);
-  xSemaphoreGive(FPGA_Serial_Semaphore);
-  delay(1);
-   #ifdef DEBUG_Send_Position_Task
-  Serial.print("position sent: ");
+  delay(2);
+  #ifdef DEBUG_Send_Position_Task
+  Serial.print("Free Heap Size: ");
+  Serial.println(xPortGetFreeHeapSize());
+  Serial.print("Motor:");
+  Serial.print(M_Number);
+  Serial.print(" position sent: ");
   Serial.println(desired_position);
   #endif
+  delay(1);
+  xSemaphoreGive(FPGA_Serial_Write_Semaphore);
+  delay(1);
+   
   digitalWrite(UART_Ack,LOW); //ugly, fix this using port register
   vTaskDelete(SendPositionToFPGA_Task_Handle);
 }
@@ -649,7 +833,7 @@ void Send_Turn_To_FPGA ( void * parameter) //32bits
   //long desired_turn = 1500000000; //0x59682F00
   byte readytosend[4] = {(byte) (desired_turn >> 24) & 0xFF ,(byte) (desired_turn >> 16) & 0xFF, (byte) (desired_turn >> 8) & 0xFF , (byte) desired_turn};
   digitalWrite(UART_Ack,HIGH); //ugly, fix this using port register
-  delay(0.1);
+  delay(1);
   if (M_Number == 1){
     FPGA_Serial.write(0x01);
   }
@@ -666,13 +850,18 @@ void Send_Turn_To_FPGA ( void * parameter) //32bits
   //delay(0.1);
   FPGA_Serial.write(readytosend[3]);
   //delay(0.1);
-  delay(1);
-  xSemaphoreGive(FPGA_Serial_Semaphore);
-  delay(1);
-    #ifdef DEBUG_Send_Turn_Task
-  Serial.print("turn sent: ");
+  delay(2);
+   #ifdef DEBUG_Send_Turn_Task
+  Serial.print("Free Heap Size: ");
+  Serial.println(xPortGetFreeHeapSize());
+  Serial.print("Motor:");
+  Serial.print(M_Number);
+  Serial.print(" turn sent: ");
   Serial.println(desired_turn);
   #endif
+  delay(1);
+  xSemaphoreGive(FPGA_Serial_Write_Semaphore);
+  delay(1);
   digitalWrite(UART_Ack,LOW); //ugly, fix this using port register
   vTaskDelete(SendTurnToFPGA_Task_Handle);  
   
@@ -686,7 +875,7 @@ void Send_MaxVel_To_FPGA ( void * parameter) //16bits
   int M_Number = atoi(incoming_char->Motor_Number);
   byte readytosend[2] = { highByte(max_velocity),lowByte(max_velocity)};
   digitalWrite(UART_Ack,HIGH); //ugly, fix this using port register
-  delay(0.1);
+  delay(1);
   if (M_Number == 1){
     FPGA_Serial.write(0x01);
   }
@@ -700,13 +889,19 @@ void Send_MaxVel_To_FPGA ( void * parameter) //16bits
   //delay(0.1);
   FPGA_Serial.write(readytosend[1]);
   //delay(0.1);
-  //delay(1);
+  delay(2);
   #ifdef DEBUG_Send_MaxVel_Task
-  Serial.print("maxvel sent: ");
+  Serial.print("Free Heap Size: ");
+  Serial.println(xPortGetFreeHeapSize());
+  Serial.print("Motor:");
+  Serial.print(M_Number);
+  Serial.print(" maxvel sent: ");
   Serial.println(max_velocity);
   #endif
+  delay(1);
+  xSemaphoreGive(FPGA_Serial_Write_Semaphore);
+  delay(1);
   digitalWrite(UART_Ack,LOW); //ugly, fix this using port register
-  xSemaphoreGive(FPGA_Serial_Semaphore);
   vTaskDelete(SendMaxVelocityToFPGA_Task_Handle);
 }
 
@@ -716,12 +911,14 @@ void Reset_Motor ( void * parameter)
   incoming_char = ( Motor_data * ) parameter;
   int Motor_Number = atoi(incoming_char->Motor_Number);
   int reset_value = atoi (incoming_char->Value);
+  Serial.print("Free Heap Size: ");
+  Serial.println(xPortGetFreeHeapSize());
   Serial.println("reset ");
   if(Motor_Number == 1){
       digitalWrite(Motor1_Reset,LOW);
-      xTaskCreatePinnedToCore(Send_Turn_To_FPGA,"Send_Turn_To_FPGA_Task",5000,(void *) incoming_char,7,&SendTurnToFPGA_Task_Handle,1);
-      if(xSemaphoreTake(FPGA_Serial_Semaphore, (TickType_t) 1500) == pdTRUE){
-        xTaskCreatePinnedToCore(Send_Position_To_FPGA,"Send_Position_To_FPGA_Task",5000,(Motor_data *) incoming_char,7,&SendPositionToFPGA_Task_Handle,1);
+      xTaskCreatePinnedToCore(Send_Turn_To_FPGA,"Send_Turn_To_FPGA_Task",5000,(void *) incoming_char,9,&SendTurnToFPGA_Task_Handle,1);
+      if(xSemaphoreTake(FPGA_Serial_Write_Semaphore, (TickType_t) 150) == pdTRUE){
+        xTaskCreatePinnedToCore(Send_Position_To_FPGA,"Send_Position_To_FPGA_Task",5000,(Motor_data *) incoming_char,10,&SendPositionToFPGA_Task_Handle,1);
       }
       digitalWrite(Motor1_Reset,HIGH);
   }

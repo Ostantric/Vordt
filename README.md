@@ -17,7 +17,7 @@
 * Move to ESP-IDF
 
 ### RTOS Tasks Architecture
-Higher number, higher priority.
+Higher the number the higher the priority
 
 * Send_Position_To_FPGA - Priority = 6
 
