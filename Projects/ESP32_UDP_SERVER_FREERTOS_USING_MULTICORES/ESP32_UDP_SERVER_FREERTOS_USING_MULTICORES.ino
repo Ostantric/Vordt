@@ -188,14 +188,14 @@ void setup() {
     &FPGAListenTask_Handle,/* Task handle. */
     1);            /* CPU ID */
   //Send utility info to tablet
-  xTaskCreatePinnedToCore(
-    Utility_UDP_Send,          /* Task function. */
-    "Utility_UDP_Send",        /* String with name of task. */
-    5000,            /* Stack size in words. */
-    NULL,             /* Parameter passed as input of the task */
-    1,                /* Priority of the task. */
-    &UtilityUDPSendTask_Handle,
-    0);            /* CPU ID*/
+//  xTaskCreatePinnedToCore(
+//    Utility_UDP_Send,          /* Task function. */
+//    "Utility_UDP_Send",        /* String with name of task. */
+//    5000,            /* Stack size in words. */
+//    NULL,             /* Parameter passed as input of the task */
+//    1,                /* Priority of the task. */
+//    &UtilityUDPSendTask_Handle,
+//    0);            /* CPU ID*/
   //Send movement info to tablet
   
 }
@@ -323,7 +323,7 @@ void FPGA_Listen( void * parameter )
               //Serial.println(incomingbyte1,HEX);
               Serial.print(incomingbyte2,HEX);
               Serial.print(" ");
-              Serial.println(speed);
+              Serial.println(Motor_voltage);
               #endif
               xTaskCreatePinnedToCore(Motor_Voltage_UDP_Send,"Motor_Voltage_UDP_Send",5000,sendtotask,3,&Motor_Voltage_UDP_Send_Handle,0);
           }
@@ -396,7 +396,7 @@ void FPGA_Listen( void * parameter )
               //Serial.println(incomingbyte1,HEX);
               Serial.print(incomingbyte2,HEX);
               Serial.print(" ");
-              Serial.println(speed);
+              Serial.println(Motor_voltage);
               #endif
               xTaskCreatePinnedToCore(Motor_Voltage_UDP_Send,"Motor_Voltage_UDP_Send",5000,sendtotask,3,&Motor_Voltage_UDP_Send_Handle,0);
           }
@@ -418,7 +418,7 @@ void FPGA_Listen( void * parameter )
     Serial.print("FPGA_LISTEN:Free Heap Size: ");
     Serial.println(xPortGetFreeHeapSize());
     #endif
-    delay(7);
+    delay(5);
     
   }
 }
