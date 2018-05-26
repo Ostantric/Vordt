@@ -179,6 +179,7 @@ void FPGA_Listen( void * parameter )
   byte incomingbyte3=0;
   byte incomingbyte4=0;
   byte incomingbyte5=0;
+  memset(ibyte,0,sizeof(ibyte));
   
   String readString;
   for ( ;;) {

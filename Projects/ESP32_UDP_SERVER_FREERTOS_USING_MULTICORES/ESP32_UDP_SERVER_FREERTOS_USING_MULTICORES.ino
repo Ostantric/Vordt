@@ -721,11 +721,13 @@ void IncomingJsonParser( void * parameter)
     //Do not miss this. It is okay to wait for semaphore
     if (types != '\0') //check if its empty
     {
-    itoa(value, c_value,10);//Insert Value
-    strcpy(data.Value,c_value);
-    itoa(mno, c_motor,10);//Insert Motor Number
-    strcpy(data.Motor_Number,c_motor);
-    sendtotask=&data;//Pass it to pointer
+      if(value != NULL && mno != NULL){
+      itoa(value, c_value,10);//Insert Value
+      strcpy(data.Value,c_value);
+      itoa(mno, c_motor,10);//Insert Motor Number
+      strcpy(data.Motor_Number,c_motor);
+      sendtotask=&data;//Pass it to pointer
+      }
     Serial.print("Free Heap Size: ");
     Serial.println(xPortGetFreeHeapSize());
      if (strcmp(types,"dpos") == 0 ){
@@ -747,14 +749,18 @@ void IncomingJsonParser( void * parameter)
     else
     {
       if (strcmp(packet,"1") == 0){
-        itoa(60, c_value,10);////Default 60
+        if(value != NULL && mno != NULL){
+        itoa(60, c_value,10);//Default 60
         strcpy(data.Value,c_value);
         itoa(1, c_motor,10);//Insert Motor Number
         strcpy(data.Motor_Number,c_motor);
+        }
         sendtotask=&data;//Pass it to pointer
         xTaskCreatePinnedToCore(Send_MaxVel_To_FPGA,"Send_MaxVel_To_FPGA_Task",5000,(void *) sendtotask,6,&SendMaxVelocityToFPGA_Task_Handle,0);
+        if(value != NULL && mno != NULL){
         itoa(2, c_motor,10);//Insert Motor Number
         strcpy(data.Motor_Number,c_motor);
+        }
         sendtotask=&data;//Pass it to pointer
         #ifdef DEBUG_IncomingJsonParser_Task 
         Serial.println("Update second");
@@ -911,23 +917,44 @@ void Reset_Motor ( void * parameter)
   incoming_char = ( Motor_data * ) parameter;
   int Motor_Number = atoi(incoming_char->Motor_Number);
   int reset_value = atoi (incoming_char->Value);
+  int i=0;
   Serial.print("Free Heap Size: ");
   Serial.println(xPortGetFreeHeapSize());
   Serial.println("reset ");
   if(Motor_Number == 1){
+      while(i<5){
       digitalWrite(Motor1_Reset,LOW);
       xTaskCreatePinnedToCore(Send_Turn_To_FPGA,"Send_Turn_To_FPGA_Task",5000,(void *) incoming_char,9,&SendTurnToFPGA_Task_Handle,1);
+      delay(10);
       if(xSemaphoreTake(FPGA_Serial_Write_Semaphore, (TickType_t) 150) == pdTRUE){
-        xTaskCreatePinnedToCore(Send_Position_To_FPGA,"Send_Position_To_FPGA_Task",5000,(Motor_data *) incoming_char,10,&SendPositionToFPGA_Task_Handle,1);
+        xTaskCreatePinnedToCore(Send_Position_To_FPGA,"Send_Position_To_FPGA_Task",5000,(Motor_data *) incoming_char,9,&SendPositionToFPGA_Task_Handle,1);
       }
+      //delay(5);
       digitalWrite(Motor1_Reset,HIGH);
+      delay(250);
+      i++;
+      }
+  }
+  else if (Motor_Number == 2){
+      while(i<5){
+      digitalWrite(Motor2_Reset,LOW);
+      xTaskCreatePinnedToCore(Send_Turn_To_FPGA,"Send_Turn_To_FPGA_Task",5000,(void *) incoming_char,9,&SendTurnToFPGA_Task_Handle,1);
+      delay(10);
+      if(xSemaphoreTake(FPGA_Serial_Write_Semaphore, (TickType_t) 150) == pdTRUE){
+        xTaskCreatePinnedToCore(Send_Position_To_FPGA,"Send_Position_To_FPGA_Task",5000,(Motor_data *) incoming_char,9,&SendPositionToFPGA_Task_Handle,1);
+      }
+      //delay(5);
+      digitalWrite(Motor2_Reset,HIGH);
+      delay(250);
+      i++;
+      }
   }
   else
   {
-
+      vTaskDelete(Reset_Motor_Task_Handle);
   }
-  
-  vTaskDelete(Reset_Motor_Task_Handle);
 
+    vTaskDelete(Reset_Motor_Task_Handle);
+  
 }
 
