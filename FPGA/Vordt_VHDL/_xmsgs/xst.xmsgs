@@ -14,16 +14,16 @@
 <msg type="warning" file="HDLCompiler" num="957" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/I2C_Module.vhd" Line 79: Case choice must be a locally static expression
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="946" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 310: Actual for formal port <arg fmt="%s" index="1">motor1_displays_pid_velocity_input</arg> is neither a static name nor a globally static expression
+<msg type="warning" file="HDLCompiler" num="946" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 312: Actual for formal port <arg fmt="%s" index="1">motor1_displays_pid_velocity_input</arg> is neither a static name nor a globally static expression
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="946" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 312: Actual for formal port <arg fmt="%s" index="1">motor1_displays_storage_input</arg> is neither a static name nor a globally static expression
+<msg type="warning" file="HDLCompiler" num="946" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 314: Actual for formal port <arg fmt="%s" index="1">motor1_displays_storage_input</arg> is neither a static name nor a globally static expression
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="946" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 322: Actual for formal port <arg fmt="%s" index="1">motor2_displays_pid_velocity_input</arg> is neither a static name nor a globally static expression
+<msg type="warning" file="HDLCompiler" num="946" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 324: Actual for formal port <arg fmt="%s" index="1">motor2_displays_pid_velocity_input</arg> is neither a static name nor a globally static expression
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="946" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 324: Actual for formal port <arg fmt="%s" index="1">motor2_displays_storage_input</arg> is neither a static name nor a globally static expression
+<msg type="warning" file="HDLCompiler" num="946" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 326: Actual for formal port <arg fmt="%s" index="1">motor2_displays_storage_input</arg> is neither a static name nor a globally static expression
 </msg>
 
 <msg type="warning" file="HDLCompiler" num="92" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Decoder.vhd" Line 127: <arg fmt="%s" index="1">reset_d</arg> should be on the sensitivity list of the process
@@ -41,28 +41,31 @@
 <msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Position_PID_Controller.vhd" Line 75: Assignment to <arg fmt="%s" index="1">turn_error_past</arg> ignored, since the identifier is never used
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 426: Assignment to <arg fmt="%s" index="1">test_motor1_turn_pid_setpoint_signal</arg> ignored, since the identifier is never used
+<msg type="warning" file="HDLCompiler" num="92" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/MCU_Serial_Handle.vhd" Line 759: <arg fmt="%s" index="1">reset</arg> should be on the sensitivity list of the process
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 433: Assignment to <arg fmt="%s" index="1">test_motor1_velocity_pid_setpoint_signal</arg> ignored, since the identifier is never used
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 428: Assignment to <arg fmt="%s" index="1">test_motor1_turn_pid_setpoint_signal</arg> ignored, since the identifier is never used
 </msg>
 
-<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 434: Assignment to <arg fmt="%s" index="1">test_motor1_position_pid_setpoint_signal</arg> ignored, since the identifier is never used
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 435: Assignment to <arg fmt="%s" index="1">test_motor1_velocity_pid_setpoint_signal</arg> ignored, since the identifier is never used
+</msg>
+
+<msg type="warning" file="HDLCompiler" num="1127" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 436: Assignment to <arg fmt="%s" index="1">test_motor1_position_pid_setpoint_signal</arg> ignored, since the identifier is never used
 </msg>
 
 <msg type="warning" file="HDLCompiler" num="634" delta="old" >"/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd" Line 130: Net &lt;<arg fmt="%s" index="1">I2C_Slave_Saving_Signal[7]</arg>&gt; does not have a driver.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">368</arg>: Output port &lt;<arg fmt="%s" index="3">data_rd</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">Motor1_Displays_I2C_Master_Module</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">370</arg>: Output port &lt;<arg fmt="%s" index="3">data_rd</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">Motor1_Displays_I2C_Master_Module</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">368</arg>: Output port &lt;<arg fmt="%s" index="3">ack_error</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">Motor1_Displays_I2C_Master_Module</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">370</arg>: Output port &lt;<arg fmt="%s" index="3">ack_error</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">Motor1_Displays_I2C_Master_Module</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">382</arg>: Output port &lt;<arg fmt="%s" index="3">data_rd</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">Motor2_Displays_I2C_Master_Module</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">384</arg>: Output port &lt;<arg fmt="%s" index="3">data_rd</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">Motor2_Displays_I2C_Master_Module</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
-<msg type="info" file="Xst" num="3210" delta="new" >&quot;<arg fmt="%s" index="1">/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">382</arg>: Output port &lt;<arg fmt="%s" index="3">ack_error</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">Motor2_Displays_I2C_Master_Module</arg>&gt; is unconnected or connected to loadless signal.
+<msg type="info" file="Xst" num="3210" delta="old" >&quot;<arg fmt="%s" index="1">/home/murat/Project_Vordt/Digital_Design/FPGA/Vordt_VHDL/src/Top_level.vhd</arg>&quot; line <arg fmt="%s" index="2">384</arg>: Output port &lt;<arg fmt="%s" index="3">ack_error</arg>&gt; of the instance &lt;<arg fmt="%s" index="4">Motor2_Displays_I2C_Master_Module</arg>&gt; is unconnected or connected to loadless signal.
 </msg>
 
 <msg type="warning" file="Xst" num="653" delta="old" >Signal &lt;<arg fmt="%s" index="1">I2C_Slave_Saving_Signal</arg>&gt; is used but never assigned. This sourceless signal will be automatically connected to value <arg fmt="%s" index="2">GND</arg>.
@@ -89,19 +92,19 @@
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Kp_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor1_Velocity_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">14 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Kp_3&gt; &lt;Kp_4&gt; &lt;Kp_5&gt; &lt;Kp_6&gt; &lt;Ki_0&gt; &lt;Ki_2&gt; &lt;Ki_4&gt; &lt;Ki_5&gt; &lt;Ki_6&gt; &lt;Kd_0&gt; &lt;Kd_3&gt; &lt;Kd_4&gt; &lt;Kd_5&gt; &lt;Kd_6&gt; </arg>
 </msg>
 
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Ki_3</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor1_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Kp_1&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Ki_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor1_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">11 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Ki_5&gt; &lt;Ki_6&gt; &lt;Kp_3&gt; &lt;Kp_4&gt; &lt;Kp_5&gt; &lt;Kp_6&gt; &lt;Kd_2&gt; &lt;Kd_3&gt; &lt;Kd_4&gt; &lt;Kd_5&gt; &lt;Kd_6&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Ki_2</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor1_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">3 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Ki_4&gt; &lt;Kp_2&gt; &lt;Kd_0&gt; </arg>
+</msg>
+
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Pre_Position_Error_16</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor1_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">15 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Pre_Position_Error_17&gt; &lt;Pre_Position_Error_18&gt; &lt;Pre_Position_Error_19&gt; &lt;Pre_Position_Error_20&gt; &lt;Pre_Position_Error_21&gt; &lt;Pre_Position_Error_22&gt; &lt;Pre_Position_Error_23&gt; &lt;Pre_Position_Error_24&gt; &lt;Pre_Position_Error_25&gt; &lt;Pre_Position_Error_26&gt; &lt;Pre_Position_Error_27&gt; &lt;Pre_Position_Error_28&gt; &lt;Pre_Position_Error_29&gt; &lt;Pre_Position_Error_30&gt; &lt;Pre_Position_Error_31&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Kp_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor1_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Ki_3&gt; </arg>
-</msg>
-
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Kd_2</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor1_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">11 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Kd_3&gt; &lt;Kd_4&gt; &lt;Kd_5&gt; &lt;Kd_6&gt; &lt;Kp_3&gt; &lt;Kp_4&gt; &lt;Kp_5&gt; &lt;Kp_6&gt; &lt;Ki_0&gt; &lt;Ki_5&gt; &lt;Ki_6&gt; </arg>
-</msg>
-
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Kd_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor1_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Kp_0&gt; &lt;Ki_1&gt; </arg>
-</msg>
-
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Kd_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor1_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">3 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Kp_2&gt; &lt;Ki_2&gt; &lt;Ki_4&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Ki_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor1_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Kp_0&gt; &lt;Kd_1&gt; </arg>
 </msg>
 
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Kp_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor2_Velocity_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">5 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Kp_2&gt; &lt;Ki_1&gt; &lt;Ki_3&gt; &lt;Kd_1&gt; &lt;Kd_2&gt; </arg>
@@ -110,19 +113,19 @@
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Kp_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor2_Velocity_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">14 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Kp_3&gt; &lt;Kp_4&gt; &lt;Kp_5&gt; &lt;Kp_6&gt; &lt;Ki_0&gt; &lt;Ki_2&gt; &lt;Ki_4&gt; &lt;Ki_5&gt; &lt;Ki_6&gt; &lt;Kd_0&gt; &lt;Kd_3&gt; &lt;Kd_4&gt; &lt;Kd_5&gt; &lt;Kd_6&gt; </arg>
 </msg>
 
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Ki_3</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor2_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Kp_1&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Ki_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor2_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">11 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Ki_5&gt; &lt;Ki_6&gt; &lt;Kp_3&gt; &lt;Kp_4&gt; &lt;Kp_5&gt; &lt;Kp_6&gt; &lt;Kd_2&gt; &lt;Kd_3&gt; &lt;Kd_4&gt; &lt;Kd_5&gt; &lt;Kd_6&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Ki_2</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor2_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">3 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Ki_4&gt; &lt;Kp_2&gt; &lt;Kd_0&gt; </arg>
+</msg>
+
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Pre_Position_Error_16</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor2_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">15 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Pre_Position_Error_17&gt; &lt;Pre_Position_Error_18&gt; &lt;Pre_Position_Error_19&gt; &lt;Pre_Position_Error_20&gt; &lt;Pre_Position_Error_21&gt; &lt;Pre_Position_Error_22&gt; &lt;Pre_Position_Error_23&gt; &lt;Pre_Position_Error_24&gt; &lt;Pre_Position_Error_25&gt; &lt;Pre_Position_Error_26&gt; &lt;Pre_Position_Error_27&gt; &lt;Pre_Position_Error_28&gt; &lt;Pre_Position_Error_29&gt; &lt;Pre_Position_Error_30&gt; &lt;Pre_Position_Error_31&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Kp_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor2_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Ki_3&gt; </arg>
-</msg>
-
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Kd_2</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor2_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">11 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Kd_3&gt; &lt;Kd_4&gt; &lt;Kd_5&gt; &lt;Kd_6&gt; &lt;Kp_3&gt; &lt;Kp_4&gt; &lt;Kp_5&gt; &lt;Kp_6&gt; &lt;Ki_0&gt; &lt;Ki_5&gt; &lt;Ki_6&gt; </arg>
-</msg>
-
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Kd_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor2_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Kp_0&gt; &lt;Ki_1&gt; </arg>
-</msg>
-
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Kd_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor2_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">3 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Kp_2&gt; &lt;Ki_2&gt; &lt;Ki_4&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Ki_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Motor2_Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Kp_0&gt; &lt;Kd_1&gt; </arg>
 </msg>
 
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Motor2_Address_Command_7</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Sabertooth_Driver</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Motor1_Address_Command_7&gt; </arg>
@@ -131,7 +134,7 @@
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Motor2_Address_Command_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Sabertooth_Driver</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">15 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Motor2_Address_Command_1&gt; &lt;Motor2_Address_Command_2&gt; &lt;Motor2_Address_Command_3&gt; &lt;Motor2_Address_Command_4&gt; &lt;Motor2_Address_Command_5&gt; &lt;Motor2_Address_Command_6&gt; &lt;Motor1_Address_Command_0&gt; &lt;Motor1_Address_Command_1&gt; &lt;Motor1_Address_Command_2&gt; &lt;Motor1_Address_Command_3&gt; &lt;Motor1_Address_Command_4&gt; &lt;Motor1_Address_Command_5&gt; &lt;Motor1_Address_Command_6&gt; &lt;Motor1_CheckSum_Command_7&gt; &lt;Motor2_CheckSum_Command_7&gt; </arg>
 </msg>
 
-<msg type="warning" file="Xst" num="1426" delta="old" >The value init of the FF/Latch <arg fmt="%s" index="1">Kp_1</arg> hinder the constant cleaning in the block <arg fmt="%s" index="2">Motor1_Position_PID_Controller</arg>.
+<msg type="warning" file="Xst" num="1426" delta="old" >The value init of the FF/Latch <arg fmt="%s" index="1">Ki_3</arg> hinder the constant cleaning in the block <arg fmt="%s" index="2">Motor1_Position_PID_Controller</arg>.
 You should achieve better results by setting this init to <arg fmt="%i" index="3">1</arg>.
 </msg>
 
@@ -139,7 +142,7 @@ You should achieve better results by setting this init to <arg fmt="%i" index="3
 You should achieve better results by setting this init to <arg fmt="%i" index="3">1</arg>.
 </msg>
 
-<msg type="warning" file="Xst" num="1426" delta="old" >The value init of the FF/Latch <arg fmt="%s" index="1">Kp_1</arg> hinder the constant cleaning in the block <arg fmt="%s" index="2">Motor2_Position_PID_Controller</arg>.
+<msg type="warning" file="Xst" num="1426" delta="old" >The value init of the FF/Latch <arg fmt="%s" index="1">Ki_3</arg> hinder the constant cleaning in the block <arg fmt="%s" index="2">Motor2_Position_PID_Controller</arg>.
 You should achieve better results by setting this init to <arg fmt="%i" index="3">1</arg>.
 </msg>
 
@@ -150,13 +153,13 @@ You should achieve better results by setting this init to <arg fmt="%i" index="3
 <msg type="warning" file="Xst" num="1293" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">Kp_1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Motor1_Velocity_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1293" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">Kd_2</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Motor1_Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1293" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">Ki_0</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Motor1_Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
 <msg type="warning" file="Xst" num="1293" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">Kp_1</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Motor2_Velocity_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="1293" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">Kd_2</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Motor2_Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1293" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">Ki_0</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Motor2_Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
 <msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">Motor2_Address_Command_0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Sabertooth_Driver</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
@@ -288,21 +291,6 @@ You should achieve better results by setting this init to <arg fmt="%i" index="3
 <msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">output_checked_31</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Motor2_Position_PID_Controller</arg>&gt;.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Motor1_Desired_Max_Vel_11</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">MCU_Serial_Handle</arg>&gt;.
-</msg>
-
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Motor1_Desired_Max_Vel_12</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">MCU_Serial_Handle</arg>&gt;.
-</msg>
-
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Motor1_Desired_Max_Vel_13</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">MCU_Serial_Handle</arg>&gt;.
-</msg>
-
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Motor1_Desired_Max_Vel_14</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">MCU_Serial_Handle</arg>&gt;.
-</msg>
-
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Motor1_Desired_Max_Vel_15</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">MCU_Serial_Handle</arg>&gt;.
-</msg>
-
 <msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Motor2_Desired_Max_Vel_11</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">MCU_Serial_Handle</arg>&gt;.
 </msg>
 
@@ -316,6 +304,21 @@ You should achieve better results by setting this init to <arg fmt="%i" index="3
 </msg>
 
 <msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Motor2_Desired_Max_Vel_15</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">MCU_Serial_Handle</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Motor1_Desired_Max_Vel_11</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">MCU_Serial_Handle</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Motor1_Desired_Max_Vel_12</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">MCU_Serial_Handle</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Motor1_Desired_Max_Vel_13</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">MCU_Serial_Handle</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Motor1_Desired_Max_Vel_14</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">MCU_Serial_Handle</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">Motor1_Desired_Max_Vel_15</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">MCU_Serial_Handle</arg>&gt;.
 </msg>
 
 <msg type="warning" file="Xst" num="2404" delta="old" > FFs/Latches &lt;<arg fmt="%s" index="1">Motor2_CheckSum_Command</arg>&lt;<arg fmt="%d" index="2">7</arg>:<arg fmt="%d" index="3">7</arg>&gt;&gt; (without init value) have a constant value of <arg fmt="%c" index="4">0</arg> in block &lt;<arg fmt="%s" index="5">Sabertooth_Packetized_Serial_Driver</arg>&gt;.
@@ -464,7 +467,22 @@ You should achieve better results by setting this init to <arg fmt="%i" index="3
 You should achieve better results by setting this init to <arg fmt="%i" index="3">1</arg>.
 </msg>
 
-<msg type="warning" file="Xst" num="1293" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">Kp_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+<msg type="warning" file="Xst" num="1293" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">Kd_2</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1896" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Kd_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1896" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Kd_4</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1896" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Kd_5</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1896" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Kd_6</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
+</msg>
+
+<msg type="warning" file="Xst" num="1896" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Kp_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
 <msg type="warning" file="Xst" num="1896" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Kp_4</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
@@ -483,21 +501,6 @@ You should achieve better results by setting this init to <arg fmt="%i" index="3
 </msg>
 
 <msg type="warning" file="Xst" num="1896" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Ki_6</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Kd_2</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Kd_3</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Kd_4</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Kd_5</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
-</msg>
-
-<msg type="warning" file="Xst" num="1896" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Kd_6</arg>&gt; has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Position_PID_Controller</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
 <msg type="warning" file="Xst" num="1710" delta="old" >FF/Latch &lt;<arg fmt="%s" index="1">Motor1_Address_Command_0</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Sabertooth_Packetized_Serial_Driver</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
@@ -551,16 +554,16 @@ You should achieve better results by setting this init to <arg fmt="%i" index="3
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Ki_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Velocity_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">5 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Ki_3&gt; &lt;Kp_0&gt; &lt;Kp_2&gt; &lt;Kd_1&gt; &lt;Kd_2&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Pre_Position_Error_16</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">15 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Pre_Position_Error_17&gt; &lt;Pre_Position_Error_18&gt; &lt;Pre_Position_Error_19&gt; &lt;Pre_Position_Error_20&gt; &lt;Pre_Position_Error_21&gt; &lt;Pre_Position_Error_22&gt; &lt;Pre_Position_Error_23&gt; &lt;Pre_Position_Error_24&gt; &lt;Pre_Position_Error_25&gt; &lt;Pre_Position_Error_26&gt; &lt;Pre_Position_Error_27&gt; &lt;Pre_Position_Error_28&gt; &lt;Pre_Position_Error_29&gt; &lt;Pre_Position_Error_30&gt; &lt;Pre_Position_Error_31&gt; </arg>
-</msg>
-
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Kp_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Ki_3&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Kp_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Ki_1&gt; &lt;Kd_1&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Kd_0</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">3 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Kp_2&gt; &lt;Ki_2&gt; &lt;Ki_4&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Kp_2</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">3 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Ki_2&gt; &lt;Ki_4&gt; &lt;Kd_0&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Pre_Position_Error_16</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">15 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Pre_Position_Error_17&gt; &lt;Pre_Position_Error_18&gt; &lt;Pre_Position_Error_19&gt; &lt;Pre_Position_Error_20&gt; &lt;Pre_Position_Error_21&gt; &lt;Pre_Position_Error_22&gt; &lt;Pre_Position_Error_23&gt; &lt;Pre_Position_Error_24&gt; &lt;Pre_Position_Error_25&gt; &lt;Pre_Position_Error_26&gt; &lt;Pre_Position_Error_27&gt; &lt;Pre_Position_Error_28&gt; &lt;Pre_Position_Error_29&gt; &lt;Pre_Position_Error_30&gt; &lt;Pre_Position_Error_31&gt; </arg>
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Kd_1</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Position_PID_Controller</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Kp_0&gt; &lt;Ki_1&gt; </arg>
 </msg>
 
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Motor1_Address_Command_7</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Sabertooth_Packetized_Serial_Driver</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Motor2_Address_Command_7&gt; </arg>
@@ -770,21 +773,6 @@ You should achieve better results by setting this init to <arg fmt="%i" index="3
 <msg type="warning" file="Xst" num="1895" delta="old" >Due to other FF/Latch trimming, FF/Latch &lt;<arg fmt="%s" index="1">Sabertooth_Driver/Motor1_Motor_Command_2</arg>&gt; (without init value) has a constant value of <arg fmt="%d" index="2">0</arg> in block &lt;<arg fmt="%s" index="3">Top_level</arg>&gt;. This FF/Latch will be trimmed during the optimization process.
 </msg>
 
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">MCU_Serial_Handle/Motor2_Desired_Max_Vel_15</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
-</msg>
-
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">MCU_Serial_Handle/Motor2_Desired_Max_Vel_14</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
-</msg>
-
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">MCU_Serial_Handle/Motor2_Desired_Max_Vel_13</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
-</msg>
-
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">MCU_Serial_Handle/Motor2_Desired_Max_Vel_12</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
-</msg>
-
-<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">MCU_Serial_Handle/Motor2_Desired_Max_Vel_11</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
-</msg>
-
 <msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">MCU_Serial_Handle/Motor1_Desired_Max_Vel_15</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
 </msg>
 
@@ -800,7 +788,22 @@ You should achieve better results by setting this init to <arg fmt="%i" index="3
 <msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">MCU_Serial_Handle/Motor1_Desired_Max_Vel_11</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Motor1_Velocity_PID_Controller/p_14</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Top_level</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Motor1_Velocity_PID_Controller/p_13&gt; </arg>
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">MCU_Serial_Handle/Motor2_Desired_Max_Vel_15</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">MCU_Serial_Handle/Motor2_Desired_Max_Vel_14</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">MCU_Serial_Handle/Motor2_Desired_Max_Vel_13</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">MCU_Serial_Handle/Motor2_Desired_Max_Vel_12</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="warning" file="Xst" num="2677" delta="old" >Node &lt;<arg fmt="%s" index="1">MCU_Serial_Handle/Motor2_Desired_Max_Vel_11</arg>&gt; of sequential type is unconnected in block &lt;<arg fmt="%s" index="2">Top_level</arg>&gt;.
+</msg>
+
+<msg type="info" file="Xst" num="2261" delta="new" >The FF/Latch &lt;<arg fmt="%s" index="1">Motor1_Velocity_PID_Controller/p_14</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Top_level</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Motor1_Velocity_PID_Controller/p_13&gt; </arg>
 </msg>
 
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Motor1_Position_PID_Controller/Position_Error_Checked_19</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Top_level</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">4 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Motor1_Position_PID_Controller/Position_Error_Checked_18&gt; &lt;Motor1_Position_PID_Controller/Position_Error_Checked_17&gt; &lt;Motor1_Position_PID_Controller/Position_Error_Checked_16&gt; &lt;Motor1_Position_PID_Controller/Position_Error_Checked_15&gt; </arg>
@@ -818,16 +821,13 @@ You should achieve better results by setting this init to <arg fmt="%i" index="3
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Motor1_Displays_I2C_Master_Module/addr_rw_7</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Top_level</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">2 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Motor1_Displays_I2C_Master_Module/addr_rw_6&gt; &lt;Motor1_Displays_I2C_Master_Module/addr_rw_5&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Motor2_Velocity_PID_Controller/p_14</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Top_level</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Motor2_Velocity_PID_Controller/p_13&gt; </arg>
-</msg>
-
 <msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Motor1_Position_PID_Controller/Position_Error_Checked_past_15</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Top_level</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">FF/Latch</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Motor1_Position_PID_Controller/Position_Error_Checked_past_19&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Motor2_Position_PID_Controller/Position_Error_Checked_past_18</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Top_level</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">3 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Motor2_Position_PID_Controller/Position_Error_Checked_past_17&gt; &lt;Motor2_Position_PID_Controller/Position_Error_Checked_past_16&gt; &lt;Motor2_Position_PID_Controller/Position_Error_Checked_past_15&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Motor1_Position_PID_Controller/Position_Error_Checked_past_18</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Top_level</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">3 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Motor1_Position_PID_Controller/Position_Error_Checked_past_17&gt; &lt;Motor1_Position_PID_Controller/Position_Error_Checked_past_16&gt; &lt;Motor1_Position_PID_Controller/Position_Error_Checked_past_15&gt; </arg>
 </msg>
 
-<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Motor1_Position_PID_Controller/Position_Error_Checked_past_18</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Top_level</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">3 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Motor1_Position_PID_Controller/Position_Error_Checked_past_17&gt; &lt;Motor1_Position_PID_Controller/Position_Error_Checked_past_16&gt; &lt;Motor1_Position_PID_Controller/Position_Error_Checked_past_15&gt; </arg>
+<msg type="info" file="Xst" num="2261" delta="old" >The FF/Latch &lt;<arg fmt="%s" index="1">Motor2_Position_PID_Controller/Position_Error_Checked_past_18</arg>&gt; in Unit &lt;<arg fmt="%s" index="2">Top_level</arg>&gt; is equivalent to the following <arg fmt="%s" index="3">3 FFs/Latches</arg>, which will be removed : <arg fmt="%s" index="4">&lt;Motor2_Position_PID_Controller/Position_Error_Checked_past_17&gt; &lt;Motor2_Position_PID_Controller/Position_Error_Checked_past_16&gt; &lt;Motor2_Position_PID_Controller/Position_Error_Checked_past_15&gt; </arg>
 </msg>
 
 </messages>

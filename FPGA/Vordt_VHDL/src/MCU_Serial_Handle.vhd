@@ -26,8 +26,8 @@ use ieee.numeric_std.all;
 
 entity MCU_Serial_Handle is
 	generic (
-     MCU_Wait_Time : integer := 10;
-     WaitIn : integer := 100 --give 10us to MCU 
+     MCU_Wait_Time : integer := 1000;
+     WaitIn : integer := 0 --give 5us to MCU 
    );
     PORT (
             --in
@@ -40,9 +40,11 @@ entity MCU_Serial_Handle is
             Motor1_Velocity_Input : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
             Motor1_Position_Input : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
             Motor1_Turn_Input : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+            Motor1_PWM_Input : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
             Motor2_Velocity_Input : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
             Motor2_Position_Input : IN STD_LOGIC_VECTOR(15 DOWNTO 0);
             Motor2_Turn_Input : IN STD_LOGIC_VECTOR(31 DOWNTO 0);
+            Motor2_PWM_Input : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
             Incoming_Packet : IN STD_LOGIC_VECTOR(7 DOWNTO 0);
             MCU_Ready : IN STD_LOGIC;
             --out
@@ -59,8 +61,10 @@ entity MCU_Serial_Handle is
 end MCU_Serial_Handle;
 
 architecture Behavioral of MCU_Serial_Handle is
-    type TX_States is (Idle, Send_Motor1_Position,Send_Motor2_Position,Send_Motor1_Velocity,Send_Motor2_Velocity,Send_Motor1_Turn,Send_Motor2_Turn, Wait_One);
-    type RX_States is (Idle, Motor_Select, Motor1_Desired_Type_Check, Motor2_Desired_Type_Check, Update_Motor1_Desired_Position, Update_Motor2_Desired_Position, Update_Motor1_Desired_Max_Vel, Update_Motor2_Desired_Max_Vel,Update_Motor1_Desired_Turn,Update_Motor2_Desired_Turn,Wait_One);
+    type TX_States is (Idle, Send_Motor1_Position,Send_Motor2_Position,Send_Motor1_Velocity,Send_Motor2_Velocity,Send_Motor1_Turn,Send_Motor2_Turn, 
+    Send_Motor1_PWM, Send_Motor2_PWM,Wait_One);
+    type RX_States is (Idle, Motor_Select, Motor1_Desired_Type_Check, Motor2_Desired_Type_Check, Update_Motor1_Desired_Position, Update_Motor2_Desired_Position, 
+    Update_Motor1_Desired_Max_Vel, Update_Motor2_Desired_Max_Vel,Update_Motor1_Desired_Turn,Update_Motor2_Desired_Turn,Wait_One);
     signal TX_State_Machine : TX_States;
     signal RX_State_Machine : RX_States;
     signal Receive_32bit_Register : STD_LOGIC_VECTOR(31 DOWNTO 0);
@@ -99,7 +103,7 @@ architecture Behavioral of MCU_Serial_Handle is
                         when 0=>--Check if MCU Ready
                             if MCU_Ready = '1' then                            
                                 Tx_Byte_Count<=1;
-                                Output_For_UART_TX<= x"01"; --Motor1
+                                Output_For_UART_TX<= x"01"; --Motor 1 notation
                                 counter<=0;
                             -- else --MCU_Wait_Time 
 							-- 	if counter = MCU_Wait_Time then
@@ -119,7 +123,7 @@ architecture Behavioral of MCU_Serial_Handle is
                             else
                                 counter<=counter+1;
                             end if;
-                        when 2 => --Sending Motor1 notice
+                        when 2 => 
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
@@ -130,7 +134,7 @@ architecture Behavioral of MCU_Serial_Handle is
                             else
                                 dv_signal<='1';
                             end if;
-                        when 3 => --Sending Position_Incoming Notice
+                        when 3 =>
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
@@ -176,7 +180,7 @@ architecture Behavioral of MCU_Serial_Handle is
                         when 0=>--Check if MCU Ready
                             if MCU_Ready = '1' then                            
                                 Tx_Byte_Count<=1;
-                                Output_For_UART_TX<= x"02"; --Motor2
+                                Output_For_UART_TX<= x"02"; --Motor 2 notation
                                 counter<=0;
                             -- else --MCU_Wait_Time 
 							-- 	if counter = MCU_Wait_Time then
@@ -196,7 +200,7 @@ architecture Behavioral of MCU_Serial_Handle is
                             else
                                 counter<=counter+1;
                             end if;
-                        when 2 => --Sending Motor2 notice
+                        when 2 =>
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
@@ -207,7 +211,7 @@ architecture Behavioral of MCU_Serial_Handle is
                             else
                                 dv_signal<='1';
                             end if;
-                        when 3 => --Sending Position_Incoming Notice
+                        when 3 =>
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
@@ -254,7 +258,7 @@ architecture Behavioral of MCU_Serial_Handle is
 							if MCU_Ready = '1' then                            
 							    Tx_Byte_Count<=1;
                                 counter<=0;
-                                Output_For_UART_TX<= x"01";
+                                Output_For_UART_TX<= x"01"; -- Motor 1 Notation
                             -- else --MCU_Wait_Time
 							--     if counter = MCU_Wait_Time then
 							-- 	    counter <= 0;
@@ -273,7 +277,7 @@ architecture Behavioral of MCU_Serial_Handle is
                             else
                                 counter<=counter+1;
                             end if;
-                        when 2 => --Sending Motor1 notice
+                        when 2 =>
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
@@ -284,7 +288,7 @@ architecture Behavioral of MCU_Serial_Handle is
                             else
                                 dv_signal<='1';
                             end if;
-                        when 3=> --Sending Velocity_Incoming Notice
+                        when 3=>
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
@@ -332,7 +336,7 @@ architecture Behavioral of MCU_Serial_Handle is
 							if MCU_Ready = '1' then                            
 							    Tx_Byte_Count<=1;
                                 counter<=0;
-                                Output_For_UART_TX<= x"02";
+                                Output_For_UART_TX<= x"02"; -- Motor 2 notation
                             -- else --MCU_Wait_Time
 							--     if counter = MCU_Wait_Time then
 							-- 	    counter <= 0;
@@ -351,7 +355,7 @@ architecture Behavioral of MCU_Serial_Handle is
                             else
                                 counter<=counter+1;
                             end if;
-                        when 2 => --Sending Motor1 notice
+                        when 2 =>
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
@@ -362,7 +366,7 @@ architecture Behavioral of MCU_Serial_Handle is
                             else
                                 dv_signal<='1';
                             end if;
-                        when 3=> --Sending Velocity_Incoming Notice
+                        when 3=>
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
@@ -408,7 +412,7 @@ architecture Behavioral of MCU_Serial_Handle is
                         when 0 => --Check if MCU Ready
                             if MCU_Ready = '1' then                            
                                 Tx_Byte_Count<=1;
-                                Output_For_UART_TX<= x"01"; --Sending Turn_Incoming Notice
+                                Output_For_UART_TX<= x"01"; -- Motor 1 notation
 								counter<=0;
                             -- else --MCU_Wait_Time
 							--     if counter = MCU_Wait_Time then
@@ -428,7 +432,7 @@ architecture Behavioral of MCU_Serial_Handle is
                             else
                                 counter<=counter+1;
                             end if; 
-                         when 2 => --Sending Motor1 notice
+                         when 2 =>
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
@@ -505,7 +509,7 @@ architecture Behavioral of MCU_Serial_Handle is
                         when 0 => --Check if MCU Ready
                             if MCU_Ready = '1' then                            
                                 Tx_Byte_Count<=1;
-                                Output_For_UART_TX<= x"02"; --Sending Turn_Incoming Notice
+                                Output_For_UART_TX<= x"02"; --Motor 2 notation
 								counter<=0;
                             -- else --MCU_Wait_Time
 							--     if counter = MCU_Wait_Time then
@@ -525,7 +529,7 @@ architecture Behavioral of MCU_Serial_Handle is
                             else
                                 counter<=counter+1;
                             end if; 
-                         when 2 => --Sending Motor1 notice
+                         when 2 =>
                             if tx_done = '1' then
                                 dv_signal<='0';
                                 if dv_signal='0' then
@@ -592,10 +596,144 @@ architecture Behavioral of MCU_Serial_Handle is
                                 if counter = MCU_Wait_Time then
                                     counter <= 0;
                                     Tx_Byte_Count<=0;
-                                    Tx_State_Machine<=Send_Motor1_Position;
+                                    Tx_State_Machine<=Send_Motor1_PWM;
                                 else
                                    	counter<=counter+1;
                                 end if;  
+                    end case;
+                when Send_Motor1_PWM=>--Send Current Motor1 PWM value    
+                    case Tx_Byte_Count is
+                        when 0=>--Check if MCU Ready
+                            if MCU_Ready = '1' then                            
+                                Tx_Byte_Count<=1;
+                                Output_For_UART_TX<= x"01"; --Motor 1 notation
+                                counter<=0;
+                            -- else --MCU_Wait_Time 
+							-- 	if counter = MCU_Wait_Time then
+							-- 	    counter <= 0;
+							-- 		Tx_Byte_Count<=0;
+							-- 		Tx_State_Machine<=Send_Position; --Send the notice again  
+							-- 	else
+							-- 		counter<=counter+1;
+                            -- 	end if;
+                            else
+                                Tx_Byte_Count<=0;
+                            end if;
+                        when 1 => --wait little bit
+                            if counter = WaitIn then
+                                counter <= 0;
+                                Tx_Byte_Count<=2;
+                            else
+                                counter<=counter+1;
+                            end if;
+                        when 2 =>
+                            if tx_done = '1' then
+                                dv_signal<='0';
+                                if dv_signal='0' then
+                                    Tx_Byte_Count<=3;
+                                    Output_For_UART_TX<= x"04";--Motor PWM notice
+									counter<=0;
+                                end if;
+                            else
+                                dv_signal<='1';
+                            end if;
+                        when 3 =>
+                            if tx_done = '1' then
+                                dv_signal<='0';
+                                if dv_signal='0' then
+                                    Tx_Byte_Count<=4;
+                                    Transmit_32bit_Register(7 Downto 0)<=Motor1_PWM_Input;
+									counter<=0;
+                                end if;
+                            else
+                                dv_signal<='1';
+                            end if;
+                        when 4 => --7 to 0
+                            Output_For_UART_TX<=Transmit_32bit_Register(7 Downto 0);
+                            if tx_done = '1' then
+                                dv_signal<='0';
+                                if dv_signal='0' then
+                                    Tx_Byte_Count<=5;
+                                end if;
+                            else
+                                dv_signal<='1';
+                            end if;
+                        when others =>
+                            --Transmit_32bit_Register<=x"00000000";
+                            if counter = MCU_Wait_Time then
+                                counter <= 0;
+                                Tx_Byte_Count<=0;
+                                Tx_State_Machine<=Send_Motor2_PWM;
+                            else
+                                   counter<=counter+1;
+                            end if; 
+                    end case;
+                when Send_Motor2_PWM=>--Send Current Motor1 PWM value    
+                    case Tx_Byte_Count is
+                        when 0=>--Check if MCU Ready
+                            if MCU_Ready = '1' then                            
+                                Tx_Byte_Count<=1;
+                                Output_For_UART_TX<= x"02"; --Motor 2 notation
+                                counter<=0;
+                            -- else --MCU_Wait_Time 
+							-- 	if counter = MCU_Wait_Time then
+							-- 	    counter <= 0;
+							-- 		Tx_Byte_Count<=0;
+							-- 		Tx_State_Machine<=Send_Position; --Send the notice again  
+							-- 	else
+							-- 		counter<=counter+1;
+                            -- 	end if;
+                            else
+                                Tx_Byte_Count<=0;
+                            end if;
+                        when 1 => --wait little bit
+                            if counter = WaitIn then
+                                counter <= 0;
+                                Tx_Byte_Count<=2;
+                            else
+                                counter<=counter+1;
+                            end if;
+                        when 2 =>
+                            if tx_done = '1' then
+                                dv_signal<='0';
+                                if dv_signal='0' then
+                                    Tx_Byte_Count<=3;
+                                    Output_For_UART_TX<= x"04";--Motor PWM notice
+									counter<=0;
+                                end if;
+                            else
+                                dv_signal<='1';
+                            end if;
+                        when 3 =>
+                            if tx_done = '1' then
+                                dv_signal<='0';
+                                if dv_signal='0' then
+                                    Tx_Byte_Count<=4;
+                                    Transmit_32bit_Register(7 Downto 0)<=Motor2_PWM_Input;
+									counter<=0;
+                                end if;
+                            else
+                                dv_signal<='1';
+                            end if;
+                        when 4 => --7 to 0
+                            Output_For_UART_TX<=Transmit_32bit_Register(7 Downto 0);
+                            if tx_done = '1' then
+                                dv_signal<='0';
+                                if dv_signal='0' then
+                                    Tx_Byte_Count<=5;
+                                end if;
+                            else
+                                dv_signal<='1';
+                            end if;
+                        when others =>
+                            --Transmit_32bit_Register<=x"00000000";
+                            if counter = MCU_Wait_Time then
+                                counter <= 0;
+                                Tx_Byte_Count<=0;
+                                Tx_State_Machine<=Send_Motor1_Position;
+                            else
+                                   counter<=counter+1;
+                            end if; 
                     end case;
                           
                 when Wait_One =>
@@ -618,6 +756,11 @@ architecture Behavioral of MCU_Serial_Handle is
             Type_register<=x"00";
             Motor_Select_register<=x"00";
             Receive_32bit_Register<=x"00000000";
+		  elsif Reset = '0' then
+				Motor1_Desired_Turn<=x"00000000";
+				Motor2_Desired_Turn<=x"00000000";
+				Motor1_Desired_Position<=x"0000";
+				Motor2_Desired_Position<=x"0000";
         elsif falling_edge(CLK) then
             case RX_State_Machine is
                 when Idle=>

@@ -95,6 +95,7 @@ begin
 		Pre_Position_Error<=0;
 		Position_Error<=0;
 		Turn_Error<=0;
+		output_command<=x"0000";
 
 	elsif rising_edge(CLK) then
 		case State_Machine is

@@ -1,0 +1,12 @@
+{
+    "tasks": [
+        {
+            "type": "catkin",
+            "target": "run_tests",
+            "group": {
+                "kind": "build",
+                "isDefault": true
+            }
+        }
+    ]
+}

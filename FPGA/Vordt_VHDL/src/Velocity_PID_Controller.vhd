@@ -53,8 +53,8 @@ architecture Behavioral of Velocity_PID_Controller is
 	--signal convert_setpoint,PID_input_convert : STD_LOGIC_VECTOR (15 Downto 0);
 	signal sample_rate : integer range 0 to 5000001; --x"7A120" --1/100 seconds or 10 milliseconds
 	signal Kp : integer range 0 to 64 :=0;		--proportional constant
-    signal Kd : integer range 0 to 64 :=0;		--Derivative constant, hard to tweak this!
-    signal Ki : integer range 0 to 64 :=0;		--integral constant
+   signal Kd : integer range 0 to 64 :=0;		--Derivative constant, hard to tweak this!
+   signal Ki : integer range 0 to 64 :=0;		--integral constant
 	signal error : integer range -1000 to 1000 :=0;
 	signal PID_input : INTEGER RANGE -32768 TO 32767 :=0;
 	signal p,i,d : integer range -10000 to 10000 :=0;
@@ -223,8 +223,6 @@ begin
 				else
 					output_checked<=output;
 				end if;
-				
-
 				State_Machine<=Last_process;
 			when Last_process =>
 				if output_checked > 0 then

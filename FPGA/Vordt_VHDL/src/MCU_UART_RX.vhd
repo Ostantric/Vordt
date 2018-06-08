@@ -30,7 +30,7 @@ use ieee.numeric_std.all;
 --baudrate is 4M
 entity MCU_UART_RX is
   generic (
-    g_CLKS_PER_BIT : integer := 12     -- 50M/4M = 12.5
+    g_CLKS_PER_BIT : integer := 25     -- 50M/2M = 25
     );
   port (
     i_Clk       : in  std_logic;
