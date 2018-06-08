@@ -1,5 +1,7 @@
 # ESP32
 
+Arduino development stopped. C++ development continues using ESP-IDF. 
+
 ### TODO
 
 * ~~Implement UDP server~~
@@ -14,30 +16,27 @@
 
 * ~~Adjust UART speed for future add-ons~~
 
-* Move to ESP-IDF
+* ~~Move to ESP-IDF~~
+
+* ~~Smart Wifi Connect~~
+
 
 ### RTOS Tasks Architecture
 Higher the number the higher the priority
 
-* Send_Position_To_FPGA - Priority = 6
+* Send_32bits_To_FPGA	- Priority = 6
 
-* Send_Turn_To_FPGA - Priority = 6
+* Send_16bits_To_FPGA	- Priority = 6
 
-* Send_MaxVel_To_FPGA - Priority = 6
+* UDP_Listen 		- Priority = 5
 
-* IncomingJsonParser - Priority = 5
+* UDP_Send 		- Priority = 4
 
-* UDP_Listen - Priority = 4
+* FPGA_Listen   	- Priority = 3
 
-* Position_UDP_Send - Priority = 3
+* IP_Broadcast  	- Priority = 2
 
-* Velocity_UDP_Send - Priority = 3
 
-* Turn_UDP_Send - Priority = 3
-
-* FPGA_Listen - Priority = 2
-
-* Utility_UDP_send - Priority = 1
 
 
 
