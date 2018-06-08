@@ -21,10 +21,8 @@
                   android:windowSoftInputMode="stateHidden"
             android:screenOrientation="landscape"
             >
-
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
@@ -36,6 +34,33 @@
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
+        </activity>
+
+        <activity android:name=".Motor1_Debug"
+            android:parentActivityName=".Interface_Main"
+            android:screenOrientation="landscape">
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Interface_Main" />
+        </activity>
+
+        <activity android:name=".Motor2_Debug"
+            android:parentActivityName=".Interface_Main"
+            android:screenOrientation="landscape">
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Interface_Main" />
+        </activity>
+
+        <activity android:name=".Motors_Debug"
+            android:parentActivityName=".Interface_Main"
+            android:screenOrientation="landscape">
+            <!-- The meta-data tag is required if you support API level 15 and lower -->
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value=".Interface_Main" />
         </activity>
 
         <meta-data

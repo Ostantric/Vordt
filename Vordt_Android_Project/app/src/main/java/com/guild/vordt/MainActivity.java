@@ -3,11 +3,21 @@ package com.guild.vordt;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.view.textservice.SuggestionsInfo;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,7 +33,18 @@ public class MainActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.activity_main);
         final Button button = findViewById(R.id.button);
+        final ListView myListView = findViewById(R.id.listview);
+        String[] Robots = new String[] {
+                "Vordt      192.168.1.231       30:AE:A4:1D:82:D8",
+                "Vordt      192.168.1.232       52:8C:Q1:08:99:11",
+                "Vordt      192.168.1.233       52:8C:Q1:08:99:11",
+                "Vordt      192.168.1.234       52:8C:Q1:08:99:11"
+        };
+        final List<String> fruits_list = new ArrayList<String>(Arrays.asList(Robots));
+        final ArrayAdapter<String> arrayAdapter = new ArrayAdapter<String>
+                (this, android.R.layout.simple_list_item_1, fruits_list);
 
+        //setContentView(myListView);
         button.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 port_txt = findViewById(R.id.PORT);
@@ -52,6 +73,18 @@ public class MainActivity extends AppCompatActivity {
             }
                 // Code here executes on main thread after user presses button
             });
+        myListView.setAdapter(arrayAdapter);
+        myListView.setOnItemClickListener(new AdapterView.OnItemClickListener()
+        {
+            @Override
+            public void onItemClick(AdapterView<?> arg0, View arg1,int position, long arg3)
+            {
+                String selectedItem = (String) arg0.getItemAtPosition(position);
+
+                Log.e("E", selectedItem);
+
+            }
+        });
 
         }
 

@@ -8,12 +8,16 @@ import java.io.IOException;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import java.net.Socket;
+import java.net.SocketException;
 import java.net.SocketTimeoutException;
+import java.net.UnknownHostException;
 
 import android.app.Activity;
 import android.app.Fragment;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.provider.ContactsContract;
 import android.util.Log;
 
 import org.json.JSONException;
@@ -32,9 +36,11 @@ public class client extends Fragment {
     private boolean run, big_run = true;
     private boolean restart = true;
     private boolean show_disconnected,connection,isconnected,connection_old = false;
-    private DatagramSocket ds = null;
-    private DatagramPacket dp = null;
+    private DatagramSocket socket_receive = null;
+    private DatagramSocket socket_send = null;
+    private DatagramPacket dp_receive = null;
     private DatagramPacket dp_send = null;
+    private DatagramPacket dp_start_message = null;
     private boolean send_command_flag;
     private String json_buffer;
     private String turn ,position,velocity;
@@ -44,9 +50,11 @@ public class client extends Fragment {
     private int position_int_reversed = 0;
     private int velocity_int = 0;
     private int velocity_int_reversed = 0;
+    InetAddress serverAddr;
 
     private int port_from_activity;
     private String ip_from_activity;
+    private String ip_for_Send;
 
     /**
      * Callback interface through which the fragment will report the
@@ -57,10 +65,14 @@ public class client extends Fragment {
         //int onPreExecute_PORT();
         void onPreExecute();
 
-        void MovementUpdates(String Position, String Velocity, String Turn, int position, int position_reversed, int velocity, int velocity_reversed );
+        //void MovementUpdates(int Motor_Number,String Position, String Velocity, String Turn, int position, int position_reversed, int velocity, int velocity_reversed );
 
-        void UtilityUpdates(String voltage);
+        void PositionUpdate(int Motor_Number, String Position, int position, int position_reversed); 
+        void VelocityUpdate(int Motor_Number, String Velocity, int velocity, int velocity_bar_reversed);
+        void TurnUpdate (int Motor_Number, String Turn);
 
+        void UtilityUpdates(int Motor_Number,String voltage);
+        //void send_command(int MotorNumber,String type, int value);
 
         void onCancelled();
 
@@ -103,6 +115,8 @@ public class client extends Fragment {
         port_from_activity = bundle.getInt("Port");
         ip_from_activity = bundle.getString("IP");
 
+        //ip_for_Send = bundle.getString("IP");
+
 
         // Retain this fragment across configuration changes.
         setRetainInstance(true);
@@ -143,6 +157,7 @@ public class client extends Fragment {
             mTask.cancel(false);
             mTask = null;
             //ds.close();
+            //socket_receive.close();
             mRunning = false;
         }
     }
@@ -151,11 +166,14 @@ public class client extends Fragment {
         send_command_flag=flag;
     }
 
-    public void send_command(String type, int value){
+    public void send_command(int MotorNumber,String type, int value){
+        //String dstAddress=ip_from_activity;
+        //dstAddress = ip_for_Send;
 
         if (type.equals("velocity")) {
             JSONObject json = new JSONObject();
             try {
+                json.put("mno", MotorNumber); //Motor Number
                 json.put("type", "dvel");
                 json.put("value",value);
                 json_buffer=json.toString();
@@ -167,6 +185,7 @@ public class client extends Fragment {
         else if (type.equals("position")){
             JSONObject json = new JSONObject();
             try {
+                json.put("mno",MotorNumber);
                 json.put("type", "dpos");
                 json.put("value",value);
                 json_buffer=json.toString();
@@ -178,8 +197,21 @@ public class client extends Fragment {
         {
             JSONObject json = new JSONObject();
             try {
+                json.put("mno",MotorNumber);
                 json.put("type", "dturn");
                 json.put("value",value);
+                json_buffer=json.toString();
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        else if (type.equals("reset"))
+        {
+            JSONObject json = new JSONObject();
+            try {
+                json.put("mno",MotorNumber);
+                json.put("type", "reset");
+                json.put("value", value);
                 json_buffer=json.toString();
             } catch (JSONException e) {
                 e.printStackTrace();
@@ -188,8 +220,23 @@ public class client extends Fragment {
         else{
             json_buffer="";
         }
-
+        /*mTask2 = new udp_send(ip_from_activity,port_from_activity);
+        mTask2.execute();*/
+        if(mRunning) {
+            try {
+                Thread.sleep(1);
+                dp_send = new DatagramPacket(json_buffer.getBytes(), json_buffer.length(), serverAddr, port_from_activity);
+                Log.e("udp", "data sent" + json_buffer);
+                socket_receive.send(dp_send);
+            } catch (IOException e) {
+                Log.e("io error", "outter io error");
+                e.printStackTrace();
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
+
 
     public void disconnect() {
         //mCallbacks.onDisconnected();
@@ -220,6 +267,7 @@ public class client extends Fragment {
             this.dstPort=port_number;
         }
 
+
         @Override
         protected void onPreExecute() {
              mRunning=true;
@@ -228,17 +276,18 @@ public class client extends Fragment {
         @Override
         protected Void doInBackground(Void... ignore) {
             String message1 = "1";
+            run = false;
             //TODO:clean up while loops
-            //stay in big run for continuous receives, connection checks and reconnection tries
+            //stay in big run for contin uous receives, connection checks and reconnection tries
             while (big_run) {
                 //send  once then go to inner infinite loop for receive data
                 if (restart) {
                     try {
-                        InetAddress serverAddr = InetAddress.getByName(dstAddress);
-                        dp = new DatagramPacket(message1.getBytes(), message1.length(), serverAddr, dstPort);
-                        ds = new DatagramSocket();
-                        ds.setSoTimeout(500);
-                        ds.send(dp);
+                        serverAddr = InetAddress.getByName(dstAddress);
+                        socket_receive = new DatagramSocket();
+                        dp_start_message = new DatagramPacket(message1.getBytes(), message1.length(), serverAddr, port_from_activity);
+                        socket_receive.setSoTimeout(500);
+                        socket_receive.send(dp_start_message);
                         run = true;
                         restart = false;
                         Thread.sleep(5);
@@ -249,7 +298,7 @@ public class client extends Fragment {
                         Log.e("io error", "outter io error");
                         connection = false;
                         isconnected = false;
-                        ds.close();
+                        socket_receive.close();
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
@@ -258,23 +307,14 @@ public class client extends Fragment {
                 //stay in this loop until timeout or IO exception
                 while (run) {
                     try {
-                        InetAddress serverAddr = InetAddress.getByName(dstAddress);
                         Thread.sleep(1);
                         byte[] buffer = new byte[256];
-                        dp = new DatagramPacket(buffer, buffer.length);
-                        ds.receive(dp);
+                        dp_receive= new DatagramPacket(buffer, buffer.length);
+                        socket_receive.receive(dp_receive);
 
-                        String udp_msg = new String(buffer, 0, dp.getLength());
+                        String udp_msg = new String(buffer, 0, dp_receive.getLength());
                         publishProgress(udp_msg);
 
-                        if (send_command_flag) {
-                            if(!send_command_flag_old) {
-                                Thread.sleep(1);
-                                dp_send = new DatagramPacket(json_buffer.getBytes(), json_buffer.length(), serverAddr, dstPort);
-                                Log.e("udp", "data sent"+json_buffer);
-                                ds.send(dp_send);
-                            }
-                        }
                         connection = true;
                         isconnected = true;
                         send_command_flag_old=send_command_flag;
@@ -285,7 +325,7 @@ public class client extends Fragment {
                         restart = true;
                         connection = false;
                         isconnected = false;
-                        ds.close();
+                        socket_receive.close();
                         publishProgress("lost");
                         Log.e("timeout ", "inner timeout");
                         break;
@@ -295,10 +335,10 @@ public class client extends Fragment {
                         isconnected = false;
                         publishProgress("lost");
                         Log.e("io error", "inner io error");
-                        ds.close();
+                        socket_receive.close();
                     }
                     catch (InterruptedException e) {
-                       e.printStackTrace();
+                        e.printStackTrace();
                     }
 
                 }
@@ -308,6 +348,175 @@ public class client extends Fragment {
             return null;
 
         }
+
+           /* try {
+                socket_send = new DatagramSocket();
+            } catch (SocketException e) {
+                run = false;
+                e.printStackTrace();
+            }*/
+           /*
+            while(big_run) {
+                if (restart) {
+                    try {
+                        socket_receive = new DatagramSocket(server_port);
+                        socket_receive.setSoTimeout(500);
+                        //socket_receive.receive(dp_receive);
+                        Thread.sleep(5);
+                        run = true;
+                        restart = false;
+                    }
+                    catch (IOException e) {
+                        publishProgress("lost");
+                        Log.e("io error", "outter io error");
+                        connection = false;
+                        isconnected = false;
+                        run = false;
+
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+
+                }
+                while (run) {
+                    try {
+                        dp_receive = new DatagramPacket(buffer, buffer.length);
+                        Thread.sleep(1);
+                        socket_receive.receive(dp_receive);
+                        String udp_msg = new String(buffer, 0, dp_receive.getLength());
+                        publishProgress(udp_msg);
+                        connection = true;
+                        isconnected = true;
+                        if (DEBUG) Log.i(TAG, "publishProgress(" + udp_msg + "%)");
+                    }catch (SocketTimeoutException e) {
+                        restart = true;
+                        run = false;
+                        connection = false;
+                        isconnected = false;
+                        socket_receive.close();
+                        Log.e("io error", "inner receive Time_Out error");
+                        publishProgress("lost");
+                    }
+                    catch (IOException e) {
+                        run = false;
+                        connection = false;
+                        isconnected = false;
+                        publishProgress("lost");
+                        Log.e("io error", "outter receive io error");
+                        socket_receive.close();
+                        e.printStackTrace();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    /*try {
+
+                    }
+                    catch (SocketTimeoutException e) {
+                        Log.e("io error", "inner send Time_Out error");
+                        restart = true;
+                        run = false;
+                        connection = false;
+                        isconnected = false;
+                        socket_receive.close();
+                    }catch (IOException e) {
+                        Log.e("io error", "outter send io error");
+                        e.printStackTrace();
+                    }
+                }
+            }
+            socket_receive.close();
+            */
+            /*
+            //TODO:clean up while loops
+            try {
+                InetAddress serverAddr = InetAddress.getByName(dstAddress);
+                socket_receive = new DatagramSocket();
+                dp_start_message = new DatagramPacket(message1.getBytes(), message1.length(), serverAddr, dstPort);
+
+            } catch (SocketException e) {
+                e.printStackTrace();
+                big_run=false;
+            } catch (UnknownHostException e) {
+                e.printStackTrace();
+                big_run=false;
+            }
+            //stay in big run for continuous receives, connection checks and reconnection tries
+            while (big_run) {
+                //send  once then go to inner infinite loop for receive data
+                if (restart) {
+                    try {
+                        socket_receive = new DatagramSocket();
+                        socket_receive.setSoTimeout(750);
+                        socket_receive.send(dp_start_message);
+                        run = true;
+                        restart = false;
+                        Thread.sleep(25);
+                        Log.e("stuck", "restart");
+                    } catch (IOException e) {
+                        //run = false;
+                        //big_run = false;
+                        publishProgress("lost");
+                        Log.e("io error", "outter io error");
+                        connection = false;
+                        isconnected = false;
+                        //ds.close();
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+
+                //stay in this loop until timeout or IO exception
+                while (run) {
+                    try {
+                        Log.e("stuck", "run");
+
+                        InetAddress serverAddr = InetAddress.getByName(dstAddress);
+                        Thread.sleep(1);
+                        dp_receive = new DatagramPacket(buffer, buffer.length);
+                        socket_receive.receive(dp_receive);
+
+                        String udp_msg = new String(buffer, 0, dp_start_message.getLength());
+                        publishProgress(udp_msg);
+
+                        connection = true;
+                        isconnected = true;
+                        send_command_flag_old=send_command_flag;
+                        if (DEBUG) Log.i(TAG, "publishProgress(" + udp_msg + "%)");
+                    } catch (SocketTimeoutException e) {
+                        //TODO: leaks here. Check logic states
+                        run = false;
+                        restart = true;
+                        connection = false;
+                        isconnected = false;
+                        socket_receive.close();
+                        //s.close();
+                        publishProgress("lost");
+                        Log.e("timeout ", "inner timeout");
+                        break;
+                    } catch (IOException e) {
+                        run = false;
+                        connection = false;
+                        isconnected = false;
+                        publishProgress("lost");
+                        Log.e("io error", "inner io error");
+                        socket_receive.close();
+                        //s.close();
+                    }
+                    catch (InterruptedException e) {
+                       e.printStackTrace();
+
+                    }
+
+                }
+            }
+
+            //ds.close();
+            return null;
+            */
+
+
+        //}
 
         @Override
         protected void onPostExecute(Void ignore) {
@@ -354,11 +563,9 @@ public class client extends Fragment {
                 //json parsing
                 JSON json = new JSON(value[0]);
                 String type = json.key("Type").stringValue();
-
-
-                double voltage_double =0.0;
-
-
+                String motor_number = json.key("Motor").stringValue();
+                int mno=0;
+                double voltage_double = 0.0;
                 //position_txt.setText(position);
                 //velocity_txt.setText(velocity);
                 //turn_txt.setText(turn);
@@ -394,7 +601,6 @@ public class client extends Fragment {
                         }
                         //position_bar.setProgress(Integer.valueOf(fixed_text_1));
                     }
-
                     if (velocity != null) {
                         String fixed_text = velocity.replaceAll("[^0-9]-+", "");
                         check2 = Integer.valueOf(fixed_text);
@@ -422,72 +628,92 @@ public class client extends Fragment {
                         }
                     }
                 }*/
-                if(type.equals("Position")){
-                    position = json.key("Value").stringValue();
+                if(motor_number.equals("1")) {
+                    mno=1;
+                }
+                else if(motor_number.equals("2")) {
+                    mno=2;
+                }
+                else{
+                    mno=0;
+                }
+                if (type.equals("Position")) {
+                        position = json.key("Value").stringValue();
 
-                    if (position != null) {
-                        String fixed_text = position.replaceAll("[^0-9]-+", "");
-                        check1 = Integer.valueOf(fixed_text);
-                        if (check1 > 0) {
-                            position_int = check1;
-                            position_int_reversed = 0;
-                            //velocity_bar.setProgress(check);
-                            //velocity_bar_reversed.setProgress(0);
-                        } else if (check1 == 0) {
-                            position_int = 0;
-                            position_int_reversed = 0;
-                            //velocity_bar.setProgress(0);
-                            //velocity_bar_reversed.setProgress(0);
-                        } else {
-                            position_int = 0;
-                            position_int_reversed = -check1;
-                            //velocity_bar.setProgress(0);
-                            //velocity_bar_reversed.setProgress(-check);
+                        if (position != null) {
+                            String fixed_text = position.replaceAll("[^0-9]-+", "");
+                            check1 = Integer.valueOf(fixed_text);
+                            if (check1 > 0) {
+                                position_int = check1;
+                                position_int_reversed = 0;
+                                //velocity_bar.setProgress(check);
+                                //velocity_bar_reversed.setProgress(0);
+                            } else if (check1 == 0) {
+                                position_int = 0;
+                                position_int_reversed = 0;
+                                //velocity_bar.setProgress(0);
+                                //velocity_bar_reversed.setProgress(0);
+                            } else {
+                                position_int = 0;
+                                position_int_reversed = -check1;
+                                //velocity_bar.setProgress(0);
+                                //velocity_bar_reversed.setProgress(-check);
+                            }
+                            if (mRunning) {
+                                mCallbacks.PositionUpdate(mno,position, position_int,position_int_reversed);
+                            }
+                        }
+                    } else if (type.equals("Velocity")) {
+                        velocity = json.key("Value").stringValue();
+                        if (velocity != null) {
+                            String fixed_text = velocity.replaceAll("[^0-9]-+", "");
+                            check2 = Integer.valueOf(fixed_text);
+
+                            if (check2 > 0) {
+                                velocity_int = check2;
+                                velocity_int_reversed = 0;
+                                //velocity_bar.setProgress(check);
+                                //velocity_bar_reversed.setProgress(0);
+                            } else if (check2 == 0) {
+                                velocity_int = 0;
+                                velocity_int_reversed = 0;
+                                //velocity_bar.setProgress(0);
+                                //velocity_bar_reversed.setProgress(0);
+                            } else {
+                                velocity_int = 0;
+                                velocity_int_reversed = -check2;
+                                //velocity_bar.setProgress(0);
+                                //velocity_bar_reversed.setProgress(-check);
+                            }
+                            if (mRunning) {
+                                mCallbacks.VelocityUpdate(mno,velocity, velocity_int,velocity_int_reversed);
+                            }
+                        }
+                    } else if (type.equals("Turn")) {
+                        turn = json.key("Value").stringValue();
+                        if (mRunning) {
+                            mCallbacks.TurnUpdate(mno,turn);
+                        }
+                    } /*else if (type.equals("Utility")) {
+                        String voltage = json.key("Voltage").stringValue();
+                        if (mRunning) {
+                            if (voltage != null) {
+                                mCallbacks.UtilityUpdates(voltage);
+                            }
+                        }
+                    } */else if (type.equals("MotorV")) {
+                    String voltage = json.key("Value").stringValue();
+                    if (mRunning) {
+                        if (voltage != null) {
+                            mCallbacks.UtilityUpdates(mno,voltage);
                         }
                     }
                 }
-                else if (type.equals("Velocity")){
-                    velocity = json.key("Value").stringValue();
-                    if (velocity != null) {
-                        String fixed_text = velocity.replaceAll("[^0-9]-+", "");
-                        check2 = Integer.valueOf(fixed_text);
-
-                        if (check2 > 0) {
-                            velocity_int = check2;
-                            velocity_int_reversed = 0;
-                            //velocity_bar.setProgress(check);
-                            //velocity_bar_reversed.setProgress(0);
-                        } else if (check2 == 0) {
-                            velocity_int = 0;
-                            velocity_int_reversed = 0;
-                            //velocity_bar.setProgress(0);
-                            //velocity_bar_reversed.setProgress(0);
-                        } else {
-                            velocity_int = 0;
-                            velocity_int_reversed = -check2;
-                            //velocity_bar.setProgress(0);
-                            //velocity_bar_reversed.setProgress(-check);
-                        }
-                    }
-
-                }
-                else if (type.equals("Turn")){
-                     turn = json.key("Value").stringValue();
-                }
-                else if(type.equals("Utility"))
-                {
-                    String voltage = json.key("Voltage").stringValue();
-                    if(mRunning) {
-                        if(voltage != null) {
-                            mCallbacks.UtilityUpdates(voltage);
-                        }
-                    }
-                }
-                if(mRunning) {
-                    if(velocity !=null & position != null & turn != null) {
-                        mCallbacks.MovementUpdates(position, velocity, turn, position_int, position_int_reversed, velocity_int, velocity_int_reversed);
-                    }
-                }
+                // if (mRunning) {
+                //     if (velocity != null & position != null & turn != null) {
+                //         mCallbacks.MovementUpdates(mno,position, velocity, turn, position_int, position_int_reversed, velocity_int, velocity_int_reversed);
+                //     }
+                // }
                 //TODO:fix the temporary leak protection
 
             }
@@ -501,6 +727,8 @@ public class client extends Fragment {
                     }
                 } else {
                     if (connection_old) {
+                        //socket_receive.close();
+                        //run=false;
                         mCallbacks.onLostConnection();
                     }
                 }
@@ -511,15 +739,12 @@ public class client extends Fragment {
 
         @Override
         protected void onCancelled() {
-
             //ds.close();
             //mCallbacks.onCancelled();
             mRunning = false;
-
             //ds.close();
             big_run=false;
             run=false;
-
             //super.onCancelled();
         }
 
@@ -544,9 +769,7 @@ public class client extends Fragment {
         if(!mRunning){
             start();
         }
-
         super.onStart();
-
     }
 
     @Override
@@ -559,8 +782,6 @@ public class client extends Fragment {
     @Override
     public void onPause() {
         if (DEBUG) Log.i(TAG, "onPause()");
-
-
         super.onPause();
     }
 
@@ -575,19 +796,14 @@ public class client extends Fragment {
     public void onDestroy() {
         if (DEBUG) Log.i(TAG, "onDestroy()");
         super.onDestroy();
-
-        ds.close(); // close socket before destroy everything
+        //socket_receive.close(); // close socket before destroy everything
         cancel();
-
         run=false;
         big_run=false;
-
         if (isconnected) {
             mCallbacks.onDisconnected();
         }
-
         mCallbacks =null;
-
     }
     /**
      * Set the callback to null so we don't accidentally leak the
@@ -601,155 +817,4 @@ public class client extends Fragment {
 
 }
 
-
-
-
-
-
-
-
-
-
-
-
-//public class client extends AsyncTask<Void, Void, Void> {
-//
-//    String dstAddress;
-//    int dstPort;
-//    String response = "";
-//    TextView textResponse;
-//
-//    client(String addr, int port,TextView textResponse) {
-//        dstAddress = addr;
-//        dstPort = port;
-//        this.textResponse=textResponse;
-//    }
-//
-//    @Override
-//    protected Void doInBackground(Void... arg0) {
-//
-//        Socket socket = null;
-//
-//        try {
-//            socket = new Socket(dstAddress, dstPort);
-//
-//            ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream(
-//                    256);
-//            byte[] buffer = new byte[256];
-//
-//            int bytesRead;
-//            InputStream inputStream = socket.getInputStream();
-//            OutputStream outputStream = socket.getOutputStream();
-//
-//            PrintWriter output = new PrintWriter(outputStream);
-//
-//            //output.print("1\r\n");
-//            //outputStream.flush();
-//            //outputStream.close();
-//
-//            /*
-//			 * notice: inputStream.read() will block if no data return
-//			 */
-//            while ((bytesRead = inputStream.read(buffer)) != -1) {
-//                byteArrayOutputStream.write(buffer, 0, bytesRead);
-//                response += byteArrayOutputStream.toString("UTF-8");
-//            }
-//
-//        } catch (UnknownHostException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//            response = "UnknownHostException: " + e.toString();
-//        } catch (IOException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//            response = "IOException: " + e.toString();
-//        } finally {
-//            if (socket != null) {
-//                try {
-//                    socket.close();
-//                } catch (IOException e) {
-//                    // TODO Auto-generated catch block
-//                    e.printStackTrace();
-//                }
-//            }
-//        }
-//        return null;
-//    }
-//
-//    @Override
-//    protected void onPostExecute(Void result) {
-//        textResponse.setText(response);
-//        super.onPostExecute(result);
-//    }
-//
-//}
-
-//public class client extends AsyncTask<Void,Void,Void> {
-//    public static final String REQUEST_METHOD = "GET";
-//    public static final int READ_TIMEOUT = 15000;
-//    public static final int CONNECTION_TIMEOUT = 15000;
-//    String dstAddress;
-//    String response = "";
-//    TextView textResponse;
-//    client(String addr,TextView textResponse) {
-//        dstAddress = addr;
-//
-//        this.textResponse=textResponse;
-//    }
-//
-//
-//    protected Void doInBackground(Void... arg0){
-//        String stringUrl = dstAddress;
-//
-//        String inputLine;
-//        try {
-//            //Create a URL object holding our url
-//            URL myUrl = new URL(stringUrl);
-//            //Create a connection
-//            HttpURLConnection connection =(HttpURLConnection)
-//                    myUrl.openConnection();
-//            //Set methods and timeouts
-//            connection.setRequestMethod(REQUEST_METHOD);
-//            connection.setReadTimeout(READ_TIMEOUT);
-//            connection.setConnectTimeout(CONNECTION_TIMEOUT);
-//
-//            //Connect to our url
-//            connection.connect();
-//            //Create a new InputStreamReader
-//            InputStreamReader streamReader = new
-//                    InputStreamReader(connection.getInputStream());
-//            //Create a new buffered reader and String Builder
-//            BufferedReader reader = new BufferedReader(streamReader);
-//            StringBuilder stringBuilder = new StringBuilder();
-//            //Check if the line we are reading is not null
-//            while((inputLine = reader.readLine()) != null){
-//                stringBuilder.append(inputLine);
-//            }
-//            //Close our InputStream and Buffered reader
-//            reader.close();
-//            streamReader.close();
-//            //Set our result equal to our stringBuilder
-//            response = stringBuilder.toString();
-//
-//        }
-//        catch (UnknownHostException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//            response = "UnknownHostException: " + e.toString();
-//        }
-//        catch(IOException e){
-//            e.printStackTrace();
-//            response = "IOException: " + e.toString();
-//        }
-//
-//        return null;
-//    }
-//    @Override
-//    protected void onPostExecute(Void result){
-//        textResponse.setText(response);
-//        super.onPostExecute(result);
-//
-//
-//    }
-//}
 

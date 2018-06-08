@@ -1,0 +1,338 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:animateLayoutChanges="true"
+
+    android:background="@android:color/background_dark"
+    tools:context="com.guild.vordt.Interface_Main">
+
+
+    <com.ramotion.fluidslider.FluidSlider
+        android:id="@+id/Velocity_fluidSlider"
+        android:layout_width="450dp"
+        android:layout_height="97dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginEnd="30dp"
+        android:elevation="100dp"
+        android:fadingEdge="none"
+        app:duration="@android:integer/config_mediumAnimTime"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:size="small" />
+
+    <com.ramotion.fluidslider.FluidSlider
+        android:id="@+id/Turn_fluidSlider"
+        android:layout_width="450dp"
+        android:layout_height="97dp"
+        android:layout_marginBottom="25dp"
+        android:layout_marginStart="30dp"
+        android:elevation="2dp"
+        android:fadingEdge="none"
+        app:duration="@android:integer/config_mediumAnimTime"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:size="small" />
+
+    <com.ramotion.fluidslider.FluidSlider
+        android:id="@+id/Position_fluidSlider"
+        android:layout_width="1000dp"
+        android:layout_height="139dp"
+        android:layout_marginBottom="20dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:elevation="100dp"
+        android:fadingEdge="none"
+        app:duration="@android:integer/config_mediumAnimTime"
+        app:layout_constraintBottom_toTopOf="@+id/Turn_fluidSlider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:size="normal" />
+
+    <ProgressBar
+        android:id="@+id/Velocity_Bar_Negative"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginTop="20dp"
+        android:max="300"
+        android:progress="0"
+        android:rotation="180"
+        android:theme="@style/Velocity_Bar_Backward"
+        app:layout_constraintEnd_toStartOf="@+id/Velocity_Bar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/Velocity_Bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="160dp"
+        android:layout_height="150dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="20dp"
+        android:max="300"
+        android:progress="0"
+        android:theme="@style/Velocity_Bar_Forward"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/Position_Bar"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="287dp"
+        android:layout_height="215dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="20dp"
+        android:indeterminate="false"
+        android:max="32768"
+        android:progressDrawable="@drawable/circle"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ProgressBar
+        android:id="@+id/Position_Bar_Negative"
+        style="@style/Widget.AppCompat.ProgressBar.Horizontal"
+        android:layout_width="287dp"
+        android:layout_height="215dp"
+        android:layout_marginStart="80dp"
+        android:layout_marginTop="20dp"
+        android:indeterminate="false"
+        android:layoutDirection="rtl"
+        android:max="32768"
+        android:progressDrawable="@drawable/circle_reversed"
+        android:rotation="180"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Turn_Count_Text"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="135dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:text="0"
+        android:textAlignment="textEnd"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="36sp"
+        app:layout_constraintStart_toEndOf="@+id/editText"
+        app:layout_constraintTop_toBottomOf="@+id/Position_Text" />
+
+    <EditText
+        android:id="@+id/editText3"
+        style="@android:style/Widget.DeviceDefault.SeekBar"
+        android:layout_width="180dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="65dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:text="Position"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Position_Bar" />
+
+
+    <EditText
+        android:id="@+id/editText5"
+        style="@android:style/Widget.DeviceDefault.SeekBar"
+        android:layout_width="180dp"
+        android:layout_height="71dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:text="Velocity"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toStartOf="@+id/Velocity_Text"
+        app:layout_constraintTop_toBottomOf="@+id/Velocity_Bar" />
+
+    <EditText
+        android:id="@+id/editText"
+        style="@android:style/Widget.DeviceDefault.SeekBar"
+        android:layout_width="180dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="64dp"
+        android:layout_marginTop="10dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:text="Turn"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="36sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+
+    <EditText
+        android:id="@+id/editText2"
+        style="@android:style/Widget.DeviceDefault.SeekBar"
+        android:layout_width="146dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="45dp"
+        android:layout_marginStart="150dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:text="Desired Turn"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Turn_fluidSlider"
+        app:layout_constraintStart_toStartOf="@+id/Turn_fluidSlider" />
+
+    <EditText
+        android:id="@+id/editText6"
+        style="@android:style/Widget.DeviceDefault.SeekBar"
+        android:layout_width="146dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="45dp"
+        android:layout_marginEnd="150dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:text="Max Velocity"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Velocity_fluidSlider"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+    <EditText
+        android:id="@+id/editText4"
+        style="@android:style/Widget.DeviceDefault.SeekBar"
+        android:layout_width="146dp"
+        android:layout_height="21dp"
+        android:layout_marginBottom="65dp"
+        android:layout_marginStart="450dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:text="Desired Position"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="15dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Position_fluidSlider"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/editText7"
+        style="@android:style/Widget.DeviceDefault.SeekBar"
+        android:layout_width="160dp"
+        android:layout_height="71dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="20dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:text="Voltage"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/Position_fluidSlider"
+        app:layout_constraintEnd_toStartOf="@+id/Voltage_Text" />
+
+    <EditText
+        android:id="@+id/editText8"
+        style="@android:style/Widget.DeviceDefault.SeekBar"
+        android:layout_width="160dp"
+        android:layout_height="71dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:selectAllOnFocus="false"
+        android:singleLine="false"
+        android:text="Motor 1"
+        android:textAppearance="@style/TextAppearance.AppCompat"
+        android:textColor="@android:color/background_light"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toStartOf="@+id/Velocity_Bar_Negative"
+        app:layout_constraintStart_toEndOf="@+id/Position_Bar"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/Position_Text"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="135dp"
+        android:layout_height="74dp"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="numberSigned"
+        android:text="0"
+        android:textAlignment="textEnd"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="32sp"
+        app:layout_constraintStart_toEndOf="@+id/editText3"
+        app:layout_constraintTop_toBottomOf="@+id/Position_Bar" />
+
+    <EditText
+        android:id="@+id/Velocity_Text"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="100dp"
+        android:layout_height="74dp"
+        android:layout_marginEnd="25dp"
+        android:layout_marginTop="20dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:text="0"
+        android:textAlignment="center"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="36sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/Velocity_Bar" />
+
+    <EditText
+        android:id="@+id/Voltage_Text"
+        style="@style/Widget.AppCompat.EditText"
+        android:layout_width="135dp"
+        android:layout_height="74dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="52dp"
+        android:ems="10"
+        android:fontFamily="@font/abril_fatface"
+        android:inputType="none"
+        android:text="0"
+        android:textAlignment="textEnd"
+        android:textAllCaps="false"
+        android:textColor="@color/colorAccent"
+        android:textSize="36sp"
+        app:layout_constraintBottom_toTopOf="@+id/Position_fluidSlider"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</android.support.constraint.ConstraintLayout>

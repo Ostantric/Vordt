@@ -112,4 +112,15 @@
         app:layout_constraintStart_toEndOf="@+id/IP_TXT"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <ListView
+        android:id="@+id/listview"
+        android:descendantFocusability="blocksDescendants"
+        android:listSelector="@android:color/holo_red_dark"
+        android:layout_width="492dp"
+        android:layout_height="182dp"
+        android:layout_marginEnd="380dp"
+        android:layout_marginTop="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </android.support.constraint.ConstraintLayout>
