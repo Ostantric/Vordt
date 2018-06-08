@@ -1,6 +1,6 @@
 # ESP32
 
-Arduino development stopped. C++ development continues using ESP-IDF. 
+Arduino development stopped. C++ development continues with ESP-IDF. 
 
 ### TODO
 
