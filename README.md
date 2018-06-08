@@ -30,7 +30,7 @@
 
 * ~~Test maximum I2C speed ESP32 can handle. If not enough switch it to SPI ?~~ (decided to go with UART)
 
-* Test UART Serial handle
+* ~~Test UART Serial handle~~
  
 
 ### RTL
