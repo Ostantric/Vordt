@@ -223,8 +223,8 @@ class MCP_Advanced
 		bool Set_M1_PID_Velocity(uint8_t address, float kp, float ki, float kd, uint32_t qpps);
 		bool Set_M2_PID_Velocity(uint8_t address, float kp, float ki, float kd, uint32_t qpps);
 		//Get
-		bool Get_M1_PID_Position(uint8_t address, float &kp, float ki, float &kd, uint32_t &maxi, uint32_t &deadzone, uint32_t &minpos, uint32_t &maxpos);
-	    bool Get_M2_PID_Position(uint8_t address, float &kp, float ki, float &kd, uint32_t &maxi, uint32_t &deadzone, uint32_t &minpos, uint32_t &maxpos);
+		bool Get_M1_PID_Position(uint8_t address, float &kp, float &ki, float &kd, uint32_t &maxi, uint32_t &deadzone, uint32_t &minpos, uint32_t &maxpos);
+	    bool Get_M2_PID_Position(uint8_t address, float &kp, float &ki, float &kd, uint32_t &maxi, uint32_t &deadzone, uint32_t &minpos, uint32_t &maxpos);
 		bool Get_M1_PID_Velocity(uint8_t address, float &kp, float &ki, float &kd, uint32_t &qpps);
 		bool Get_M2_PID_Velocity(uint8_t address, float &kp, float &ki, float &kd, uint32_t &qpps);
 		/*****************************************************************************************************************************************/

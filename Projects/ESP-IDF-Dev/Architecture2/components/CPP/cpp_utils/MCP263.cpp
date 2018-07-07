@@ -523,7 +523,7 @@ bool MCP_Advanced::Set_M2_PID_Velocity(uint8_t address, float kp, float ki, floa
 	return write_n(18, address, SETM2VELPID, SetDWORDval(kd_s), SetDWORDval(kp_s), SetDWORDval(ki_s), SetDWORDval(qpps));
 }
 //Get
-bool MCP_Advanced::Get_M1_PID_Position(uint8_t address, float &kp, float ki, float &kd, uint32_t &maxi, uint32_t &deadzone, uint32_t &minpos, uint32_t &maxpos){
+bool MCP_Advanced::Get_M1_PID_Position(uint8_t address, float &kp, float &ki, float &kd, uint32_t &maxi, uint32_t &deadzone, uint32_t &minpos, uint32_t &maxpos){
 	uint32_t kp_s,ki_s,kd_s;
 	bool valid = read_n(7,address,READM1POSPID,&kp_s,&ki_s,&kd_s, &maxi, &deadzone, &minpos, &maxpos);
 	kp = ((float)kp_s)/1024;//10 shift right
@@ -531,7 +531,7 @@ bool MCP_Advanced::Get_M1_PID_Position(uint8_t address, float &kp, float ki, flo
 	kd = ((float)kd_s)/1024;
 	return valid;
 }
-bool MCP_Advanced::Get_M2_PID_Position(uint8_t address, float &kp, float ki, float &kd, uint32_t &maxi, uint32_t &deadzone, uint32_t &minpos, uint32_t &maxpos){
+bool MCP_Advanced::Get_M2_PID_Position(uint8_t address, float &kp, float &ki, float &kd, uint32_t &maxi, uint32_t &deadzone, uint32_t &minpos, uint32_t &maxpos){
 	uint32_t kp_s,ki_s,kd_s;
 	bool valid = read_n(7,address,READM2POSPID,&kp_s,&ki_s,&kd_s, &maxi, &deadzone, &minpos, &maxpos);
 	kp = ((float)kp_s)/1024;//10 shift right
