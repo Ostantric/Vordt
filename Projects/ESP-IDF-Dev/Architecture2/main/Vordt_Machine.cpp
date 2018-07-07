@@ -620,7 +620,7 @@ static void initialize_smart_connect(void)
     wifi_event_group = xEventGroupCreate();
     
     //ESP_ERROR_CHECK( esp_event_loop_init(Smart_Connect_event_handler, NULL) );
-    ESP_ERROR_CHECK( esp_wifi_stop() );
+    ESP_ERROR_CHECK( esp_wifi_stop());
     esp_event_loop_set_cb(Smart_Connect_event_handler, NULL);
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK( esp_wifi_init(&cfg) );
@@ -720,7 +720,6 @@ void app_main(void)//Starting point
     //ESP_ERROR_CHECK(nvs_flash_erase());
     nvs_err = nvs_flash_init();
     
-
     vTaskDelay( 100 / portTICK_PERIOD_MS );
     gpio_pad_select_gpio(IP_Blink);
     

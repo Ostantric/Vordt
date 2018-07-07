@@ -87,7 +87,7 @@ bool MCP_Advanced::write_n(uint8_t cnt, ... ){
 		check = uart_read_bytes(uart_num,read_buffer,1, timeout);
 		if(check!=-1){
 			if(read_buffer[0]==0xFF){
-				delete read_buffer;
+				delete read_buffer;//this is critical **
 				return true;
 			}
 		}
@@ -95,7 +95,7 @@ bool MCP_Advanced::write_n(uint8_t cnt, ... ){
 		//if(read(timeout)==0xFF)
 		trys--;
 	}
-	delete read_buffer;
+	delete read_buffer; //this is critical
 	return false;
 }
 bool MCP_Advanced::write_n_nocheck(uint8_t cnt,...){
@@ -140,14 +140,15 @@ bool MCP_Advanced::read_n(uint8_t cnt,uint8_t address,uint8_t cmd,...){
 			crc_clear();
 			uart_flush(uart_num);
 			write_valid = write_n_nocheck(2,address,cmd);
-			if(write_valid==false) ESP_LOGI("TEST","Write Failed");
+			if(write_valid==false) ESP_LOGI("TEST","Write Failed");//add return false if needed
 			check = uart_read_bytes(uart_num,read_buffer,(cnt*4)+2, timeout);
 			/*for(int i=0;i<10;i++){
 			ESP_LOGI("TEST","Valid ?: %d\n" , read_buffer[i]);
 			}*/
 			va_list marker;
 			va_start( marker, cmd );
-			
+			//0x01020304 = P
+			//0x12341231 = D
 			for(uint8_t index=0;index<(cnt*4);index=index+4){
 				uint32_t *ptr = va_arg(marker, uint32_t *);
 				if(check!=-1){
@@ -163,10 +164,9 @@ bool MCP_Advanced::read_n(uint8_t cnt,uint8_t address,uint8_t cmd,...){
 				}
 			}
 			ccrc=(read_buffer[cnt*4]<<8)|(read_buffer[(cnt*4)+1]);
-			if(check!=1){
-							
+			if(check!=1){			
 				delete read_buffer;
-				return crc_get()==ccrc;
+				return crc_get()==ccrc;//improve this, add two cases
 			}
 			trys--;
 	}
@@ -497,64 +497,65 @@ bool MCP_Advanced::Buffered_Drive_Both_to_Position_with_Vel_and_AccDecc1_AccDecc
 /*************************************************************************************************************************************************************/
 
 /****** PID *************************************************************************************************************************************************/
-//SET
-bool MCP_Advanced::Set_M1_PID_Position(uint8_t address,float kp_fp,float ki_fp,float kd_fp,uint32_t kiMax,uint32_t deadzone,uint32_t min,uint32_t max){			
-	uint32_t kp=kp_fp*1024;
-	uint32_t ki=ki_fp*1024;
-	uint32_t kd=kd_fp*1024;
-	return write_n(30,address,SETM1POSPID,SetDWORDval(kd),SetDWORDval(kp),SetDWORDval(ki),SetDWORDval(kiMax),SetDWORDval(deadzone),SetDWORDval(min),SetDWORDval(max));
+//Set
+bool MCP_Advanced::Set_M1_PID_Position(uint8_t address, float kp, float ki, float kd, uint32_t maxi, uint32_t deadzone, uint32_t minpos, uint32_t maxpos){
+	uint32_t kp_s=kp*1024;//10 shift left
+	uint32_t ki_s=kp*1024;
+	uint32_t kd_s=kp*1024;
+	return write_n(30, address, SETM1POSPID, SetDWORDval(kd_s), SetDWORDval(kp_s), SetDWORDval(ki_s), SetDWORDval(maxi), SetDWORDval(deadzone), SetDWORDval(minpos), SetDWORDval(maxpos));
 }
-bool MCP_Advanced::Set_M2_PID_Position(uint8_t address,float kp_fp,float ki_fp,float kd_fp,uint32_t kiMax,uint32_t deadzone,uint32_t min,uint32_t max){			
-	uint32_t kp=kp_fp*1024;
-	uint32_t ki=ki_fp*1024;
-	uint32_t kd=kd_fp*1024;
-	return write_n(30,address,SETM2POSPID,SetDWORDval(kd),SetDWORDval(kp),SetDWORDval(ki),SetDWORDval(kiMax),SetDWORDval(deadzone),SetDWORDval(min),SetDWORDval(max));
+bool MCP_Advanced::Set_M2_PID_Position(uint8_t address, float kp, float ki, float kd, uint32_t maxi, uint32_t deadzone, uint32_t minpos, uint32_t maxpos){
+	uint32_t kp_s=kp*1024;//10 shift left
+	uint32_t ki_s=kp*1024;
+	uint32_t kd_s=kp*1024;
+	return write_n(30, address, SETM2POSPID, SetDWORDval(kd_s), SetDWORDval(kp_s), SetDWORDval(ki_s), SetDWORDval(maxi), SetDWORDval(deadzone), SetDWORDval(minpos), SetDWORDval(maxpos));
 }
-bool MCP_Advanced::Set_M1_PID_Velocity(uint8_t address, float kp_fp, float ki_fp, float kd_fp, uint32_t qpps){
-	uint32_t kp = kp_fp*65536;
-	uint32_t ki = ki_fp*65536;
-	uint32_t kd = kd_fp*65536;
-	return write_n(18,address,SETM1PID,SetDWORDval(kd),SetDWORDval(kp),SetDWORDval(ki),SetDWORDval(qpps));
+bool MCP_Advanced::Set_M1_PID_Velocity(uint8_t address, float kp, float ki, float kd, uint32_t qpps){
+	uint32_t kp_s=kp*65536;//16 shift left
+	uint32_t ki_s=kp*65536;
+	uint32_t kd_s=kp*65536;
+	return write_n(18, address, SETM1VELPID, SetDWORDval(kd_s), SetDWORDval(kp_s), SetDWORDval(ki_s), SetDWORDval(qpps));
 }
-bool MCP_Advanced::Set_M2_PID_Velocity(uint8_t address, float kp_fp, float ki_fp, float kd_fp, uint32_t qpps){
-	uint32_t kp = kp_fp*65536;
-	uint32_t ki = ki_fp*65536;
-	uint32_t kd = kd_fp*65536;
-	return write_n(18,address,SETM2PID,SetDWORDval(kd),SetDWORDval(kp),SetDWORDval(ki),SetDWORDval(qpps));
+bool MCP_Advanced::Set_M2_PID_Velocity(uint8_t address, float kp, float ki, float kd, uint32_t qpps){
+	uint32_t kp_s=kp*65536;//16 shift left
+	uint32_t ki_s=kp*65536;
+	uint32_t kd_s=kp*65536;
+	return write_n(18, address, SETM2VELPID, SetDWORDval(kd_s), SetDWORDval(kp_s), SetDWORDval(ki_s), SetDWORDval(qpps));
 }
-//GET
-bool MCP_Advanced::Get_M1_PID_Position(uint8_t address,float &Kp_fp,float &Ki_fp,float &Kd_fp,uint32_t &KiMax,uint32_t &DeadZone,uint32_t &Min,uint32_t &Max){
-	uint32_t Kp,Ki,Kd;
-	bool valid = read_n(7,address,READM1POSPID,&Kp,&Ki,&Kd,&KiMax,&DeadZone,&Min,&Max);
-	Kp_fp = ((float)Kp)/1024;
-	Ki_fp = ((float)Ki)/1024;
-	Kd_fp = ((float)Kd)/1024;
+//Get
+bool MCP_Advanced::Get_M1_PID_Position(uint8_t address, float &kp, float ki, float &kd, uint32_t &maxi, uint32_t &deadzone, uint32_t &minpos, uint32_t &maxpos){
+	uint32_t kp_s,ki_s,kd_s;
+	bool valid = read_n(7,address,READM1POSPID,&kp_s,&ki_s,&kd_s, &maxi, &deadzone, &minpos, &maxpos);
+	kp = ((float)kp_s)/1024;//10 shift right
+	ki = ((float)ki_s)/1024;
+	kd = ((float)kd_s)/1024;
 	return valid;
 }
-bool MCP_Advanced::Get_M2_PID_Position(uint8_t address,float &Kp_fp,float &Ki_fp,float &Kd_fp,uint32_t &KiMax,uint32_t &DeadZone,uint32_t &Min,uint32_t &Max){
-	uint32_t Kp,Ki,Kd;
-	bool valid = read_n(7,address,READM2POSPID,&Kp,&Ki,&Kd,&KiMax,&DeadZone,&Min,&Max);
-	Kp_fp = ((float)Kp)/1024;
-	Ki_fp = ((float)Ki)/1024;
-	Kd_fp = ((float)Kd)/1024;
+bool MCP_Advanced::Get_M2_PID_Position(uint8_t address, float &kp, float ki, float &kd, uint32_t &maxi, uint32_t &deadzone, uint32_t &minpos, uint32_t &maxpos){
+	uint32_t kp_s,ki_s,kd_s;
+	bool valid = read_n(7,address,READM2POSPID,&kp_s,&ki_s,&kd_s, &maxi, &deadzone, &minpos, &maxpos);
+	kp = ((float)kp_s)/1024;//10 shift right
+	ki = ((float)ki_s)/1024;
+	kd = ((float)kd_s)/1024;
 	return valid;
 }
-bool MCP_Advanced::Get_M1_PID_Velocity(uint8_t address,float &Kp_fp,float &Ki_fp,float &Kd_fp,uint32_t &qpps){
-	uint32_t Kp,Ki,Kd;
-	bool valid = read_n(4,address,READM1PID,&Kp,&Ki,&Kd,&qpps);
-	Kp_fp = ((float)Kp)/65536;
-	Ki_fp = ((float)Ki)/65536;
-	Kd_fp = ((float)Kd)/65536;
+bool MCP_Advanced::Get_M1_PID_Velocity(uint8_t address, float &kp, float &ki, float &kd, uint32_t &qpps){
+	uint32_t kp_s,ki_s,kd_s;
+	bool valid = read_n(4,address,READM1VELPID,&kp_s,&ki_s,&kd_s, &qpps);
+	kp = ((float)kp_s)/65536;
+	ki = ((float)ki_s)/65536;
+	kd = ((float)kd_s)/65536;
 	return valid;
 }
-bool MCP_Advanced::Get_M2_PID_Velocity(uint8_t address,float &Kp_fp,float &Ki_fp,float &Kd_fp,uint32_t &qpps){
-	uint32_t Kp,Ki,Kd;
-	bool valid = read_n(4,address,READM2PID,&Kp,&Ki,&Kd,&qpps);
-	Kp_fp = ((float)Kp)/65536;
-	Ki_fp = ((float)Ki)/65536;
-	Kd_fp = ((float)Kd)/65536;
+bool MCP_Advanced::Get_M2_PID_Velocity(uint8_t address, float &kp, float &ki, float &kd, uint32_t &qpps){
+	uint32_t kp_s,ki_s,kd_s;
+	bool valid = read_n(4,address,READM2VELPID,&kp_s,&ki_s,&kd_s, &qpps);
+	kp = ((float)kp_s)/65536;
+	ki = ((float)ki_s)/65536;
+	kd = ((float)kd_s)/65536;
 	return valid;
 }
+
 /************************************************************************************************************************************************************/
 /****** Encoders ********************************************************************************************************************************************/
 //SET
@@ -567,8 +568,6 @@ bool MCP_Advanced::Set_Enconder2_Count(uint8_t address, uint32_t value){
 bool MCP_Advanced::Reset_Encoders(uint8_t address){
 	return write_n(2,address,RESETENC);
 }
-
-
 
 //GET
 bool MCP_Advanced::Get_Encoder1_Count(uint8_t address, uint32_t &enc, uint8_t &status){

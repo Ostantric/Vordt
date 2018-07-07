@@ -37,8 +37,8 @@ class MCP_Advanced
 			GETLBATT = 25,
 			SETMINLB = 26,
 			SETMAXLB = 27,
-			SETM1PID = 28,
-			SETM2PID = 29,
+			SETM1VELPID = 28,
+			SETM2VELPID = 29,
 			GETM1ISPEED = 30,
 			GETM2ISPEED = 31,
 			M1DUTY = 32,
@@ -64,8 +64,8 @@ class MCP_Advanced
 			M1DUTYACCEL = 52,
 			M2DUTYACCEL = 53,
 			MIXEDDUTYACCEL = 54,
-			READM1PID = 55,
-			READM2PID = 56,
+			READM1VELPID = 55,
+			READM2VELPID = 56,
 			SETMAINVOLTAGES = 57,
 			SETLOGICVOLTAGES = 58,
 			GETMINMAXMAINVOLTAGES = 59,
@@ -218,15 +218,15 @@ class MCP_Advanced
         
 		/***** PID Configuration Commands ********************************************************************************************************************************/
 		//Set
-		bool Set_M1_PID_Position(uint8_t address,float kp,float ki,float kd,uint32_t kiMax,uint32_t deadzone,uint32_t min,uint32_t max);
-	    bool Set_M2_PID_Position(uint8_t address,float kp,float ki,float kd,uint32_t kiMax,uint32_t deadzone,uint32_t min,uint32_t max);
-		bool Set_M1_PID_Velocity(uint8_t address, float Kp, float Ki, float Kd, uint32_t qpps);
-		bool Set_M2_PID_Velocity(uint8_t address, float Kp, float Ki, float Kd, uint32_t qpps);
+		bool Set_M1_PID_Position(uint8_t address, float kp, float ki, float kd, uint32_t maxi, uint32_t deadzone, uint32_t minpos, uint32_t maxpos);
+		bool Set_M2_PID_Position(uint8_t address, float kp, float ki, float kd, uint32_t maxi, uint32_t deadzone, uint32_t minpos, uint32_t maxpos);
+		bool Set_M1_PID_Velocity(uint8_t address, float kp, float ki, float kd, uint32_t qpps);
+		bool Set_M2_PID_Velocity(uint8_t address, float kp, float ki, float kd, uint32_t qpps);
 		//Get
-		bool Get_M1_PID_Position(uint8_t address,float &Kp,float &Ki,float &Kd,uint32_t &KiMax,uint32_t &DeadZone,uint32_t &Min,uint32_t &Max);
-		bool Get_M2_PID_Position(uint8_t address,float &Kp,float &Ki,float &Kd,uint32_t &KiMax,uint32_t &DeadZone,uint32_t &Min,uint32_t &Max);
-		bool Get_M1_PID_Velocity(uint8_t address,float &Kp_fp,float &Ki_fp,float &Kd_fp,uint32_t &qpps);
-        bool Get_M2_PID_Velocity(uint8_t address,float &Kp_fp,float &Ki_fp,float &Kd_fp,uint32_t &qpps);
+		bool Get_M1_PID_Position(uint8_t address, float &kp, float ki, float &kd, uint32_t &maxi, uint32_t &deadzone, uint32_t &minpos, uint32_t &maxpos);
+	    bool Get_M2_PID_Position(uint8_t address, float &kp, float ki, float &kd, uint32_t &maxi, uint32_t &deadzone, uint32_t &minpos, uint32_t &maxpos);
+		bool Get_M1_PID_Velocity(uint8_t address, float &kp, float &ki, float &kd, uint32_t &qpps);
+		bool Get_M2_PID_Velocity(uint8_t address, float &kp, float &ki, float &kd, uint32_t &qpps);
 		/*****************************************************************************************************************************************/
 		
 		/***** Encoder Commands *********************************************************************/
