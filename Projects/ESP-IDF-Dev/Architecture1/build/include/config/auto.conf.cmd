@@ -4,7 +4,7 @@ deps_config := \
 	/home/murat/esp-idf/components/bt/Kconfig \
 	/home/murat/esp-idf/components/driver/Kconfig \
 	/home/murat/esp-idf/components/esp32/Kconfig \
-	/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/Kconfig \
+	/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/Kconfig \
 	/home/murat/esp-idf/components/esp_adc_cal/Kconfig \
 	/home/murat/esp-idf/components/esp_http_client/Kconfig \
 	/home/murat/esp-idf/components/ethernet/Kconfig \

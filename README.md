@@ -20,8 +20,12 @@ Arduino development stopped. C++ development continues with ESP-IDF.
 
 * ~~Smart Wifi Connect~~
 
+* Second M-System Architecture
 
-### RTOS Tasks Architecture
+
+## Architecture 1
+* FPGA, ESP32 and Sabertooth
+### RTOS Tasks for Architecture 1
 Higher the number the higher the priority
 
 * Send_32bits_To_FPGA	- Priority = 6
@@ -36,8 +40,9 @@ Higher the number the higher the priority
 
 * IP_Broadcast  	- Priority = 2
 
-
-
-
+## Architecture 2
+* ESP32 and MCP263
+### RTOS Tasks for Architecture 1
+Higher the number the higher the priority
 
 

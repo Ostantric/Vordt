@@ -1,9 +1,9 @@
 cpp_utils/HttpServer.o: \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/HttpServer.cpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/HttpServer.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/SockServ.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/Socket.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/HttpServer.cpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/HttpServer.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/SockServ.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/Socket.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform.h \
  /home/murat/esp-idf/components/mbedtls/port/include/mbedtls/esp_config.h \
  /home/murat/esp-idf/components/mbedtls/mbedtls/include/mbedtls/check_config.h \
@@ -118,29 +118,29 @@ cpp_utils/HttpServer.o: \
  /home/murat/esp-idf/components/newlib/include/string.h \
  /home/murat/esp-idf/components/newlib/include/sys/string.h \
  /home/murat/esp-idf/components/lwip/include/lwip/lwip/err.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FreeRTOS.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FreeRTOS.h \
  /home/murat/esp-idf/components/freertos/include/freertos/ringbuf.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/HttpRequest.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WebSocket.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/HttpParser.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/HttpResponse.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/Task.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/HttpRequest.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WebSocket.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/HttpParser.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/HttpResponse.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/Task.h \
  /home/murat/esp-idf/components/log/include/esp_log.h \
  /home/murat/esp-idf/components/log/include/esp_log_internal.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FileSystem.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/File.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FileSystem.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/File.h \
  /home/murat/esp-idf/components/newlib/include/dirent.h \
  /home/murat/esp-idf/components/vfs/include/sys/dirent.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/GeneralUtils.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/Memory.h
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/GeneralUtils.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/Memory.h
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/HttpServer.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/HttpServer.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/SockServ.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/SockServ.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/Socket.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/Socket.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform.h:
 
@@ -370,33 +370,33 @@ cpp_utils/HttpServer.o: \
 
 /home/murat/esp-idf/components/lwip/include/lwip/lwip/err.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FreeRTOS.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FreeRTOS.h:
 
 /home/murat/esp-idf/components/freertos/include/freertos/ringbuf.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/HttpRequest.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/HttpRequest.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WebSocket.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WebSocket.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/HttpParser.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/HttpParser.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/HttpResponse.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/HttpResponse.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/Task.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/Task.h:
 
 /home/murat/esp-idf/components/log/include/esp_log.h:
 
 /home/murat/esp-idf/components/log/include/esp_log_internal.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FileSystem.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FileSystem.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/File.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/File.h:
 
 /home/murat/esp-idf/components/newlib/include/dirent.h:
 
 /home/murat/esp-idf/components/vfs/include/sys/dirent.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/GeneralUtils.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/GeneralUtils.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/Memory.h:
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/HttpServer.cpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/Memory.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/HttpServer.cpp:

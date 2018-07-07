@@ -1,6 +1,6 @@
 cpp_utils/PWM.o: \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/PWM.cpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/PWM.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/PWM.cpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/PWM.h \
  /home/murat/esp-idf/components/driver/include/driver/ledc.h \
  /home/murat/esp-idf/components/esp32/include/esp_err.h \
  /home/murat/esp-idf/components/newlib/include/stdint.h \
@@ -24,7 +24,7 @@ cpp_utils/PWM.o: \
  /home/murat/esp-idf/components/newlib/include/sys/sched.h \
  /home/murat/esp-idf/components/newlib/include/sys/stdio.h \
  /home/murat/esp-idf/components/newlib/platform_include/assert.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/newlib/include/stdlib.h \
  /home/murat/esp-idf/components/newlib/include/machine/stdlib.h \
  /home/murat/esp-idf/components/newlib/include/alloca.h \
@@ -58,7 +58,7 @@ cpp_utils/PWM.o: \
  /home/murat/esp-idf/components/esp32/include/xtensa/xtruntime-core-state.h \
  /home/murat/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/PWM.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/PWM.h:
 
 /home/murat/esp-idf/components/driver/include/driver/ledc.h:
 
@@ -106,7 +106,7 @@ cpp_utils/PWM.o: \
 
 /home/murat/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/newlib/include/stdlib.h:
 
@@ -171,4 +171,4 @@ cpp_utils/PWM.o: \
 /home/murat/esp-idf/components/esp32/include/xtensa/xtruntime-core-state.h:
 
 /home/murat/esp-idf/components/esp32/include/xtensa/xtruntime-frames.h:
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/PWM.cpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/PWM.cpp:

@@ -38,7 +38,7 @@ syscall_table.o: /home/murat/esp-idf/components/newlib/syscall_table.c \
  /home/murat/esp-idf/components/vfs/include/esp_vfs.h \
  /home/murat/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/murat/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/murat/esp-idf/components/esp32/include/xtensa/hal.h \
  /home/murat/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -173,7 +173,7 @@ syscall_table.o: /home/murat/esp-idf/components/newlib/syscall_table.c \
 
 /home/murat/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 

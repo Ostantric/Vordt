@@ -1,7 +1,7 @@
 cpp_utils/PCF8574.o: \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/PCF8574.cpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/PCF8574.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/I2C.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/PCF8574.cpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/PCF8574.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/I2C.h \
  /home/murat/esp-idf/components/newlib/include/stdint.h \
  /home/murat/esp-idf/components/newlib/include/machine/_default_types.h \
  /home/murat/esp-idf/components/newlib/include/sys/features.h \
@@ -26,7 +26,7 @@ cpp_utils/PCF8574.o: \
  /home/murat/esp-idf/components/newlib/include/sys/reent.h \
  /home/murat/esp-idf/components/newlib/include/sys/stdio.h \
  /home/murat/esp-idf/components/newlib/platform_include/assert.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/newlib/include/stdlib.h \
  /home/murat/esp-idf/components/newlib/include/machine/stdlib.h \
  /home/murat/esp-idf/components/newlib/include/alloca.h \
@@ -86,9 +86,9 @@ cpp_utils/PCF8574.o: \
  /home/murat/esp-idf/components/freertos/include/freertos/queue.h \
  /home/murat/esp-idf/components/freertos/include/freertos/ringbuf.h
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/PCF8574.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/PCF8574.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/I2C.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/I2C.h:
 
 /home/murat/esp-idf/components/newlib/include/stdint.h:
 
@@ -138,7 +138,7 @@ cpp_utils/PCF8574.o: \
 
 /home/murat/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/newlib/include/stdlib.h:
 
@@ -255,4 +255,4 @@ cpp_utils/PCF8574.o: \
 /home/murat/esp-idf/components/freertos/include/freertos/queue.h:
 
 /home/murat/esp-idf/components/freertos/include/freertos/ringbuf.h:
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/PCF8574.cpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/PCF8574.cpp:

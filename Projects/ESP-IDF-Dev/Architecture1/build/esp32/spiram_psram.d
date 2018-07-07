@@ -1,5 +1,5 @@
 spiram_psram.o: /home/murat/esp-idf/components/esp32/spiram_psram.c \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/newlib/include/string.h \
  /home/murat/esp-idf/components/newlib/include/_ansi.h \
  /home/murat/esp-idf/components/newlib/include/newlib.h \
@@ -70,7 +70,7 @@ spiram_psram.o: /home/murat/esp-idf/components/esp32/spiram_psram.c \
  /home/murat/esp-idf/components/esp32/include/rom/queue.h \
  /home/murat/esp-idf/components/driver/include/driver/periph_ctrl.h
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/newlib/include/string.h:
 

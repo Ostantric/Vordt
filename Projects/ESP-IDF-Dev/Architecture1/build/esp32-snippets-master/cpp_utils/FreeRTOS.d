@@ -1,5 +1,5 @@
 cpp_utils/FreeRTOS.o: \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FreeRTOS.cpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FreeRTOS.cpp \
  /home/murat/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/murat/esp-idf/components/newlib/include/sys/reent.h \
  /home/murat/esp-idf/components/newlib/include/_ansi.h \
@@ -15,7 +15,7 @@ cpp_utils/FreeRTOS.o: \
  /home/murat/esp-idf/components/newlib/include/stdint.h \
  /home/murat/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/murat/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/murat/esp-idf/components/esp32/include/xtensa/hal.h \
  /home/murat/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -80,7 +80,7 @@ cpp_utils/FreeRTOS.o: \
  /home/murat/esp-idf/components/freertos/include/freertos/list.h \
  /home/murat/esp-idf/components/freertos/include/freertos/semphr.h \
  /home/murat/esp-idf/components/freertos/include/freertos/queue.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FreeRTOS.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FreeRTOS.h \
  /home/murat/esp-idf/components/freertos/include/freertos/ringbuf.h \
  /home/murat/esp-idf/components/freertos/include/freertos/queue.h \
  /home/murat/esp-idf/components/log/include/esp_log.h \
@@ -116,7 +116,7 @@ cpp_utils/FreeRTOS.o: \
 
 /home/murat/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 
@@ -246,7 +246,7 @@ cpp_utils/FreeRTOS.o: \
 
 /home/murat/esp-idf/components/freertos/include/freertos/queue.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FreeRTOS.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FreeRTOS.h:
 
 /home/murat/esp-idf/components/freertos/include/freertos/ringbuf.h:
 
@@ -255,4 +255,4 @@ cpp_utils/FreeRTOS.o: \
 /home/murat/esp-idf/components/log/include/esp_log.h:
 
 /home/murat/esp-idf/components/log/include/esp_log_internal.h:
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FreeRTOS.cpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FreeRTOS.cpp:

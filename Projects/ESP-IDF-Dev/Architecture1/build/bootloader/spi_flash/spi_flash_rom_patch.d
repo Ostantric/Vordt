@@ -9,7 +9,7 @@ spi_flash_rom_patch.o: \
  /home/murat/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/murat/esp-idf/components/esp32/include/rom/spi_flash.h \
  /home/murat/esp-idf/components/soc/esp32/include/soc/spi_reg.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/bootloader/../include/sdkconfig.h
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/bootloader/../include/sdkconfig.h
 
 /home/murat/esp-idf/components/esp32/include/rom/ets_sys.h:
 
@@ -29,5 +29,5 @@ spi_flash_rom_patch.o: \
 
 /home/murat/esp-idf/components/soc/esp32/include/soc/spi_reg.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/bootloader/../include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/bootloader/../include/sdkconfig.h:
 /home/murat/esp-idf/components/spi_flash/./spi_flash_rom_patch.c:

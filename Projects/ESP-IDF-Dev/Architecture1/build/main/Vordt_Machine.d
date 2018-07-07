@@ -1,5 +1,5 @@
 Vordt_Machine.o: \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/Vordt_Machine.cpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/Vordt_Machine.cpp \
  /home/murat/esp-idf/components/newlib/include/stdio.h \
  /home/murat/esp-idf/components/newlib/include/_ansi.h \
  /home/murat/esp-idf/components/newlib/include/newlib.h \
@@ -34,7 +34,7 @@ Vordt_Machine.o: \
  /home/murat/esp-idf/components/vfs/include/sys/ioctl.h \
  /home/murat/esp-idf/components/newlib/platform_include/sys/select.h \
  /home/murat/esp-idf/components/esp32/include/esp_task.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/esp32/include/esp_system.h \
  /home/murat/esp-idf/components/esp32/include/esp_err.h \
  /home/murat/esp-idf/components/newlib/platform_include/assert.h \
@@ -137,92 +137,92 @@ Vordt_Machine.o: \
  /home/murat/esp-idf/components/esp32/include/esp_event_loop.h \
  /home/murat/esp-idf/components/driver/include/driver/timer.h \
  /home/murat/esp-idf/components/soc/esp32/include/soc/timer_group_reg.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WiFi.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WiFi.h \
  /home/murat/esp-idf/components/mdns/include/mdns.h \
  /home/murat/esp-idf/components/esp32/include/esp_event.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FreeRTOS.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WiFiEventHandler.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WiFiEventHandler.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/DynamicJsonBuffer.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonBufferBase.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/JsonParser.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../JsonBuffer.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Data/NonCopyable.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../JsonVariant.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Data/JsonVariantContent.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Data/JsonFloat.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Data/../Configuration.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Data/JsonInteger.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Data/JsonVariantDefault.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Data/JsonVariantType.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../JsonVariantBase.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../JsonVariantCasts.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Data/JsonVariantAs.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Polyfills/attributes.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../JsonVariantComparisons.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/StringTraits.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/EnableIf.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/IsBaseOf.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/IsChar.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/IsSame.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/IsConst.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/RemoveReference.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/ArduinoStream.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/CharPointer.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/FlashString.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/StdStream.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/StdString.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../TypeTraits/IsVariant.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../JsonVariantOr.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../TypeTraits/IsIntegral.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../TypeTraits/IsSignedIntegral.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../TypeTraits/IsUnsignedIntegral.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../JsonVariantSubscripts.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/JsonPrintable.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/DummyPrint.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/DynamicStringBuilder.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/IndentedPrint.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/JsonSerializer.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/JsonWriter.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/../Data/Encoding.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/../Serialization/FloatParts.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/../Serialization/../Polyfills/math.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/../Serialization/../TypeTraits/FloatTraits.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/Prettyfier.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/StaticStringBuilder.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/StreamPrintAdapter.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../RawJson.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../TypeTraits/IsFloatingPoint.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../TypeTraits/RemoveConst.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../TypeTraits/IsArray.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/StringWriter.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonArray.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Data/JsonBufferAllocated.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Data/List.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Data/ListConstIterator.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Data/ListNode.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Data/ListIterator.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Data/ReferenceType.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Data/ValueSaver.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonObject.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonPair.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/StaticJsonBuffer.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/JsonParserImpl.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/Comments.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonArrayImpl.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonArraySubscript.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonBufferImpl.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonObjectImpl.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonObjectSubscript.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonVariantImpl.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Polyfills/isFloat.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Polyfills/./ctype.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Polyfills/isInteger.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Polyfills/parseFloat.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Polyfills/parseInteger.hpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Serialization/JsonSerializerImpl.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FreeRTOS.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WiFiEventHandler.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WiFiEventHandler.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/DynamicJsonBuffer.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonBufferBase.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/JsonParser.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../JsonBuffer.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Data/NonCopyable.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../JsonVariant.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Data/JsonVariantContent.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Data/JsonFloat.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Data/../Configuration.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Data/JsonInteger.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Data/JsonVariantDefault.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Data/JsonVariantType.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../JsonVariantBase.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../JsonVariantCasts.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Data/JsonVariantAs.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Polyfills/attributes.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../JsonVariantComparisons.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/StringTraits.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/EnableIf.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/IsBaseOf.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/IsChar.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/IsSame.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/IsConst.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/RemoveReference.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/ArduinoStream.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/CharPointer.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/FlashString.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/StdStream.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/StdString.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../TypeTraits/IsVariant.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../JsonVariantOr.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../TypeTraits/IsIntegral.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../TypeTraits/IsSignedIntegral.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../TypeTraits/IsUnsignedIntegral.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../JsonVariantSubscripts.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/JsonPrintable.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/DummyPrint.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/DynamicStringBuilder.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/IndentedPrint.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/JsonSerializer.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/JsonWriter.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/../Data/Encoding.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/../Serialization/FloatParts.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/../Serialization/../Polyfills/math.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/../Serialization/../TypeTraits/FloatTraits.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/Prettyfier.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/StaticStringBuilder.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/StreamPrintAdapter.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../RawJson.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../TypeTraits/IsFloatingPoint.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../TypeTraits/RemoveConst.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../TypeTraits/IsArray.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/StringWriter.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonArray.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Data/JsonBufferAllocated.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Data/List.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Data/ListConstIterator.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Data/ListNode.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Data/ListIterator.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Data/ReferenceType.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Data/ValueSaver.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonObject.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonPair.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/StaticJsonBuffer.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/JsonParserImpl.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/Comments.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonArrayImpl.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonArraySubscript.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonBufferImpl.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonObjectImpl.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonObjectSubscript.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonVariantImpl.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Polyfills/isFloat.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Polyfills/./ctype.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Polyfills/isInteger.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Polyfills/parseFloat.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Polyfills/parseInteger.hpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Serialization/JsonSerializerImpl.hpp \
  /home/murat/esp-idf/components/lwip/include/lwip/lwip/sys.h
 
 /home/murat/esp-idf/components/newlib/include/stdio.h:
@@ -293,7 +293,7 @@ Vordt_Machine.o: \
 
 /home/murat/esp-idf/components/esp32/include/esp_task.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/esp32/include/esp_system.h:
 
@@ -499,177 +499,177 @@ Vordt_Machine.o: \
 
 /home/murat/esp-idf/components/soc/esp32/include/soc/timer_group_reg.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WiFi.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WiFi.h:
 
 /home/murat/esp-idf/components/mdns/include/mdns.h:
 
 /home/murat/esp-idf/components/esp32/include/esp_event.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FreeRTOS.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FreeRTOS.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WiFiEventHandler.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WiFiEventHandler.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WiFiEventHandler.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WiFiEventHandler.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/DynamicJsonBuffer.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/DynamicJsonBuffer.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonBufferBase.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonBufferBase.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/JsonParser.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/JsonParser.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../JsonBuffer.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../JsonBuffer.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Data/NonCopyable.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Data/NonCopyable.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../JsonVariant.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../JsonVariant.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Data/JsonVariantContent.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Data/JsonVariantContent.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Data/JsonFloat.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Data/JsonFloat.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Data/../Configuration.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Data/../Configuration.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Data/JsonInteger.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Data/JsonInteger.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Data/JsonVariantDefault.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Data/JsonVariantDefault.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Data/JsonVariantType.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Data/JsonVariantType.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../JsonVariantBase.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../JsonVariantBase.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../JsonVariantCasts.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../JsonVariantCasts.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Data/JsonVariantAs.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Data/JsonVariantAs.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Polyfills/attributes.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Polyfills/attributes.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../JsonVariantComparisons.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../JsonVariantComparisons.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/StringTraits.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/StringTraits.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/EnableIf.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/EnableIf.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/IsBaseOf.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/IsBaseOf.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/IsChar.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/IsChar.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/IsSame.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/IsSame.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/IsConst.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/IsConst.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/RemoveReference.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/../TypeTraits/RemoveReference.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/ArduinoStream.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/ArduinoStream.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/CharPointer.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/CharPointer.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/FlashString.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/FlashString.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/StdStream.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/StdStream.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../StringTraits/StdString.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../StringTraits/StdString.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../TypeTraits/IsVariant.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../TypeTraits/IsVariant.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../JsonVariantOr.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../JsonVariantOr.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../TypeTraits/IsIntegral.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../TypeTraits/IsIntegral.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../TypeTraits/IsSignedIntegral.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../TypeTraits/IsSignedIntegral.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../TypeTraits/IsUnsignedIntegral.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../TypeTraits/IsUnsignedIntegral.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../JsonVariantSubscripts.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../JsonVariantSubscripts.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/JsonPrintable.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/JsonPrintable.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/DummyPrint.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/DummyPrint.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/DynamicStringBuilder.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/DynamicStringBuilder.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/IndentedPrint.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/IndentedPrint.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/JsonSerializer.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/JsonSerializer.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/JsonWriter.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/JsonWriter.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/../Data/Encoding.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/../Data/Encoding.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/../Serialization/FloatParts.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/../Serialization/FloatParts.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/../Serialization/../Polyfills/math.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/../Serialization/../Polyfills/math.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/../Serialization/../TypeTraits/FloatTraits.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/../Serialization/../TypeTraits/FloatTraits.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/Prettyfier.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/Prettyfier.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/StaticStringBuilder.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/StaticStringBuilder.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../Serialization/StreamPrintAdapter.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../Serialization/StreamPrintAdapter.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../RawJson.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../RawJson.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../TypeTraits/IsFloatingPoint.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../TypeTraits/IsFloatingPoint.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../TypeTraits/RemoveConst.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../TypeTraits/RemoveConst.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/../TypeTraits/IsArray.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/../TypeTraits/IsArray.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/StringWriter.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/StringWriter.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonArray.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonArray.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Data/JsonBufferAllocated.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Data/JsonBufferAllocated.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Data/List.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Data/List.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Data/ListConstIterator.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Data/ListConstIterator.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Data/ListNode.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Data/ListNode.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Data/ListIterator.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Data/ListIterator.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Data/ReferenceType.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Data/ReferenceType.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Data/ValueSaver.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Data/ValueSaver.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonObject.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonObject.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonPair.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonPair.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/StaticJsonBuffer.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/StaticJsonBuffer.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/JsonParserImpl.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/JsonParserImpl.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Deserialization/Comments.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Deserialization/Comments.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonArrayImpl.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonArrayImpl.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonArraySubscript.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonArraySubscript.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonBufferImpl.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonBufferImpl.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonObjectImpl.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonObjectImpl.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonObjectSubscript.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonObjectSubscript.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/JsonVariantImpl.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/JsonVariantImpl.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Polyfills/isFloat.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Polyfills/isFloat.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Polyfills/./ctype.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Polyfills/./ctype.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Polyfills/isInteger.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Polyfills/isInteger.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Polyfills/parseFloat.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Polyfills/parseFloat.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Polyfills/parseInteger.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Polyfills/parseInteger.hpp:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/include/ArduinoJson/Serialization/JsonSerializerImpl.hpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/include/ArduinoJson/Serialization/JsonSerializerImpl.hpp:
 
 /home/murat/esp-idf/components/lwip/include/lwip/lwip/sys.h:
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/main/./Vordt_Machine.cpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/main/./Vordt_Machine.cpp:

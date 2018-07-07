@@ -1,7 +1,7 @@
 cpp_utils/WiFi.o: \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WiFi.cpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WiFi.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WiFi.cpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WiFi.h \
  /home/murat/esp-idf/components/mdns/include/mdns.h \
  /home/murat/esp-idf/components/tcpip_adapter/include/tcpip_adapter.h \
  /home/murat/esp-idf/components/esp32/include/rom/queue.h \
@@ -88,16 +88,16 @@ cpp_utils/WiFi.o: \
  /home/murat/esp-idf/components/lwip/include/lwip/apps/dhcpserver.h \
  /home/murat/esp-idf/components/esp32/include/esp_event.h \
  /home/murat/esp-idf/components/esp32/include/esp_wifi_types.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FreeRTOS.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FreeRTOS.h \
  /home/murat/esp-idf/components/freertos/include/freertos/ringbuf.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WiFiEventHandler.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WiFiEventHandler.h \
  /home/murat/esp-idf/components/esp32/include/esp_event_loop.h \
  /home/murat/esp-idf/components/esp32/include/esp_event.h \
  /home/murat/esp-idf/components/log/include/esp_log.h \
  /home/murat/esp-idf/components/log/include/esp_log_internal.h \
  /home/murat/esp-idf/components/esp32/include/esp_wifi.h \
  /home/murat/esp-idf/components/esp32/include/esp_wifi_crypto_types.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/GeneralUtils.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/GeneralUtils.h \
  /home/murat/esp-idf/components/nvs_flash/include/nvs_flash.h \
  /home/murat/esp-idf/components/nvs_flash/include/nvs.h \
  /home/murat/esp-idf/components/lwip/include/lwip/lwip/dns.h \
@@ -108,9 +108,9 @@ cpp_utils/WiFi.o: \
  /home/murat/esp-idf/components/newlib/include/string.h \
  /home/murat/esp-idf/components/newlib/include/sys/string.h
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WiFi.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WiFi.h:
 
 /home/murat/esp-idf/components/mdns/include/mdns.h:
 
@@ -284,11 +284,11 @@ cpp_utils/WiFi.o: \
 
 /home/murat/esp-idf/components/esp32/include/esp_wifi_types.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FreeRTOS.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FreeRTOS.h:
 
 /home/murat/esp-idf/components/freertos/include/freertos/ringbuf.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WiFiEventHandler.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WiFiEventHandler.h:
 
 /home/murat/esp-idf/components/esp32/include/esp_event_loop.h:
 
@@ -302,7 +302,7 @@ cpp_utils/WiFi.o: \
 
 /home/murat/esp-idf/components/esp32/include/esp_wifi_crypto_types.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/GeneralUtils.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/GeneralUtils.h:
 
 /home/murat/esp-idf/components/nvs_flash/include/nvs_flash.h:
 
@@ -321,4 +321,4 @@ cpp_utils/WiFi.o: \
 /home/murat/esp-idf/components/newlib/include/string.h:
 
 /home/murat/esp-idf/components/newlib/include/sys/string.h:
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WiFi.cpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WiFi.cpp:

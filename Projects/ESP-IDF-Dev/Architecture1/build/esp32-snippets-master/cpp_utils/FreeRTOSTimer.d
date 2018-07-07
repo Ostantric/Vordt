@@ -1,7 +1,7 @@
 cpp_utils/FreeRTOSTimer.o: \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FreeRTOSTimer.cpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FreeRTOSTimer.cpp \
  /home/murat/esp-idf/components/newlib/platform_include/assert.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/newlib/include/stdlib.h \
  /home/murat/esp-idf/components/newlib/include/machine/ieeefp.h \
  /home/murat/esp-idf/components/newlib/include/_ansi.h \
@@ -19,7 +19,7 @@ cpp_utils/FreeRTOSTimer.o: \
  /home/murat/esp-idf/components/newlib/include/machine/stdlib.h \
  /home/murat/esp-idf/components/newlib/include/alloca.h \
  /home/murat/esp-idf/components/newlib/include/assert.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FreeRTOSTimer.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FreeRTOSTimer.h \
  /home/murat/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/murat/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
  /home/murat/esp-idf/components/freertos/include/freertos/xtensa_config.h \
@@ -79,7 +79,7 @@ cpp_utils/FreeRTOSTimer.o: \
 
 /home/murat/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/newlib/include/stdlib.h:
 
@@ -115,7 +115,7 @@ cpp_utils/FreeRTOSTimer.o: \
 
 /home/murat/esp-idf/components/newlib/include/assert.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FreeRTOSTimer.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FreeRTOSTimer.h:
 
 /home/murat/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 
@@ -228,4 +228,4 @@ cpp_utils/FreeRTOSTimer.o: \
 /home/murat/esp-idf/components/freertos/include/freertos/timers.h:
 
 /home/murat/esp-idf/components/freertos/include/freertos/task.h:
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FreeRTOSTimer.cpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FreeRTOSTimer.cpp:

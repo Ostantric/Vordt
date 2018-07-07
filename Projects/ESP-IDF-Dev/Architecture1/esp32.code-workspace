@@ -28,7 +28,11 @@
 			"vector": "cpp",
 			"slist": "cpp",
 			"sstream": "cpp",
-			"chrono": "cpp"
+			"chrono": "cpp",
+			"uart.h": "c",
+			"uart_struct.h": "c",
+			"condition_variable": "cpp",
+			"future": "cpp"
 		}
 	}
 }

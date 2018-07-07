@@ -1,6 +1,6 @@
 src/secure_boot_signatures.o: \
  /home/murat/esp-idf/components/bootloader_support/src/secure_boot_signatures.c \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/bootloader_support/include_priv/bootloader_flash.h \
  /home/murat/esp-idf/components/newlib/include/stdint.h \
  /home/murat/esp-idf/components/newlib/include/machine/_default_types.h \
@@ -46,7 +46,7 @@ src/secure_boot_signatures.o: \
  /home/murat/esp-idf/components/esp32/include/rom/sha.h \
  /home/murat/esp-idf/components/esp32/include/esp_types.h
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/bootloader_support/include_priv/bootloader_flash.h:
 

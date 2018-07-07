@@ -16,7 +16,7 @@ dport_access.o: /home/murat/esp-idf/components/esp32/dport_access.c \
  /home/murat/esp-idf/components/newlib/include/sys/lock.h \
  /home/murat/esp-idf/components/newlib/include/sys/cdefs.h \
  /home/murat/esp-idf/components/newlib/include/sys/string.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/esp32/include/esp_attr.h \
  /home/murat/esp-idf/components/esp32/include/esp_err.h \
  /home/murat/esp-idf/components/newlib/include/stdio.h \
@@ -128,7 +128,7 @@ dport_access.o: /home/murat/esp-idf/components/esp32/dport_access.c \
 
 /home/murat/esp-idf/components/newlib/include/sys/string.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/esp32/include/esp_attr.h:
 

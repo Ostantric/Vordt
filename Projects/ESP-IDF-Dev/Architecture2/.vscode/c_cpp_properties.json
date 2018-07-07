@@ -266,7 +266,7 @@
                 "${workspaceFolder}/lib/",
                 "${workspaceFolder}/lib/ArduinoJson/src",
                 "${workspaceFolder}/main/include/",
-                "${workspaceFolder}/components/esp32-snippets-master/cpp_utils",
+                "${workspaceFolder}/components/CPP/cpp_utils",
                 "/home/murat/esp-idf/components/mbedtls/mbedtls/include",
                 "${workspaceFolder}/main/Include"
             ],

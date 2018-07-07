@@ -22,7 +22,7 @@ bt.o: /home/murat/esp-idf/components/bt/bt.c \
  /home/murat/esp-idf/components/newlib/include/sys/stdio.h \
  /home/murat/esp-idf/components/newlib/include/string.h \
  /home/murat/esp-idf/components/newlib/include/sys/string.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/heap/include/esp_heap_caps.h \
  /home/murat/esp-idf/components/newlib/include/stdint.h \
  /home/murat/esp-idf/components/newlib/include/sys/_intsup.h \
@@ -148,7 +148,7 @@ bt.o: /home/murat/esp-idf/components/bt/bt.c \
 
 /home/murat/esp-idf/components/newlib/include/sys/string.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/heap/include/esp_heap_caps.h:
 

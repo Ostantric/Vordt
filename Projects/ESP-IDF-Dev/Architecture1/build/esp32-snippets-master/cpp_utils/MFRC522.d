@@ -1,11 +1,11 @@
 cpp_utils/MFRC522.o: \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/MFRC522.cpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/MFRC522.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/MFRC522.cpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/MFRC522.h \
  /home/murat/esp-idf/components/newlib/include/stdint.h \
  /home/murat/esp-idf/components/newlib/include/machine/_default_types.h \
  /home/murat/esp-idf/components/newlib/include/sys/features.h \
  /home/murat/esp-idf/components/newlib/include/sys/_intsup.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/SPI.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/SPI.h \
  /home/murat/esp-idf/components/driver/include/driver/spi_master.h \
  /home/murat/esp-idf/components/esp32/include/esp_err.h \
  /home/murat/esp-idf/components/newlib/include/stdio.h \
@@ -25,7 +25,7 @@ cpp_utils/MFRC522.o: \
  /home/murat/esp-idf/components/newlib/include/sys/sched.h \
  /home/murat/esp-idf/components/newlib/include/sys/stdio.h \
  /home/murat/esp-idf/components/newlib/platform_include/assert.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/newlib/include/stdlib.h \
  /home/murat/esp-idf/components/newlib/include/machine/stdlib.h \
  /home/murat/esp-idf/components/newlib/include/alloca.h \
@@ -84,20 +84,20 @@ cpp_utils/MFRC522.o: \
  /home/murat/esp-idf/components/soc/esp32/include/soc/spi_struct.h \
  /home/murat/esp-idf/components/esp32/include/rom/lldesc.h \
  /home/murat/esp-idf/components/esp32/include/rom/queue.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/MFRC522Debug.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FreeRTOS.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/MFRC522Debug.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FreeRTOS.h \
  /home/murat/esp-idf/components/freertos/include/freertos/task.h \
  /home/murat/esp-idf/components/newlib/include/limits.h \
  /home/murat/esp-idf/components/freertos/include/freertos/list.h \
  /home/murat/esp-idf/components/freertos/include/freertos/ringbuf.h \
  /home/murat/esp-idf/components/freertos/include/freertos/queue.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/GPIO.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/GPIO.h \
  /home/murat/esp-idf/components/newlib/include/string.h \
  /home/murat/esp-idf/components/newlib/include/sys/string.h \
  /home/murat/esp-idf/components/log/include/esp_log.h \
  /home/murat/esp-idf/components/log/include/esp_log_internal.h
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/MFRC522.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/MFRC522.h:
 
 /home/murat/esp-idf/components/newlib/include/stdint.h:
 
@@ -107,7 +107,7 @@ cpp_utils/MFRC522.o: \
 
 /home/murat/esp-idf/components/newlib/include/sys/_intsup.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/SPI.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/SPI.h:
 
 /home/murat/esp-idf/components/driver/include/driver/spi_master.h:
 
@@ -147,7 +147,7 @@ cpp_utils/MFRC522.o: \
 
 /home/murat/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/newlib/include/stdlib.h:
 
@@ -265,9 +265,9 @@ cpp_utils/MFRC522.o: \
 
 /home/murat/esp-idf/components/esp32/include/rom/queue.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/MFRC522Debug.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/MFRC522Debug.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/FreeRTOS.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/FreeRTOS.h:
 
 /home/murat/esp-idf/components/freertos/include/freertos/task.h:
 
@@ -279,7 +279,7 @@ cpp_utils/MFRC522.o: \
 
 /home/murat/esp-idf/components/freertos/include/freertos/queue.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/GPIO.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/GPIO.h:
 
 /home/murat/esp-idf/components/newlib/include/string.h:
 
@@ -288,4 +288,4 @@ cpp_utils/MFRC522.o: \
 /home/murat/esp-idf/components/log/include/esp_log.h:
 
 /home/murat/esp-idf/components/log/include/esp_log_internal.h:
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/MFRC522.cpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/MFRC522.cpp:

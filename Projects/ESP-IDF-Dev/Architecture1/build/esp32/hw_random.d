@@ -22,7 +22,7 @@ hw_random.o: /home/murat/esp-idf/components/esp32/hw_random.c \
  /home/murat/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/murat/esp-idf/components/esp32/include/esp_assert.h \
  /home/murat/esp-idf/components/newlib/platform_include/assert.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/newlib/include/stdlib.h \
  /home/murat/esp-idf/components/newlib/include/machine/stdlib.h \
  /home/murat/esp-idf/components/newlib/include/alloca.h \
@@ -88,7 +88,7 @@ hw_random.o: /home/murat/esp-idf/components/esp32/hw_random.c \
 
 /home/murat/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/newlib/include/stdlib.h:
 

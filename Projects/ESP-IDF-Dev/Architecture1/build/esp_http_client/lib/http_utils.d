@@ -25,7 +25,7 @@ lib/http_utils.o: \
  /home/murat/esp-idf/components/newlib/include/sys/sched.h \
  /home/murat/esp-idf/components/newlib/include/sys/stdio.h \
  /home/murat/esp-idf/components/newlib/platform_include/assert.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/newlib/include/assert.h \
  /home/murat/esp-idf/components/esp_http_client/lib/include/http_utils.h \
  /home/murat/esp-idf/components/newlib/include/sys/time.h
@@ -80,7 +80,7 @@ lib/http_utils.o: \
 
 /home/murat/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/newlib/include/assert.h:
 

@@ -63,8 +63,8 @@ struct UDP_send_data{
 //------------------FPGA RELATED--------------------------------------------
                                       //FPGA Definitions        | PIN
 #define MCU_Ready         GPIO_NUM_12 //MCU_READY_FOR_UART_TX---->102
-#define FPGA_SERIAL_TX    GPIO_NUM_17 //MCU_SERIAL_TX------------>100
-#define FPGA_SERIAL_RX    GPIO_NUM_16 //MCU_SERIAL_RX------------>101
+#define FPGA_SERIAL_TX    GPIO_NUM_17 //MCU_SERIAL_RX------------>100
+#define FPGA_SERIAL_RX    GPIO_NUM_16 //MCU_SERIAL_TX------------>101
 #define UART_ACK          GPIO_NUM_21 //UART_RX_RESET------------>34
 #define FPGA_Reset        GPIO_NUM_14 //RESET-------------------->40
 #define Motor1_Reset      GPIO_NUM_15 //MOTOR1_DECODER_RESET----->11
@@ -95,6 +95,7 @@ short Motor2_voltage = 0;
 int ip_broadcast_delay = 200;
 uint8_t motor1_register =1; //FPGA register
 uint8_t motor2_register =2; //FPGA register
+
 //UDP related
 struct sockaddr_in BroadcastAddr,ESP_Addr;
 unsigned int send_len;
@@ -894,9 +895,6 @@ void app_main(void)//Starting point
     xTaskCreate(gpio_task_example, "gpio_task_example", 2048, NULL, 10, NULL);
 
     wifi_init_sta();
-
-    
-
     while(1){
         if(Wifi_ready == true){ //check if wifi is connected
         //xTaskCreatePinnedToCore(&FPGA_Listen, "FPGA_Serial_Listen", 15000, NULL, 3, &FPGAListenTask_Handle,1);

@@ -10,7 +10,7 @@ src/ffunicode.o: /home/murat/esp-idf/components/fatfs/src/ffunicode.c \
  /home/murat/esp-idf/components/newlib/include/sys/syslimits.h \
  /home/murat/esp-idf/components/newlib/include/machine/endian.h \
  /home/murat/esp-idf/components/newlib/include/machine/param.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/freertos/include/freertos/FreeRTOS.h \
  /home/murat/esp-idf/components/newlib/include/sys/reent.h \
  /home/murat/esp-idf/components/newlib/include/_ansi.h \
@@ -106,7 +106,7 @@ src/ffunicode.o: /home/murat/esp-idf/components/fatfs/src/ffunicode.c \
 
 /home/murat/esp-idf/components/newlib/include/machine/param.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/freertos/include/freertos/FreeRTOS.h:
 

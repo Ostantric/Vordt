@@ -1,6 +1,6 @@
 src/bootloader_common.o: \
  /home/murat/esp-idf/components/bootloader_support/src/bootloader_common.c \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/bootloader/../include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/bootloader/../include/sdkconfig.h \
  /home/murat/esp-idf/components/esp32/include/esp_err.h \
  /home/murat/esp-idf/components/log/include/esp_log.h \
  /home/murat/esp-idf/components/esp32/include/rom/ets_sys.h \
@@ -22,7 +22,7 @@ src/bootloader_common.o: \
  /home/murat/esp-idf/components/spi_flash/include/esp_spi_flash.h \
  /home/murat/esp-idf/components/bootloader_support/include/bootloader_common.h
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/bootloader/../include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/bootloader/../include/sdkconfig.h:
 
 /home/murat/esp-idf/components/esp32/include/esp_err.h:
 

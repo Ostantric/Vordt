@@ -1,5 +1,5 @@
 cpp_utils/NeoPixelWiFiEventHandler.o: \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/NeoPixelWiFiEventHandler.cpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/NeoPixelWiFiEventHandler.cpp \
  /home/murat/esp-idf/components/newlib/include/stdio.h \
  /home/murat/esp-idf/components/newlib/include/_ansi.h \
  /home/murat/esp-idf/components/newlib/include/newlib.h \
@@ -18,14 +18,14 @@ cpp_utils/NeoPixelWiFiEventHandler.o: \
  /home/murat/esp-idf/components/newlib/include/machine/types.h \
  /home/murat/esp-idf/components/newlib/include/sys/sched.h \
  /home/murat/esp-idf/components/newlib/include/sys/stdio.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/NeoPixelWiFiEventHandler.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WiFiEventHandler.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/NeoPixelWiFiEventHandler.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WiFiEventHandler.h \
  /home/murat/esp-idf/components/esp32/include/esp_event.h \
  /home/murat/esp-idf/components/newlib/include/stdint.h \
  /home/murat/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/murat/esp-idf/components/esp32/include/esp_err.h \
  /home/murat/esp-idf/components/newlib/platform_include/assert.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/newlib/include/stdlib.h \
  /home/murat/esp-idf/components/newlib/include/machine/stdlib.h \
  /home/murat/esp-idf/components/newlib/include/alloca.h \
@@ -117,7 +117,7 @@ cpp_utils/NeoPixelWiFiEventHandler.o: \
  /home/murat/esp-idf/components/lwip/include/lwip/apps/dhcpserver.h \
  /home/murat/esp-idf/components/esp32/include/esp_event_loop.h \
  /home/murat/esp-idf/components/esp32/include/esp_event.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WS2812.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WS2812.h \
  /home/murat/esp-idf/components/driver/include/driver/rmt.h \
  /home/murat/esp-idf/components/soc/esp32/include/soc/rmt_reg.h \
  /home/murat/esp-idf/components/soc/esp32/include/soc/dport_reg.h \
@@ -164,9 +164,9 @@ cpp_utils/NeoPixelWiFiEventHandler.o: \
 
 /home/murat/esp-idf/components/newlib/include/sys/stdio.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/NeoPixelWiFiEventHandler.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/NeoPixelWiFiEventHandler.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WiFiEventHandler.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WiFiEventHandler.h:
 
 /home/murat/esp-idf/components/esp32/include/esp_event.h:
 
@@ -178,7 +178,7 @@ cpp_utils/NeoPixelWiFiEventHandler.o: \
 
 /home/murat/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/newlib/include/stdlib.h:
 
@@ -362,7 +362,7 @@ cpp_utils/NeoPixelWiFiEventHandler.o: \
 
 /home/murat/esp-idf/components/esp32/include/esp_event.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WS2812.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WS2812.h:
 
 /home/murat/esp-idf/components/driver/include/driver/rmt.h:
 
@@ -381,4 +381,4 @@ cpp_utils/NeoPixelWiFiEventHandler.o: \
 /home/murat/esp-idf/components/freertos/include/freertos/ringbuf.h:
 
 /home/murat/esp-idf/components/driver/include/driver/periph_ctrl.h:
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/NeoPixelWiFiEventHandler.cpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/NeoPixelWiFiEventHandler.cpp:

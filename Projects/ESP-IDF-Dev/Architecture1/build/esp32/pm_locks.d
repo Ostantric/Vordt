@@ -27,7 +27,7 @@ pm_locks.o: /home/murat/esp-idf/components/esp32/pm_locks.c \
  /home/murat/esp-idf/components/newlib/include/sys/sched.h \
  /home/murat/esp-idf/components/newlib/include/sys/stdio.h \
  /home/murat/esp-idf/components/newlib/platform_include/assert.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/newlib/include/assert.h \
  /home/murat/esp-idf/components/esp32/include/esp32/pm.h \
  /home/murat/esp-idf/components/soc/esp32/include/soc/rtc.h \
@@ -138,7 +138,7 @@ pm_locks.o: /home/murat/esp-idf/components/esp32/pm_locks.c \
 
 /home/murat/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/newlib/include/assert.h:
 

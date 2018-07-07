@@ -18,7 +18,7 @@ heap_trace.o: /home/murat/esp-idf/components/heap/heap_trace.c \
  /home/murat/esp-idf/components/newlib/include/sys/syslimits.h \
  /home/murat/esp-idf/components/newlib/include/machine/endian.h \
  /home/murat/esp-idf/components/newlib/include/machine/param.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/heap/include/esp_heap_trace.h \
  /home/murat/esp-idf/components/newlib/include/stdint.h \
  /home/murat/esp-idf/components/newlib/include/sys/_intsup.h \
@@ -125,7 +125,7 @@ heap_trace.o: /home/murat/esp-idf/components/heap/heap_trace.c \
 
 /home/murat/esp-idf/components/newlib/include/machine/param.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/heap/include/esp_heap_trace.h:
 

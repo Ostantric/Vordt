@@ -13,7 +13,7 @@ src/bootloader_random.o: \
  /home/murat/esp-idf/components/soc/esp32/include/soc/dport_access.h \
  /home/murat/esp-idf/components/esp32/include/esp_attr.h \
  /home/murat/esp-idf/components/esp32/include/esp_dport_access.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/bootloader/../include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/bootloader/../include/sdkconfig.h \
  /home/murat/esp-idf/components/soc/esp32/include/soc/uart_reg.h \
  /home/murat/esp-idf/components/esp32/include/xtensa/xtruntime.h \
  /home/murat/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -56,7 +56,7 @@ src/bootloader_random.o: \
 
 /home/murat/esp-idf/components/esp32/include/esp_dport_access.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/bootloader/../include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/bootloader/../include/sdkconfig.h:
 
 /home/murat/esp-idf/components/soc/esp32/include/soc/uart_reg.h:
 

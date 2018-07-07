@@ -11,7 +11,7 @@ sdmmc_host.o: /home/murat/esp-idf/components/driver/sdmmc_host.c \
  /home/murat/esp-idf/components/newlib/include/stdint.h \
  /home/murat/esp-idf/components/newlib/include/machine/_default_types.h \
  /home/murat/esp-idf/components/newlib/include/sys/_intsup.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/murat/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/murat/esp-idf/components/esp32/include/esp_assert.h \
@@ -118,7 +118,7 @@ sdmmc_host.o: /home/murat/esp-idf/components/driver/sdmmc_host.c \
 
 /home/murat/esp-idf/components/newlib/include/sys/_intsup.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/esp32/include/rom/ets_sys.h:
 

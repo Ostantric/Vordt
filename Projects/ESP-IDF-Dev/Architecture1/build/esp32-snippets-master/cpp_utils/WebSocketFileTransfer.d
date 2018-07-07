@@ -1,7 +1,7 @@
 cpp_utils/WebSocketFileTransfer.o: \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WebSocketFileTransfer.cpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WebSocketFileTransfer.cpp \
  /home/murat/esp-idf/components/log/include/esp_log.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/murat/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/murat/esp-idf/components/esp32/include/esp_assert.h \
@@ -12,13 +12,13 @@ cpp_utils/WebSocketFileTransfer.o: \
  /home/murat/esp-idf/components/newlib/include/assert.h \
  /home/murat/esp-idf/components/log/include/esp_log_internal.h \
  /home/murat/esp-idf/components/newlib/include/sys/stat.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/GeneralUtils.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/GeneralUtils.h \
  /home/murat/esp-idf/components/esp32/include/esp_err.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/JSON.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/JSON.h \
  /home/murat/esp-idf/components/json/cJSON/cJSON.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WebSocketFileTransfer.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WebSocket.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/Socket.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WebSocketFileTransfer.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WebSocket.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/Socket.h \
  /home/murat/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform.h \
  /home/murat/esp-idf/components/mbedtls/port/include/mbedtls/esp_config.h \
  /home/murat/esp-idf/components/mbedtls/mbedtls/include/mbedtls/check_config.h \
@@ -126,7 +126,7 @@ cpp_utils/WebSocketFileTransfer.o: \
 
 /home/murat/esp-idf/components/log/include/esp_log.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/esp32/include/rom/ets_sys.h:
 
@@ -148,19 +148,19 @@ cpp_utils/WebSocketFileTransfer.o: \
 
 /home/murat/esp-idf/components/newlib/include/sys/stat.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/GeneralUtils.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/GeneralUtils.h:
 
 /home/murat/esp-idf/components/esp32/include/esp_err.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/JSON.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/JSON.h:
 
 /home/murat/esp-idf/components/json/cJSON/cJSON.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WebSocketFileTransfer.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WebSocketFileTransfer.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WebSocket.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WebSocket.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/Socket.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/Socket.h:
 
 /home/murat/esp-idf/components/mbedtls/mbedtls/include/mbedtls/platform.h:
 
@@ -369,4 +369,4 @@ cpp_utils/WebSocketFileTransfer.o: \
 /home/murat/esp-idf/components/newlib/include/sys/string.h:
 
 /home/murat/esp-idf/components/lwip/include/lwip/lwip/err.h:
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/WebSocketFileTransfer.cpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/WebSocketFileTransfer.cpp:

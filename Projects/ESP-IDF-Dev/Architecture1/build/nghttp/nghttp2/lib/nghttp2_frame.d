@@ -37,7 +37,7 @@ nghttp2/lib/nghttp2_frame.o: \
  /home/murat/esp-idf/components/nghttp/nghttp2/lib/nghttp2_mem.h \
  /home/murat/esp-idf/components/nghttp/nghttp2/lib/nghttp2_rcbuf.h \
  /home/murat/esp-idf/components/newlib/platform_include/assert.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/newlib/include/assert.h \
  /home/murat/esp-idf/components/newlib/include/errno.h \
  /home/murat/esp-idf/components/newlib/include/sys/errno.h \
@@ -120,7 +120,7 @@ nghttp2/lib/nghttp2_frame.o: \
 
 /home/murat/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/newlib/include/assert.h:
 

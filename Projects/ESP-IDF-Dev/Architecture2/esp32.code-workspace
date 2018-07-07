@@ -1,0 +1,60 @@
+{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"files.associations": {
+			"task.h": "c",
+			"gpio.h": "c",
+			"freertos.h": "c",
+			"sdkconfig.h": "c",
+			"arduinojson.h": "c",
+			"staticjsonbuffer.hpp": "c",
+			"array": "cpp",
+			"ostream": "cpp",
+			"iostream": "cpp",
+			"fstream": "cpp",
+			"functional": "cpp",
+			"*.tcc": "cpp",
+			"system_error": "cpp",
+			"type_traits": "cpp",
+			"ratio": "cpp",
+			"bitset": "cpp",
+			"*.ipp": "cpp",
+			"deque": "cpp",
+			"unordered_map": "cpp",
+			"vector": "cpp",
+			"slist": "cpp",
+			"sstream": "cpp",
+			"chrono": "cpp",
+			"uart.h": "c",
+			"uart_struct.h": "c",
+			"condition_variable": "cpp",
+			"future": "cpp",
+			"cctype": "cpp",
+			"clocale": "cpp",
+			"cmath": "cpp",
+			"csignal": "cpp",
+			"cstdarg": "cpp",
+			"cstddef": "cpp",
+			"cstdio": "cpp",
+			"cstdlib": "cpp",
+			"cstring": "cpp",
+			"ctime": "cpp",
+			"cwchar": "cpp",
+			"cwctype": "cpp",
+			"atomic": "cpp",
+			"strstream": "cpp",
+			"cinttypes": "cpp",
+			"codecvt": "cpp",
+			"cstdint": "cpp",
+			"initializer_list": "cpp",
+			"iosfwd": "cpp",
+			"mutex": "cpp",
+			"thread": "cpp",
+			"typeindex": "cpp"
+		}
+	}
+}

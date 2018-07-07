@@ -3,7 +3,7 @@ src/flash_encrypt.o: \
  /home/murat/esp-idf/components/bootloader_support/include_priv/bootloader_flash.h \
  /home/murat/esp-idf/components/esp32/include/esp_err.h \
  /home/murat/esp-idf/components/spi_flash/include/esp_spi_flash.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/bootloader/../include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/bootloader/../include/sdkconfig.h \
  /home/murat/esp-idf/components/bootloader_support/include_priv/bootloader_random.h \
  /home/murat/esp-idf/components/bootloader_support/include/esp_image_format.h \
  /home/murat/esp-idf/components/bootloader_support/include/esp_flash_partitions.h \
@@ -44,7 +44,7 @@ src/flash_encrypt.o: \
 
 /home/murat/esp-idf/components/spi_flash/include/esp_spi_flash.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/bootloader/../include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/bootloader/../include/sdkconfig.h:
 
 /home/murat/esp-idf/components/bootloader_support/include_priv/bootloader_random.h:
 

@@ -1,11 +1,11 @@
 cpp_utils/RMT.o: \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/RMT.cpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/RMT.cpp \
  /home/murat/esp-idf/components/log/include/esp_log.h \
  /home/murat/esp-idf/components/newlib/include/stdint.h \
  /home/murat/esp-idf/components/newlib/include/machine/_default_types.h \
  /home/murat/esp-idf/components/newlib/include/sys/features.h \
  /home/murat/esp-idf/components/newlib/include/sys/_intsup.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/esp32/include/rom/ets_sys.h \
  /home/murat/esp-idf/components/soc/esp32/include/soc/soc.h \
  /home/murat/esp-idf/components/esp32/include/esp_assert.h \
@@ -89,7 +89,7 @@ cpp_utils/RMT.o: \
  /home/murat/esp-idf/components/freertos/include/freertos/ringbuf.h \
  /home/murat/esp-idf/components/freertos/include/freertos/queue.h \
  /home/murat/esp-idf/components/driver/include/driver/periph_ctrl.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/RMT.h
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/RMT.h
 
 /home/murat/esp-idf/components/log/include/esp_log.h:
 
@@ -101,7 +101,7 @@ cpp_utils/RMT.o: \
 
 /home/murat/esp-idf/components/newlib/include/sys/_intsup.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/esp32/include/rom/ets_sys.h:
 
@@ -269,5 +269,5 @@ cpp_utils/RMT.o: \
 
 /home/murat/esp-idf/components/driver/include/driver/periph_ctrl.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/RMT.h:
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/RMT.cpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/RMT.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/RMT.cpp:

@@ -1,6 +1,6 @@
 cpp_utils/MPU6050.o: \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/MPU6050.cpp \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/MPU6050.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/MPU6050.cpp \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/MPU6050.h \
  /home/murat/esp-idf/components/newlib/include/math.h \
  /home/murat/esp-idf/components/newlib/include/sys/reent.h \
  /home/murat/esp-idf/components/newlib/include/_ansi.h \
@@ -14,7 +14,7 @@ cpp_utils/MPU6050.o: \
  /home/murat/esp-idf/components/newlib/include/machine/_default_types.h \
  /home/murat/esp-idf/components/newlib/include/sys/lock.h \
  /home/murat/esp-idf/components/newlib/include/_ansi.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/I2C.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/I2C.h \
  /home/murat/esp-idf/components/newlib/include/stdint.h \
  /home/murat/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/murat/esp-idf/components/newlib/include/sys/types.h \
@@ -27,7 +27,7 @@ cpp_utils/MPU6050.o: \
  /home/murat/esp-idf/components/newlib/include/stdio.h \
  /home/murat/esp-idf/components/newlib/include/sys/stdio.h \
  /home/murat/esp-idf/components/newlib/platform_include/assert.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/newlib/include/stdlib.h \
  /home/murat/esp-idf/components/newlib/include/machine/stdlib.h \
  /home/murat/esp-idf/components/newlib/include/alloca.h \
@@ -87,7 +87,7 @@ cpp_utils/MPU6050.o: \
  /home/murat/esp-idf/components/freertos/include/freertos/queue.h \
  /home/murat/esp-idf/components/freertos/include/freertos/ringbuf.h
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/MPU6050.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/MPU6050.h:
 
 /home/murat/esp-idf/components/newlib/include/math.h:
 
@@ -115,7 +115,7 @@ cpp_utils/MPU6050.o: \
 
 /home/murat/esp-idf/components/newlib/include/_ansi.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/I2C.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/I2C.h:
 
 /home/murat/esp-idf/components/newlib/include/stdint.h:
 
@@ -141,7 +141,7 @@ cpp_utils/MPU6050.o: \
 
 /home/murat/esp-idf/components/newlib/platform_include/assert.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/newlib/include/stdlib.h:
 
@@ -258,4 +258,4 @@ cpp_utils/MPU6050.o: \
 /home/murat/esp-idf/components/freertos/include/freertos/queue.h:
 
 /home/murat/esp-idf/components/freertos/include/freertos/ringbuf.h:
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/components/esp32-snippets-master/cpp_utils/MPU6050.cpp:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/components/esp32-snippets-master/cpp_utils/MPU6050.cpp:

@@ -14,7 +14,7 @@ log.o: /home/murat/esp-idf/components/log/log.c \
  /home/murat/esp-idf/components/newlib/include/stdint.h \
  /home/murat/esp-idf/components/newlib/include/sys/_intsup.h \
  /home/murat/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/freertos/include/freertos/xtensa_config.h \
  /home/murat/esp-idf/components/esp32/include/xtensa/hal.h \
  /home/murat/esp-idf/components/esp32/include/xtensa/config/core.h \
@@ -117,7 +117,7 @@ log.o: /home/murat/esp-idf/components/log/log.c \
 
 /home/murat/esp-idf/components/freertos/include/freertos/FreeRTOSConfig.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/freertos/include/freertos/xtensa_config.h:
 

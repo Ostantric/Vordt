@@ -10,7 +10,7 @@ library/ssl_x509.o: \
  /home/murat/esp-idf/components/openssl/include/internal/ssl_methods.h \
  /home/murat/esp-idf/components/openssl/include/internal/ssl_dbg.h \
  /home/murat/esp-idf/components/openssl/include/platform/ssl_opt.h \
- /home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h \
+ /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h \
  /home/murat/esp-idf/components/openssl/include/platform/ssl_port.h \
  /home/murat/esp-idf/components/esp32/include/esp_types.h \
  /home/murat/esp-idf/components/newlib/include/sys/cdefs.h \
@@ -67,7 +67,7 @@ library/ssl_x509.o: \
 
 /home/murat/esp-idf/components/openssl/include/platform/ssl_opt.h:
 
-/home/murat/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/ESP32_C/build/include/sdkconfig.h:
+/media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture1/build/include/sdkconfig.h:
 
 /home/murat/esp-idf/components/openssl/include/platform/ssl_port.h:
 
