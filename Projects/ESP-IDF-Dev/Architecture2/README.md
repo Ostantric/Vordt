@@ -1,3 +1,3 @@
 # C/C++ development
 
-ESP32 firmware
+ESP32 Architecture-2 firmware

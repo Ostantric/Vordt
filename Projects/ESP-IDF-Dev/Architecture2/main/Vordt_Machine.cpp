@@ -89,7 +89,7 @@ int Motor2_desired_position = 0;
 int Motor1_desired_turn = 0;
 int Motor2_desired_turn = 0;
 //broadcast period
-int ip_broadcast_delay = 2000; //2 seconds
+int ip_broadcast_delay = 1000; //1 seconds
 //MotorDriver
 MCP_Advanced MotorDriver(UART_NUM_2,5);
 //Tags
@@ -232,6 +232,7 @@ void MotorDriver_Listen(void *parameter){
                 ESP_LOGI(MOTOR_TAG,"Motor1 Turn : %d , Position: %d",Motor1_current_turn,int(Motor1_current_position)%32768);
             #endif
         }
+        vTaskDelay( 1 / portTICK_PERIOD_MS ); //critical delay
         valid = MotorDriver.Get_Encoder1_Speed(MCP_Addr,Motor1_current_velocity,status);
         if(valid){
             UDP_Data.Type="Velocity";
@@ -242,6 +243,7 @@ void MotorDriver_Listen(void *parameter){
             #endif
         }
         //Motor 2
+        vTaskDelay( 1 / portTICK_PERIOD_MS ); //critical delay
         UDP_Data.Motor_Number=2;
         valid = MotorDriver.Get_Encoder2_Count(MCP_Addr,Motor2_current_position,status);
         if(valid){
@@ -256,6 +258,7 @@ void MotorDriver_Listen(void *parameter){
                 ESP_LOGI(MOTOR_TAG,"Motor2 Turn: %d , Position: %d",Motor2_current_turn,int(Motor2_current_position)%32768);
             #endif
         }
+        vTaskDelay( 1 / portTICK_PERIOD_MS ); //critical delay
         valid = MotorDriver.Get_Encoder2_Speed(MCP_Addr,Motor2_current_velocity,status);
         if(valid){
             UDP_Data.Type="Velocity";
@@ -265,6 +268,7 @@ void MotorDriver_Listen(void *parameter){
                 ESP_LOGI(MOTOR_TAG,"Motor2 Velocity: %d",Motor2_current_velocity);
             #endif
         }
+        vTaskDelay( 1 / portTICK_PERIOD_MS ); //critical delay
         valid = MotorDriver.Get_Both_PWMs(MCP_Addr,PWM_M1,PWM_M2);
         if(valid){
             UDP_Data.Motor_Number=1;
@@ -278,6 +282,7 @@ void MotorDriver_Listen(void *parameter){
                 ESP_LOGI(MOTOR_TAG,"Motor1 PWM: %d, Motor2 PWM: %d",PWM_M1,PWM_M2);
             #endif
         }
+        vTaskDelay( 1 / portTICK_PERIOD_MS ); //critical delay
         valid = MotorDriver.Get_Both_Currents(MCP_Addr, Motor1_amper, Motor2_amper);
         if(valid){
             UDP_Data.Motor_Number=1;
@@ -291,7 +296,7 @@ void MotorDriver_Listen(void *parameter){
                 ESP_LOGI(MOTOR_TAG,"Motor1 Amper: %d, Motor2 Amper: %d",Motor1_amper,Motor2_amper);
             #endif
         }
-    vTaskDelay( 5 / portTICK_PERIOD_MS ); //critical delay
+        vTaskDelay( 1 / portTICK_PERIOD_MS ); //critical delay
     }
 }
 void UDP_Listen(void *pvParameter)//UDP Server - Listen for incoming Commands
@@ -387,7 +392,7 @@ void UDP_Listen(void *pvParameter)//UDP Server - Listen for incoming Commands
             }
             packet_JSON.clear();//reset buffer for next incoming packet
         }
-        vTaskDelay( 5 / portTICK_PERIOD_MS ); //period can be lowered
+        vTaskDelay( 8 / portTICK_PERIOD_MS ); //period can be lowered
     }
 }
 void Test_ROS (void * parameter){
@@ -616,7 +621,7 @@ void wifi_init_sta()
     //ESP_LOGI(TAG, "connect to ap SSID:%s password:%s",
     //         EXAMPLE_ESP_WIFI_SSID, EXAMPLE_ESP_WIFI_PASS);
 }
-void gpio_task_example(void* arg)//fix this task
+void Smart_Connect_Interrupt(void* arg)//fix this task
 {
     uint32_t io_num;
     while(1) {
@@ -677,7 +682,7 @@ void app_main(void)//Starting point
     if ( ( UDP_Semaphore ) != NULL )
       xSemaphoreGive( ( UDP_Semaphore ) );  // Make the UDP Socket available for use, by "Giving" the Semaphore.
   }
-    xTaskCreate(gpio_task_example, "gpio_task_example", 2048, NULL, 10, NULL);
+    xTaskCreate(Smart_Connect_Interrupt, "Smart_Connect_Reset", 2048, NULL, 10, NULL);
     MotorDriver.start(1000000);
     wifi_init_sta();
     //stay here until connected to wifi
