@@ -419,14 +419,14 @@ bool MCP_Advanced::Drive_Both_Duty_Cycle(uint8_t address, int16_t duty_cycle1, i
 	return write_n(6,address,MIXEDDUTY,SetWORDval(duty_cycle1),SetWORDval(duty_cycle2));
 }
 //Duty and Accel
-bool MCP_Advanced::Drive_M1_Duty_Cycle_with_Accel(uint8_t address, int16_t duty_cycle, uint32_t accel){
-	return write_n(8,address,M1DUTYACCEL,SetWORDval(duty_cycle),SetDWORDval(accel));
+bool MCP_Advanced::Drive_M1_Duty_Cycle_with_Accel(uint8_t address, int16_t duty_cycle, uint16_t accel){
+	return write_n(8,address,M1DUTYACCEL,SetWORDval(duty_cycle),SetWORDval(accel));
 }
-bool MCP_Advanced::Drive_M2_Duty_Cycle_with_Accel(uint8_t address, int16_t duty_cycle, uint32_t accel){
-	return write_n(8,address,M2DUTYACCEL,SetWORDval(duty_cycle),SetDWORDval(accel));
+bool MCP_Advanced::Drive_M2_Duty_Cycle_with_Accel(uint8_t address, int16_t duty_cycle, uint16_t accel){
+	return write_n(8,address,M2DUTYACCEL,SetWORDval(duty_cycle),SetWORDval(accel));
 }
-bool MCP_Advanced::Drive_Both_Duty_Cycle_with_Accel(uint8_t address, int16_t duty_cycle1, uint32_t accel1, int16_t duty_cycle2, uint32_t accel2){
-	return write_n(14,address,MIXEDDUTYACCEL,SetWORDval(duty_cycle1),SetDWORDval(accel1),SetWORDval(duty_cycle2),SetDWORDval(accel2));
+bool MCP_Advanced::Drive_Both_Duty_Cycle_with_Accel(uint8_t address, int16_t duty_cycle1, uint16_t accel1, int16_t duty_cycle2, uint16_t accel2){
+	return write_n(14,address,MIXEDDUTYACCEL,SetWORDval(duty_cycle1),SetWORDval(accel1),SetWORDval(duty_cycle2),SetWORDval(accel2));
 }
 //Vel
 bool MCP_Advanced::Drive_M1_with_Vel(uint8_t address, int32_t velocity){
@@ -481,16 +481,16 @@ bool MCP_Advanced::Buffered_Drive_Both_X_amount_with_Vel_and_Acc1_Acc2(uint8_t a
 }
 
 //Buffered Vel, Deccel, Accel and Distance
-bool MCP_Advanced::Buffered_Drive_M1_to_Position_with_Vel_and_AccDecc(uint8_t address, uint32_t accel, int32_t velocity, uint32_t deccel, uint32_t distance, uint8_t type){
-		return write_n(19,address,M1SPEEDACCELDECCELPOS,SetDWORDval(accel),SetDWORDval(velocity),SetDWORDval(deccel),SetDWORDval(distance),type);
+bool MCP_Advanced::Buffered_Drive_M1_to_Position_with_Vel_and_AccDecc(uint8_t address, uint32_t accel, int32_t velocity, uint32_t deccel, uint32_t position, uint8_t type){
+		return write_n(19,address,M1SPEEDACCELDECCELPOS,SetDWORDval(accel),SetDWORDval(velocity),SetDWORDval(deccel),SetDWORDval(position),type);
 }
-bool MCP_Advanced::Buffered_Drive_M2_to_Position_with_Vel_and_AccDecc(uint8_t address, uint32_t accel, int32_t velocity, uint32_t deccel, uint32_t distance, uint8_t type){
-		return write_n(19,address,M2SPEEDACCELDECCELPOS,SetDWORDval(accel),SetDWORDval(velocity),SetDWORDval(deccel),SetDWORDval(distance),type);
+bool MCP_Advanced::Buffered_Drive_M2_to_Position_with_Vel_and_AccDecc(uint8_t address, uint32_t accel, int32_t velocity, uint32_t deccel, uint32_t position, uint8_t type){
+		return write_n(19,address,M2SPEEDACCELDECCELPOS,SetDWORDval(accel),SetDWORDval(velocity),SetDWORDval(deccel),SetDWORDval(position),type);
 }
-bool MCP_Advanced::Buffered_Drive_Both_to_Position_with_Vel_and_AccDecc1_AccDecc2(uint8_t address, uint32_t accel1, int32_t velocity1, uint32_t deccel1, uint32_t distance1, 
-		uint32_t accel2, int32_t velocity2, uint32_t deccel2, uint32_t distance2, uint8_t type){
-		return write_n(35,address,M2SPEEDACCELDECCELPOS,SetDWORDval(accel1),SetDWORDval(velocity1),SetDWORDval(deccel1),SetDWORDval(distance1),SetDWORDval(accel2),
-		SetDWORDval(velocity2),SetDWORDval(deccel2),SetDWORDval(distance2),type);
+bool MCP_Advanced::Buffered_Drive_Both_to_Position_with_Vel_and_AccDecc1_AccDecc2(uint8_t address, uint32_t accel1, int32_t velocity1, uint32_t deccel1, uint32_t position1, 
+		uint32_t accel2, int32_t velocity2, uint32_t deccel2, uint32_t position2, uint8_t type){
+		return write_n(35,address,M2SPEEDACCELDECCELPOS,SetDWORDval(accel1),SetDWORDval(velocity1),SetDWORDval(deccel1),SetDWORDval(position1),SetDWORDval(accel2),
+		SetDWORDval(velocity2),SetDWORDval(deccel2),SetDWORDval(position2),type);
 }
 
 

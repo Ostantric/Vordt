@@ -12,7 +12,7 @@
 #include "soc/timer_group_struct.h"
 
 #include "freertos/FreeRTOS.h"
-#include "freertos/task.h"2
+#include "freertos/task.h"
 #include "freertos/event_groups.h"
 #include "freertos/queue.h"
 
@@ -49,6 +49,7 @@ using namespace std;
 #define GPIO_INPUT_PIN_SEL  (1ULL<<Smart_Connect)
 #define UDP_PORT 1500 //port number for UDP server
 #define BUFLEN 2048 //UDP Recieve Buffer
+#define MCP_Addr 0x80 //address
 
 
 
@@ -56,12 +57,6 @@ using namespace std;
 extern "C"{
 void app_main();
 }
-struct Motor_data{
-      uint8_t Motor_Number = 0;
-      uint8_t Type = 0;
-      long Value = 0;
-    };
-
 struct UDP_send_data{
       int Motor_Number = 0;
       char *Type = " ";
@@ -85,6 +80,7 @@ int16_t Motor2_amper = 0;
 int16_t PWM_M1 = 0;
 int16_t PWM_M2 = 0;
 int16_t MotorDriver_Temp = 0;
+uint16_t BatteryVoltage = 0;
 //desired
 int Motor1_desired_velocity = 1500;
 int Motor2_desired_velocity = 1500;
@@ -93,7 +89,7 @@ int Motor2_desired_position = 0;
 int Motor1_desired_turn = 0;
 int Motor2_desired_turn = 0;
 //broadcast period
-int ip_broadcast_delay = 200;
+int ip_broadcast_delay = 2000; //2 seconds
 //MotorDriver
 MCP_Advanced MotorDriver(UART_NUM_2,5);
 //Tags
@@ -120,6 +116,7 @@ const int WIFI_CONNECTED_BIT = BIT0;//wifi connected
 static const int ESPTOUCH_DONE_BIT = BIT1; //smartconfig done bit
 bool Wifi_ready = false; //smart connect flag
 //Semaphores
+//For future use
 static SemaphoreHandle_t UDP_Semaphore = NULL;
 static SemaphoreHandle_t MotorDriver_Serial_Semaphore = NULL;
 //Task Handle
@@ -131,11 +128,27 @@ TaskHandle_t IpBroadcastTask_Handle;
 TaskHandle_t VordtSmartConnectTask_Hanlde;
 TaskHandle_t BoardInfoTask_Handle;
 TaskHandle_t Test_Task_Handle;
-
+TaskHandle_t TEST_ROS_HANDLE;
 static QueueHandle_t gpio_evt_queue = NULL;
-static const char *TEST_TAG = "Test";
 
 /****************************************** TASKS ****************************************/
+void UDP_Send( void * parameter) //UDP Server - Publish Realtime Position,Turn,Velocity,Motor_Voltage
+{
+  UDP_send_data* incoming_char;
+  incoming_char = ( UDP_send_data * ) parameter;
+  int M_Number = incoming_char->Motor_Number;
+  int value = incoming_char->Value; 
+  char *Type = incoming_char->Type;
+  StaticJsonBuffer<128> JSONbuffer;
+  JsonObject& JSONencoder = JSONbuffer.createObject();
+  char JSONmessageBuffer[128];
+  JSONencoder["Motor"] = M_Number;
+  JSONencoder["Type"] = Type;
+  JSONencoder["Value"] = value;
+  JSONencoder.printTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
+  sendto(UDP_Socket, JSONmessageBuffer,sizeof(JSONmessageBuffer),0, (struct sockaddr *) &ClientAddr, sa_len );
+  vTaskDelete(NULL);
+}
 void IP_Broadcast( void * parameter) //IP Broadcast, Port:1600
 {
   BroadcastAddr.sin_family = AF_INET;
@@ -157,140 +170,130 @@ void IP_Broadcast( void * parameter) //IP Broadcast, Port:1600
   state=!state;
   }
 }
-void UDP_Send( void * parameter) //UDP Server - Publish Realtime Position,Turn,Velocity,Motor_Voltage
-{
-  UDP_send_data* incoming_char;
-  incoming_char = ( UDP_send_data * ) parameter;
-  int M_Number = incoming_char->Motor_Number;
-  int value = incoming_char->Value; 
-  char *Type = incoming_char->Type;
-  StaticJsonBuffer<128> JSONbuffer;
-  JsonObject& JSONencoder = JSONbuffer.createObject();
-  char JSONmessageBuffer[128];
-  JSONencoder["Motor"] = M_Number;
-  JSONencoder["Type"] = Type;
-  JSONencoder["Value"] = value;
-  JSONencoder.printTo(JSONmessageBuffer, sizeof(JSONmessageBuffer));
-  //ESP_LOGI(SOCKET_TAG, "JSON: %s", JSONmessageBuffer);
-  sendto(UDP_Socket, JSONmessageBuffer,sizeof(JSONmessageBuffer),0, (struct sockaddr *) &ClientAddr, sa_len );
-  vTaskDelete(NULL);
-}
-
-void Board_Info( void * parameter) //IP Broadcast, Port:1600
-{
-   struct UDP_send_data UDP_Data;
-   bool valid;
-  while(1){
-      MotorDriver_Temp = MotorDriver.Get_Board_Temperature(0x80, &valid);
-      if(valid){
-        UDP_Data.Motor_Number=1;
-        UDP_Data.Type="Btemp";
-        UDP_Data.Value=MotorDriver_Temp;
-        ESP_LOGI(MOTOR_TAG,"Board Temp: %d",MotorDriver_Temp);
-        xTaskCreatePinnedToCore(&UDP_Send,"MotorDriver_BoardTemperature",4096,&UDP_Data,4,NULL,1);
-      }
-    vTaskDelay( 10000 / portTICK_PERIOD_MS );
-  }
-}
-
-void MotorDriver_Listen(void *pvParameter)
-{
-    UDP_Socket = socket(AF_INET, SOCK_DGRAM, 0);
+void Board_Info( void *parameter){
     struct UDP_send_data UDP_Data;
-    uint8_t status;
     bool valid;
-
+    while(1){
+        UDP_Data.Motor_Number=1;
+        BatteryVoltage = MotorDriver.Get_Board_Temperature(MCP_Addr,&valid);
+        MotorDriver_Temp = MotorDriver.Get_Board_Temperature(MCP_Addr,&valid);
+        if(valid){
+            UDP_Data.Type="Btemp";
+            UDP_Data.Value=MotorDriver_Temp;
+            xTaskCreatePinnedToCore(&UDP_Send,"MotorDriverBoard_Temp_Send",2048,&UDP_Data,6,NULL,1);
+            #ifdef DEBUG_BoardInfo
+                ESP_LOGI(MOTOR_TAG,"MotorDriverBoard_Temp :%d", MotorDriver_Temp);
+            #endif
+        }
+        if(valid){
+            UDP_Data.Type="Mvolt";
+            UDP_Data.Value=BatteryVoltage;
+            xTaskCreatePinnedToCore(&UDP_Send,"Main(Battery)_Voltage_Send",2048,&UDP_Data,6,NULL,1);
+            #ifdef DEBUG_BoardInfo
+                ESP_LOGI(MOTOR_TAG,"Main (Battery) Voltage : %d",BatteryVoltage);
+            #endif
+        }
+        vTaskDelay(5000 / portTICK_PERIOD_MS);//every 5 seconds
+    }
+}
+void MotorDriver_Listen(void *parameter){
+    UDP_Socket = socket(AF_INET,SOCK_DGRAM,0);
+    struct UDP_send_data UDP_Data;
+    bool valid;
+    uint8_t status;
     if (UDP_Socket < 0) {
-	ESP_LOGE(SOCKET_TAG, "socket: %d %s", UDP_Socket, strerror(errno));
-	vTaskDelete(NULL);
+	    ESP_LOGE(SOCKET_TAG, "socket: %d %s", UDP_Socket, strerror(errno));
+	    vTaskDelete(NULL);
 	   }
     ESP_Addr.sin_family = AF_INET;
     ESP_Addr.sin_addr.s_addr = htonl(INADDR_ANY);
     ESP_Addr.sin_port = htons(0);
     int rc = bind(UDP_Socket, (struct sockaddr *) &ESP_Addr, sizeof(ESP_Addr));
     if (rc < 0) {
-	    ESP_LOGI(SOCKET_TAG, "bind: %d %s", rc, strerror(errno));
+	    ESP_LOGE(SOCKET_TAG, "bind: %d %s", rc, strerror(errno));
 	    vTaskDelete(NULL);
 	}
-    
     ESP_LOGI(SOCKET_TAG,"Send socket created without errors");
-    xTaskCreatePinnedToCore(&Board_Info, "Board_Info", 2048, NULL, 5, &BoardInfoTask_Handle,1);
-    while(1) {
+    xTaskCreatePinnedToCore(&Board_Info,"IP Broadcast Task",2048,NULL,5,&IpBroadcastTask_Handle,1);
+    xTaskCreatePinnedToCore(&IP_Broadcast,"IP Broadcast Task",2048,NULL,2,&IpBroadcastTask_Handle,0);
+    while(1){
+        //Motor 1
         UDP_Data.Motor_Number=1;
-        valid = MotorDriver.Get_Encoder1_Count(0x80,Motor1_current_position,status);
-        if(valid) {
-            Motor1_current_turn=(int)Motor1_current_position/32768;
+        valid = MotorDriver.Get_Encoder1_Count(MCP_Addr,Motor1_current_position,status);
+        if(valid){
             UDP_Data.Type="Position";
             UDP_Data.Value=int(Motor1_current_position)%32768;
-            xTaskCreatePinnedToCore(&UDP_Send,"Motor1_Position_Send",4096,&UDP_Data,4,NULL,1);
+            xTaskCreatePinnedToCore(&UDP_Send,"Motor1_Position_Send",2048,&UDP_Data,4,NULL,1);
+            Motor1_current_turn=int(Motor1_current_position)/32768;
             UDP_Data.Type="Turn";
             UDP_Data.Value=Motor1_current_turn;
+            xTaskCreatePinnedToCore(&UDP_Send,"Motor1_Turn_Send",2048,&UDP_Data,4,NULL,1);
             #ifdef DEBUG_MotorListen
-            ESP_LOGI(MOTOR_TAG,"Motor1 Turn : %d , Position: %d",Motor1_current_turn,Motor1_current_position);
+                ESP_LOGI(MOTOR_TAG,"Motor1 Turn : %d , Position: %d",Motor1_current_turn,int(Motor1_current_position)%32768);
             #endif
-            xTaskCreatePinnedToCore(&UDP_Send,"Motor1_Turn_Send",4096,&UDP_Data,4,NULL,1);
         }
-        valid = MotorDriver.Get_Encoder1_Speed(0x80,Motor1_current_velocity,status);
-        if(valid) {
+        valid = MotorDriver.Get_Encoder1_Speed(MCP_Addr,Motor1_current_velocity,status);
+        if(valid){
             UDP_Data.Type="Velocity";
             UDP_Data.Value=Motor1_current_velocity;
+            xTaskCreatePinnedToCore(&UDP_Send,"Motor1_Velocity_Send",2048,&UDP_Data,4,NULL,1);
             #ifdef DEBUG_MotorListen
-            ESP_LOGI(MOTOR_TAG,"Motor1 Velocity: %d",Motor1_current_velocity);
+                ESP_LOGI(MOTOR_TAG,"Motor1 Velocity: %d",Motor1_current_velocity);
             #endif
-            xTaskCreatePinnedToCore(&UDP_Send,"Motor1_Velocity_Send",4096,&UDP_Data,4,NULL,1);
         }
+        //Motor 2
         UDP_Data.Motor_Number=2;
-        valid = MotorDriver.Get_Encoder2_Count(0x80,Motor2_current_position,status);
-        if(valid) {
-            Motor1_current_turn = (int)Motor2_current_position/32768;
+        valid = MotorDriver.Get_Encoder2_Count(MCP_Addr,Motor2_current_position,status);
+        if(valid){
             UDP_Data.Type="Position";
-            UDP_Data.Value=(int)Motor2_current_position%32768;
+            UDP_Data.Value=int(Motor2_current_position)%32768;
+            xTaskCreatePinnedToCore(&UDP_Send,"Motor2_Position_Send",2048,&UDP_Data,4,NULL,1);
+            Motor2_current_turn=int(Motor2_current_position)/32768;
+            UDP_Data.Type="Turn";
+            UDP_Data.Value=Motor2_current_turn;
+            xTaskCreatePinnedToCore(&UDP_Send,"Motor2_Turn_Send",2048,&UDP_Data,4,NULL,1);
             #ifdef DEBUG_MotorListen
-            ESP_LOGI(MOTOR_TAG,"Motor2 Turn: %d , Position: %d",Motor2_current_turn,Motor2_current_position);
+                ESP_LOGI(MOTOR_TAG,"Motor2 Turn: %d , Position: %d",Motor2_current_turn,int(Motor2_current_position)%32768);
             #endif
-            xTaskCreatePinnedToCore(&UDP_Send,"Motor2_Position_Send",4096,&UDP_Data,4,NULL,1);
         }
-        valid = MotorDriver.Get_Encoder2_Speed(0x80,Motor2_current_velocity,status);
-        if(valid) {
+        valid = MotorDriver.Get_Encoder2_Speed(MCP_Addr,Motor2_current_velocity,status);
+        if(valid){
             UDP_Data.Type="Velocity";
             UDP_Data.Value=Motor2_current_velocity;
+            xTaskCreatePinnedToCore(&UDP_Send,"Motor2_Velocity_Send",2048,&UDP_Data,4,NULL,1);
             #ifdef DEBUG_MotorListen
-            ESP_LOGI(MOTOR_TAG,"Motor2 Velocity: %d",Motor2_current_velocity);
+                ESP_LOGI(MOTOR_TAG,"Motor2 Velocity: %d",Motor2_current_velocity);
             #endif
-            xTaskCreatePinnedToCore(&UDP_Send,"Motor2_Velocity_Send",4096,&UDP_Data,4,NULL,1);
         }
-        valid = MotorDriver.Get_Both_PWMs(0x80, PWM_M1, PWM_M2);
-        if(valid) {
+        valid = MotorDriver.Get_Both_PWMs(MCP_Addr,PWM_M1,PWM_M2);
+        if(valid){
             UDP_Data.Motor_Number=1;
-            UDP_Data.Type="MotorV";
+            UDP_Data.Type="MotorV";//PWM value
             UDP_Data.Value=PWM_M1;
-            xTaskCreatePinnedToCore(&UDP_Send,"Motor1_PWM_Send",4096,&UDP_Data,4,NULL,1);
+            xTaskCreatePinnedToCore(&UDP_Send,"Motor1_Voltage_Send",2048,&UDP_Data,4,NULL,1);
             UDP_Data.Motor_Number=2;
-            UDP_Data.Type="MotorV";
             UDP_Data.Value=PWM_M2;
+            xTaskCreatePinnedToCore(&UDP_Send,"Motor2_Voltage_Send",2048,&UDP_Data,4,NULL,1);
             #ifdef DEBUG_MotorListen
-            ESP_LOGI(MOTOR_TAG,"Motor1 PWM: %d, Motor2 PWM: %d",PWM_M1,PWM_M2);
+                ESP_LOGI(MOTOR_TAG,"Motor1 PWM: %d, Motor2 PWM: %d",PWM_M1,PWM_M2);
             #endif
-            xTaskCreatePinnedToCore(&UDP_Send,"Motor2_PWM_Send",4096,&UDP_Data,4,NULL,1);
         }
-        valid = MotorDriver.Get_Both_Currents(0x80, Motor1_amper, Motor2_amper);
+        valid = MotorDriver.Get_Both_Currents(MCP_Addr, Motor1_amper, Motor2_amper);
         if(valid){
             UDP_Data.Motor_Number=1;
             UDP_Data.Type="MotorA";
             UDP_Data.Value=Motor1_amper;
-            xTaskCreatePinnedToCore(&UDP_Send,"Motor1_Amper_Send",4096,&UDP_Data,4,NULL,1);
+            xTaskCreatePinnedToCore(&UDP_Send,"Motor1_Amper_Send",2048,&UDP_Data,4,NULL,1);
             UDP_Data.Motor_Number=2;
-            UDP_Data.Type="MotorA";
             UDP_Data.Value=Motor2_amper;
+            xTaskCreatePinnedToCore(&UDP_Send,"Motor2_Amper_Send",2048,&UDP_Data,4,NULL,1);
             #ifdef DEBUG_MotorListen
-            ESP_LOGI(MOTOR_TAG,"Motor1 Amper: %d, Motor2 Amper: %d",Motor1_amper,Motor2_amper);
+                ESP_LOGI(MOTOR_TAG,"Motor1 Amper: %d, Motor2 Amper: %d",Motor1_amper,Motor2_amper);
             #endif
-            xTaskCreatePinnedToCore(&UDP_Send,"Motor2_Amper_Send",4096,&UDP_Data,4,NULL,1);
         }
-        vTaskDelay( 2 / portTICK_PERIOD_MS ); //critical delay
+    vTaskDelay( 5 / portTICK_PERIOD_MS ); //critical delay
     }
 }
-
 void UDP_Listen(void *pvParameter)//UDP Server - Listen for incoming Commands
 {
     struct sockaddr_in UdpServerAddr;
@@ -298,12 +301,10 @@ void UDP_Listen(void *pvParameter)//UDP Server - Listen for incoming Commands
     StaticJsonBuffer<128> packet_JSON;
     const char* types = "";
     int mno = 0;
-    int value = 0;
-    struct Motor_data Command_Data;
+    long value = 0;
     char c_value[20];
     char c_motor[3];
     int i = 0;
-    uint32_t reset_count = 0;
     Receiver_Socket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
     if (Receiver_Socket < 0) {
 		ESP_LOGE(SOCKET_TAG, "socket: %d %s", Receiver_Socket, strerror(errno));
@@ -335,125 +336,64 @@ void UDP_Listen(void *pvParameter)//UDP Server - Listen for incoming Commands
         types = root["type"];
         mno = root["mno"];
         value = root["value"];
-        //ip_broadcast_delay = 2000;//User connected so lower the IP broadcast frequency
+        //ip_broadcast_delay = 2000;//User connected so lower the IP broadcast period
         ets_delay_us(250);
             if(types != '\0'){
-                Command_Data.Value=value;
-                Command_Data.Motor_Number=mno;
                 if (strcmp(types,"dpos") == 0 ){
-                    ESP_LOGI(SOCKET_TAG,"position came, %d",value+(Motor1_current_turn*32768));
-                    Command_Data.Type=1;
+                    ESP_LOGI(SOCKET_TAG,"position came");
                     if(mno == 1){
                         Motor1_desired_position=value;
-                    }else if(mno == 2){
+                    }else if (mno == 2){
                         Motor2_desired_position=value;
                     }
                 }
                 if (strcmp(types,"dvel") == 0 ){
                     ESP_LOGI(SOCKET_TAG,"velocity came");
-                    Command_Data.Type=2;
                     if(mno == 1){
                         Motor1_desired_velocity=value;
-                    }else if(mno == 2){
+                    }else if (mno == 2){
                         Motor2_desired_velocity=value;
                     }
                 }
                 if (strcmp(types,"dturn") == 0 ){
                     ESP_LOGI(SOCKET_TAG,"turn came");
-                    Command_Data.Type=3;
                     if(mno == 1){
                         Motor1_desired_turn=value;
-                        MotorDriver.Buffered_Drive_M1_to_Position_with_Vel_and_AccDecc(0x80,0,Motor1_desired_velocity,0,(int32_t)(Motor1_desired_position+(Motor1_desired_turn*32768)),1);
-                    }else if(mno == 2){
+                        MotorDriver.Buffered_Drive_M1_to_Position_with_Vel_and_AccDecc(MCP_Addr, 0, Motor1_desired_velocity, 0, (Motor1_desired_position+(Motor1_desired_turn*32768)),1);
+                    }else if (mno == 2){
                         Motor2_desired_turn=value;
-                        MotorDriver.Buffered_Drive_M2_to_Position_with_Vel_and_AccDecc(0x80,0,Motor2_desired_velocity,0,(int32_t)(Motor2_desired_position+(Motor2_desired_turn*32768)),1);
+                        MotorDriver.Buffered_Drive_M2_to_Position_with_Vel_and_AccDecc(MCP_Addr, 0, Motor2_desired_velocity, 0, (Motor2_desired_position+(Motor2_desired_turn*32768)),1);
                     }
                 }
                 if (strcmp(types,"pidpos") == 0){
                     ESP_LOGI(SOCKET_TAG,"PID Velocity Parameters came");
-                    Command_Data.Type=4;
+
                 }
                 if (strcmp(types,"pidvel") == 0){
                     ESP_LOGI(SOCKET_TAG,"PID Position Parameters came");
-                    Command_Data.Type=5;
+
                 }
                 if (strcmp(types,"reset") == 0) {
                     ESP_LOGI(SOCKET_TAG,"reset came");
                     if(mno == 1){
-                        MotorDriver.Drive_M1_Duty_Cycle(0x80,0);
-                        MotorDriver.Set_Enconder1_Count(0x80,reset_count);
-                    }else if(mno == 2){
-                        MotorDriver.Drive_M2_Duty_Cycle(0x80,0);
-                        MotorDriver.Set_Enconder2_Count(0x80,reset_count);
+                        MotorDriver.Drive_M1_Duty_Cycle(MCP_Addr,0);
+                        MotorDriver.Set_Enconder1_Count(MCP_Addr,0);
+                    }else if (mno == 2){
+                        MotorDriver.Drive_M1_Duty_Cycle(MCP_Addr,0);
+                        MotorDriver.Set_Enconder1_Count(MCP_Addr,0);
                     }
                     
                 }
             }
             packet_JSON.clear();//reset buffer for next incoming packet
         }
-        vTaskDelay( 5 / portTICK_PERIOD_MS ); //this can be lowered
+        vTaskDelay( 5 / portTICK_PERIOD_MS ); //period can be lowered
     }
 }
-
-void Test( void * parameter) //IP Broadcast, Port:1600
-{
-    //int a;
-  while(1){
-        bool valid1,valid2;
-        uint16_t voltage;
-        uint16_t voltagemin;
-        uint16_t voltagemax;
-        uint16_t temp;
-        uint32_t encoder1,encoder2,speed1,speed2;
-        uint8_t status1,buffer1,buffer2;
-        int32_t m1max_current,m1min_current;
-        int16_t current1;
-        int16_t current2;
-        //MotorDriver.Stop_Script(0x80);
-        //MotorDriver.Reset_Encoders(0x80);
-        //MotorDriver.Set_M1_PID_Position(0x87,2,2,2,100,20,10,50);
-        //a=MotorDriver.available();
-        //ESP_LOGI(TEST_TAG,"RX_Buffer available: %d\n" ,a);
-        //voltage = MotorDriver.Get_Main_Voltage(0x80,&valid1);
-        //valid1=MotorDriver.Get_Both_Currents(0x80,current1,current2);
-        //temp=MotorDriver.Get_Board_Temperature(0x80,&valid1);
-        //valid1=MotorDriver.Get_M1_MaxMin_Current(0x80,m1max_current,m1min_current);
-        //valid1=MotorDriver.Set_M1_MaxMin_Current(0x80,4000,-4000);
-        //ESP_LOGI(TEST_TAG,"Valid ?: %d\n" , valid1);
-        valid1=MotorDriver.Get_Both_Encoder_Counts(0x80,encoder1,encoder2);
-        if(valid1){
-        ESP_LOGI(TEST_TAG,"encoder1: %d\n" , encoder1);
-        //ESP_LOGI(TEST_TAG,"encoder2: %d\n" , encoder2);
-        }
-        valid1=MotorDriver.Get_Encoder1_Speed(0x80,speed1,status1);
-        if(valid1){
-        ESP_LOGI(TEST_TAG,"speed1: %d\n" , speed1);
-        //ESP_LOGI(TEST_TAG,"current2: %d\n" , current2);
-        }
-        valid1=MotorDriver.Get_Both_Currents(0x80,current1,current2);
-        if(valid1){
-        ESP_LOGI(TEST_TAG,"current1: %d\n" , current1);
-        //ESP_LOGI(TEST_TAG,"current2: %d\n" , current2);
-        }
-        valid1=MotorDriver.Get_Motor_Buffers(0x80,buffer1,buffer2);
-        if(valid1){
-        ESP_LOGI(TEST_TAG,"buffer1: %d\n" , buffer1);
-        //ESP_LOGI(TEST_TAG,"current2: %d\n" , current2);
-        }
-        
-        /*valid1=MotorDriver.Get_Both_Instantaneous_Speeds(0x80,speed1,speed2);
-        if(valid1){
-        ESP_LOGI(TEST_TAG,"speed1: %d\n" , speed1);
-        ESP_LOGI(TEST_TAG,"status1: %d\n" , speed2);
-        }*/
-        /*valid1=MotorDriver.Reset_Encoders(0x80);
-        if(valid1)ESP_LOGI("TEST","Reset");*/
-
-        
-        vTaskDelay( 600 / portTICK_PERIOD_MS );
+void Test_ROS (void * parameter){
+    while(1){
     }
 }
-
 static void IRAM_ATTR gpio_isr_handler(void* arg)
 {
     uint32_t gpio_num = (uint32_t) arg;
@@ -465,7 +405,6 @@ static void IRAM_ATTR gpio_isr_handler(void* arg)
 
 /******************************* WIFI-INIT ********************************************************/
 /*STUFF TO FIX
--Wifi connection check(periodically)
 -Restart Smart connect event if password or ssid is invalid
 */
 static void sc_callback(smartconfig_status_t status, void *pdata) //smart config callback
@@ -493,8 +432,7 @@ static void sc_callback(smartconfig_status_t status, void *pdata) //smart config
             wifi_config = (wifi_config_t *) pdata;
             ESP_LOGI(VSMART_TAG, "SSID:%s", wifi_config->sta.ssid);
             ESP_LOGI(VSMART_TAG, "PASSWORD:%s", wifi_config->sta.password);
-            
-            ESP_ERROR_CHECK( esp_wifi_disconnect() );
+            ESP_ERROR_CHECK( esp_wifi_disconnect());
             ESP_ERROR_CHECK( esp_wifi_set_config(ESP_IF_WIFI_STA, wifi_config) );
             ESP_ERROR_CHECK( esp_wifi_connect() );
             
@@ -589,7 +527,6 @@ static esp_err_t Smart_Connect_event_handler(void *ctx, system_event_t *event) /
     }
     return ESP_OK;
 }
-
 static esp_err_t wifi_event_handler(void *ctx, system_event_t *event)
 {
     switch(event->event_id) {
@@ -670,16 +607,16 @@ void wifi_init_sta()
     if(nvs_ssid[0] != NULL){
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
     ESP_ERROR_CHECK(esp_wifi_set_config(ESP_IF_WIFI_STA, &wifi_setup) );
-    ESP_ERROR_CHECK(esp_wifi_start() );
+    ESP_ERROR_CHECK(esp_wifi_start());
     ESP_LOGI(WIFI_TAG, "wifi_init_sta finished.");
     }else{
     initialize_smart_connect();
-    ESP_LOGI(WIFI_TAG, "Smart Connect Activated");
+    ESP_LOGI(WIFI_TAG, "Smart Connect Activated");//smart config
     }
     //ESP_LOGI(TAG, "connect to ap SSID:%s password:%s",
     //         EXAMPLE_ESP_WIFI_SSID, EXAMPLE_ESP_WIFI_PASS);
 }
-void gpio_task_example(void* arg)
+void gpio_task_example(void* arg)//fix this task
 {
     uint32_t io_num;
     while(1) {
@@ -693,25 +630,17 @@ void gpio_task_example(void* arg)
             close(UDP_Socket);
             vTaskDelete(NULL);
             //initialize_smart_connect();
-
         }
     }
 }
+
 void start_tasks(){
-    xTaskCreatePinnedToCore(&MotorDriver_Listen, "FPGA_Serial_Listen", 20000, NULL, 3, &MotorDriverListenTask_Handle,1);
-    xTaskCreatePinnedToCore(&UDP_Listen, "UDP_Listen", 25000, NULL, 5, &UDPListenTask_Handle,0);
-    xTaskCreatePinnedToCore(&IP_Broadcast, "IP_Broadcast", 5000, NULL, 2, &IpBroadcastTask_Handle,0);
+    //xTaskCreatePinnedToCore(&Test_ROS, "ROS Test", 5000, NULL, 2, &TEST_ROS_HANDLE,0);
+    xTaskCreatePinnedToCore(&MotorDriver_Listen, "FPGA_Serial_Listen", 15000, NULL, 3, &MotorDriverListenTask_Handle,1);
+    xTaskCreatePinnedToCore(&UDP_Listen, "UDP_Listen_Task", 15000, NULL, 5,&UDPListenTask_Handle,0);
 }
 void kill_tasks(){
-    //if(&MotorDriverListenTask_Handle!=NULL){
-        vTaskDelete(MotorDriverListenTask_Handle);
-    //}
-    //if(&UDPListenTask_Handle!=NULL){
-        vTaskDelete(UDPListenTask_Handle);
-    //}
-    //if(&IpBroadcastTask_Handle!=NULL){
-        vTaskDelete(IpBroadcastTask_Handle);
-    //}
+    vTaskDelete(MotorDriverListenTask_Handle);
 }
 
 /****************************** MAIN *********************************************************/
@@ -724,12 +653,11 @@ void app_main(void)//Starting point
     gpio_pad_select_gpio(IP_Blink);
     
     gpio_set_direction((gpio_num_t)IP_Blink, GPIO_MODE_OUTPUT);
-       //Create Semaphore for FPGA_Serial port
 
      gpio_config_t io_conf;
     //interrupt of rising edge or falling edge
     io_conf.intr_type = (gpio_int_type_t) GPIO_PIN_INTR_POSEDGE;
-    //bit mask of the pins, use GPIO4/5 here
+    //bit mask of the pins, use GPIO33 here
     io_conf.pin_bit_mask = GPIO_INPUT_PIN_SEL;
     //set as input mode    
     io_conf.mode = GPIO_MODE_INPUT;
@@ -742,29 +670,19 @@ void app_main(void)//Starting point
     gpio_install_isr_service(ESP_INTR_FLAG_DEFAULT);
     gpio_isr_handler_add(Smart_Connect, gpio_isr_handler, (void*) Smart_Connect);
 
-
     vTaskDelay( 20 / portTICK_PERIOD_MS );
-    if ( MotorDriver_Serial_Semaphore == NULL )  // Check to confirm that the FPGA_Serial Semaphore has not already been created.
+  if ( UDP_Semaphore == NULL )  // Check to confirm that the UDP_Semaphore has not already been created.
   {
-    MotorDriver_Serial_Semaphore = xSemaphoreCreateMutex();  // Create a mutex semaphore we will use to manage the FPGA_Serial Port
-    if ( ( MotorDriver_Serial_Semaphore ) != NULL )
-      xSemaphoreGive( ( MotorDriver_Serial_Semaphore ) );  // Make the FPGA_Serial Port available for use, by "Giving" the Semaphore.
-  }
-  if ( UDP_Semaphore == NULL )  // Check to confirm that the FPGA_Serial Semaphore has not already been created.
-  {
-    UDP_Semaphore = xSemaphoreCreateMutex();  // Create a mutex semaphore we will use to manage the FPGA_Serial Port
+    UDP_Semaphore = xSemaphoreCreateMutex();  // Create a mutex semaphore we will use to manage the UDP Socket
     if ( ( UDP_Semaphore ) != NULL )
-      xSemaphoreGive( ( UDP_Semaphore ) );  // Make the FPGA_Serial Port available for use, by "Giving" the Semaphore.
+      xSemaphoreGive( ( UDP_Semaphore ) );  // Make the UDP Socket available for use, by "Giving" the Semaphore.
   }
     xTaskCreate(gpio_task_example, "gpio_task_example", 2048, NULL, 10, NULL);
     MotorDriver.start(1000000);
     wifi_init_sta();
+    //stay here until connected to wifi
     while(1){
         if(Wifi_ready == true){ //check if wifi is connected
-        //xTaskCreatePinnedToCore(&FPGA_Listen, "FPGA_Serial_Listen", 15000, NULL, 3, &MotorDriverListenTask_Handle,1);
-        //xTaskCreatePinnedToCore(&UDP_Listen, "UDP_Listen", 15000, NULL, 5, &UDPListenTask_Handle,0);
-        //xTaskCreatePinnedToCore(&IP_Broadcast, "IP_Broadcast", 15000, NULL, 2, &IpBroadcastTask_Handle,0);
-        //xTaskCreate(gpio_task_example, "gpio_task_example", 2048, NULL, 10, NULL);
         break;
         }
     }   

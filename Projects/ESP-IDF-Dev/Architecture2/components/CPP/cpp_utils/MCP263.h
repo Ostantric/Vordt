@@ -175,9 +175,9 @@ class MCP_Advanced
 		bool Drive_M1_Duty_Cycle(uint8_t address, int16_t duty_cycle);
 		bool Drive_M2_Duty_Cycle(uint8_t address, int16_t duty_cycle);
 		bool Drive_Both_Duty_Cycle(uint8_t address, int16_t duty_cycle1, int16_t duty_cycle2);
-		bool Drive_M1_Duty_Cycle_with_Accel(uint8_t address, int16_t duty_cycle, uint32_t accel);
-		bool Drive_M2_Duty_Cycle_with_Accel(uint8_t address, int16_t duty_cycle, uint32_t accel);
-		bool Drive_Both_Duty_Cycle_with_Accel(uint8_t address, int16_t duty_cycle1, uint32_t accel1, int16_t duty_cycle2, uint32_t accel2);
+		bool Drive_M1_Duty_Cycle_with_Accel(uint8_t address, int16_t duty_cycle, uint16_t accel);
+		bool Drive_M2_Duty_Cycle_with_Accel(uint8_t address, int16_t duty_cycle, uint16_t accel);
+		bool Drive_Both_Duty_Cycle_with_Accel(uint8_t address, int16_t duty_cycle1, uint16_t accel1, int16_t duty_cycle2, uint16_t accel2);
 		//Closed loop
 		bool Drive_M1_with_Vel(uint8_t address, int32_t velocity);
 	    bool Drive_M2_with_Vel(uint8_t address, int32_t velocity);
@@ -195,10 +195,10 @@ class MCP_Advanced
 		int32_t velocity2, uint32_t distance2, uint8_t type = 0);
 		bool Buffered_Drive_Both_X_amount_with_Vel_and_Acc1_Acc2(uint8_t address, uint32_t accel1, int32_t velocity1, uint32_t distance1, 
 		uint32_t accel2, int32_t velocity2, uint32_t distance2, uint8_t type = 0);
-		bool Buffered_Drive_M1_to_Position_with_Vel_and_AccDecc(uint8_t address, uint32_t accel, int32_t velocity, uint32_t deccel, uint32_t distance, uint8_t type = 0);
-		bool Buffered_Drive_M2_to_Position_with_Vel_and_AccDecc(uint8_t address, uint32_t accel, int32_t velocity, uint32_t deccel, uint32_t distance, uint8_t type = 0);
-		bool Buffered_Drive_Both_to_Position_with_Vel_and_AccDecc1_AccDecc2(uint8_t address, uint32_t accel1, int32_t velocity1, uint32_t deccel1, uint32_t distance1, 
-		uint32_t accel2, int32_t velocity2, uint32_t deccel2, uint32_t distance2, uint8_t type = 0);
+		bool Buffered_Drive_M1_to_Position_with_Vel_and_AccDecc(uint8_t address, uint32_t accel, int32_t velocity, uint32_t deccel, uint32_t position, uint8_t type = 0);
+		bool Buffered_Drive_M2_to_Position_with_Vel_and_AccDecc(uint8_t address, uint32_t accel, int32_t velocity, uint32_t deccel, uint32_t position, uint8_t type = 0);
+		bool Buffered_Drive_Both_to_Position_with_Vel_and_AccDecc1_AccDecc2(uint8_t address, uint32_t accel1, int32_t velocity1, uint32_t deccel1, uint32_t position1, 
+		uint32_t accel2, int32_t velocity2, uint32_t deccel2, uint32_t position2, uint8_t type = 0);
 		//Set
 		bool Set_M1_Default_Duty_Acc(uint8_t address, uint32_t accel);
 		bool Set_M2_Default_Duty_Acc(uint8_t address, uint32_t accel);
