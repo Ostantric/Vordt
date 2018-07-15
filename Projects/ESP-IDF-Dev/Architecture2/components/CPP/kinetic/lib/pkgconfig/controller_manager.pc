@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: controller_manager
+Description: Description of controller_manager
+Version: 0.13.0
+Cflags: -I/opt/ros/kinetic/include -I/usr/include
+Libs: -L/opt/ros/kinetic/lib -lcontroller_manager /usr/lib/x86_64-linux-gnu/libboost_thread.so /usr/lib/x86_64-linux-gnu/libboost_chrono.so /usr/lib/x86_64-linux-gnu/libboost_system.so /usr/lib/x86_64-linux-gnu/libboost_date_time.so /usr/lib/x86_64-linux-gnu/libboost_atomic.so /usr/lib/x86_64-linux-gnu/libpthread.so
+Requires: controller_interface controller_manager_msgs hardware_interface realtime_tools pluginlib

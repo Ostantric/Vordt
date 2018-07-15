@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: tf2_py
+Description: Description of tf2_py
+Version: 0.5.17
+Cflags: 
+Libs: -L/opt/ros/kinetic/lib 
+Requires: rospy tf2

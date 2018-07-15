@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: rqt_graph
+Description: Description of rqt_graph
+Version: 0.4.9
+Cflags: 
+Libs: -L/opt/ros/kinetic/lib 
+Requires: 

@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: controller_manager_tests
+Description: Description of controller_manager_tests
+Version: 0.13.0
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib -lcontroller_manager_tests
+Requires: controller_manager controller_interface

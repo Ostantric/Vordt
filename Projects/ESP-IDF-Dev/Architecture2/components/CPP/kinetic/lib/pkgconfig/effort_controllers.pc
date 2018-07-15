@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: effort_controllers
+Description: Description of effort_controllers
+Version: 0.13.2
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib -leffort_controllers
+Requires: angles controller_interface control_msgs control_toolbox forward_command_controller realtime_tools urdf

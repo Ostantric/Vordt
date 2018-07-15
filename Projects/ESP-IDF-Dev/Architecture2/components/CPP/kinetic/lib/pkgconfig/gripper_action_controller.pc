@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: gripper_action_controller
+Description: Description of gripper_action_controller
+Version: 0.13.2
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib -lgripper_action_controller
+Requires: actionlib cmake_modules controller_interface control_msgs hardware_interface realtime_tools trajectory_msgs

@@ -55,6 +55,7 @@
 			"mutex": "cpp",
 			"thread": "cpp",
 			"typeindex": "cpp"
-		}
+		},
+		"git.ignoreLimitWarning": true
 	}
 }

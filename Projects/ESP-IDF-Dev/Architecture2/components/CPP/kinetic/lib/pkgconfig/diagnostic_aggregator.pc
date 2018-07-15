@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: diagnostic_aggregator
+Description: Description of diagnostic_aggregator
+Version: 1.9.2
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib -ldiagnostic_aggregator
+Requires: diagnostic_msgs pluginlib roscpp rospy xmlrpcpp bondcpp

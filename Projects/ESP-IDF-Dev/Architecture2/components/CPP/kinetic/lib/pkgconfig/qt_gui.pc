@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: qt_gui
+Description: Description of qt_gui
+Version: 0.3.8
+Cflags: 
+Libs: -L/opt/ros/kinetic/lib 
+Requires: 

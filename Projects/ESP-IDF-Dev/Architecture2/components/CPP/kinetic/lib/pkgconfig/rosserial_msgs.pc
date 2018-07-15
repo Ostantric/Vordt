@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: rosserial_msgs
+Description: Description of rosserial_msgs
+Version: 0.7.7
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib 
+Requires: message_runtime

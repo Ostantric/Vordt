@@ -1,0 +1,15 @@
+Metadata-Version: 1.1
+Name: xacro
+Version: 1.11.2
+Summary: Xacro (XML Macros)
+
+    Xacro is an XML macro language. With xacro, you can construct shorter and more readable XML files by using macros that expand to larger XML expressions.
+Home-page: http://ros.org/wiki/xacro
+Author: Morgan Quigley
+Author-email: morgan@osrfoundation.org
+License: BSD
+Description: UNKNOWN
+Platform: UNKNOWN
+Requires: xml
+Requires: roslaunch
+Requires: rosgraph

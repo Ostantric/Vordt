@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: xmlrpcpp
+Description: Description of xmlrpcpp
+Version: 1.12.12
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib -lxmlrpcpp
+Requires: cpp_common

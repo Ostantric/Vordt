@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: controller_manager_msgs
+Description: Description of controller_manager_msgs
+Version: 0.13.0
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib 
+Requires: std_msgs message_runtime

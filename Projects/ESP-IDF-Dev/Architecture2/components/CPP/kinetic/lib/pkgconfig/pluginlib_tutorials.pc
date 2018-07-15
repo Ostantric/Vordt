@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: pluginlib_tutorials
+Description: Description of pluginlib_tutorials
+Version: 0.1.10
+Cflags: -I/opt/ros/kinetic/include -I/usr/include
+Libs: -L/opt/ros/kinetic/lib -lpluginlib_tutorials
+Requires: pluginlib roscpp

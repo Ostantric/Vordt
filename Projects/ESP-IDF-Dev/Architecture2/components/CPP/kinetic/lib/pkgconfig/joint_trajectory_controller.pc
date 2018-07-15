@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: joint_trajectory_controller
+Description: Description of joint_trajectory_controller
+Version: 0.13.2
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib -ljoint_trajectory_controller
+Requires: actionlib angles roscpp urdf control_toolbox controller_interface hardware_interface realtime_tools control_msgs trajectory_msgs

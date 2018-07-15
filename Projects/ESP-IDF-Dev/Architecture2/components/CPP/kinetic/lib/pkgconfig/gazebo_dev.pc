@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: gazebo_dev
+Description: Description of gazebo_dev
+Version: 2.5.14
+Cflags: 
+Libs: -L/opt/ros/kinetic/lib 
+Requires: 

@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: combined_robot_hw
+Description: Description of combined_robot_hw
+Version: 0.13.0
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib -lcombined_robot_hw
+Requires: hardware_interface pluginlib roscpp

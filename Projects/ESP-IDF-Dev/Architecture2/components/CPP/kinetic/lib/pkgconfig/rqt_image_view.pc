@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: rqt_image_view
+Description: Description of rqt_image_view
+Version: 0.4.11
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib -lrqt_image_view
+Requires: rqt_gui rqt_gui_cpp image_transport sensor_msgs cv_bridge geometry_msgs

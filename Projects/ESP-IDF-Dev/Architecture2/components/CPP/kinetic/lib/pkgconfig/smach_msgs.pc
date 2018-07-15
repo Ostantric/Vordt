@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: smach_msgs
+Description: Description of smach_msgs
+Version: 2.0.1
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib 
+Requires: message_runtime

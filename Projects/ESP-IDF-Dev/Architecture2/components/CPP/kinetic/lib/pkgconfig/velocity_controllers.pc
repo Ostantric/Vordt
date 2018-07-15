@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: velocity_controllers
+Description: Description of velocity_controllers
+Version: 0.13.2
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib -lvelocity_controllers
+Requires: angles control_msgs control_toolbox controller_interface forward_command_controller realtime_tools urdf

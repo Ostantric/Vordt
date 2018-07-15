@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: random_numbers
+Description: Description of random_numbers
+Version: 0.3.1
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib -lrandom_numbers
+Requires: 

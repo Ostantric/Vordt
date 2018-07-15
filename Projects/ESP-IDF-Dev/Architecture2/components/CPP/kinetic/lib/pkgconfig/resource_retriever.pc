@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: resource_retriever
+Description: Description of resource_retriever
+Version: 1.12.3
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib -lresource_retriever
+Requires: 

@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: interactive_markers
+Description: Description of interactive_markers
+Version: 1.11.3
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib -linteractive_markers
+Requires: roscpp rosconsole rospy tf visualization_msgs

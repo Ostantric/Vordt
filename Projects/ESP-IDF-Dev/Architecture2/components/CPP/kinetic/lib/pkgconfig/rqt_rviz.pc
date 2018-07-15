@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: rqt_rviz
+Description: Description of rqt_rviz
+Version: 0.5.7
+Cflags: 
+Libs: -L/opt/ros/kinetic/lib -lrqt_rviz
+Requires: rqt_gui rqt_gui_cpp rviz

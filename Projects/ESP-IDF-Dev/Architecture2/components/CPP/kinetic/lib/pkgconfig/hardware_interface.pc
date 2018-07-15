@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: hardware_interface
+Description: Description of hardware_interface
+Version: 0.13.0
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib 
+Requires: roscpp

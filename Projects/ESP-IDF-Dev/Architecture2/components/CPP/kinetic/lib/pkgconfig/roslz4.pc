@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: roslz4
+Description: Description of roslz4
+Version: 1.12.12
+Cflags: -I/opt/ros/kinetic/include -I/usr/include
+Libs: -L/opt/ros/kinetic/lib -lroslz4 /usr/lib/x86_64-linux-gnu/liblz4.so
+Requires: 

@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: librviz_tutorial
+Description: Description of librviz_tutorial
+Version: 0.10.2
+Cflags: 
+Libs: -L/opt/ros/kinetic/lib 
+Requires: 

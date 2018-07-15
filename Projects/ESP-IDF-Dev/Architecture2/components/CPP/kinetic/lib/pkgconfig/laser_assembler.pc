@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: laser_assembler
+Description: Description of laser_assembler
+Version: 1.7.4
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib 
+Requires: tf sensor_msgs message_filters roscpp laser_geometry filters message_runtime

@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: joint_state_controller
+Description: Description of joint_state_controller
+Version: 0.13.2
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib -ljoint_state_controller
+Requires: realtime_tools roscpp hardware_interface pluginlib controller_interface sensor_msgs

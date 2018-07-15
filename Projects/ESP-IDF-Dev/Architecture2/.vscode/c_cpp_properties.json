@@ -267,6 +267,7 @@
                 "${workspaceFolder}/lib/ArduinoJson/src",
                 "${workspaceFolder}/main/include/",
                 "${workspaceFolder}/components/CPP/cpp_utils",
+                "${workspaceFolder}/components/CPP/cpp_utils/kinetic/include",
                 "/home/murat/esp-idf/components/mbedtls/mbedtls/include",
                 "${workspaceFolder}/main/Include"
             ],

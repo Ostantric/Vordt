@@ -47,10 +47,11 @@ using namespace std;
 #define Smart_Connect     GPIO_NUM_33
 #define IP_Blink          GPIO_NUM_13
 #define GPIO_INPUT_PIN_SEL  (1ULL<<Smart_Connect)
-#define UDP_PORT 1500 //port number for UDP server
+#define UDP_PORT 1500 //port number for UDP com server -- listenning and talking
+#define ESP32_IP_BROADCAST_PORT 1600 //port number for UDP ESP32 IP Broadcast --talking
+#define ROS_IP_BROADCAST_PORT 1700 // port number for UDP ROS IP Broadcast --listenning
 #define BUFLEN 2048 //UDP Recieve Buffer
 #define MCP_Addr 0x80 //address
-
 
 
 //for unmangling
@@ -88,6 +89,30 @@ int Motor1_desired_position = 0;
 int Motor2_desired_position = 0;
 int Motor1_desired_turn = 0;
 int Motor2_desired_turn = 0;
+//Position PID
+float p1_kp = 1000.0; 
+float p1_ki = 10.0;
+float p1_kd = 2000.0;
+uint32_t p1_deadzone=75;
+uint32_t p1_maxi=8;
+uint32_t p1_min_pos=-3000000;
+uint32_t p1_max_pos=3000000;
+float p2_kp = 1000.0; 
+float p2_ki = 10.0;
+float p2_kd = 2000.0;
+uint32_t p2_deadzone=75;
+uint32_t p2_maxi=8;
+uint32_t p2_min_pos=-3000000;
+uint32_t p2_max_pos=3000000;
+//Velocity PID
+float v1_kp = 2.0; 
+float v1_ki = 5.0;
+float v1_kd = 20.0;
+uint32_t v1_qpps = 42175;
+float v2_kp = 2.0; 
+float v2_ki = 5.0;
+float v2_kd = 20.0;
+uint32_t v2_qpps = 42175;
 //broadcast period
 int ip_broadcast_delay = 1000; //1 seconds
 //MotorDriver
@@ -98,11 +123,13 @@ static const char *VSMART_TAG = "VORDT_SMART_CONNECT";
 static const char *SOCKET_TAG = "UDP_SOCKET";
 static const char *WIFI_TAG = "WiFi_INIT";
 static const char *INTR_TAG = "ISR";
+static const char *TEST_TAG = "Test";
 //UDP related
-struct sockaddr_in BroadcastAddr,ESP_Addr;
+struct sockaddr_in BroadcastAddr,ESP_Addr, ROS_IP_Addr;
 unsigned int send_len;
 int UDP_Socket; //One
 int Receiver_Socket;
+int ROS_IP_receiver_Socket;
 int s_len= sizeof(BroadcastAddr);
 struct sockaddr_in ClientAddr;
 unsigned int sa_len = sizeof(ClientAddr),recv_len;
@@ -132,6 +159,44 @@ TaskHandle_t TEST_ROS_HANDLE;
 static QueueHandle_t gpio_evt_queue = NULL;
 
 /****************************************** TASKS ****************************************/
+void ROS_IP_Listen( void * parameter){
+    char buf[BUFLEN];
+    StaticJsonBuffer<128> JSONbuffer;
+    JsonObject& JSONencoder = JSONbuffer.createObject();
+    char JSONmessageBuffer[128];
+    int roscore_port;
+    const char *roscore_ip;
+    const char *roscore_id;
+    ROS_IP_receiver_Socket = socket(AF_INET,SOCK_DGRAM,0);
+    ROS_IP_Addr.sin_family=AF_INET;
+    ROS_IP_Addr.sin_addr.s_addr = htonl(INADDR_ANY);
+    ROS_IP_Addr.sin_port=htons(ROS_IP_BROADCAST_PORT);
+    
+    if (ROS_IP_receiver_Socket < 0) {
+	    ESP_LOGE(SOCKET_TAG, "socket: %d %s", ROS_IP_receiver_Socket, strerror(errno));
+	    vTaskDelete(NULL);
+	   }
+    int rc = bind(ROS_IP_receiver_Socket, (struct sockaddr *) &ROS_IP_Addr, sizeof(ROS_IP_Addr));
+    if (rc < 0) {
+	    ESP_LOGE(SOCKET_TAG, "bind: %d %s", rc, strerror(errno));
+	    vTaskDelete(NULL);
+	}
+    ESP_LOGI(SOCKET_TAG,"ROS_IP_Receiver socket created without errors");
+    while(1){
+        memset(buf,0,BUFLEN);
+        recv_len = recvfrom(ROS_IP_receiver_Socket, buf, BUFLEN, 0,(struct sockaddr *)&ClientAddr,&sa_len); // wait until incoming packet
+        ets_delay_us(250);
+        if(recv_len>0){
+            JsonObject& root = JSONbuffer.parseObject(buf);
+            roscore_id = root["ID"];
+            roscore_ip = root["IP"];
+            roscore_port = root ["PORT"];
+            ESP_LOGI(SOCKET_TAG,"Data: %s %s %d\n" , roscore_id, roscore_ip, roscore_port);
+        }
+        JSONbuffer.clear();//reset buffer for next incoming packet
+        vTaskDelay(7/portTICK_PERIOD_MS);
+    }
+}
 void UDP_Send( void * parameter) //UDP Server - Publish Realtime Position,Turn,Velocity,Motor_Voltage
 {
   UDP_send_data* incoming_char;
@@ -149,11 +214,12 @@ void UDP_Send( void * parameter) //UDP Server - Publish Realtime Position,Turn,V
   sendto(UDP_Socket, JSONmessageBuffer,sizeof(JSONmessageBuffer),0, (struct sockaddr *) &ClientAddr, sa_len );
   vTaskDelete(NULL);
 }
+
 void IP_Broadcast( void * parameter) //IP Broadcast, Port:1600
 {
   BroadcastAddr.sin_family = AF_INET;
   BroadcastAddr.sin_addr.s_addr = inet_addr("255.255.255.255");
-  BroadcastAddr.sin_port = htons(1600);
+  BroadcastAddr.sin_port = htons(ESP32_IP_BROADCAST_PORT);
   StaticJsonBuffer<256> JSONbuffer;
   JsonObject& JSONencoder = JSONbuffer.createObject();
   char JSONmessageBuffer[256];
@@ -310,6 +376,7 @@ void UDP_Listen(void *pvParameter)//UDP Server - Listen for incoming Commands
     char c_value[20];
     char c_motor[3];
     int i = 0;
+    bool valid=false;
     Receiver_Socket = socket(AF_INET, SOCK_DGRAM, IPPROTO_UDP);
     if (Receiver_Socket < 0) {
 		ESP_LOGE(SOCKET_TAG, "socket: %d %s", Receiver_Socket, strerror(errno));
@@ -372,22 +439,38 @@ void UDP_Listen(void *pvParameter)//UDP Server - Listen for incoming Commands
                 }
                 if (strcmp(types,"pidpos") == 0){
                     ESP_LOGI(SOCKET_TAG,"PID Velocity Parameters came");
-
+                    if(mno == 1){
+                        valid = MotorDriver.Set_M1_PID_Velocity(MCP_Addr, v1_kp, v1_ki, v1_kd, v1_qpps);
+                        if(valid){
+                            ESP_LOGI(TEST_TAG,"success, position PID parameters sent");
+                        }
+                    }else if( mno == 2){
+                        MotorDriver.Set_M2_PID_Velocity(MCP_Addr, v2_kp, v2_ki, v2_kd, v2_qpps);
+                    }
                 }
                 if (strcmp(types,"pidvel") == 0){
                     ESP_LOGI(SOCKET_TAG,"PID Position Parameters came");
+                    if(mno == 1){
+                        valid=MotorDriver.Set_M1_PID_Position(MCP_Addr, p1_kp,p1_ki,p1_kd,p1_maxi,p1_deadzone,p1_min_pos,p1_max_pos);
+                        if(valid){
+                            ESP_LOGI(TEST_TAG,"success, velocity PID parameters sent");
+                        }
+                    }else if( mno == 2){
+                        MotorDriver.Set_M2_PID_Position(MCP_Addr, p2_kp,p2_ki,p2_kd,p2_maxi,p2_deadzone,p2_min_pos,p2_max_pos);
+                    }
 
                 }
                 if (strcmp(types,"reset") == 0) {
                     ESP_LOGI(SOCKET_TAG,"reset came");
                     if(mno == 1){
-                        MotorDriver.Drive_M1_Duty_Cycle(MCP_Addr,0);
+                        MotorDriver.Drive_M1_Duty_Cycle(MCP_Addr, 0);
+                        vTaskDelay( 150 / portTICK_PERIOD_MS ); //150ms
                         MotorDriver.Set_Enconder1_Count(MCP_Addr,0);
                     }else if (mno == 2){
-                        MotorDriver.Drive_M1_Duty_Cycle(MCP_Addr,0);
+                        MotorDriver.Drive_M2_Duty_Cycle(MCP_Addr,0);
+                        vTaskDelay( 150 / portTICK_PERIOD_MS ); //150ms
                         MotorDriver.Set_Enconder1_Count(MCP_Addr,0);
                     }
-                    
                 }
             }
             packet_JSON.clear();//reset buffer for next incoming packet
@@ -397,7 +480,21 @@ void UDP_Listen(void *pvParameter)//UDP Server - Listen for incoming Commands
 }
 void Test_ROS (void * parameter){
     while(1){
+
     }
+}
+
+void Test( void * parameter){
+    bool valid = false;
+    while(1){
+            valid = MotorDriver.Get_M2_PID_Velocity(MCP_Addr, v1_kp, v1_ki, v1_kd, v1_qpps);
+            if(valid){
+                ESP_LOGI(TEST_TAG,"kp: %0.5f, ki:%0.5f, kd: %0.5f, qpps: %d\n" , v1_kp, v1_ki, v1_kd,v1_qpps);
+            }
+         vTaskDelay( 600 / portTICK_PERIOD_MS );
+    }
+
+
 }
 static void IRAM_ATTR gpio_isr_handler(void* arg)
 {
@@ -641,11 +738,11 @@ void Smart_Connect_Interrupt(void* arg)//fix this task
 
 void start_tasks(){
     //xTaskCreatePinnedToCore(&Test_ROS, "ROS Test", 5000, NULL, 2, &TEST_ROS_HANDLE,0);
-    xTaskCreatePinnedToCore(&MotorDriver_Listen, "FPGA_Serial_Listen", 15000, NULL, 3, &MotorDriverListenTask_Handle,1);
-    xTaskCreatePinnedToCore(&UDP_Listen, "UDP_Listen_Task", 15000, NULL, 5,&UDPListenTask_Handle,0);
+    xTaskCreate(&ROS_IP_Listen, "Listen Roscore IP", 15000, NULL, 1, NULL);
+    //xTaskCreate(&Test,"Test deadzone", 2048, NULL, 5, NULL);
 }
 void kill_tasks(){
-    vTaskDelete(MotorDriverListenTask_Handle);
+    //vTaskDelete(MotorDriverListenTask_Handle);
 }
 
 /****************************** MAIN *********************************************************/

@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: roslint
+Description: Description of roslint
+Version: 0.11.0
+Cflags: 
+Libs: -L/opt/ros/kinetic/lib 
+Requires: 

@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: controller_interface
+Description: Description of controller_interface
+Version: 0.13.0
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib 
+Requires: roscpp hardware_interface pluginlib

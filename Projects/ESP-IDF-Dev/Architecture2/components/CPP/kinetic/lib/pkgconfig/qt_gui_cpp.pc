@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: qt_gui_cpp
+Description: Description of qt_gui_cpp
+Version: 0.3.8
+Cflags: -I/opt/ros/kinetic/include -I/usr/include
+Libs: -L/opt/ros/kinetic/lib -lqt_gui_cpp /usr/lib/x86_64-linux-gnu/libboost_filesystem.so /usr/lib/x86_64-linux-gnu/libboost_system.so /usr/lib/x86_64-linux-gnu/libtinyxml.so
+Requires: pluginlib

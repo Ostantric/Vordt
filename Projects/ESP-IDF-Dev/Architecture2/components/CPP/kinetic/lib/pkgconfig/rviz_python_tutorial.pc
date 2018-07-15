@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: rviz_python_tutorial
+Description: Description of rviz_python_tutorial
+Version: 0.10.2
+Cflags: 
+Libs: -L/opt/ros/kinetic/lib 
+Requires: 

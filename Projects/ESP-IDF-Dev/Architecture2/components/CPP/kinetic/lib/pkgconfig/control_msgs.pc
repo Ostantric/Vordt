@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: control_msgs
+Description: Description of control_msgs
+Version: 1.4.0
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib 
+Requires: actionlib_msgs geometry_msgs message_runtime std_msgs trajectory_msgs

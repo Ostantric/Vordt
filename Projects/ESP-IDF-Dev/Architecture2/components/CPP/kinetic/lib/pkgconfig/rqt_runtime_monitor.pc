@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: rqt_runtime_monitor
+Description: Description of rqt_runtime_monitor
+Version: 0.5.7
+Cflags: 
+Libs: -L/opt/ros/kinetic/lib 
+Requires: 

@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: map_msgs
+Description: Description of map_msgs
+Version: 1.13.0
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib 
+Requires: std_msgs sensor_msgs nav_msgs

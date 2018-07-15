@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: pcl_msgs
+Description: Description of pcl_msgs
+Version: 0.2.0
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib 
+Requires: message_runtime sensor_msgs std_msgs

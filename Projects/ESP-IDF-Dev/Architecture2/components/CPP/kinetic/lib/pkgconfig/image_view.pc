@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: image_view
+Description: Description of image_view
+Version: 1.12.22
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib 
+Requires: dynamic_reconfigure

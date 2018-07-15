@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: joint_state_publisher
+Description: Description of joint_state_publisher
+Version: 1.12.12
+Cflags: 
+Libs: -L/opt/ros/kinetic/lib 
+Requires: 

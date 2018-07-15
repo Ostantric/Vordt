@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: gl_dependency
+Description: Description of gl_dependency
+Version: 1.1.0
+Cflags: 
+Libs: -L/opt/ros/kinetic/lib 
+Requires: 

@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: rviz_plugin_tutorials
+Description: Description of rviz_plugin_tutorials
+Version: 0.10.2
+Cflags: 
+Libs: -L/opt/ros/kinetic/lib 
+Requires: 

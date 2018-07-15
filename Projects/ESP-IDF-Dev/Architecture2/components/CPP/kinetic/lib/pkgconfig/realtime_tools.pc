@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: realtime_tools
+Description: Description of realtime_tools
+Version: 1.11.0
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib -lrealtime_tools
+Requires: roscpp rospy

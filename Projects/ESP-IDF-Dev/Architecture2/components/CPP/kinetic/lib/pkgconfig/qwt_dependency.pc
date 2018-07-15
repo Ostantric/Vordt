@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: qwt_dependency
+Description: Description of qwt_dependency
+Version: 1.1.0
+Cflags: 
+Libs: -L/opt/ros/kinetic/lib 
+Requires: 

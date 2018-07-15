@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: rospy_tutorials
+Description: Description of rospy_tutorials
+Version: 0.7.1
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib 
+Requires: message_runtime std_msgs

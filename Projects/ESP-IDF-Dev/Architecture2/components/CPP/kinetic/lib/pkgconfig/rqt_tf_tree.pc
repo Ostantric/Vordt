@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: rqt_tf_tree
+Description: Description of rqt_tf_tree
+Version: 0.5.8
+Cflags: 
+Libs: -L/opt/ros/kinetic/lib 
+Requires: 

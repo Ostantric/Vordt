@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: smclib
+Description: Description of smclib
+Version: 1.8.1
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib 
+Requires: 

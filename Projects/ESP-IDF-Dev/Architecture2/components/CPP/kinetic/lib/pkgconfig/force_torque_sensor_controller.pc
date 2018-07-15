@@ -1,0 +1,8 @@
+prefix=/opt/ros/kinetic
+
+Name: force_torque_sensor_controller
+Description: Description of force_torque_sensor_controller
+Version: 0.13.2
+Cflags: -I/opt/ros/kinetic/include
+Libs: -L/opt/ros/kinetic/lib -lforce_torque_sensor_controller
+Requires: controller_interface geometry_msgs hardware_interface pluginlib realtime_tools roscpp
