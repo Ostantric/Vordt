@@ -1,4 +1,0 @@
-<launch>
-    <node respawn="true" pkg="broadcast" type="broadcast_node" name="roscore_ip_broadcast" output="screen"> 
-    </node>
-</launch>
