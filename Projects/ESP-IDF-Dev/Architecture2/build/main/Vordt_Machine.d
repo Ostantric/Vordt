@@ -116,7 +116,10 @@ Vordt_Machine.o: \
  /home/murat/esp-idf/components/soc/esp32/include/soc/uart_reg.h \
  /home/murat/esp-idf/components/freertos/include/freertos/ringbuf.h \
  /home/murat/esp-idf/components/soc/esp32/include/soc/uart_channel.h \
+ /home/murat/esp-idf/components/driver/include/driver/i2c.h \
  /home/murat/esp-idf/components/soc/esp32/include/soc/timer_group_struct.h \
+ /home/murat/esp-idf/components/soc/esp32/include/soc/i2c_struct.h \
+ /home/murat/esp-idf/components/soc/esp32/include/soc/i2c_reg.h \
  /home/murat/esp-idf/components/freertos/include/freertos/event_groups.h \
  /home/murat/esp-idf/components/freertos/include/freertos/timers.h \
  /home/murat/esp-idf/components/freertos/include/freertos/task.h \
@@ -458,7 +461,13 @@ Vordt_Machine.o: \
 
 /home/murat/esp-idf/components/soc/esp32/include/soc/uart_channel.h:
 
+/home/murat/esp-idf/components/driver/include/driver/i2c.h:
+
 /home/murat/esp-idf/components/soc/esp32/include/soc/timer_group_struct.h:
+
+/home/murat/esp-idf/components/soc/esp32/include/soc/i2c_struct.h:
+
+/home/murat/esp-idf/components/soc/esp32/include/soc/i2c_reg.h:
 
 /home/murat/esp-idf/components/freertos/include/freertos/event_groups.h:
 

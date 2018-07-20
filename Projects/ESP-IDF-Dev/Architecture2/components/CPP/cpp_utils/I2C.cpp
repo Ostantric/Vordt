@@ -115,7 +115,7 @@ void I2C::init(uint8_t address, gpio_num_t sdaPin, gpio_num_t sclPin, uint32_t c
 		ESP_LOGE(LOG_TAG, "i2c_param_config: rc=%d %s", errRc, GeneralUtils::errorToString(errRc));
 	}
 	if (!driverInstalled) {
-		errRc = ::i2c_driver_install(m_portNum, I2C_MODE_MASTER, 0, 0, 0);
+		errRc = ::i2c_driver_install(m_portNum, I2C_MODE_MASTER, 0, 0, 0, NULL);
 		if (errRc != ESP_OK) {
 			ESP_LOGE(LOG_TAG, "i2c_driver_install: rc=%d %s", errRc, GeneralUtils::errorToString(errRc));
 		}

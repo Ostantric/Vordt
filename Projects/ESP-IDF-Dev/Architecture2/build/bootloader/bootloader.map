@@ -401,7 +401,7 @@ END GROUP
  *(.jcr)
                 0x000000003fff001c                _data_end = ABSOLUTE (.)
 
-.dram0.rodata   0x000000003fff001c     0x16a8
+.dram0.rodata   0x000000003fff001c     0x16b0
                 0x000000003fff001c                _rodata_start = ABSOLUTE (.)
  *(.rodata)
  .rodata        0x000000003fff001c       0x14 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
@@ -411,82 +411,82 @@ END GROUP
                 0x000000003fff0038       0x3b /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/main/libmain.a(bootloader_start.o)
  *fill*         0x000000003fff0073        0x1 
  .rodata.str1.4
-                0x000000003fff0074      0x416 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
-                                        0x41e (size before relaxing)
- *fill*         0x000000003fff048a        0x2 
+                0x000000003fff0074      0x41e /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                                        0x426 (size before relaxing)
+ *fill*         0x000000003fff0492        0x2 
  .rodata.__func__$4355
-                0x000000003fff048c       0x10 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
+                0x000000003fff0494       0x10 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_init.o)
  .rodata.str1.4
-                0x000000003fff049c      0x5a5 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
+                0x000000003fff04a4      0x5a5 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_utility.o)
                                         0x5ad (size before relaxing)
- *fill*         0x000000003fff0a41        0x3 
+ *fill*         0x000000003fff0a49        0x3 
  .rodata.str1.4
-                0x000000003fff0a44      0x163 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
- *fill*         0x000000003fff0ba7        0x1 
+                0x000000003fff0a4c      0x163 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(flash_partitions.o)
+ *fill*         0x000000003fff0baf        0x1 
  .rodata.str1.4
-                0x000000003fff0ba8      0x45a /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
+                0x000000003fff0bb0      0x45a /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(esp_image_format.o)
                                         0x49a (size before relaxing)
- *fill*         0x000000003fff1002        0x2 
+ *fill*         0x000000003fff100a        0x2 
  .rodata.str1.4
-                0x000000003fff1004       0xc4 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x000000003fff100c       0xc4 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .rodata.padding$3045
-                0x000000003fff10c8       0x40 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+                0x000000003fff10d0       0x40 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
  .rodata.__func__$3041
-                0x000000003fff1108       0x19 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- *fill*         0x000000003fff1121        0x3 
+                0x000000003fff1110       0x19 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ *fill*         0x000000003fff1129        0x3 
  .rodata.__func__$3021
-                0x000000003fff1124       0x17 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
- *fill*         0x000000003fff113b        0x1 
+                0x000000003fff112c       0x17 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_sha.o)
+ *fill*         0x000000003fff1143        0x1 
  .rodata.str1.4
-                0x000000003fff113c      0x28e /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
- *fill*         0x000000003fff13ca        0x2 
+                0x000000003fff1144      0x28e /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/bootloader_support/libbootloader_support.a(bootloader_flash.o)
+ *fill*         0x000000003fff13d2        0x2 
  .rodata.str1.4
-                0x000000003fff13cc      0x250 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff13d4      0x250 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/soc/libsoc.a(rtc_clk.o)
                                         0x24d (size before relaxing)
  .rodata.rtc_clk_xtal_freq_estimate
-                0x000000003fff161c       0x64 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff1624       0x64 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.rtc_clk_cpu_freq_value
-                0x000000003fff1680       0x14 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff1688       0x14 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/soc/libsoc.a(rtc_clk.o)
  .rodata.__func__$2842
-                0x000000003fff1694       0x17 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/soc/libsoc.a(rtc_clk.o)
- *fill*         0x000000003fff16ab        0x1 
+                0x000000003fff169c       0x17 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/soc/libsoc.a(rtc_clk.o)
+ *fill*         0x000000003fff16b3        0x1 
  .rodata.__func__$2827
-                0x000000003fff16ac       0x15 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/soc/libsoc.a(rtc_clk.o)
+                0x000000003fff16b4       0x15 /media/murat/Linux_Storage/Home_Storage/Project_Vordt/Microcontroller/Projects/ESP-IDF-Dev/Architecture2/build/bootloader/soc/libsoc.a(rtc_clk.o)
  *(.gnu.linkonce.r.*)
  *(.rodata1)
-                0x000000003fff16c1                __XT_EXCEPTION_TABLE_ = ABSOLUTE (.)
+                0x000000003fff16c9                __XT_EXCEPTION_TABLE_ = ABSOLUTE (.)
  *(.xt_except_table)
  *(.gcc_except_table)
  *(.gnu.linkonce.e.*)
  *(.gnu.version_r)
  *(.eh_frame)
-                0x000000003fff16c4                . = ((. + 0x3) & 0xfffffffffffffffc)
- *fill*         0x000000003fff16c1        0x3 
-                0x000000003fff16c4                __init_array_start = ABSOLUTE (.)
+                0x000000003fff16cc                . = ((. + 0x3) & 0xfffffffffffffffc)
+ *fill*         0x000000003fff16c9        0x3 
+                0x000000003fff16cc                __init_array_start = ABSOLUTE (.)
  *crtbegin.o(.ctors)
  *(EXCLUDE_FILE(*crtend.o) .ctors)
  *(SORT(.ctors.*))
  *(.ctors)
-                0x000000003fff16c4                __init_array_end = ABSOLUTE (.)
+                0x000000003fff16cc                __init_array_end = ABSOLUTE (.)
  *crtbegin.o(.dtors)
  *(EXCLUDE_FILE(*crtend.o) .dtors)
  *(SORT(.dtors.*))
  *(.dtors)
-                0x000000003fff16c4                __XT_EXCEPTION_DESCS_ = ABSOLUTE (.)
+                0x000000003fff16cc                __XT_EXCEPTION_DESCS_ = ABSOLUTE (.)
  *(.xt_except_desc)
  *(.gnu.linkonce.h.*)
-                0x000000003fff16c4                __XT_EXCEPTION_DESCS_END__ = ABSOLUTE (.)
+                0x000000003fff16cc                __XT_EXCEPTION_DESCS_END__ = ABSOLUTE (.)
  *(.xt_except_desc_end)
  *(.dynamic)
  *(.gnu.version_d)
-                0x000000003fff16c4                _rodata_end = ABSOLUTE (.)
-                0x000000003fff16c4                _lit4_start = ABSOLUTE (.)
+                0x000000003fff16cc                _rodata_end = ABSOLUTE (.)
+                0x000000003fff16cc                _lit4_start = ABSOLUTE (.)
  *(*.lit4)
  *(.lit4.*)
  *(.gnu.linkonce.lit4.*)
-                0x000000003fff16c4                _lit4_end = ABSOLUTE (.)
-                0x000000003fff16c4                . = ALIGN (0x4)
-                0x000000003fff16c4                _heap_start = ABSOLUTE (.)
+                0x000000003fff16cc                _lit4_end = ABSOLUTE (.)
+                0x000000003fff16cc                . = ALIGN (0x4)
+                0x000000003fff16cc                _heap_start = ABSOLUTE (.)
 
 .iram.text      0x0000000040078000     0x3a9e
                 0x0000000040078000                _stext = .
